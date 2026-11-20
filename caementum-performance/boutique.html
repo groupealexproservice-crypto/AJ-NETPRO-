@@ -42,7 +42,7 @@
       <a href="a-propos.html">À propos</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn btn--primary btn--sm bar-cta" href="formations.html#tarifs">Acheter une formation</a>
+    <a class="cart-btn" href="panier.html" aria-label="Voir le panier"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5h9.6L19.5 7H6.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span>Panier</span><span class="cart-count" data-cart-count>0</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="sr">Menu</span></button>
   </div>
 </header>
@@ -59,12 +59,12 @@
 <section class="slab" data-tone="chalk" aria-labelledby="coll">
   <div class="wrap">
     <div class="section-head">
-      <div class="notice"><strong>Collection en préparation.</strong> Les visuels sont provisoires (dessins de présentation, pas des photos des produits). Les prix, les descriptions et les photos seront ajoutés dès que les vêtements seront définis. Vous pouvez déjà demander à être prévenu de la sortie d’une pièce.</div>
+      <div class="notice"><strong>Collection en préparation.</strong> Les visuels sont provisoires (dessins de présentation, pas des photos des produits). Les prix, les descriptions et les photos seront ajoutés dès que les vêtements seront définis. Vous pouvez déjà remplir votre panier : Alexandre vous confirme les prix et la livraison avant tout paiement.</div>
       <h2 id="coll" class="h2" style="margin-top:36px">La collection.</h2>
       <div class="filters" role="group" aria-label="Filtrer par catégorie"><button type="button" class="chip is-on" data-filter="tous">Tous</button><button type="button" class="chip" data-filter="haut">Hauts</button><button type="button" class="chip" data-filter="bas">Bas</button><button type="button" class="chip" data-filter="accessoire">Accessoires</button></div>
     </div>
     <div class="shop" data-shop>
-      <article class="product" data-product="tshirt" data-cat="haut">
+      <article class="product" data-product="tshirt" data-cat="haut" data-name="T-shirt de course" data-price="">
   <div class="product-photo"><div class="product-ph"><svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M62 38 L90 28 Q100 42 110 28 L138 38 L176 70 L158 94 L142 82 L142 172 L58 172 L58 82 L42 94 L24 70 Z" fill="#111"/><path d="M24 70 L42 94 M176 70 L158 94" stroke="#1652f0" stroke-width="6"/><g transform="translate(86 70) scale(0.28)" fill="#fff"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><span class="ph-tag">Visuel provisoire</span></div></div>
   <div class="product-body">
@@ -72,10 +72,10 @@
     <p class="product-price"><span class="tbd">Prix à définir</span></p>
     <p class="product-desc"><span class="tbd">À compléter</span> [Description provisoire : matière, coupe, usage.]</p>
     <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-tshirt" value="TP"><span>TP</span></label><label><input type="radio" name="t-tshirt" value="P"><span>P</span></label><label><input type="radio" name="t-tshirt" value="M" checked><span>M</span></label><label><input type="radio" name="t-tshirt" value="G"><span>G</span></label><label><input type="radio" name="t-tshirt" value="TG"><span>TG</span></label><label><input type="radio" name="t-tshirt" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--dark" data-order="tshirt" href="commande.html?produit=tshirt">Me prévenir de la sortie</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>
-<article class="product" data-product="camisole" data-cat="haut">
+<article class="product" data-product="camisole" data-cat="haut" data-name="Camisole de course" data-price="">
   <div class="product-photo"><div class="product-ph"><svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M72 28 L86 28 Q100 58 114 28 L128 28 L138 84 L132 172 L68 172 L62 84 Z" fill="#fff" stroke="#111" stroke-width="3"/><path d="M68 160 H132 V172 H68 Z" fill="#1652f0"/><g transform="translate(86 80) scale(0.28)" fill="#1652f0"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><span class="ph-tag">Visuel provisoire</span></div></div>
   <div class="product-body">
@@ -83,10 +83,10 @@
     <p class="product-price"><span class="tbd">Prix à définir</span></p>
     <p class="product-desc"><span class="tbd">À compléter</span> [Description provisoire : matière, coupe, usage.]</p>
     <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-camisole" value="TP"><span>TP</span></label><label><input type="radio" name="t-camisole" value="P"><span>P</span></label><label><input type="radio" name="t-camisole" value="M" checked><span>M</span></label><label><input type="radio" name="t-camisole" value="G"><span>G</span></label><label><input type="radio" name="t-camisole" value="TG"><span>TG</span></label><label><input type="radio" name="t-camisole" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--dark" data-order="camisole" href="commande.html?produit=camisole">Me prévenir de la sortie</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>
-<article class="product" data-product="short" data-cat="bas">
+<article class="product" data-product="short" data-cat="bas" data-name="Short de course" data-price="">
   <div class="product-photo"><div class="product-ph"><svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M50 58 H150 L160 152 L108 152 L100 104 L92 152 L40 152 Z" fill="#111"/><path d="M50 58 L40 152 M150 58 L160 152" stroke="#1652f0" stroke-width="6"/><path d="M50 58 H150 V68 H50 Z" fill="#2a2a2a"/><g transform="translate(54 84) scale(0.22)" fill="#fff"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><span class="ph-tag">Visuel provisoire</span></div></div>
   <div class="product-body">
@@ -94,10 +94,10 @@
     <p class="product-price"><span class="tbd">Prix à définir</span></p>
     <p class="product-desc"><span class="tbd">À compléter</span> [Description provisoire : matière, longueur, poches.]</p>
     <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-short" value="TP"><span>TP</span></label><label><input type="radio" name="t-short" value="P"><span>P</span></label><label><input type="radio" name="t-short" value="M" checked><span>M</span></label><label><input type="radio" name="t-short" value="G"><span>G</span></label><label><input type="radio" name="t-short" value="TG"><span>TG</span></label><label><input type="radio" name="t-short" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--dark" data-order="short" href="commande.html?produit=short">Me prévenir de la sortie</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>
-<article class="product" data-product="coupe-vent" data-cat="haut">
+<article class="product" data-product="coupe-vent" data-cat="haut" data-name="Coupe-vent" data-price="">
   <div class="product-photo"><div class="product-ph"><svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M62 36 L90 26 H110 L138 36 L176 62 L166 150 L148 148 L146 176 H54 L52 148 L34 150 L24 62 Z" fill="#1652f0"/><path d="M100 28 V176" stroke="#0d2f8f" stroke-width="3"/><path d="M34 150 L52 148 M166 150 L148 148" stroke="#111" stroke-width="8"/><g transform="translate(112 66) scale(0.22)" fill="#fff"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><span class="ph-tag">Visuel provisoire</span></div></div>
   <div class="product-body">
@@ -105,10 +105,10 @@
     <p class="product-price"><span class="tbd">Prix à définir</span></p>
     <p class="product-desc"><span class="tbd">À compléter</span> [Description provisoire : matière, protection, poids.]</p>
     <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-coupe-vent" value="TP"><span>TP</span></label><label><input type="radio" name="t-coupe-vent" value="P"><span>P</span></label><label><input type="radio" name="t-coupe-vent" value="M" checked><span>M</span></label><label><input type="radio" name="t-coupe-vent" value="G"><span>G</span></label><label><input type="radio" name="t-coupe-vent" value="TG"><span>TG</span></label><label><input type="radio" name="t-coupe-vent" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--dark" data-order="coupe-vent" href="commande.html?produit=coupe-vent">Me prévenir de la sortie</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>
-<article class="product" data-product="kangourou" data-cat="haut">
+<article class="product" data-product="kangourou" data-cat="haut" data-name="Chandail à capuchon" data-price="">
   <div class="product-photo"><div class="product-ph"><svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M76 34 Q100 16 124 34 L130 58 H70 Z" fill="#222"/><path d="M62 54 L38 72 L20 146 L44 152 L52 104 L52 178 H148 V104 L156 152 L180 146 L162 72 L138 54 Q100 70 62 54 Z" fill="#111"/><path d="M70 130 H130 L124 160 H76 Z" fill="#1c1c1c"/><path d="M90 60 V90 M110 60 V90" stroke="#fff" stroke-width="3"/><g transform="translate(86 92) scale(0.26)" fill="#1652f0"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><span class="ph-tag">Visuel provisoire</span></div></div>
   <div class="product-body">
@@ -116,10 +116,10 @@
     <p class="product-price"><span class="tbd">Prix à définir</span></p>
     <p class="product-desc"><span class="tbd">À compléter</span> [Description provisoire : matière, coupe, usage.]</p>
     <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-kangourou" value="TP"><span>TP</span></label><label><input type="radio" name="t-kangourou" value="P"><span>P</span></label><label><input type="radio" name="t-kangourou" value="M" checked><span>M</span></label><label><input type="radio" name="t-kangourou" value="G"><span>G</span></label><label><input type="radio" name="t-kangourou" value="TG"><span>TG</span></label><label><input type="radio" name="t-kangourou" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--dark" data-order="kangourou" href="commande.html?produit=kangourou">Me prévenir de la sortie</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>
-<article class="product" data-product="casquette" data-cat="accessoire">
+<article class="product" data-product="casquette" data-cat="accessoire" data-name="Casquette" data-price="">
   <div class="product-photo"><div class="product-ph"><svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M38 116 Q38 58 100 58 Q162 58 162 116 Z" fill="#111"/><path d="M38 108 H162 V118 H38 Z" fill="#1652f0"/><path d="M100 118 Q176 114 188 136 Q150 140 100 128 Z" fill="#111"/><g transform="translate(80 70) scale(0.24)" fill="#fff"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><span class="ph-tag">Visuel provisoire</span></div></div>
   <div class="product-body">
@@ -127,7 +127,7 @@
     <p class="product-price"><span class="tbd">Prix à définir</span></p>
     <p class="product-desc"><span class="tbd">À compléter</span> [Description provisoire : matière, ajustement.]</p>
     <p class="fine" style="margin:0">Taille unique</p>
-    <a class="btn btn--dark" data-order="casquette" href="commande.html?produit=casquette">Me prévenir de la sortie</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>
     </div>
@@ -202,6 +202,7 @@
     <p class="foot-legal">© <span data-year>2026</span> Caementum Performance. Prix en dollars canadiens, taxes (TPS et TVQ) en sus.</p>
   </div>
 </footer>
+<div class="sr" id="live" role="status" aria-live="polite"></div>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js" defer></script>
 </body>

@@ -8,13 +8,13 @@ import formations from '../src/pages/formations.mjs';
 import boutique from '../src/pages/boutique.mjs';
 import aPropos from '../src/pages/a-propos.mjs';
 import contact from '../src/pages/contact.mjs';
-import commande from '../src/pages/commande.mjs';
+import panier from '../src/pages/panier.mjs';
 import inscription from '../src/pages/inscription.mjs';
 import merci from '../src/pages/merci.mjs';
 import { cgv, confidentialite, mentions, notFound } from '../src/pages/legal.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const pages = [index, formations, boutique, aPropos, contact, commande, inscription, merci, cgv, confidentialite, mentions, notFound];
+const pages = [index, formations, boutique, aPropos, contact, panier, inscription, merci, cgv, confidentialite, mentions, notFound];
 
 for (const p of pages) fs.writeFileSync(path.join(root, p.file), layout(p));
 
@@ -25,7 +25,7 @@ fs.writeFileSync(path.join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="
 ${indexable.map((p) => `  <url><loc>${SITE.url}/${p.file === 'index.html' ? '' : p.file}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `);
-fs.writeFileSync(path.join(root, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /inscription.html\nDisallow: /commande.html\nDisallow: /merci.html\nSitemap: ${SITE.url}/sitemap.xml\n`);
+fs.writeFileSync(path.join(root, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /inscription.html\nDisallow: /panier.html\nDisallow: /merci.html\nSitemap: ${SITE.url}/sitemap.xml\n`);
 fs.writeFileSync(path.join(root, 'manifest.webmanifest'), JSON.stringify({
   name: SITE.name, short_name: 'Caementum', lang: 'fr-CA', start_url: './index.html', display: 'standalone',
   background_color: '#111111', theme_color: '#111111',

@@ -8,10 +8,11 @@ Site statique en français (Québec) pour vendre des **formations de course à p
 |---|---|
 | `index.html` | Accueil : marque, mission, valeurs, accès aux formations et à la boutique |
 | `formations.html` | Formations : contenu, public, durée, prix, achat |
-| `boutique.html` | Vêtements : fiches produits, tailles, prix, commande |
+| `boutique.html` | Vêtements : fiches produits, tailles, prix, ajout au panier |
+| `panier.html` | Panier (conservé dans le navigateur) et envoi de la commande |
 | `a-propos.html` | Origine du projet, palmarès, approche |
 | `contact.html` | Formulaire et réseaux sociaux |
-| `inscription.html`, `commande.html`, `merci.html` | Parcours d'achat (formation, vêtement) |
+| `inscription.html`, `merci.html` | Parcours d'achat des formations et pages de remerciement |
 | `conditions-de-vente`, `confidentialite`, `mentions-legales` | Pages légales (modèles) |
 
 ## Voir le site en local
@@ -32,7 +33,7 @@ Tout se modifie dans `src/lib.mjs`, puis `node tools/build.mjs` régénère les 
 
 ## À configurer avant la mise en ligne (`assets/js/config.js`)
 
-1. **Paiement** : un lien de paiement Stripe par formation et par durée (`checkout`), et un par vêtement (`products`). Sans lien, la demande est envoyée à Alexandre.
+1. **Paiement** : un lien de paiement Stripe par formation et par durée (`checkout`). Sans lien, la demande est envoyée à Alexandre. Les commandes de vêtements arrivent par formulaire (le panier envoie la liste des articles) ; un vrai paiement en ligne pour la boutique reste à brancher une fois les produits et les prix définis.
 2. **Domaine et courriel** : remplacer `caementumperformance.com` dans `src/lib.mjs` et `config.js` (le domaine n'est pas encore vérifié ni réservé).
 3. **Formulaires** : prévus pour Netlify Forms. Ailleurs, indiquer l'adresse du service dans `formEndpoint`.
 4. **Photo d'Alexandre** : remplacer le bloc `figure.portrait` de la page À propos. N'utilisez pas les images des anciens documents (banques d'images).

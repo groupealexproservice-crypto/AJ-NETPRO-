@@ -33,21 +33,20 @@ export default {
     faqSchema(),
   ],
   body: `
-<section class="hero hero--photo" aria-labelledby="h1">
-  <div class="hero-photo" aria-hidden="true"><img src="assets/img/photos/hero.jpg" alt="" width="1600" height="1148" fetchpriority="high"></div>
+<section class="hero hero--split" aria-labelledby="h1">
+  <div class="hero-photo-split" aria-hidden="true"><img src="assets/img/photos/hero.jpg" alt="" width="1600" height="1148" fetchpriority="high"></div>
+  <svg class="hero-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M15.5 0 L1.5 100" stroke="#1652f0" stroke-width="7" fill="none" vector-effect="non-scaling-stroke"/><path d="M12 0 L-2 100" stroke="#1d3fa8" stroke-width="3" fill="none" vector-effect="non-scaling-stroke"/></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">Coaching · Course à pied</p>
       <h1 id="h1" class="h1">La performance <span class="hl">se construit.</span></h1>
       <p class="lead">Aucun algorithme. Chaque plan est écrit à la main par un athlète international, après analyse de vos retours. Piste, route ou trail, partout au Québec.</p>
       <div class="actions">
-        <a class="btn btn--primary" href="formations.html">Voir les formations</a>
+        <a class="btn btn--primary" href="formations.html">Voir les formations <span aria-hidden="true">→</span></a>
         <a class="btn btn--ghost" href="boutique.html">Découvrir la boutique</a>
       </div>
     </div>
-    ${markSvg({ className: 'hero-mark', animate: true, title: 'Le logo Caementum Performance : un X fait de bandes diagonales' })}
   </div>
-  <div style="height:clamp(48px,7vw,96px)"></div>
 </section>
 
 <section class="slab slab--tight" data-tone="chalk" aria-label="Palmarès en chiffres">
@@ -119,20 +118,22 @@ export default {
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="fond">
+<section class="slab slab--mist" data-tone="chalk" aria-labelledby="fond">
   <div class="wrap split split--even founder">
     <figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="900" height="900" loading="lazy" decoding="async"></figure>
     <div style="display:grid;gap:22px;align-content:center">
       <p class="eyebrow">Le fondateur</p>
-      <h2 id="fond" class="h2">Alexandre <span class="hl">Ben Ammar</span></h2>
-      <p class="lead">Athlète international, il a participé aux Jeux olympiques de Rio. Il transmet la rigueur du haut niveau à tous les profils.</p>
-      <ul class="check-list">
-        <li>Participation aux Jeux olympiques de Rio</li>
-        <li>Finaliste et deux participations aux championnats du monde</li>
-        <li>Cinq fois champion de France, vingt fois champion de Tunisie</li>
-        <li>Champion de la Méditerranée, finaliste aux championnats d’Afrique</li>
+      <h2 id="fond" class="h2">Alexandre Ben Ammar</h2>
+      <p class="lead">Athlète international, Alexandre a fondé Caementum pour transmettre à chaque coureur la rigueur du haut niveau et une vraie relation humaine.</p>
+      <ul class="rows">
+        <li><b class="dash" aria-hidden="true"></b><span>Participation aux Jeux olympiques de Rio</span></li>
+        <li><b>2×</b><span>Participations aux championnats du monde, dont une finale</span></li>
+        <li><b>5×</b><span>Champion de France</span></li>
+        <li><b>20×</b><span>Champion de Tunisie</span></li>
+        <li><b class="dash" aria-hidden="true"></b><span>Champion de la Méditerranée</span></li>
+        <li><b class="dash" aria-hidden="true"></b><span>Finaliste aux championnats d’Afrique</span></li>
       </ul>
-      <div class="actions"><a class="btn btn--primary" href="a-propos.html">Notre histoire</a></div>
+      <div class="actions"><a class="btn btn--dark" href="a-propos.html">Notre histoire</a></div>
     </div>
   </div>
 </section>

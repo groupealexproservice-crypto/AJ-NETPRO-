@@ -41,15 +41,14 @@ export function productCard(p) {
   const sizes = p.sizes.length > 1
     ? `<fieldset class="sizes"><legend>Taille</legend>${p.sizes.map((z, i) => `<label><input type="radio" name="t-${p.id}" value="${z}"${i === 2 ? ' checked' : ''}><span>${z}</span></label>`).join('')}</fieldset>`
     : `<p class="fine" style="margin:0">Taille unique</p>`;
-  const label = p.price == null ? 'Me prévenir de la sortie' : 'Commander';
-  return `<article class="product" data-product="${p.id}" data-cat="${p.cat}">
+  return `<article class="product" data-product="${p.id}" data-cat="${p.cat}" data-name="${p.name}" data-price="${p.price == null ? '' : p.price}">
   <div class="product-photo">${photo}</div>
   <div class="product-body">
     <h3>${p.name}</h3>
     ${price}
     <p class="product-desc">${p.provisoire ? tbd('À compléter') + ' ' : ''}${p.desc}</p>
     ${sizes}
-    <a class="btn btn--dark" data-order="${p.id}" href="commande.html?produit=${p.id}">${label}</a>
+    <a class="btn btn--dark" data-add href="panier.html">Ajouter au panier</a>
   </div>
 </article>`;
 }

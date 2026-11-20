@@ -90,32 +90,64 @@
     });
   });
 
-  // Boutique : la taille choisie suit le bouton de commande
+  // Panier (conservé dans le navigateur)
+  var KEY = "cp-cart", live = doc.getElementById("live");
+  function loadCart() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function updateCount(c) {
+    var n = (c || loadCart()).reduce(function (a, i) { return a + i.qte; }, 0);
+    doc.querySelectorAll("[data-cart-count]").forEach(function (el) { el.textContent = n; });
+  }
+  function saveCart(c) { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} updateCount(c); }
+  updateCount();
+
   doc.querySelectorAll("[data-product]").forEach(function (card) {
-    var id = card.getAttribute("data-product"), a = card.querySelector("[data-order]");
-    function sync() {
-      var r = card.querySelector("input[type=radio]:checked");
-      a.href = "commande.html?produit=" + id + (r ? "&taille=" + encodeURIComponent(r.value) : "");
-    }
-    card.addEventListener("change", sync); sync();
+    var a = card.querySelector("[data-add]");
+    if (!a) return;
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var r = card.querySelector("input[type=radio]:checked"), t = r ? r.value : "Taille unique";
+      var c = loadCart(), id = card.getAttribute("data-product");
+      var found = c.filter(function (i) { return i.id === id && i.taille === t; })[0];
+      var price = card.getAttribute("data-price");
+      if (found) found.qte += 1; else c.push({ id: id, nom: card.getAttribute("data-name"), taille: t, qte: 1, prix: price === "" ? null : Number(price) });
+      saveCart(c);
+      var old = a.textContent; a.textContent = "Ajouté au panier";
+      if (live) live.textContent = card.getAttribute("data-name") + ", taille " + t + ", ajouté au panier.";
+      setTimeout(function () { a.textContent = old; }, 1600);
+    });
   });
 
-  // Page de commande
-  var catP = doc.getElementById("catalogue-produits");
-  if (catP) {
-    var cat = {}; try { cat = JSON.parse(catP.textContent); } catch (e) {}
-    var pid = params.get("produit"); if (!cat[pid]) pid = Object.keys(cat)[0];
-    var prod = cat[pid], tsel = doc.getElementById("o-taille");
-    doc.getElementById("o-produit").value = prod.nom;
-    prod.tailles.forEach(function (t) { var o = doc.createElement("option"); o.textContent = t; o.value = t; tsel.appendChild(o); });
-    var want = params.get("taille"); if (want) tsel.value = want; else if (prod.tailles.indexOf("M") > -1) tsel.value = "M";
-    var upd = function () {
-      var set2 = function (k, v) { var el = doc.querySelector('[data-osum="' + k + '"]'); if (el) el.textContent = v; };
-      set2("produit", prod.nom); set2("taille", tsel.value); set2("prix", prod.prix == null ? "À confirmer" : fmt.format(prod.prix));
+  // Page du panier
+  var cartList = doc.getElementById("cart-list");
+  if (cartList) {
+    var cartEmpty = doc.getElementById("cart-empty"), cartForm = doc.getElementById("cart-form");
+    var renderCart = function () {
+      var c = loadCart(), n = 0, total = 0, unpriced = false;
+      cartList.textContent = "";
+      c.forEach(function (it, idx) {
+        n += it.qte; if (it.prix == null) unpriced = true; else total += it.prix * it.qte;
+        var li = doc.createElement("li"); li.className = "cart-item";
+        var info = doc.createElement("div"), h = doc.createElement("strong"), sub = doc.createElement("span");
+        h.textContent = it.nom; sub.textContent = "Taille : " + it.taille + (it.prix == null ? " (prix à confirmer)" : " (" + fmt.format(it.prix) + ")");
+        info.appendChild(h); info.appendChild(sub);
+        var qty = doc.createElement("div"); qty.className = "qty";
+        var mk = function (label, aria, delta) {
+          var b = doc.createElement("button"); b.type = "button"; b.textContent = label; b.setAttribute("aria-label", aria + " " + it.nom + ", taille " + it.taille);
+          b.addEventListener("click", function () { var cc = loadCart(); cc[idx].qte += delta; if (cc[idx].qte < 1) cc.splice(idx, 1); saveCart(cc); renderCart(); });
+          return b;
+        };
+        var q = doc.createElement("span"); q.textContent = it.qte;
+        qty.appendChild(mk("−", "Retirer un exemplaire de", -1)); qty.appendChild(q); qty.appendChild(mk("+", "Ajouter un exemplaire de", 1));
+        var rm = doc.createElement("button"); rm.type = "button"; rm.className = "rm"; rm.textContent = "Retirer";
+        rm.addEventListener("click", function () { var cc = loadCart(); cc.splice(idx, 1); saveCart(cc); renderCart(); });
+        li.appendChild(info); li.appendChild(qty); li.appendChild(rm); cartList.appendChild(li);
+      });
+      cartEmpty.hidden = c.length > 0; cartForm.hidden = c.length === 0;
+      var sn = doc.querySelector("[data-cart-total-n]"), st = doc.querySelector("[data-cart-total]");
+      if (sn) sn.textContent = n;
+      if (st) st.textContent = (unpriced || !c.length) ? "À confirmer" : fmt.format(total);
     };
-    tsel.addEventListener("change", upd); upd();
-    pack = pid; duree = "commande";
-    if (prod.prix == null) { var t2 = doc.querySelector("[data-commande-titre]"); if (t2) t2.textContent = "Être prévenu de la sortie."; var sb = doc.querySelector("[data-submit]"); if (sb) sb.textContent = "Me prévenir"; }
+    renderCart();
   }
 
   function encode(form) {
@@ -148,6 +180,13 @@
         bad.focus();
         return;
       }
+      if (form.getAttribute("data-form") === "commande") {
+        var items = loadCart();
+        if (!items.length) { status(form, "error", "Votre panier est vide : ajoutez une pièce depuis la boutique."); return; }
+        form.querySelector("[name=articles]").value = items.map(function (i) {
+          return i.nom + ", taille " + i.taille + ", quantité " + i.qte + (i.prix == null ? " (prix à confirmer)" : " (" + i.prix + " $)");
+        }).join("\n");
+      }
       var btn = form.querySelector('button[type="submit"]');
       if (btn) btn.disabled = true;
       status(form, "ok", "Envoi en cours…");
@@ -155,7 +194,8 @@
       fetch(C.formEndpoint || "/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: encode(form) })
         .then(function (r) { if (!r.ok) throw new Error("http " + r.status); })
         .then(function () {
-          var link = isInscription ? (C.checkout && C.checkout[pack] && C.checkout[pack][duree]) : (form.getAttribute("data-form") === "commande" && C.products && C.products[pack]);
+          var link = isInscription && C.checkout && C.checkout[pack] && C.checkout[pack][duree];
+          if (form.getAttribute("data-form") === "commande") { try { localStorage.removeItem(KEY); } catch (e2) {} }
           if (link) { location.href = link; return; }
           location.href = form.getAttribute("action");
         })

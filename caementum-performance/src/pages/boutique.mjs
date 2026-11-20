@@ -18,7 +18,7 @@ export default {
 <section class="slab" data-tone="chalk" aria-labelledby="coll">
   <div class="wrap">
     <div class="section-head">
-      <div class="notice"><strong>Collection en préparation.</strong> Les visuels sont provisoires (dessins de présentation, pas des photos des produits). Les prix, les descriptions et les photos seront ajoutés dès que les vêtements seront définis. Vous pouvez déjà demander à être prévenu de la sortie d’une pièce.</div>
+      <div class="notice"><strong>Collection en préparation.</strong> Les visuels sont provisoires (dessins de présentation, pas des photos des produits). Les prix, les descriptions et les photos seront ajoutés dès que les vêtements seront définis. Vous pouvez déjà remplir votre panier : Alexandre vous confirme les prix et la livraison avant tout paiement.</div>
       <h2 id="coll" class="h2" style="margin-top:36px">La collection.</h2>
       <div class="filters" role="group" aria-label="Filtrer par catégorie"><button type="button" class="chip is-on" data-filter="tous">Tous</button><button type="button" class="chip" data-filter="haut">Hauts</button><button type="button" class="chip" data-filter="bas">Bas</button><button type="button" class="chip" data-filter="accessoire">Accessoires</button></div>
     </div>

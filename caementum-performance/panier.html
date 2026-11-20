@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Commande | Caementum Performance</title>
-<meta name="description" content="Commandez un vêtement de la marque Caementum Performance.">
-<link rel="canonical" href="https://caementumperformance.com/commande.html">
+<title>Panier | Caementum Performance</title>
+<meta name="description" content="Votre panier de vêtements Caementum Performance.">
+<link rel="canonical" href="https://caementumperformance.com/panier.html">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#111111">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:site_name" content="Caementum Performance">
-<meta property="og:title" content="Commande | Caementum Performance">
-<meta property="og:description" content="Commandez un vêtement de la marque Caementum Performance.">
-<meta property="og:url" content="https://caementumperformance.com/commande.html">
+<meta property="og:title" content="Panier | Caementum Performance">
+<meta property="og:description" content="Votre panier de vêtements Caementum Performance.">
+<meta property="og:url" content="https://caementumperformance.com/panier.html">
 <meta property="og:image" content="https://caementumperformance.com/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -42,7 +42,7 @@
       <a href="a-propos.html">À propos</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn btn--primary btn--sm bar-cta" href="formations.html#tarifs">Acheter une formation</a>
+    <a class="cart-btn" href="panier.html" aria-label="Voir le panier"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5h9.6L19.5 7H6.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span>Panier</span><span class="cart-count" data-cart-count>0</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="sr">Menu</span></button>
   </div>
 </header>
@@ -50,22 +50,25 @@
 
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1" data-commande-titre>Votre commande.</h1>
-    <p class="lead">Quelques informations pour préparer votre commande.</p>
+    <p class="eyebrow">Panier</p>
+    <h1 class="h1">Votre <span class="hl">panier.</span></h1>
+    <p class="lead">Vérifiez vos pièces, puis envoyez votre commande. Alexandre vous confirme les prix et la livraison avant tout paiement.</p>
   </div>
 </section>
 <section class="slab" data-tone="chalk" aria-labelledby="cmd">
   <div class="wrap contact-grid">
     <div>
-      <h2 id="cmd" class="h2" style="margin-bottom:28px">Vos informations</h2>
-      <form class="form" name="commande" method="POST" action="merci.html?statut=commande" data-form="commande" novalidate>
+      <h2 id="cmd" class="h2" style="margin-bottom:28px">Vos articles</h2>
+      <div id="cart-empty" hidden>
+        <p class="lead">Votre panier est vide.</p>
+        <div class="actions"><a class="btn btn--dark" href="boutique.html">Voir la boutique</a></div>
+      </div>
+      <ul id="cart-list" class="cart-list" aria-label="Articles du panier"></ul>
+      <form class="form" id="cart-form" name="commande" method="POST" action="merci.html?statut=commande" data-form="commande" novalidate hidden style="margin-top:40px">
+        <h3 class="h3-display">Vos coordonnées</h3>
         <input type="hidden" name="form-name" value="commande">
-        <input type="hidden" name="produit" id="o-produit">
+        <input type="hidden" name="articles" id="o-articles">
         <p class="hp" aria-hidden="true"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-        <div class="form-row">
-          <div class="field"><label for="o-taille">Taille</label><select class="select" id="o-taille" name="taille"></select></div>
-          <div class="field"><label for="o-qte">Quantité</label><input class="input" id="o-qte" name="quantite" type="number" min="1" max="10" value="1" required></div>
-        </div>
         <div class="form-row">
           <div class="field"><label for="o-prenom">Prénom</label><input class="input" id="o-prenom" name="prenom" autocomplete="given-name" required></div>
           <div class="field"><label for="o-nom">Nom</label><input class="input" id="o-nom" name="nom" autocomplete="family-name" required></div>
@@ -74,24 +77,22 @@
           <div class="field"><label for="o-courriel">Courriel</label><input class="input" id="o-courriel" name="courriel" type="email" autocomplete="email" required></div>
           <div class="field"><label for="o-tel">Téléphone <span class="hint">(facultatif)</span></label><input class="input" id="o-tel" name="telephone" type="tel" autocomplete="tel"></div>
         </div>
-        <div class="field"><label for="o-adresse">Adresse de livraison <span class="hint">(facultatif tant que la boutique n’est pas ouverte)</span></label><textarea class="textarea" id="o-adresse" name="adresse" autocomplete="street-address" style="min-height:100px"></textarea></div>
+        <div class="field"><label for="o-adresse">Adresse de livraison <span class="hint">(facultatif pour l’instant)</span></label><textarea class="textarea" id="o-adresse" name="adresse" autocomplete="street-address" style="min-height:100px"></textarea></div>
         <label class="check"><input type="checkbox" name="conditions" required><span>J’accepte les <a class="link" href="conditions-de-vente.html">conditions de vente</a> et la <a class="link" href="confidentialite.html">politique de confidentialité</a>.</span></label>
         <div class="form-status" role="status" aria-live="polite" hidden></div>
-        <div><button class="btn btn--primary" type="submit" data-submit>Envoyer</button></div>
+        <div><button class="btn btn--primary" type="submit" data-submit>Envoyer ma commande</button></div>
       </form>
     </div>
     <aside class="summary" aria-labelledby="resume">
-      <h2 id="resume" class="h3-display">Votre pièce</h2>
+      <h2 id="resume" class="h3-display">Récapitulatif</h2>
       <dl>
-        <div><dt>Produit</dt><dd data-osum="produit">T-shirt de course</dd></div>
-        <div><dt>Taille</dt><dd data-osum="taille">M</dd></div>
-        <div><dt>Prix avant taxes</dt><dd class="total" data-osum="prix">À confirmer</dd></div>
+        <div><dt>Articles</dt><dd data-cart-total-n>0</dd></div>
+        <div><dt>Total avant taxes</dt><dd class="total" data-cart-total>À confirmer</dd></div>
       </dl>
-      <p class="fine">Les prix et la livraison seront confirmés à l’ouverture de la boutique. <a class="link" href="boutique.html">Modifier mon choix</a></p>
+      <p class="fine">Les prix, la livraison et les taxes seront confirmés avant tout paiement. <a class="link" href="boutique.html">Continuer mes achats</a></p>
     </aside>
   </div>
 </section>
-<script type="application/json" id="catalogue-produits">{"tshirt":{"nom":"T-shirt de course","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"camisole":{"nom":"Camisole de course","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"short":{"nom":"Short de course","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"coupe-vent":{"nom":"Coupe-vent","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"kangourou":{"nom":"Chandail à capuchon","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"casquette":{"nom":"Casquette","tailles":["Taille unique"],"prix":null}}</script>
 
 </main>
 <footer class="site-footer">
@@ -136,6 +137,7 @@
     <p class="foot-legal">© <span data-year>2026</span> Caementum Performance. Prix en dollars canadiens, taxes (TPS et TVQ) en sus.</p>
   </div>
 </footer>
+<div class="sr" id="live" role="status" aria-live="polite"></div>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js" defer></script>
 </body>
