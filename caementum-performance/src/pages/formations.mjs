@@ -110,19 +110,15 @@ ${detail(PACKS.trail, 'chalk')}
   </div>
 </section>
 
-<section class="slab" data-tone="ink" id="communautaire" aria-labelledby="comm">
+<section class="slab slab--mist" data-tone="chalk" id="groupes" aria-labelledby="comm">
   <div class="wrap">
-    ${hasPhoto('communaute.jpg') ? '<figure class="frame-photo frame-photo--wide frame-photo--light" style="margin-bottom:28px"><img src="assets/img/photos/communaute.jpg" alt="Course en groupe de la communauté" loading="lazy" decoding="async"></figure>' : ''}
     <div class="squad">
-      <div style="display:grid;gap:16px">
-        <h2 id="comm" class="h3-display">Groupe privé de footing</h2>
-        <p class="lead">Une autre façon de progresser : le footing en groupe, dans un groupe privé, avec des partenaires de course et les conseils du coach. Ce n’est pas une formation : c’est un abonnement mensuel à part, pour courir ensemble.</p>
-        <ul class="ticks">${COMMUNAUTAIRE.includes.map((i) => `<li>${i}</li>`).join('')}</ul>
+      <div style="display:grid;gap:14px">
+        <h2 id="comm" class="h3-display">Vous préférez courir en groupe ?</h2>
+        <p class="lead">Les groupes de course, c’est un autre service : une activité de course à pied organisée chaque semaine, pour ${money(COMMUNAUTAIRE.monthly)} par mois.</p>
       </div>
-      <div style="display:grid;gap:16px;justify-items:start">
-        <p class="price-line"><span class="price-big">${money(COMMUNAUTAIRE.monthly)}</span><span class="price-unit">par mois</span></p>
-        <p class="fine" style="margin:0">Abonnement mensuel, à arrêter en tout temps.</p>
-        <a class="btn btn--primary" data-choose="communautaire" data-monthly href="inscription.html?pack=communautaire&amp;duree=monthly">Rejoindre le groupe</a>
+      <div style="display:grid;gap:14px;justify-items:start">
+        <a class="btn btn--primary" href="groupes.html">Découvrir les groupes de course</a>
       </div>
     </div>
   </div>

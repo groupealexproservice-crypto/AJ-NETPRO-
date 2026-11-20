@@ -89,4 +89,11 @@ Espace client, dépôt des plans par le coach, tableau de bord, factures automat
 ## Mise en ligne (Netlify)
 
 Publier le dossier `caementum-performance/` tel quel (`netlify.toml` fournit les en-têtes de sécurité).
-- Les Jeux olympiques de Rio ne sont plus mentionnés nulle part sur le site (à la demande du fondateur). Pour les remettre : ajouter une ligne dans `PALMARES` (`src/lib.mjs`), dans la liste du fondateur et dans les chiffres de l'accueil (`src/pages/index.mjs`).
+- Le palmarès affiché se limite aux titres confirmés par le fondateur (aucune participation olympique n'est mentionnée).
+
+## Refonte professionnelle (design et service « Groupes de course »)
+
+- Design sobre et commercial : Manrope (titres) + Inter (texte), cartes nettes, bleu électrique du logo réservé aux actions. Plus de serif ni de motifs décoratifs.
+- L'accueil n'utilise plus la photo précédente : le héros fonctionne sans photo (logo en grand). Les anciennes photos sont rangées dans `assets/img/photos/_ancien/` et ne sont plus affichées. Pour une photo de héros, déposer `assets/img/photos/hero.jpg`.
+- Nouveau service : `groupes.html`, abonnement mensuel de **19,98 $ avant taxes** (une activité de course à pied organisée par semaine, groupe privé). Jour, heure, lieu et niveau sont marqués « À compléter ».
+- Parcours d'inscription : `inscription.html?pack=communautaire&duree=monthly`. Lien de paiement Stripe à renseigner dans `assets/js/config.js` (`checkout.communautaire.monthly`).

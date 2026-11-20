@@ -8,13 +8,16 @@ import formations from '../src/pages/formations.mjs';
 import boutique from '../src/pages/boutique.mjs';
 import aPropos from '../src/pages/a-propos.mjs';
 import contact from '../src/pages/contact.mjs';
+import groupes from '../src/pages/groupes.mjs';
 import panier from '../src/pages/panier.mjs';
 import inscription from '../src/pages/inscription.mjs';
 import merci from '../src/pages/merci.mjs';
 import { cgv, confidentialite, mentions, notFound } from '../src/pages/legal.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const pages = [index, formations, boutique, aPropos, contact, panier, inscription, merci, cgv, confidentialite, mentions, notFound];
+const root = process.env.OUT_DIR ? path.resolve(process.env.OUT_DIR) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+fs.mkdirSync(root, { recursive: true });
+fs.mkdirSync(path.join(root, 'assets/img'), { recursive: true });
+const pages = [index, formations, groupes, boutique, aPropos, contact, panier, inscription, merci, cgv, confidentialite, mentions, notFound];
 
 for (const p of pages) fs.writeFileSync(path.join(root, p.file), layout(p));
 

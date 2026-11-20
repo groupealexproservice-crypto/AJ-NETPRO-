@@ -1,4 +1,4 @@
-import { layout, markSvg, ctaBand, SITE, PALMARES, tbd } from '../lib.mjs';
+import { layout, markSvg, ctaBand, SITE, PALMARES, tbd, hasPhoto } from '../lib.mjs';
 
 export default {
   file: 'a-propos.html',
@@ -19,8 +19,8 @@ export default {
 </section>
 
 <section class="slab" data-tone="chalk" aria-labelledby="origine">
-  <div class="wrap split">
-    <figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="900" height="900" loading="lazy" decoding="async"></figure>
+  <div class="wrap split${hasPhoto('fondateur.jpg') ? '' : ' split--solo'}">
+    ${hasPhoto('fondateur.jpg') ? '<figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar" width="900" height="900" loading="lazy" decoding="async"></figure>' : ''}
     <div style="display:grid;gap:22px;align-content:start">
       <h2 id="origine" class="h2">L’origine du projet.</h2>
       <p class="lead">Les applications d’entraînement distribuent des plans en grand nombre, mais très peu offrent un vrai suivi. Beaucoup de coureurs finissent seuls devant un calendrier qui ne tient pas compte de leur vie.</p>

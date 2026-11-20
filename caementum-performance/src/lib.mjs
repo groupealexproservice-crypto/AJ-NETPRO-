@@ -45,7 +45,7 @@ export const PACKS = {
 };
 export const COMMUNAUTAIRE = {
   monthly: 19.98,
-  includes: ['Accès au groupe privé', 'Footing en groupe : un entraînement collectif par semaine', 'Échanges entre membres', 'Conseils et motivation du coach'],
+  includes: ['Une activité de course à pied organisée chaque semaine', 'Accès au groupe privé', 'Échanges entre membres', 'Conseils et motivation du coach'],
 };
 PACKS.piste.distances = ['800 m', '1 500 m', '3 000 m', '5 000 m', '10 000 m', '3 000 m steeple'];
 PACKS.route.distances = ['10 km', 'Semi-marathon', 'Marathon'];
@@ -123,6 +123,7 @@ ${markInner(a)}
 const NAV = [
   ['index.html', 'Accueil'],
   ['formations.html', 'Formations'],
+  ['groupes.html', 'Groupes de course'],
   ['boutique.html', 'Boutique'],
   ['a-propos.html', 'À propos'],
   ['contact.html', 'Contact'],
@@ -165,23 +166,24 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/fonts/barlow-cond-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
+${process.env.GOOGLE_FONTS ? '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">' : ''}
 ${jsonld}
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="index.html" aria-label="Caementum Performance, accueil">
+    <a class="brand" href="index.html">
       ${markSvg({ className: 'brand-mark' })}
       <span class="brand-text"><span class="brand-name">Caementum</span><span class="brand-sub">Performance</span></span>
     </a>
     <nav id="nav" class="nav" aria-label="Navigation principale">
       ${NAV.map(([h, l]) => `<a href="${h}">${l}</a>`).join('\n      ')}
     </nav>
-    <a class="cart-btn" href="panier.html" aria-label="Voir le panier"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5h9.6L19.5 7H6.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span>Panier</span><span class="cart-count" data-cart-count>0</span></a>
+    <a class="cart-btn" href="panier.html"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5h9.6L19.5 7H6.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span>Panier</span><span class="cart-count" data-cart-count>0</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="sr">Menu</span></button>
   </div>
 </header>
@@ -201,6 +203,7 @@ ${body}
         <h2 class="foot-h">Explorer</h2>
         <ul>
           <li><a href="formations.html">Formations</a></li>
+          <li><a href="groupes.html">Groupes de course</a></li>
           <li><a href="boutique.html">Boutique</a></li>
           <li><a href="a-propos.html">À propos</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -261,5 +264,5 @@ export const PHOTO_SLOTS = {
   'trail.jpg': 'Formation Trail : coureur en sentier ou en montagne, vertical 3:4',
   'coaching.jpg': 'Accompagnement : coach et coureur, séance ou visio, paysage',
   'boutique.jpg': 'Boutique : vêtements portés en course, paysage',
-  'communaute.jpg': 'Groupe privé de footing : course en groupe, paysage',
+  'communaute.jpg': 'Groupes de course : sortie de groupe, paysage',
 };

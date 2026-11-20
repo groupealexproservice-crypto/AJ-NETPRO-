@@ -31,6 +31,7 @@ export default {
           <select class="select" id="c-sujet" name="sujet">
             <option value="">Choisir</option>
             <option>Formation piste</option><option>Formation route</option><option>Formation trail</option>
+            <option>Groupes de course</option>
             <option>Boutique et vêtements</option>
             <option>Partenariat ou offre collective</option>
             <option>Autre question</option>
