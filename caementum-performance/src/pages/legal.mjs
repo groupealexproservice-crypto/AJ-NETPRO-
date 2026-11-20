@@ -27,7 +27,7 @@ export const cgv = {
 <li>Vos droits prévus par la Loi sur la protection du consommateur du Québec ne sont pas limités par ces conditions.</li>
 </ul>
 <h2>5.1 Accueil de toutes les personnes</h2>
-<p>Caementum Performance accueille toutes les personnes, sans discrimination fondée sur le sexe, le genre, l’identité ou l’expression de genre. Aucune preuve d’identité de genre n’est exigée. Indiquer son genre et ses pronoms est facultatif.</p>
+<p>Caementum Performance accueille toutes les personnes, sans discrimination fondée sur le sexe, le genre, l’identité ou l’expression de genre. Aucune preuve d’identité de genre n’est exigée. Aucune information sur le genre n’est demandée.</p>
 <h2>6. Santé et responsabilité</h2>
 <p>La course à pied comporte des risques. Vous déclarez être apte à pratiquer une activité physique et vous engagez à signaler toute blessure ou limite de santé. Nous vous recommandons de consulter un professionnel de la santé avant de commencer. Les plans sont des recommandations d’entraînement et ne remplacent pas un avis médical.</p>
 <h2>7. Résultats</h2>
@@ -52,7 +52,6 @@ export const confidentialite = {
 <ul>
 <li>Coordonnées : nom, courriel, téléphone (facultatif).</li>
 <li>Informations utiles au coaching : niveau, objectif, course visée, blessures ou limites que vous choisissez de nous communiquer.</li>
-<li>Genre et pronoms, uniquement si vous choisissez de les indiquer (facultatif). Ils servent à bien vous nommer et à choisir le bon programme avec vous.</li>
 <li>Informations de paiement : traitées directement par notre fournisseur de paiement. Nous ne conservons pas votre numéro de carte.</li>
 </ul>
 <h2>3. Pourquoi</h2>

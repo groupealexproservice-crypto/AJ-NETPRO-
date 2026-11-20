@@ -54,7 +54,7 @@ D'après le logo fourni et les captures de référence : un X fait de bandes dia
 ## Distances, accueil de tous les genres, présentation des prix
 
 - **Piste :** 800 m, 1 500 m, 3 000 m, 5 000 m, 10 000 m et 3 000 m steeple. **Route :** 10 km et marathon. Modifiable dans `PACKS` (`src/lib.mjs`).
-- **Une seule formation par discipline, ouverte à toutes les personnes.** Il n'y a plus de version hommes ou femmes. L'inscription propose un genre et des pronoms **facultatifs** (femme, homme, non binaire, personne bispirituelle, autre, ou ne pas répondre). Une phrase d'accueil de toutes les personnes figure dans le pied de page et dans les conditions de vente.
+- **Une seule formation par discipline, ouverte à toutes les personnes.** Il n'y a plus de version hommes ou femmes. L'inscription ne demande aucune information sur le genre. Une phrase d'accueil de toutes les personnes figure dans le pied de page et dans les conditions de vente.
 - **Prix :** le forfait de 12 mois est présenté par défaut avec « Meilleure valeur », le prix mensuel équivalent en vedette, le prix barré, l'économie en dollars et le coût par jour. Les options à la carte se cochent à l'inscription et s'ajoutent au total (considérées comme des paiements uniques : à confirmer).
 
 ## Points à confirmer

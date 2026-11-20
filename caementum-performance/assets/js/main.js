@@ -85,8 +85,6 @@
       if (row) { row.hidden = names.length === 0; set("options", names.join(", ")); }
     };
     doc.querySelectorAll('input[name="option"]').forEach(function (o) { o.addEventListener("change", recompute); });
-    var gSel = doc.getElementById("i-genre"), gRow = doc.getElementById("genre-autre-row");
-    if (gSel && gRow) gSel.addEventListener("change", function () { gRow.hidden = gSel.value !== "autre"; });
     recompute();
   }
 

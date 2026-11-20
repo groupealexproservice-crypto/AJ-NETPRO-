@@ -31,31 +31,6 @@ export default {
           <div class="field"><label for="i-courriel">Courriel</label><input class="input" id="i-courriel" name="courriel" type="email" autocomplete="email" required></div>
           <div class="field"><label for="i-tel">Téléphone <span class="hint">(facultatif)</span></label><input class="input" id="i-tel" name="telephone" type="tel" autocomplete="tel"></div>
         </div>
-        <fieldset class="field" style="border:0;padding:0;margin:0">
-          <legend>À propos de vous <span class="hint">(facultatif)</span></legend>
-          <div class="form-row" style="margin-top:10px">
-            <div class="field">
-              <label for="i-genre">Genre</label>
-              <select class="select" id="i-genre" name="genre">
-                <option value="">Je préfère ne pas répondre</option>
-                <option>Femme</option>
-                <option>Homme</option>
-                <option>Non binaire</option>
-                <option>Personne bispirituelle</option>
-                <option value="autre">Autre (je précise)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="i-pronoms">Pronoms</label>
-              <input class="input" id="i-pronoms" name="pronoms" placeholder="elle, il, iel, ...">
-            </div>
-          </div>
-          <div class="field" id="genre-autre-row" hidden style="margin-top:12px">
-            <label for="i-genre-autre">Précisez votre genre</label>
-            <input class="input" id="i-genre-autre" name="genre_precision">
-          </div>
-          <span class="hint">Ces informations servent uniquement à bien vous nommer et à adapter votre plan avec vous. Rien n’est obligatoire.</span>
-        </fieldset>
         <div class="field">
           <label for="i-niveau">Votre niveau</label>
           <select class="select" id="i-niveau" name="niveau" required>
