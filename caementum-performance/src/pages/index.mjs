@@ -96,7 +96,7 @@ export default {
     <div class="disc-grid">
       ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${hasPhoto(p.id + '.jpg') ? `<img class="disc-img" src="assets/img/photos/${p.id}.jpg" alt="" loading="lazy" decoding="async">` : art[p.id]}</span><span class="disc-tag">${p.tagline}</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(Math.round(p.year / 12))} par mois</span><span class="disc-note">Forfait 12 mois, paiement unique.</span></span></a>`).join('')}
     </div>
-    <p class="fine mt-l">Prix par mois avec le forfait de 12 mois (−20 %), payé en une fois. Forfaits de 6 mois (−10 %) et de 1 mois aussi offerts. Pack Communautaire dès ${money(COMMUNAUTAIRE.monthly)} par mois. Prix avant taxes. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
+    <p class="fine mt-l">Prix par mois avec le forfait de 12 mois (−20 %), payé en une fois. Forfaits de 6 mois (−10 %) et de 1 mois aussi offerts. Groupe privé de footing en groupe : ${money(COMMUNAUTAIRE.monthly)} par mois. Prix avant taxes. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
   </div>
 </section>
 

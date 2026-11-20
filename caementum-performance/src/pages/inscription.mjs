@@ -78,7 +78,7 @@ export default {
     piste: { nom: 'Piste', monthly: PACKS.piste.monthly, six: PACKS.piste.six, year: PACKS.piste.year },
     route: { nom: 'Route', monthly: PACKS.route.monthly, six: PACKS.route.six, year: PACKS.route.year },
     trail: { nom: 'Trail', monthly: PACKS.trail.monthly, six: PACKS.trail.six, year: PACKS.trail.year },
-    communautaire: { nom: 'Communautaire', monthly: COMMUNAUTAIRE.monthly, six: COMMUNAUTAIRE.monthly, year: COMMUNAUTAIRE.monthly },
+    communautaire: { nom: 'Groupe privé de footing', monthly: COMMUNAUTAIRE.monthly, six: COMMUNAUTAIRE.monthly, year: COMMUNAUTAIRE.monthly },
   })}</script>
 `,
 };

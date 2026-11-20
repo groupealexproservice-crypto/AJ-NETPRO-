@@ -60,7 +60,7 @@ Déposer chaque photo dans `assets/img/photos/` sous le nom exact, puis `node to
 | `trail.jpg` | Formation Trail | Coureur en sentier, relief, nature | Vertical 3:4 |
 | `coaching.jpg` | Section « Notre mission » | Alexandre avec un coureur, séance ou visio | Paysage 16:9 |
 | `boutique.jpg` | Boutique (en-tête et accueil) | Vêtements portés en course | Paysage |
-| `communaute.jpg` | Pack Communautaire | Groupe de coureurs ensemble | Paysage 16:9 |
+| `communaute.jpg` | Groupe privé de footing | Groupe de coureurs ensemble | Paysage 16:9 |
 | `assets/img/produits/*.jpg` | Fiches produits | Un vêtement par photo, fond neutre | Carré |
 
 Conseils : JPG, moins de 300 Ko, sujets nets, sans texte ni filigrane, avec l'accord des personnes photographiées.
@@ -79,7 +79,7 @@ D'après le logo fourni et les captures de référence : un X fait de bandes dia
 
 - Palmarès affiché d'après votre dictée : championnats du monde (finaliste, deux participations), cinq fois champion de France, vingt fois champion de Tunisie, champion de la Méditerranée, finaliste aux championnats d'Afrique. Les anciens documents disaient 22 titres nationaux : le site suit votre dictée.
 - Prix des formations : plan d'affaires avec rabais (810 / 650 / 430 $ pour 6 mois, 1 440 / 1 150 / 770 $ pour 12 mois). Les spécifications techniques indiquaient 900 / 720 / 480 $ et 1 800 / 1 440 / 960 $ (sans rabais).
-- Forfaits de 1, 6 et 12 mois : paiements uniques ; pack Communautaire (19,99 $) : abonnement mensuel.
+- Forfaits de 1, 6 et 12 mois : paiements uniques ; groupe privé de footing en groupe (19,98 $) : abonnement mensuel (les anciens documents indiquaient 19,99 $).
 - Les éléments d'IA, de crypto et de t-shirt capteur des présentations investisseurs ne sont **pas** repris : ils contredisent l'offre de coaching 100 % humain.
 
 ## Pas encore livré

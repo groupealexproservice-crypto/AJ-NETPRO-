@@ -44,8 +44,8 @@ export const PACKS = {
   },
 };
 export const COMMUNAUTAIRE = {
-  monthly: 19.99,
-  includes: ['Accès à la communauté privée', 'Un entraînement collectif par semaine', 'Échanges entre membres', 'Conseils et motivation du coach'],
+  monthly: 19.98,
+  includes: ['Accès au groupe privé', 'Footing en groupe : un entraînement collectif par semaine', 'Échanges entre membres', 'Conseils et motivation du coach'],
 };
 PACKS.piste.distances = ['800 m', '1 500 m', '3 000 m', '5 000 m', '10 000 m', '3 000 m steeple'];
 PACKS.route.distances = ['10 km', 'Semi-marathon', 'Marathon'];
@@ -261,5 +261,5 @@ export const PHOTO_SLOTS = {
   'trail.jpg': 'Formation Trail : coureur en sentier ou en montagne, vertical 3:4',
   'coaching.jpg': 'Accompagnement : coach et coureur, séance ou visio, paysage',
   'boutique.jpg': 'Boutique : vêtements portés en course, paysage',
-  'communaute.jpg': 'Pack Communautaire : course en groupe, paysage',
+  'communaute.jpg': 'Groupe privé de footing : course en groupe, paysage',
 };

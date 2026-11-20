@@ -13,7 +13,7 @@ export const cgv = {
 <h2>1. Qui vend ?</h2>
 <p>Les services sont offerts par [nom légal du prestataire], [travailleur autonome ou société], exerçant sous le nom Caementum Performance, à Montréal (Québec). Contact : <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>
 <h2>2. Les services</h2>
-<p>Caementum Performance offre du coaching de course à pied à distance : plans d’entraînement personnalisés, diagnostic vidéo, débriefings hebdomadaires et ajustements, selon le programme choisi (Piste, Route, Trail ou Communautaire) décrit sur le site.</p>
+<p>Caementum Performance offre du coaching de course à pied à distance : plans d’entraînement personnalisés, diagnostic vidéo, débriefings hebdomadaires et ajustements, selon le programme choisi (Piste, Route, Trail ou groupe privé de footing) décrit sur le site.</p>
 <h2>2.1 Vêtements</h2>
 <p>La boutique propose des vêtements de la marque. [Produits, délais de livraison, frais d’expédition, politique d’échange et de retour à définir à l’ouverture de la boutique, en conformité avec la Loi sur la protection du consommateur.]</p>
 <h2>3. Prix et taxes</h2>
@@ -22,7 +22,7 @@ export const cgv = {
 <p>Le paiement est effectué en ligne par l’entremise d’un fournisseur de paiement sécurisé. Nous ne conservons pas vos données de carte. Les forfaits de 1, 6 et 12 mois sont payables en un paiement unique, sans renouvellement automatique. Le pack Communautaire est un abonnement mensuel récurrent.</p>
 <h2>5. Durée, renouvellement et résiliation</h2>
 <ul>
-<li>Le pack Communautaire peut être arrêté en tout temps en nous écrivant, avec effet à la prochaine échéance.</li>
+<li>Le groupe privé de footing peut être arrêté en tout temps en nous écrivant, avec effet à la prochaine échéance.</li>
 <li>Les forfaits de 1, 6 et 12 mois sont conclus pour la durée choisie. [Conditions de remboursement ou de résiliation anticipée à préciser, en conformité avec la Loi sur la protection du consommateur.]</li>
 <li>Vos droits prévus par la Loi sur la protection du consommateur du Québec ne sont pas limités par ces conditions.</li>
 </ul>
