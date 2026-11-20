@@ -77,7 +77,7 @@ D'après le logo fourni et les captures de référence : un X fait de bandes dia
 
 ## Points à confirmer
 
-- Palmarès affiché d'après votre dictée : Jeux olympiques de Rio (participation), championnats du monde (finaliste, deux participations), cinq fois champion de France, vingt fois champion de Tunisie, champion de la Méditerranée, finaliste aux championnats d'Afrique. Les anciens documents disaient 22 titres nationaux : le site suit votre dictée.
+- Palmarès affiché d'après votre dictée : championnats du monde (finaliste, deux participations), cinq fois champion de France, vingt fois champion de Tunisie, champion de la Méditerranée, finaliste aux championnats d'Afrique. Les anciens documents disaient 22 titres nationaux : le site suit votre dictée.
 - Prix des formations : plan d'affaires avec rabais (810 / 650 / 430 $ pour 6 mois, 1 440 / 1 150 / 770 $ pour 12 mois). Les spécifications techniques indiquaient 900 / 720 / 480 $ et 1 800 / 1 440 / 960 $ (sans rabais).
 - Forfaits de 1, 6 et 12 mois : paiements uniques ; pack Communautaire (19,99 $) : abonnement mensuel.
 - Les éléments d'IA, de crypto et de t-shirt capteur des présentations investisseurs ne sont **pas** repris : ils contredisent l'offre de coaching 100 % humain.
@@ -89,3 +89,4 @@ Espace client, dépôt des plans par le coach, tableau de bord, factures automat
 ## Mise en ligne (Netlify)
 
 Publier le dossier `caementum-performance/` tel quel (`netlify.toml` fournit les en-têtes de sécurité).
+- Les Jeux olympiques de Rio ne sont plus mentionnés nulle part sur le site (à la demande du fondateur). Pour les remettre : ajouter une ligne dans `PALMARES` (`src/lib.mjs`), dans la liste du fondateur et dans les chiffres de l'accueil (`src/pages/index.mjs`).

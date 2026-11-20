@@ -3,7 +3,7 @@ import { layout, markSvg, ctaBand, SITE, PALMARES, tbd } from '../lib.mjs';
 export default {
   file: 'a-propos.html',
   title: 'À propos : Alexandre Ben Ammar et l’approche Caementum',
-  description: 'Athlète international, participant aux Jeux olympiques de Rio, cinq fois champion de France et vingt fois champion de Tunisie : découvrez l’origine et l’approche de Caementum Performance.',
+  description: 'Athlète international, cinq fois champion de France et vingt fois champion de Tunisie : découvrez l’origine et l’approche de Caementum Performance.',
   schema: [{
     '@context': 'https://schema.org', '@type': 'Person', name: 'Alexandre Ben Ammar',
     jobTitle: 'Entraîneur de course à pied et athlète international', url: `${SITE.url}/a-propos.html`,

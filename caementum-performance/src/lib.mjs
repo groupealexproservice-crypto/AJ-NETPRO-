@@ -52,7 +52,6 @@ PACKS.route.distances = ['10 km', 'Marathon'];
 PACKS.trail.distances = ['Trail court', 'Trail long', 'Ultra-trail'];
 
 export const PALMARES = [
-  ['Jeux olympiques de Rio', 'Participation'],
   ['Championnats du monde', 'Finaliste, deux participations'],
   ['Championnats de France', 'Cinq fois champion'],
   ['Championnats de Tunisie', 'Vingt fois champion'],

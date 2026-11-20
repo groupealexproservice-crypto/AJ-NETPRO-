@@ -52,7 +52,6 @@ export default {
       <li><b>20</b><span>fois champion de Tunisie</span></li>
       <li><b>5</b><span>fois champion de France</span></li>
       <li><b>2</b><span>participations aux championnats du monde</span></li>
-      <li><b>Rio</b><span>participation aux Jeux olympiques</span></li>
       <li><b>40+</b><span>ans d’expérience dans le milieu</span></li>
     </ul>
   </div>
@@ -121,7 +120,6 @@ export default {
       <h2 id="fond" class="h2">Alexandre Ben Ammar</h2>
       <p class="lead">Athlète international, Alexandre a fondé Caementum pour transmettre à chaque coureur la rigueur du haut niveau et une vraie relation humaine.</p>
       <ul class="rows">
-        <li><b class="dash" aria-hidden="true"></b><span>Participation aux Jeux olympiques de Rio</span></li>
         <li><b>2×</b><span>Participations aux championnats du monde, dont une finale</span></li>
         <li><b>5×</b><span>Champion de France</span></li>
         <li><b>20×</b><span>Champion de Tunisie</span></li>
