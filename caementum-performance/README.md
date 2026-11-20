@@ -51,6 +51,12 @@ Les photos sont dans `assets/img/photos/` : `hero.jpg` (bannière d'accueil, aff
 
 D'après le logo fourni et les captures de référence : un X fait de bandes diagonales, noir et blanc, bleu électrique `#1652f0` en accent, lignes diagonales bleues, photos en noir et blanc, bordure inclinée, frise d'étapes. Titres en Barlow Condensed, nom de marque en Archivo italique gras, texte en Inter (licence SIL Open Font License, hébergées localement). Le logo de l'image portait le nom **PACENAX** : seul le symbole a été repris, avec le nom Caementum Performance.
 
+## Distances, hommes et femmes, présentation des prix
+
+- **Piste :** 800 m, 1 500 m, 3 000 m, 5 000 m, 10 000 m et 3 000 m steeple. **Route :** 10 km et marathon. Modifiable dans `PACKS` (`src/lib.mjs`).
+- **Hommes et femmes :** chaque formation existe en deux versions. Le choix de catégorie se fait sur la page Formations et dans le formulaire d'inscription (champ obligatoire). Les prix sont les mêmes pour les deux catégories (à confirmer).
+- **Prix :** le forfait de 12 mois est présenté par défaut avec « Meilleure valeur », le prix mensuel équivalent en vedette, le prix barré, l'économie en dollars et le coût par jour. Les options à la carte se cochent à l'inscription et s'ajoutent au total (considérées comme des paiements uniques : à confirmer).
+
 ## Points à confirmer
 
 - Palmarès affiché d'après votre dictée : Jeux olympiques de Rio (participation), championnats du monde (finaliste, deux participations), cinq fois champion de France, vingt fois champion de Tunisie, champion de la Méditerranée, finaliste aux championnats d'Afrique. Les anciens documents disaient 22 titres nationaux : le site suit votre dictée.

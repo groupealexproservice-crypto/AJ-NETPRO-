@@ -1,4 +1,4 @@
-import { layout, PACKS, COMMUNAUTAIRE, money } from '../lib.mjs';
+import { layout, PACKS, COMMUNAUTAIRE, ADDONS, money } from '../lib.mjs';
 
 export default {
   file: 'inscription.html',
@@ -32,6 +32,15 @@ export default {
           <div class="field"><label for="i-tel">Téléphone <span class="hint">(facultatif)</span></label><input class="input" id="i-tel" name="telephone" type="tel" autocomplete="tel"></div>
         </div>
         <div class="field">
+          <label for="i-cat">Catégorie</label>
+          <select class="select" id="i-cat" name="categorie" required>
+            <option value="">Choisir</option>
+            <option value="homme">Hommes</option>
+            <option value="femme">Femmes</option>
+          </select>
+          <span class="hint">Les programmes des hommes et des femmes sont distincts.</span>
+        </div>
+        <div class="field">
           <label for="i-niveau">Votre niveau</label>
           <select class="select" id="i-niveau" name="niveau" required>
             <option value="">Choisir</option>
@@ -51,6 +60,12 @@ export default {
           <label for="i-sante">Blessures ou limites à connaître <span class="hint">(facultatif)</span></label>
           <textarea class="textarea" id="i-sante" name="sante" style="min-height:100px"></textarea>
         </div>
+        <fieldset class="field" style="border:0;padding:0;margin:0">
+          <legend>Options à la carte <span class="hint">(facultatif, paiement unique)</span></legend>
+          <div style="display:grid;gap:12px;margin-top:10px">
+            ${ADDONS.map((a) => `<label class="check"><input type="checkbox" name="option" value="${a.name}" data-price="${a.price}"><span>${a.name} <strong>+ ${money(a.price)}</strong></span></label>`).join('')}
+          </div>
+        </fieldset>
         <label class="check"><input type="checkbox" name="conditions" required><span>J’ai lu et j’accepte les <a class="link" href="conditions-de-vente.html">conditions de vente</a> et la <a class="link" href="confidentialite.html">politique de confidentialité</a>.</span></label>
         <div class="form-status" role="status" aria-live="polite" hidden></div>
         <div><button class="btn btn--primary" type="submit" data-submit>Continuer vers le paiement</button></div>
@@ -60,7 +75,9 @@ export default {
       <h2 id="resume" class="h3-display">Votre choix</h2>
       <dl>
         <div><dt>Programme</dt><dd data-sum="programme">Piste</dd></div>
-        <div><dt>Durée</dt><dd data-sum="duree">6 mois</dd></div>
+        <div><dt>Durée</dt><dd data-sum="duree">12 mois</dd></div>
+        <div><dt>Catégorie</dt><dd data-sum="categorie">À choisir</dd></div>
+        <div data-sum-row="options" hidden><dt>Options</dt><dd data-sum="options"></dd></div>
         <div><dt>Total avant taxes</dt><dd class="total" data-sum="total">${money(PACKS.piste.six)}</dd></div>
       </dl>
       <p class="fine">La TPS et la TVQ s’ajoutent au paiement. <a class="link" href="formations.html#tarifs">Modifier mon choix</a></p>

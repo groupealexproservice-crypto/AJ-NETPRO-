@@ -33,24 +33,26 @@
     doc.addEventListener("keydown", function (e) { if (e.key === "Escape") { toggle.setAttribute("aria-expanded", "false"); nav.classList.remove("is-open"); } });
   }
 
-  // Tarifs : choix de la durée
-  var seg = doc.querySelector("[data-seg]");
-  if (seg) {
-    var apply = function (term) {
-      doc.querySelectorAll(".term").forEach(function (t) { t.hidden = t.getAttribute("data-term") !== term; });
+  // Tarifs : catégorie (hommes, femmes) et durée
+  var segs = doc.querySelectorAll("[data-seg]");
+  if (segs.length) {
+    var state = { term: "year", cat: "" };
+    try { var sv = JSON.parse(sessionStorage.getItem("cp-sel") || "{}"); if (sv.term) state.term = sv.term; if (sv.cat) state.cat = sv.cat; } catch (e) {}
+    var applySel = function () {
+      doc.querySelectorAll(".term").forEach(function (t) { t.hidden = t.getAttribute("data-term") !== state.term; });
       doc.querySelectorAll("[data-choose]").forEach(function (a) {
-        a.href = "inscription.html?pack=" + a.getAttribute("data-choose") + "&duree=" + term;
+        var term = a.hasAttribute("data-monthly") ? "monthly" : state.term;
+        a.href = "inscription.html?pack=" + a.getAttribute("data-choose") + "&duree=" + term + (state.cat ? "&cat=" + state.cat : "");
       });
+      segs.forEach(function (sg) { var r = sg.querySelector('input[value="' + state[sg.getAttribute("data-seg")] + '"]'); if (r) r.checked = true; });
     };
-    var saved = null;
-    try { saved = sessionStorage.getItem("cp-term"); } catch (e) {}
-    var initial = saved || (seg.querySelector("input:checked") || {}).value || "six";
-    var radio = seg.querySelector('input[value="' + initial + '"]');
-    if (radio) radio.checked = true;
-    apply(initial);
-    seg.addEventListener("change", function (e) {
-      apply(e.target.value);
-      try { sessionStorage.setItem("cp-term", e.target.value); } catch (err) {}
+    applySel();
+    segs.forEach(function (sg) {
+      sg.addEventListener("change", function (e) {
+        state[sg.getAttribute("data-seg")] = e.target.value;
+        try { sessionStorage.setItem("cp-sel", JSON.stringify(state)); } catch (err) {}
+        applySel();
+      });
     });
   }
 
@@ -68,27 +70,28 @@
   var duree = params.get("duree") || "six";
   if (catalogue) {
     if (!catalogue[pack]) pack = "piste";
-    if (!TERMS[duree]) duree = "six";
+    if (!TERMS[duree]) duree = "year";
     var p = catalogue[pack];
     var set = function (k, v) { var el = doc.querySelector('[data-sum="' + k + '"]'); if (el) el.textContent = v; };
-    set("programme", p.nom);
-    set("duree", pack === "communautaire" ? "Abonnement mensuel" : TERMS[duree]);
-    set("total", fmt.format(p[duree]));
+    var dureeLabel = pack === "communautaire" ? "Abonnement mensuel" : TERMS[duree];
+    set("programme", p.nom); set("duree", dureeLabel);
     var fp = doc.getElementById("f-programme"), fd = doc.getElementById("f-duree");
-    if (fp) fp.value = p.nom;
-    if (fd) fd.value = pack === "communautaire" ? "Abonnement mensuel" : TERMS[duree];
+    if (fp) fp.value = p.nom; if (fd) fd.value = dureeLabel;
+    var catSel = doc.getElementById("i-cat"), cparam = params.get("cat");
+    if (catSel && cparam) catSel.value = cparam;
+    var CATS = { homme: "Hommes", femme: "Femmes" };
+    var recompute = function () {
+      var total = p[duree], names = [];
+      doc.querySelectorAll('input[name="option"]:checked').forEach(function (o) { total += Number(o.getAttribute("data-price")); names.push(o.value); });
+      set("total", fmt.format(total));
+      set("categorie", catSel && CATS[catSel.value] ? CATS[catSel.value] : "À choisir");
+      var row = doc.querySelector('[data-sum-row="options"]');
+      if (row) { row.hidden = names.length === 0; set("options", names.join(", ")); }
+    };
+    doc.querySelectorAll('input[name="option"]').forEach(function (o) { o.addEventListener("change", recompute); });
+    if (catSel) catSel.addEventListener("change", recompute);
+    recompute();
   }
-
-
-  // Boutique : filtres par catégorie
-  var chips = doc.querySelectorAll(".chip[data-filter]");
-  chips.forEach(function (c) {
-    c.addEventListener("click", function () {
-      var f = c.getAttribute("data-filter");
-      chips.forEach(function (x) { x.classList.toggle("is-on", x === c); x.setAttribute("aria-pressed", String(x === c)); });
-      doc.querySelectorAll("[data-shop] .product").forEach(function (p) { p.hidden = !(f === "tous" || p.getAttribute("data-cat") === f); });
-    });
-  });
 
   // Panier (conservé dans le navigateur)
   var KEY = "cp-cart", live = doc.getElementById("live");

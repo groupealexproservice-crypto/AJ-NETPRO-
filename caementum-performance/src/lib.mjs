@@ -20,15 +20,15 @@ export const PACKS = {
   piste: {
     id: 'piste', name: 'Piste', tagline: 'Performance et élite',
     pitch: 'Pour viser un chrono : vitesse maximale aérobie, technique de course et séances spécifiques à la piste.',
-    for: 'Compétiteurs et élites qui veulent des gains précis sur 800 m, 1 500 m, 3 000 m steeple ou 5 000 m.',
+    for: 'Compétiteurs et élites, hommes et femmes, qui veulent des gains précis du 800 m au 10 000 m, y compris le 3 000 m steeple.',
     includes: ['Plan spécifique piste', 'Analyse technique vidéo', 'Débriefing hebdomadaire avec votre entraîneur'],
     monthly: 150, six: 810, year: 1440,
   },
   route: {
     id: 'route', name: 'Route', tagline: 'Marathon et distance',
-    pitch: '10 km, semi-marathon ou marathon : une préparation construite autour de votre date de course et de votre stratégie.',
-    for: 'Coureurs engagés qui préparent une course sur route, du premier 10 km au marathon visé au chrono.',
-    includes: ['Plan marathon, semi-marathon ou 10 km', 'Stratégie de course personnalisée', 'Débriefing hebdomadaire avec votre entraîneur'],
+    pitch: '10 km ou marathon : une préparation construite autour de votre date de course et de votre stratégie.',
+    for: 'Coureurs et coureuses engagés qui préparent un 10 km ou un marathon, du premier objectif au chrono visé.',
+    includes: ['Plan marathon ou 10 km', 'Stratégie de course personnalisée', 'Débriefing hebdomadaire avec votre entraîneur'],
     monthly: 120, six: 650, year: 1150,
   },
   trail: {
@@ -43,8 +43,8 @@ export const COMMUNAUTAIRE = {
   monthly: 19.99,
   includes: ['Accès à la communauté privée', 'Un entraînement collectif par semaine', 'Échanges entre membres', 'Conseils et motivation du coach'],
 };
-PACKS.piste.distances = ['800 m', '1 500 m', '3 000 m', '3 000 m steeple', '5 000 m'];
-PACKS.route.distances = ['5 km', '10 km', 'Semi-marathon', 'Marathon', 'Ultra-marathon'];
+PACKS.piste.distances = ['800 m', '1 500 m', '3 000 m', '5 000 m', '10 000 m', '3 000 m steeple'];
+PACKS.route.distances = ['10 km', 'Marathon'];
 PACKS.trail.distances = ['Trail court', 'Trail long', 'Ultra-trail'];
 
 export const PALMARES = [
@@ -91,9 +91,9 @@ export const A_VENIR = [
   { name: 'Programme de parrainage', text: 'Une façon de remercier les coureurs qui font découvrir Caementum à leur entourage.' },
 ];
 export const ADDONS = [
-  { name: 'Visioconférence individuelle', price: 49, text: 'Un appel vidéo privé avec Alexandre pour un point précis : technique, plan, blessure légère.' },
-  { name: 'Analyse des objectifs et des compétitions', price: 29, text: 'Votre calendrier de courses passé au crible pour placer les bons objectifs aux bons moments.' },
-  { name: 'Orientation nutrition et récupération', price: 39, text: 'Des repères concrets pour mieux manger, mieux dormir et mieux récupérer entre vos séances.' },
+  { id: 'visio', name: 'Visioconférence individuelle', price: 49, text: 'Un appel vidéo privé avec Alexandre pour un point précis : technique, plan, blessure légère.' },
+  { id: 'analyse', name: 'Analyse des objectifs et des compétitions', price: 29, text: 'Votre calendrier de courses passé au crible pour placer les bons objectifs aux bons moments.' },
+  { id: 'nutrition', name: 'Orientation nutrition et récupération', price: 39, text: 'Des repères concrets pour mieux manger, mieux dormir et mieux récupérer entre vos séances.' },
 ];
 
 const nf = (n) => new Intl.NumberFormat('fr-CA', {
