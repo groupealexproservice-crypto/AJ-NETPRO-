@@ -31,16 +31,6 @@ export default {
           <div class="field"><label for="i-courriel">Courriel</label><input class="input" id="i-courriel" name="courriel" type="email" autocomplete="email" required></div>
           <div class="field"><label for="i-tel">Téléphone <span class="hint">(facultatif)</span></label><input class="input" id="i-tel" name="telephone" type="tel" autocomplete="tel"></div>
         </div>
-        <div class="field">
-          <label for="i-cat">Programme</label>
-          <select class="select" id="i-cat" name="categorie" required>
-            <option value="">Choisir</option>
-            <option value="homme">Programme hommes</option>
-            <option value="femme">Programme femmes</option>
-            <option value="discuter">Je préfère en discuter avec Alexandre</option>
-          </select>
-          <span class="hint">Chaque formation existe en version hommes et en version femmes. Toutes les personnes sont les bienvenues, quel que soit leur genre : choisissez le programme qui vous convient, ou discutons-en ensemble.</span>
-        </div>
         <fieldset class="field" style="border:0;padding:0;margin:0">
           <legend>À propos de vous <span class="hint">(facultatif)</span></legend>
           <div class="form-row" style="margin-top:10px">
@@ -51,6 +41,7 @@ export default {
                 <option>Femme</option>
                 <option>Homme</option>
                 <option>Non binaire</option>
+                <option>Personne bispirituelle</option>
                 <option value="autre">Autre (je précise)</option>
               </select>
             </div>
@@ -63,7 +54,7 @@ export default {
             <label for="i-genre-autre">Précisez votre genre</label>
             <input class="input" id="i-genre-autre" name="genre_precision">
           </div>
-          <span class="hint">Ces informations servent uniquement à bien vous nommer et à choisir le bon programme avec vous. Rien n’est obligatoire.</span>
+          <span class="hint">Ces informations servent uniquement à bien vous nommer et à adapter votre plan avec vous. Rien n’est obligatoire.</span>
         </fieldset>
         <div class="field">
           <label for="i-niveau">Votre niveau</label>
@@ -101,7 +92,6 @@ export default {
       <dl>
         <div><dt>Formation</dt><dd data-sum="programme">Piste</dd></div>
         <div><dt>Durée</dt><dd data-sum="duree">12 mois</dd></div>
-        <div><dt>Programme</dt><dd data-sum="categorie">À choisir</dd></div>
         <div data-sum-row="options" hidden><dt>Options</dt><dd data-sum="options"></dd></div>
         <div><dt>Total avant taxes</dt><dd class="total" data-sum="total">${money(PACKS.piste.six)}</dd></div>
       </dl>

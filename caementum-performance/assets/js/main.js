@@ -33,16 +33,16 @@
     doc.addEventListener("keydown", function (e) { if (e.key === "Escape") { toggle.setAttribute("aria-expanded", "false"); nav.classList.remove("is-open"); } });
   }
 
-  // Tarifs : catégorie (hommes, femmes) et durée
+  // Tarifs : durée du forfait
   var segs = doc.querySelectorAll("[data-seg]");
   if (segs.length) {
-    var state = { term: "year", cat: "" };
-    try { var sv = JSON.parse(sessionStorage.getItem("cp-sel") || "{}"); if (sv.term) state.term = sv.term; if (sv.cat) state.cat = sv.cat; } catch (e) {}
+    var state = { term: "year" };
+    try { var sv = JSON.parse(sessionStorage.getItem("cp-sel") || "{}"); if (sv.term) state.term = sv.term; } catch (e) {}
     var applySel = function () {
       doc.querySelectorAll(".term").forEach(function (t) { t.hidden = t.getAttribute("data-term") !== state.term; });
       doc.querySelectorAll("[data-choose]").forEach(function (a) {
         var term = a.hasAttribute("data-monthly") ? "monthly" : state.term;
-        a.href = "inscription.html?pack=" + a.getAttribute("data-choose") + "&duree=" + term + (state.cat ? "&cat=" + state.cat : "");
+        a.href = "inscription.html?pack=" + a.getAttribute("data-choose") + "&duree=" + term;
       });
       segs.forEach(function (sg) { var r = sg.querySelector('input[value="' + state[sg.getAttribute("data-seg")] + '"]'); if (r) r.checked = true; });
     };
@@ -77,19 +77,14 @@
     set("programme", p.nom); set("duree", dureeLabel);
     var fp = doc.getElementById("f-programme"), fd = doc.getElementById("f-duree");
     if (fp) fp.value = p.nom; if (fd) fd.value = dureeLabel;
-    var catSel = doc.getElementById("i-cat"), cparam = params.get("cat");
-    if (catSel && cparam) catSel.value = cparam;
-    var CATS = { homme: "Programme hommes", femme: "Programme femmes", discuter: "À discuter avec Alexandre" };
     var recompute = function () {
       var total = p[duree], names = [];
       doc.querySelectorAll('input[name="option"]:checked').forEach(function (o) { total += Number(o.getAttribute("data-price")); names.push(o.value); });
       set("total", fmt.format(total));
-      set("categorie", catSel && CATS[catSel.value] ? CATS[catSel.value] : "À choisir");
       var row = doc.querySelector('[data-sum-row="options"]');
       if (row) { row.hidden = names.length === 0; set("options", names.join(", ")); }
     };
     doc.querySelectorAll('input[name="option"]').forEach(function (o) { o.addEventListener("change", recompute); });
-    if (catSel) catSel.addEventListener("change", recompute);
     var gSel = doc.getElementById("i-genre"), gRow = doc.getElementById("genre-autre-row");
     if (gSel && gRow) gSel.addEventListener("change", function () { gRow.hidden = gSel.value !== "autre"; });
     recompute();

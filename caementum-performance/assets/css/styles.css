@@ -688,3 +688,6 @@ html.js .price-card .term-label { display: block; }
 @media (max-width: 900px) { .trust { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .trust { grid-template-columns: 1fr; } }
 .disc-note { color: #cfcfcf; font-size: .8rem; }
+
+.foot-incl { margin-top: clamp(32px, 5vw, 56px); padding-top: 24px; border-top: 1px solid var(--stone-2); color: #d6d6d6; font-size: .95rem; max-width: 70ch; }
+.foot-incl + .foot-legal { margin-top: 18px; padding-top: 0; border-top: 0; }

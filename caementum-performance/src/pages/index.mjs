@@ -96,10 +96,10 @@ export default {
     <div class="section-head">
       <p class="eyebrow">Trois disciplines</p>
       <h2 id="disc" class="h2">Piste. Route. <span class="hl">Trail.</span></h2>
-      <p class="lead">Un plan par terrain, écrit pour vous, avec des programmes distincts pour les hommes et pour les femmes. Choisissez votre discipline, nous écrivons la suite.</p>
+      <p class="lead">Un plan par terrain, écrit pour vous, ouvert à toutes les personnes. Choisissez votre discipline, nous écrivons la suite.</p>
     </div>
     <div class="disc-grid">
-      ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${art[p.id]}</span><span class="disc-tag">${p.tagline}</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(Math.round(p.year / 12))} par mois</span><span class="disc-note">Forfait 12 mois, paiement unique. Hommes et femmes.</span></span></a>`).join('')}
+      ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${art[p.id]}</span><span class="disc-tag">${p.tagline}</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(Math.round(p.year / 12))} par mois</span><span class="disc-note">Forfait 12 mois, paiement unique.</span></span></a>`).join('')}
     </div>
     <p class="fine mt-l">Prix par mois avec le forfait de 12 mois (−20 %), payé en une fois. Forfaits de 6 mois (−10 %) et de 1 mois aussi offerts. Pack Communautaire dès ${money(COMMUNAUTAIRE.monthly)} par mois. Prix avant taxes. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
   </div>
