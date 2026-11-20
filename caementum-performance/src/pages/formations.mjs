@@ -15,7 +15,7 @@ const detail = (p, tone) => `
     </div>
     <div class="wall wall--2">
       <div class="block value"><h3>Public cible</h3><p>${p.for}</p></div>
-      <div class="block value"><h3>Hommes et femmes</h3><p>Deux versions distinctes de la formation : un programme pour les hommes, un programme pour les femmes. Vous choisissez votre catégorie à l’inscription.</p></div>
+      <div class="block value"><h3>Pour toutes et tous</h3><p>Deux versions de la formation : un programme hommes, un programme femmes. Toutes les identités de genre sont les bienvenues : vous choisissez le programme qui vous convient, ou vous en discutez avec Alexandre.</p></div>
       <div class="block value" style="grid-column:1/-1"><h3>Contenu</h3><ul class="ticks">${p.includes.map((i) => `<li>${i}</li>`).join('')}</ul><p style="margin-top:18px;font-weight:600">Distances couvertes</p><ul class="${tone === 'ink' ? 'chips' : 'tag-list'}" style="margin-top:8px">${p.distances.map((d) => `<li>${d}</li>`).join('')}</ul></div>
     </div>
   </div>
@@ -63,7 +63,7 @@ export default {
   <div class="wrap">
     <p class="eyebrow">Formations</p>
     <h1 class="h1">Votre plan, <span class="hl">écrit à la main.</span></h1>
-    <p class="lead">Piste, route ou trail, pour les hommes comme pour les femmes : chaque formation existe en deux versions distinctes, conçues et suivies par Alexandre.</p>
+    <p class="lead">Piste, route ou trail : chaque formation existe en version hommes et en version femmes, conçues et suivies par Alexandre. Toutes les personnes sont les bienvenues, quel que soit leur genre.</p>
     <div class="actions"><a class="btn btn--primary" href="#tarifs">Voir les tarifs</a></div>
   </div>
 </section>
@@ -79,10 +79,11 @@ ${detail(PACKS.trail, 'chalk')}
       <p class="lead">Plus vous vous engagez longtemps, moins chaque mois vous coûte. Le forfait de 12 mois est le plus avantageux. Prix en dollars canadiens, avant taxes.</p>
     </div>
     <div class="seg-row">
-      <div class="seg-block"><p class="seg-title" id="seg-cat">Catégorie</p>
+      <div class="seg-block"><p class="seg-title" id="seg-cat">Programme</p>
         <fieldset class="seg" data-seg="cat" aria-labelledby="seg-cat" style="border:0;padding:0;margin:0">
           <label><input type="radio" name="cat" value="homme"><span>Hommes<small>Programme hommes</small></span></label>
           <label><input type="radio" name="cat" value="femme"><span>Femmes<small>Programme femmes</small></span></label>
+          <label><input type="radio" name="cat" value="discuter"><span>À discuter<small>Avec Alexandre</small></span></label>
         </fieldset>
       </div>
       <div class="seg-block"><p class="seg-title" id="seg-term">Durée</p>
@@ -100,7 +101,7 @@ ${detail(PACKS.trail, 'chalk')}
       <li>Plan écrit à la main, jamais généré</li>
       <li>Visioconférence d’évaluation incluse</li>
       <li>Paiement unique, aucun renouvellement</li>
-      <li>Programmes distincts hommes et femmes</li>
+      <li>Programmes hommes et femmes, tous genres bienvenus</li>
     </ul>
     <p class="fine mt-l">Les forfaits de 1, 6 et 12 mois sont des paiements uniques, sans renouvellement automatique. Le prix mensuel affiché pour 6 et 12 mois est le prix du forfait divisé par la durée. La TPS et la TVQ s’ajoutent au paiement. Voir les <a class="link" href="conditions-de-vente.html">conditions de vente</a>.</p>
   </div>

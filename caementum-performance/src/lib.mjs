@@ -20,7 +20,7 @@ export const PACKS = {
   piste: {
     id: 'piste', name: 'Piste', tagline: 'Performance et élite',
     pitch: 'Pour viser un chrono : vitesse maximale aérobie, technique de course et séances spécifiques à la piste.',
-    for: 'Compétiteurs et élites, hommes et femmes, qui veulent des gains précis du 800 m au 10 000 m, y compris le 3 000 m steeple.',
+    for: 'Compétiteurs et élites, quel que soit leur genre, qui veulent des gains précis du 800 m au 10 000 m, y compris le 3 000 m steeple.',
     includes: ['Plan spécifique piste', 'Analyse technique vidéo', 'Débriefing hebdomadaire avec votre entraîneur'],
     monthly: 150, six: 810, year: 1440,
   },

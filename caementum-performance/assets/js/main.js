@@ -79,7 +79,7 @@
     if (fp) fp.value = p.nom; if (fd) fd.value = dureeLabel;
     var catSel = doc.getElementById("i-cat"), cparam = params.get("cat");
     if (catSel && cparam) catSel.value = cparam;
-    var CATS = { homme: "Hommes", femme: "Femmes" };
+    var CATS = { homme: "Programme hommes", femme: "Programme femmes", discuter: "À discuter avec Alexandre" };
     var recompute = function () {
       var total = p[duree], names = [];
       doc.querySelectorAll('input[name="option"]:checked').forEach(function (o) { total += Number(o.getAttribute("data-price")); names.push(o.value); });
@@ -90,6 +90,8 @@
     };
     doc.querySelectorAll('input[name="option"]').forEach(function (o) { o.addEventListener("change", recompute); });
     if (catSel) catSel.addEventListener("change", recompute);
+    var gSel = doc.getElementById("i-genre"), gRow = doc.getElementById("genre-autre-row");
+    if (gSel && gRow) gSel.addEventListener("change", function () { gRow.hidden = gSel.value !== "autre"; });
     recompute();
   }
 
