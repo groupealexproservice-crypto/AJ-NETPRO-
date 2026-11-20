@@ -1,4 +1,8 @@
 // Briques communes du site Caementum Performance : données, formats, marque, gabarit de page.
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 export const SITE = {
   name: 'Caementum Performance',
@@ -247,3 +251,16 @@ export function ctaBand({ title, text, primary, secondary }) {
   </div>
 </section>`;
 }
+
+// ----- Photos : chaque emplacement s'active tout seul quand le fichier existe dans assets/img/photos/ -----
+export const hasPhoto = (file) => fs.existsSync(path.join(ROOT, 'assets/img/photos', file));
+export const PHOTO_SLOTS = {
+  'hero.jpg': 'Accueil : bannière (course ou saut de rivière), paysage',
+  'fondateur.jpg': 'Alexandre : section fondateur et page À propos, carré',
+  'piste.jpg': 'Formation Piste : athlète sur la piste, vertical 3:4',
+  'route.jpg': 'Formation Route : coureur sur route ou marathon, vertical 3:4',
+  'trail.jpg': 'Formation Trail : coureur en sentier ou en montagne, vertical 3:4',
+  'coaching.jpg': 'Accompagnement : coach et coureur, séance ou visio, paysage',
+  'boutique.jpg': 'Boutique : vêtements portés en course, paysage',
+  'communaute.jpg': 'Pack Communautaire : course en groupe, paysage',
+};

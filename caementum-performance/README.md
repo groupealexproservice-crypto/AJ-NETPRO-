@@ -47,6 +47,24 @@ Les photos sont dans `assets/img/photos/` : `hero.jpg` (bannière d'accueil, aff
 
 **Droits d'auteur :** confirmer que vous détenez les droits de la photo utilisée. Une autre photo fournie porte le filigrane « © Manu Chapelle / Photoathle.fr » : elle n'est pas utilisée, car elle appartient à ce photographe (licence nécessaire, et le filigrane ne doit pas être retiré).
 
+## Liste des photos à fournir
+
+Déposer chaque photo dans `assets/img/photos/` sous le nom exact, puis `node tools/build.mjs`. L'emplacement s'active tout seul. Les photos sont affichées en noir et blanc avec une légère teinte bleue.
+
+| Fichier | Où | Sujet conseillé | Format |
+|---|---|---|---|
+| `hero.jpg` | Accueil, bannière | Course ou saut de rivière, lumière naturelle | Paysage, 1600 px |
+| `fondateur.jpg` | Section fondateur, À propos | Portrait d'Alexandre en action ou à l'arrêt | Carré, 900 px |
+| `piste.jpg` | Formation Piste (accueil et page Formations) | Athlète sur la piste : couloirs, départ, foulée | Vertical 3:4, 1200 px |
+| `route.jpg` | Formation Route | Coureur sur route ou en marathon | Vertical 3:4 |
+| `trail.jpg` | Formation Trail | Coureur en sentier, relief, nature | Vertical 3:4 |
+| `coaching.jpg` | Section « Notre mission » | Alexandre avec un coureur, séance ou visio | Paysage 16:9 |
+| `boutique.jpg` | Boutique (en-tête et accueil) | Vêtements portés en course | Paysage |
+| `communaute.jpg` | Pack Communautaire | Groupe de coureurs ensemble | Paysage 16:9 |
+| `assets/img/produits/*.jpg` | Fiches produits | Un vêtement par photo, fond neutre | Carré |
+
+Conseils : JPG, moins de 300 Ko, sujets nets, sans texte ni filigrane, avec l'accord des personnes photographiées.
+
 ## Identité visuelle
 
 D'après le logo fourni et les captures de référence : un X fait de bandes diagonales, noir et blanc, bleu électrique `#1652f0` en accent, lignes diagonales bleues, photos en noir et blanc, bordure inclinée, frise d'étapes. Titres en Barlow Condensed, nom de marque en Archivo italique gras, texte en Inter (licence SIL Open Font License, hébergées localement). Le logo de l'image portait le nom **PACENAX** : seul le symbole a été repris, avec le nom Caementum Performance.

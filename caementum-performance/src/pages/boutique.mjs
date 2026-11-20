@@ -1,4 +1,4 @@
-import { layout, PRODUCTS, ctaBand, tbd } from '../lib.mjs';
+import { layout, PRODUCTS, ctaBand, tbd, hasPhoto } from '../lib.mjs';
 import { productCard } from '../parts.mjs';
 
 export default {
@@ -7,7 +7,8 @@ export default {
   description: 'Les vêtements de la marque Caementum Performance : t-shirts, shorts, coupe-vent et accessoires pour courir et s’entraîner. Commande en ligne.',
   schema: [],
   body: `
-<section class="page-head">
+<section class="page-head${hasPhoto('boutique.jpg') ? ' page-head--photo' : ''}">
+  ${hasPhoto('boutique.jpg') ? '<div class="page-head-photo" aria-hidden="true"><img src="assets/img/photos/boutique.jpg" alt="" width="1600" height="1000"></div>' : ''}
   <div class="wrap">
     <p class="eyebrow">Boutique</p>
     <h1 class="h1">Portez <span class="hl">la croisée.</span></h1>

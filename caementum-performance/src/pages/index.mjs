@@ -1,4 +1,4 @@
-import { layout, markSvg, PACKS, PRODUCTS, money, ctaBand, SITE, COMMUNAUTAIRE } from '../lib.mjs';
+import { layout, markSvg, PACKS, PRODUCTS, money, ctaBand, SITE, COMMUNAUTAIRE, hasPhoto } from '../lib.mjs';
 import { productCard, garment, faqHtml, faqSchema } from '../parts.mjs';
 
 const steps = [
@@ -70,6 +70,7 @@ export default {
     <div style="display:grid;gap:20px;align-content:start">
       <p class="lead">Les applications automatisées distribuent des plans standardisés, sans suivi réel. Beaucoup de coureurs finissent par abandonner faute de soutien.</p>
       <p class="measure">Caementum fait l’inverse : un coach analyse, conçoit et ajuste chaque plan à la main, avec une relation directe et sincère. Du latin <em>caementum</em>, le matériau qui liait les pierres de Rome : des semaines de travail posées l’une sur l’autre, solidement liées.</p>
+      ${hasPhoto('coaching.jpg') ? '<figure class="frame-photo frame-photo--wide"><img src="assets/img/photos/coaching.jpg" alt="Alexandre accompagne un coureur lors d’une séance" loading="lazy" decoding="async"></figure>' : ''}
       <div><a class="btn btn--dark" href="a-propos.html">Découvrir notre approche</a></div>
     </div>
   </div>
@@ -99,7 +100,7 @@ export default {
       <p class="lead">Un plan par terrain, écrit pour vous, ouvert à toutes les personnes. Choisissez votre discipline, nous écrivons la suite.</p>
     </div>
     <div class="disc-grid">
-      ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${art[p.id]}</span><span class="disc-tag">${p.tagline}</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(Math.round(p.year / 12))} par mois</span><span class="disc-note">Forfait 12 mois, paiement unique.</span></span></a>`).join('')}
+      ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${hasPhoto(p.id + '.jpg') ? `<img class="disc-img" src="assets/img/photos/${p.id}.jpg" alt="" loading="lazy" decoding="async">` : art[p.id]}</span><span class="disc-tag">${p.tagline}</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(Math.round(p.year / 12))} par mois</span><span class="disc-note">Forfait 12 mois, paiement unique.</span></span></a>`).join('')}
     </div>
     <p class="fine mt-l">Prix par mois avec le forfait de 12 mois (−20 %), payé en une fois. Forfaits de 6 mois (−10 %) et de 1 mois aussi offerts. Pack Communautaire dès ${money(COMMUNAUTAIRE.monthly)} par mois. Prix avant taxes. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
   </div>
@@ -147,7 +148,7 @@ export default {
       <p class="lead">Des vêtements de course aux couleurs de la marque : pour s’entraîner, pour courir, pour se reconnaître. La collection est en préparation.</p>
       <div class="actions"><a class="btn btn--light" href="boutique.html">Voir la boutique</a></div>
     </div>
-    <div class="band-art">${garment('tshirt', 'garment garment--lg')}${garment('casquette', 'garment garment--md')}</div>
+    ${hasPhoto('boutique.jpg') ? '<figure class="frame-photo frame-photo--light"><img src="assets/img/photos/boutique.jpg" alt="Vêtements de la marque portés en course" loading="lazy" decoding="async"></figure>' : '<div class="band-art">' + garment('tshirt', 'garment garment--lg') + garment('casquette', 'garment garment--md') + '</div>'}
   </div>
 </section>
 

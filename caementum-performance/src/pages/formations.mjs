@@ -1,4 +1,4 @@
-import { layout, PACKS, COMMUNAUTAIRE, ADDONS, money, ctaBand } from '../lib.mjs';
+import { layout, PACKS, COMMUNAUTAIRE, ADDONS, money, ctaBand, hasPhoto } from '../lib.mjs';
 import { faqHtml, faqSchema, FAQ } from '../parts.mjs';
 
 const perDay = (total, days) => new Intl.NumberFormat('fr-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(total / days) + ' $';
@@ -12,6 +12,7 @@ const detail = (p, tone) => `
       <p class="lead">${p.tagline}. ${p.pitch}</p>
       <p class="price-line"><span class="price-big">${money(Math.round(p.year / 12))}</span><span class="price-unit">par mois avec le forfait 12 mois</span></p>
       <div class="actions"><a class="btn ${tone === 'ink' ? 'btn--primary' : 'btn--dark'}" data-choose="${p.id}" href="inscription.html?pack=${p.id}&amp;duree=year">Acheter ${p.name}</a><a class="btn btn--ghost" href="#tarifs">Comparer les durées</a></div>
+      ${hasPhoto(p.id + '.jpg') ? `<figure class="frame-photo ${tone === 'ink' ? 'frame-photo--light' : ''}"><img src="assets/img/photos/${p.id}.jpg" alt="Formation ${p.name}" loading="lazy" decoding="async"></figure>` : ''}
     </div>
     <div class="wall wall--2">
       <div class="block value"><h3>Public cible</h3><p>${p.for}</p></div>
@@ -112,6 +113,7 @@ ${detail(PACKS.trail, 'chalk')}
 
 <section class="slab" data-tone="ink" id="communautaire" aria-labelledby="comm">
   <div class="wrap">
+    ${hasPhoto('communaute.jpg') ? '<figure class="frame-photo frame-photo--wide frame-photo--light" style="margin-bottom:28px"><img src="assets/img/photos/communaute.jpg" alt="Course en groupe de la communauté" loading="lazy" decoding="async"></figure>' : ''}
     <div class="squad">
       <div style="display:grid;gap:16px">
         <h2 id="comm" class="h3-display">Pack Communautaire</h2>
