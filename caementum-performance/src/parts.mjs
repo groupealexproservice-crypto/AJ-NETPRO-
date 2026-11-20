@@ -1,5 +1,5 @@
 // Éléments de page partagés.
-import { PACKS, money, markSvg, tbd } from './lib.mjs';
+import { PACKS, money, markSvg, markInner, tbd } from './lib.mjs';
 
 export const FAQ = [
   ['Est-ce vraiment sans algorithme ?', '<p>Oui. Chaque plan est écrit à la main par Alexandre après avoir lu vos retours. Il n’y a ni générateur de plans, ni intelligence artificielle qui décide de vos séances.</p>'],
@@ -20,30 +20,36 @@ export const faqSchema = (items = FAQ) => ({
   mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })),
 });
 
-// Fiche produit de la boutique (photo si le fichier existe dans assets/img/produits/, sinon dalle de réserve avec le X de la marque)
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// Illustrations provisoires des vêtements (dessins de présentation, pas des photos)
+const X = (x, y, k, c) => `<g transform="translate(${x} ${y}) scale(${k})" fill="${c}">${markInner()}</g>`;
+const GARMENT = {
+  tshirt: `<path d="M62 38 L90 28 Q100 42 110 28 L138 38 L176 70 L158 94 L142 82 L142 172 L58 172 L58 82 L42 94 L24 70 Z" fill="#111"/><path d="M24 70 L42 94 M176 70 L158 94" stroke="#1652f0" stroke-width="6"/>${X(86, 70, .28, '#fff')}`,
+  camisole: `<path d="M72 28 L86 28 Q100 58 114 28 L128 28 L138 84 L132 172 L68 172 L62 84 Z" fill="#fff" stroke="#111" stroke-width="3"/><path d="M68 160 H132 V172 H68 Z" fill="#1652f0"/>${X(86, 80, .28, '#1652f0')}`,
+  short: `<path d="M50 58 H150 L160 152 L108 152 L100 104 L92 152 L40 152 Z" fill="#111"/><path d="M50 58 L40 152 M150 58 L160 152" stroke="#1652f0" stroke-width="6"/><path d="M50 58 H150 V68 H50 Z" fill="#2a2a2a"/>${X(54, 84, .22, '#fff')}`,
+  'coupe-vent': `<path d="M62 36 L90 26 H110 L138 36 L176 62 L166 150 L148 148 L146 176 H54 L52 148 L34 150 L24 62 Z" fill="#1652f0"/><path d="M100 28 V176" stroke="#0d2f8f" stroke-width="3"/><path d="M34 150 L52 148 M166 150 L148 148" stroke="#111" stroke-width="8"/>${X(112, 66, .22, '#fff')}`,
+  kangourou: `<path d="M76 34 Q100 16 124 34 L130 58 H70 Z" fill="#222"/><path d="M62 54 L38 72 L20 146 L44 152 L52 104 L52 178 H148 V104 L156 152 L180 146 L162 72 L138 54 Q100 70 62 54 Z" fill="#111"/><path d="M70 130 H130 L124 160 H76 Z" fill="#1c1c1c"/><path d="M90 60 V90 M110 60 V90" stroke="#fff" stroke-width="3"/>${X(86, 92, .26, '#1652f0')}`,
+  casquette: `<path d="M38 116 Q38 58 100 58 Q162 58 162 116 Z" fill="#111"/><path d="M38 108 H162 V118 H38 Z" fill="#1652f0"/><path d="M100 118 Q176 114 188 136 Q150 140 100 128 Z" fill="#111"/>${X(80, 70, .24, '#fff')}`,
+};
+export const garment = (id, cls = 'garment') => `<svg class="${cls}" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit">${GARMENT[id] || ''}</svg>`;
+
 export function productCard(p) {
   const hasPhoto = p.photo && fs.existsSync(path.join(root, 'assets/img/produits', p.photo));
   const photo = hasPhoto
     ? `<img src="assets/img/produits/${p.photo}" alt="${p.name}" loading="lazy" decoding="async">`
-    : `<div class="product-ph" role="img" aria-label="Photo du produit à venir : ${p.name}">${markSvg({ className: 'product-ph-mark' })}</div>`;
-  const price = p.price == null ? `<p class="product-price"><span class="tbd">Prix à confirmer</span></p>` : `<p class="product-price">${money(p.price)}</p>`;
+    : `<div class="product-ph">${garment(p.id)}<span class="ph-tag">Visuel provisoire</span></div>`;
+  const price = p.price == null ? `<p class="product-price"><span class="tbd">Prix à définir</span></p>` : `<p class="product-price">${money(p.price)}</p>`;
   const sizes = p.sizes.length > 1
     ? `<fieldset class="sizes"><legend>Taille</legend>${p.sizes.map((z, i) => `<label><input type="radio" name="t-${p.id}" value="${z}"${i === 2 ? ' checked' : ''}><span>${z}</span></label>`).join('')}</fieldset>`
     : `<p class="fine" style="margin:0">Taille unique</p>`;
   const label = p.price == null ? 'Me prévenir de la sortie' : 'Commander';
-  return `<article class="product" data-product="${p.id}">
+  return `<article class="product" data-product="${p.id}" data-cat="${p.cat}">
   <div class="product-photo">${photo}</div>
   <div class="product-body">
     <h3>${p.name}</h3>
-    ${p.provisoire ? `<p style="margin:0">${tbd('Fiche provisoire')}</p>` : ''}
-    <p class="product-desc">${p.desc}</p>
     ${price}
+    <p class="product-desc">${p.provisoire ? tbd('À compléter') + ' ' : ''}${p.desc}</p>
     ${sizes}
-    <a class="btn btn--primary" data-order="${p.id}" href="commande.html?produit=${p.id}">${label}</a>
+    <a class="btn btn--dark" data-order="${p.id}" href="commande.html?produit=${p.id}">${label}</a>
   </div>
 </article>`;
 }

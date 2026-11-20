@@ -80,6 +80,16 @@
   }
 
 
+  // Boutique : filtres par catégorie
+  var chips = doc.querySelectorAll(".chip[data-filter]");
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      var f = c.getAttribute("data-filter");
+      chips.forEach(function (x) { x.classList.toggle("is-on", x === c); x.setAttribute("aria-pressed", String(x === c)); });
+      doc.querySelectorAll("[data-shop] .product").forEach(function (p) { p.hidden = !(f === "tous" || p.getAttribute("data-cat") === f); });
+    });
+  });
+
   // Boutique : la taille choisie suit le bouton de commande
   doc.querySelectorAll("[data-product]").forEach(function (card) {
     var id = card.getAttribute("data-product"), a = card.querySelector("[data-order]");

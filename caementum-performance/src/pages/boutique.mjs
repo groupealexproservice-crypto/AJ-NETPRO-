@@ -9,7 +9,8 @@ export default {
   body: `
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Portez la marque.</h1>
+    <p class="eyebrow">Boutique</p>
+    <h1 class="h1">Portez <span class="hl">la croisée.</span></h1>
     <p class="lead">Des vêtements conçus pour courir, sous les marques développées par le projet. Choisissez votre pièce, votre taille, et commandez en ligne.</p>
   </div>
 </section>
@@ -17,10 +18,11 @@ export default {
 <section class="slab" data-tone="chalk" aria-labelledby="coll">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="coll" class="h2">La collection.</h2>
-      <p class="lead">${tbd('Texte provisoire')} Les produits, les photos et les prix seront ajoutés à l’ouverture de la boutique. Vous pouvez dès maintenant demander à être prévenu de la sortie d’une pièce.</p>
+      <div class="notice"><strong>Collection en préparation.</strong> Les visuels sont provisoires (dessins de présentation, pas des photos des produits). Les prix, les descriptions et les photos seront ajoutés dès que les vêtements seront définis. Vous pouvez déjà demander à être prévenu de la sortie d’une pièce.</div>
+      <h2 id="coll" class="h2" style="margin-top:36px">La collection.</h2>
+      <div class="filters" role="group" aria-label="Filtrer par catégorie"><button type="button" class="chip is-on" data-filter="tous">Tous</button><button type="button" class="chip" data-filter="haut">Hauts</button><button type="button" class="chip" data-filter="bas">Bas</button><button type="button" class="chip" data-filter="accessoire">Accessoires</button></div>
     </div>
-    <div class="shop">
+    <div class="shop" data-shop>
       ${PRODUCTS.map(productCard).join('\n')}
     </div>
   </div>

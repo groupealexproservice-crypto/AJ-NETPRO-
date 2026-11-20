@@ -9,7 +9,8 @@ export default {
   body: `
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Parlons de votre course.</h1>
+    <p class="eyebrow">Contact</p>
+    <h1 class="h1">Parlons de <span class="hl">votre course.</span></h1>
     <p class="lead">Une question sur une formation, une commande ou un partenariat ? Écrivez-nous, Alexandre répond personnellement.</p>
   </div>
 </section>

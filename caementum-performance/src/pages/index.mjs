@@ -1,14 +1,21 @@
 import { layout, markSvg, PACKS, PRODUCTS, money, ctaBand, SITE, COMMUNAUTAIRE } from '../lib.mjs';
-import { productCard, faqHtml, faqSchema } from '../parts.mjs';
+import { productCard, garment, faqHtml, faqSchema } from '../parts.mjs';
 
 const steps = [
-  ['Réservation et paiement', 'Vous choisissez votre formation et votre forfait, puis vous payez en ligne en toute sécurité.'],
-  ['Planification de la visio', 'Alexandre vous contacte pour fixer le moment de votre visioconférence d’évaluation.'],
-  ['Visio d’évaluation', 'Une conversation sur vos objectifs, votre niveau, vos antécédents, vos disponibilités et vos contraintes.'],
-  ['Conception manuelle', 'Alexandre écrit votre plan lui-même, adapté à votre profil unique. Aucune automatisation.'],
-  ['Livraison de votre plan', 'Vous recevez votre programme détaillé, prêt à suivre dès la première semaine.'],
-  ['Suivi et ajustements', 'Avec les forfaits de 6 et 12 mois : une visio de suivi chaque mois et un nouveau plan adapté à votre progression.'],
+  ['Paiement sécurisé', 'Vous choisissez votre formation et votre durée, puis vous payez en ligne.'],
+  ['Planification', 'Alexandre vous contacte pour fixer votre visioconférence d’évaluation.'],
+  ['Visio d’évaluation', 'Objectifs, niveau, antécédents, disponibilités et contraintes.'],
+  ['Conception manuelle', 'Alexandre écrit votre plan lui-même, sans automatisation.'],
+  ['Livraison sur mesure', 'Vous recevez votre programme détaillé, prêt à suivre.'],
+  ['Suivi et ajustements', 'Visio de suivi chaque mois avec les forfaits de 6 et 12 mois.'],
 ];
+
+// Fonds illustrés des trois disciplines (en attendant des photos de terrain)
+const art = {
+  piste: `<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#262626"/><g stroke="#4a4a4a" stroke-width="3" fill="none"><path d="M-40 400 L150 120"/><path d="M20 400 L160 120"/><path d="M90 400 L170 120"/><path d="M170 400 L180 120"/><path d="M250 400 L190 120"/><path d="M320 400 L200 120"/><path d="M380 400 L210 120"/></g><rect y="110" width="300" height="12" fill="#3a3a3a"/></svg>`,
+  route: `<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#2a2a2a"/><path d="M130 120 H170 L300 400 H-0 Z" fill="#1c1c1c"/><g fill="#6a6a6a"><path d="M148 150 h4 v14 h-4z"/><path d="M146 196 h8 v26 h-8z"/><path d="M143 262 h14 v42 h-14z"/><path d="M138 346 h24 v54 h-24z"/></g><rect y="110" width="300" height="12" fill="#3a3a3a"/></svg>`,
+  trail: `<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#242424"/><path d="M0 250 L70 150 L120 215 L190 110 L300 250 V400 H0Z" fill="#363636"/><path d="M0 300 L90 220 L160 280 L240 190 L300 270 V400 H0Z" fill="#2c2c2c"/><path d="M0 360 L110 300 L200 350 L300 310 V400 H0Z" fill="#1f1f1f"/></svg>`,
+};
 
 export default {
   file: 'index.html',
@@ -26,111 +33,134 @@ export default {
     faqSchema(),
   ],
   body: `
-<section class="hero" aria-labelledby="h1">
+<section class="hero hero--photo" aria-labelledby="h1">
+  <div class="hero-photo" aria-hidden="true"><img src="assets/img/photos/hero.jpg" alt="" width="1600" height="1148" fetchpriority="high"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1 id="h1" class="h1">La performance se construit.</h1>
-      <p class="lead">Coaching de course à pied 100 % humain, plans écrits à la main, et vêtements de sport pour celles et ceux qui s’entraînent sérieusement.</p>
+      <p class="eyebrow">Coaching · Course à pied</p>
+      <h1 id="h1" class="h1">La performance <span class="hl">se construit.</span></h1>
+      <p class="lead">Aucun algorithme. Chaque plan est écrit à la main par un athlète international, après analyse de vos retours. Piste, route ou trail, partout au Québec.</p>
       <div class="actions">
         <a class="btn btn--primary" href="formations.html">Voir les formations</a>
         <a class="btn btn--ghost" href="boutique.html">Découvrir la boutique</a>
       </div>
-      <p class="hero-note">Piste, route ou trail. Partout au Québec.</p>
     </div>
     ${markSvg({ className: 'hero-mark', animate: true, title: 'Le logo Caementum Performance : un X fait de bandes diagonales' })}
   </div>
-  <div class="wrap">
-    <div class="wall wall--4 cred">
-      <a class="block door" href="formations.html#piste"><h3>Piste</h3><p>Du 800 m au 5 000 m : le chrono avant tout.</p><span class="go">Voir la formation</span></a>
-      <a class="block door" href="formations.html#route"><h3>Route</h3><p>Du 5 km au marathon et à l’ultra.</p><span class="go">Voir la formation</span></a>
-      <a class="block door" href="formations.html#trail"><h3>Trail</h3><p>Dénivelé, nature et ultra-trail.</p><span class="go">Voir la formation</span></a>
-      <a class="block door" href="boutique.html"><h3>Boutique</h3><p>Les vêtements de la marque, pour courir et s’entraîner.</p><span class="go">Entrer dans la boutique</span></a>
-    </div>
-  </div>
-  <div style="height:clamp(56px,8vw,112px)"></div>
+  <div style="height:clamp(48px,7vw,96px)"></div>
 </section>
 
-<section class="slab" data-tone="chalk" aria-labelledby="mission">
+<section class="slab slab--tight" data-tone="chalk" aria-label="Palmarès en chiffres">
+  <div class="wrap">
+    <ul class="stats">
+      <li><b>20</b><span>fois champion de Tunisie</span></li>
+      <li><b>5</b><span>fois champion de France</span></li>
+      <li><b>2</b><span>participations aux championnats du monde</span></li>
+      <li><b>Rio</b><span>participation aux Jeux olympiques</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="slab slab--mist" data-tone="chalk" aria-labelledby="mission">
   <div class="wrap split">
     <div class="split-sticky">
-      <h2 id="mission" class="h2">Rendre le haut niveau accessible.</h2>
-      <p class="lead">Caementum est né d’une conviction : la performance durable demande une relation directe et sincère entre un entraîneur et un coureur. Pas un algorithme, une personne.</p>
-      <p class="measure">Du nom latin du matériau qui liait les pierres de Rome, <em>caementum</em> raconte notre méthode : des semaines de travail posées l’une sur l’autre, solidement liées entre elles.</p>
+      <p class="eyebrow">Notre mission</p>
+      <h2 id="mission" class="h2">Caementum ne vend pas un outil, mais <span class="hl">un niveau de présence.</span></h2>
+    </div>
+    <div style="display:grid;gap:20px;align-content:start">
+      <p class="lead">Les applications automatisées distribuent des plans standardisés, sans suivi réel. Beaucoup de coureurs finissent par abandonner faute de soutien.</p>
+      <p class="measure">Caementum fait l’inverse : un coach analyse, conçoit et ajuste chaque plan à la main, avec une relation directe et sincère. Du latin <em>caementum</em>, le matériau qui liait les pierres de Rome : des semaines de travail posées l’une sur l’autre, solidement liées.</p>
+      <div><a class="btn btn--dark" href="a-propos.html">Découvrir notre approche</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="slab" data-tone="chalk" aria-labelledby="haut">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Ce qui nous distingue</p>
+      <h2 id="haut" class="h2">Le haut niveau, <span class="hl">à votre allure.</span></h2>
+      <p class="lead">Un coaching premium, construit sur l’expertise du terrain et une vraie relation entre le coach et le coureur.</p>
     </div>
     <div class="wall wall--2">
-      <div class="block value"><h3>Humain</h3><p>Chaque plan est écrit à la main, après l’analyse de vos retours. Aucune automatisation.</p></div>
-      <div class="block value"><h3>Exigence</h3><p>La rigueur du haut niveau, transmise à tous les profils et dosée pour vous.</p></div>
-      <div class="block value"><h3>Sincérité</h3><p>Un canal direct avec votre entraîneur, des conseils honnêtes, des objectifs réalistes.</p></div>
-      <div class="block value"><h3>Constance</h3><p>Un suivi qui dure et un plan qui évolue avec votre forme, votre horaire et vos imprévus.</p></div>
+      <div class="block value"><span class="num">#01</span><h3>Aucun algorithme</h3><p>Chaque plan est conçu et ajusté à la main par un coach expert, jamais généré par une machine.</p></div>
+      <div class="block value"><span class="num">#02</span><h3>Suivi par un athlète</h3><p>Vous êtes guidé par quelqu’un qui connaît la compétition de l’intérieur, du premier départ à la finale.</p></div>
+      <div class="block value"><span class="num">#03</span><h3>100 % sur mesure</h3><p>Votre niveau, votre objectif, votre horaire et vos blessures passées : tout est pris en compte.</p></div>
+      <div class="block value"><span class="num">#04</span><h3>Un plan qui évolue</h3><p>Un suivi régulier et des ajustements selon vos retours réels, pas un calendrier figé.</p></div>
     </div>
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="distingue">
+<section class="slab" data-tone="ink" aria-labelledby="disc">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="distingue" class="h2">Ce qui nous distingue.</h2>
-      <p class="lead">Entre une application et un coach privé hors de prix, il y avait un vide. Caementum le comble.</p>
+      <p class="eyebrow">Trois disciplines</p>
+      <h2 id="disc" class="h2">Piste. Route. <span class="hl">Trail.</span></h2>
+      <p class="lead">Un plan par terrain, écrit pour vous. Choisissez votre discipline, nous écrivons la suite.</p>
     </div>
-    <div class="wall wall--3 who">
-      <div class="block"><h3>Un athlète international</h3><p>Alexandre Ben Ammar a participé aux Jeux olympiques de Rio, et il est cinq fois champion de France et vingt fois champion de Tunisie. Son expérience vient du terrain.</p></div>
-      <div class="block"><h3>Un plan écrit pour vous</h3><p>Votre niveau, vos blessures passées, votre horaire : tout est pris en compte, jamais un modèle générique.</p></div>
-      <div class="block"><h3>Un accompagnement à 360°</h3><p>Entraînement, récupération, nutrition et prévention des blessures pensés ensemble.</p></div>
+    <div class="disc-grid">
+      ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${art[p.id]}</span><span class="disc-tag">${p.tagline}</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(p.monthly)} pour 1 mois</span></span></a>`).join('')}
     </div>
-    <div class="actions mt-l"><a class="btn btn--primary" href="a-propos.html">Découvrir l’origine du projet</a></div>
-  </div>
-</section>
-
-<section class="slab" data-tone="chalk" aria-labelledby="forms">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="forms" class="h2">Les formations.</h2>
-      <p class="lead">Trois disciplines, un seul entraîneur. Choisissez votre terrain, puis votre durée.</p>
-    </div>
-    <div class="wall wall--3">
-      ${Object.values(PACKS).map((p) => `<article class="block value" style="display:grid;gap:12px;align-content:start"><h3>${p.name}</h3><p>${p.tagline}. ${p.pitch}</p><p class="price-line"><span class="price-big" style="font-size:2rem">${money(p.monthly)}</span><span class="price-unit">pour 1 mois, avant taxes</span></p><div class="actions"><a class="btn btn--dark" href="formations.html#${p.id}">Voir la formation</a></div></article>`).join('')}
-    </div>
-    <p class="fine mt-l">Forfaits de 6 mois (−10 %) et de 12 mois (−20 %). Pack Communautaire dès ${money(COMMUNAUTAIRE.monthly)} par mois. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
-  </div>
-</section>
-
-<section class="slab" data-tone="ink" aria-labelledby="shop">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="shop" class="h2">La boutique.</h2>
-      <p class="lead">Des vêtements de sport pensés pour courir, conçus sous la marque. La collection arrive : découvrez les premières pièces.</p>
-    </div>
-    <div class="shop">
-      ${PRODUCTS.slice(0, 3).map(productCard).join('\n')}
-    </div>
-    <div class="actions mt-l"><a class="btn btn--light" href="boutique.html">Voir toute la boutique</a></div>
+    <p class="fine mt-l">Forfaits de 6 mois (−10 %) et de 12 mois (−20 %). Pack Communautaire dès ${money(COMMUNAUTAIRE.monthly)} par mois. Prix avant taxes. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
   </div>
 </section>
 
 <section class="slab" data-tone="chalk" id="methode" aria-labelledby="meth">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="meth" class="h2">De la découverte à la ligne de départ.</h2>
-      <p class="lead">Un parcours simple, en six étapes, où l’humain garde la main du début à la fin.</p>
+      <p class="eyebrow">Le parcours</p>
+      <h2 id="meth" class="h2">Six étapes, <span class="hl">un seul coach.</span></h2>
+      <p class="lead">De l’inscription au premier débriefing, vous savez toujours ce qui vous attend.</p>
     </div>
-    <ol class="wall wall--3">
-      ${steps.map(([t, d], i) => `<li class="block step"><span class="step-n" aria-hidden="true">${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('\n      ')}
+    <ol class="timeline">
+      ${steps.map(([t, d], i) => `<li><span class="tl-n">${String(i + 1).padStart(2, '0')}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
     </ol>
+    <p class="quote">« Zéro automatisation. Chaque séance est écrite par le coach après analyse de vos retours. »</p>
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="faq">
+<section class="slab" data-tone="ink" aria-labelledby="fond">
+  <div class="wrap split split--even founder">
+    <figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="900" height="900" loading="lazy" decoding="async"></figure>
+    <div style="display:grid;gap:22px;align-content:center">
+      <p class="eyebrow">Le fondateur</p>
+      <h2 id="fond" class="h2">Alexandre <span class="hl">Ben Ammar</span></h2>
+      <p class="lead">Athlète international, il a participé aux Jeux olympiques de Rio. Il transmet la rigueur du haut niveau à tous les profils.</p>
+      <ul class="check-list">
+        <li>Participation aux Jeux olympiques de Rio</li>
+        <li>Finaliste et deux participations aux championnats du monde</li>
+        <li>Cinq fois champion de France, vingt fois champion de Tunisie</li>
+        <li>Champion de la Méditerranée, finaliste aux championnats d’Afrique</li>
+      </ul>
+      <div class="actions"><a class="btn btn--primary" href="a-propos.html">Notre histoire</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="slab slab--blue slab--slant" data-tone="ink" aria-labelledby="shop">
+  <div class="wrap split split--even">
+    <div style="display:grid;gap:22px;align-content:center">
+      <p class="eyebrow">La boutique</p>
+      <h2 id="shop" class="h2">Portez la <span class="hl">croisée.</span></h2>
+      <p class="lead">Des vêtements de course aux couleurs de la marque : pour s’entraîner, pour courir, pour se reconnaître. La collection est en préparation.</p>
+      <div class="actions"><a class="btn btn--light" href="boutique.html">Voir la boutique</a></div>
+    </div>
+    <div class="band-art">${garment('tshirt', 'garment garment--lg')}${garment('casquette', 'garment garment--md')}</div>
+  </div>
+</section>
+
+<section class="slab" data-tone="chalk" aria-labelledby="faq">
   <div class="wrap">
-    <div class="section-head"><h2 id="faq" class="h2">Questions fréquentes</h2></div>
+    <div class="section-head"><p class="eyebrow">Questions fréquentes</p><h2 id="faq" class="h2">Avant de <span class="hl">commencer.</span></h2></div>
     ${faqHtml()}
   </div>
 </section>
 
 ${ctaBand({
-    title: 'Posez la première pierre.',
-    text: 'Choisissez votre formation, ou écrivez à Alexandre pour trouver la bonne.',
+    title: 'Courez avec un vrai coach.',
+    text: 'Choisissez votre formation, réservez votre visio et recevez un plan écrit pour vous.',
     primary: '<a class="btn btn--primary" href="formations.html#tarifs">Acheter une formation</a>',
-    secondary: '<a class="btn btn--ghost" href="contact.html">Nous écrire</a>',
+    secondary: '<a class="btn btn--ghost" href="contact.html">Poser une question</a>',
   })}
 `,
 };

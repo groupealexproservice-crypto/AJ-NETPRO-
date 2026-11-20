@@ -38,7 +38,8 @@ export default {
   body: `
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Trois terrains. Un plan écrit pour vous.</h1>
+    <p class="eyebrow">Formations</p>
+    <h1 class="h1">Votre plan, <span class="hl">écrit à la main.</span></h1>
     <p class="lead">Piste, route ou trail : chaque formation est conçue et suivie par Alexandre, avec une visioconférence d’évaluation et un plan créé à la main.</p>
     <div class="actions"><a class="btn btn--primary" href="#tarifs">Voir les tarifs</a></div>
   </div>
@@ -50,7 +51,7 @@ ${detail(PACKS.trail, 'chalk')}
 <section class="slab" data-tone="ink" id="tarifs" aria-labelledby="choix">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="choix" class="h2">Choisir sa formation et sa durée.</h2>
+      <p class="eyebrow">Les tarifs</p><h2 id="choix" class="h2">Choisissez votre <span class="hl">terrain.</span></h2>
       <p class="lead">Un prix par formation, des économies si vous vous engagez sur la durée d’une vraie préparation. Prix en dollars canadiens, avant taxes.</p>
     </div>
     <fieldset class="seg" data-seg style="border:0;padding:0;margin:0 0 clamp(28px,4vw,48px)">
@@ -68,7 +69,7 @@ ${detail(PACKS.trail, 'chalk')}
 
 <section class="slab" data-tone="chalk" aria-labelledby="inclus">
   <div class="wrap">
-    <div class="section-head"><h2 id="inclus" class="h2">Ce que contient chaque forfait.</h2><p class="lead">Plus la préparation est longue, plus le suivi est présent.</p></div>
+    <div class="section-head"><h2 id="inclus" class="h2">Ce que contient <span class="hl">chaque forfait.</span></h2><p class="lead">Plus la préparation est longue, plus le suivi est présent.</p></div>
     <div class="wall wall--2">
       <div class="block value"><h3>Forfait 1 mois</h3><ul class="ticks"><li>Visioconférence d’évaluation complète</li><li>Plan d’entraînement créé à la main pour vous</li><li>Livraison de votre programme détaillé</li></ul></div>
       <div class="block value"><h3>Forfaits 6 et 12 mois</h3><ul class="ticks"><li>Tout le forfait 1 mois</li><li>Une visioconférence de suivi chaque mois</li><li>Analyse de votre progression</li><li>Un nouveau plan personnalisé livré chaque mois</li></ul></div>

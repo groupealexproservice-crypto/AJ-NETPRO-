@@ -12,16 +12,15 @@ export default {
   body: `
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Un athlète international derrière chaque plan.</h1>
+    <p class="eyebrow">À propos</p>
+    <h1 class="h1">Un athlète international <span class="hl">derrière chaque plan.</span></h1>
     <p class="lead">Caementum Performance est le projet d’Alexandre Ben Ammar : mettre l’expérience du haut niveau au service de tous les coureurs.</p>
   </div>
 </section>
 
 <section class="slab" data-tone="chalk" aria-labelledby="origine">
   <div class="wrap split">
-    <figure class="portrait" aria-label="Portrait d’Alexandre Ben Ammar" data-photo-placeholder>
-      ${markSvg()}
-    </figure>
+    <figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="900" height="900" loading="lazy" decoding="async"></figure>
     <div style="display:grid;gap:22px;align-content:start">
       <h2 id="origine" class="h2">L’origine du projet.</h2>
       <p class="lead">Les applications d’entraînement distribuent des plans en grand nombre, mais très peu offrent un vrai suivi. Beaucoup de coureurs finissent seuls devant un calendrier qui ne tient pas compte de leur vie.</p>

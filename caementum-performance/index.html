@@ -19,7 +19,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/fonts/archivo-black-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-cond-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","name":"Caementum Performance","url":"https://caementumperformance.com","description":"Coaching de course à pied personnalisé par un athlète international, et vêtements de sport de la marque.","areaServed":[{"@type":"AdministrativeArea","name":"Québec"},{"@type":"City","name":"Montréal"}],"address":{"@type":"PostalAddress","addressLocality":"Montréal","addressRegion":"QC","addressCountry":"CA"},"priceRange":"80 $ à 150 $","founder":{"@type":"Person","name":"Alexandre Ben Ammar"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Est-ce vraiment sans algorithme ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Chaque plan est écrit à la main par Alexandre après avoir lu vos retours. Il n’y a ni générateur de plans, ni intelligence artificielle qui décide de vos séances."}},{"@type":"Question","name":"Quelle formation choisir ?","acceptedAnswer":{"@type":"Answer","text":"Piste pour viser un chrono du 800 m au 5 000 m, route pour préparer un 10 km, un semi ou un marathon, trail pour le dénivelé et l’ultra. En cas de doute, écrivez-nous : nous vous aidons à choisir."}},{"@type":"Question","name":"Je débute. Est-ce pour moi ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les programmes s’adaptent à votre niveau, du premier 10 km à la compétition. Un débutant y gagne de la structure et de la sécurité : une progression qui évite la blessure et le découragement."}},{"@type":"Question","name":"Comment se passe la visio d’évaluation ?","acceptedAnswer":{"@type":"Answer","text":"Après votre paiement, Alexandre vous contacte pour planifier une visioconférence. Il fait le tour de votre niveau, de vos objectifs, de vos antécédents, de votre disponibilité et de vos contraintes, puis il crée votre plan à la main."}},{"@type":"Question","name":"Les forfaits se renouvellent-ils automatiquement ?","acceptedAnswer":{"@type":"Answer","text":"Non. Les forfaits de 1, 6 et 12 mois sont des paiements uniques : rien ne se renouvelle sans votre accord. Seul le pack Communautaire est un abonnement mensuel, que vous pouvez arrêter en tout temps."}},{"@type":"Question","name":"Les prix incluent-ils les taxes ?","acceptedAnswer":{"@type":"Answer","text":"Non. Tous les prix sont en dollars canadiens et s’affichent avant taxes. La TPS et la TVQ s’ajoutent au paiement."}},{"@type":"Question","name":"Pourquoi des forfaits de 6 et 12 mois ?","acceptedAnswer":{"@type":"Answer","text":"Une préparation de marathon ou d’ultra se construit en cycles de plusieurs mois. Avec les forfaits de 6 et 12 mois, vous avez une visioconférence de suivi chaque mois et un nouveau plan à chaque étape, et vous économisez : 10 % sur 6 mois, 20 % sur 12 mois."}},{"@type":"Question","name":"Le coaching se fait-il à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Alexandre est à Montréal et coache partout au Québec par vidéo et par échanges directs, selon votre horaire."}},{"@type":"Question","name":"Comment fonctionne la boutique ?","acceptedAnswer":{"@type":"Answer","text":"Les vêtements Caementum se commandent en ligne : vous choisissez le produit et la taille, puis vous finalisez votre commande. Les produits, les prix et les délais de livraison seront confirmés à l’ouverture de la boutique."}}]}]}</script>
@@ -48,151 +48,130 @@
 </header>
 <main id="contenu" tabindex="-1">
 
-<section class="hero" aria-labelledby="h1">
+<section class="hero hero--photo" aria-labelledby="h1">
+  <div class="hero-photo" aria-hidden="true"><img src="assets/img/photos/hero.jpg" alt="" width="1600" height="1148" fetchpriority="high"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1 id="h1" class="h1">La performance se construit.</h1>
-      <p class="lead">Coaching de course à pied 100 % humain, plans écrits à la main, et vêtements de sport pour celles et ceux qui s’entraînent sérieusement.</p>
+      <p class="eyebrow">Coaching · Course à pied</p>
+      <h1 id="h1" class="h1">La performance <span class="hl">se construit.</span></h1>
+      <p class="lead">Aucun algorithme. Chaque plan est écrit à la main par un athlète international, après analyse de vos retours. Piste, route ou trail, partout au Québec.</p>
       <div class="actions">
         <a class="btn btn--primary" href="formations.html">Voir les formations</a>
         <a class="btn btn--ghost" href="boutique.html">Découvrir la boutique</a>
       </div>
-      <p class="hero-note">Piste, route ou trail. Partout au Québec.</p>
     </div>
     <svg class="hero-mark" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="Le logo Caementum Performance : un X fait de bandes diagonales">
 <g transform="rotate(-45 50 50)"><rect class="mk mk-l1" x="5" y="41.5" width="90" height="7"/><rect class="mk mk-l2" x="5" y="51.5" width="90" height="7"/></g>
 <g transform="rotate(45 50 50)"><rect class="mk mk-s1" x="9" y="40.5" width="26" height="8.5"/><rect class="mk mk-s1" x="9" y="51" width="26" height="8.5"/><rect class="mk mk-s2" x="65" y="40.5" width="26" height="8.5"/><rect class="mk mk-s2" x="65" y="51" width="26" height="8.5"/></g>
 </svg>
   </div>
-  <div class="wrap">
-    <div class="wall wall--4 cred">
-      <a class="block door" href="formations.html#piste"><h3>Piste</h3><p>Du 800 m au 5 000 m : le chrono avant tout.</p><span class="go">Voir la formation</span></a>
-      <a class="block door" href="formations.html#route"><h3>Route</h3><p>Du 5 km au marathon et à l’ultra.</p><span class="go">Voir la formation</span></a>
-      <a class="block door" href="formations.html#trail"><h3>Trail</h3><p>Dénivelé, nature et ultra-trail.</p><span class="go">Voir la formation</span></a>
-      <a class="block door" href="boutique.html"><h3>Boutique</h3><p>Les vêtements de la marque, pour courir et s’entraîner.</p><span class="go">Entrer dans la boutique</span></a>
-    </div>
-  </div>
-  <div style="height:clamp(56px,8vw,112px)"></div>
+  <div style="height:clamp(48px,7vw,96px)"></div>
 </section>
 
-<section class="slab" data-tone="chalk" aria-labelledby="mission">
+<section class="slab slab--tight" data-tone="chalk" aria-label="Palmarès en chiffres">
+  <div class="wrap">
+    <ul class="stats">
+      <li><b>20</b><span>fois champion de Tunisie</span></li>
+      <li><b>5</b><span>fois champion de France</span></li>
+      <li><b>2</b><span>participations aux championnats du monde</span></li>
+      <li><b>Rio</b><span>participation aux Jeux olympiques</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="slab slab--mist" data-tone="chalk" aria-labelledby="mission">
   <div class="wrap split">
     <div class="split-sticky">
-      <h2 id="mission" class="h2">Rendre le haut niveau accessible.</h2>
-      <p class="lead">Caementum est né d’une conviction : la performance durable demande une relation directe et sincère entre un entraîneur et un coureur. Pas un algorithme, une personne.</p>
-      <p class="measure">Du nom latin du matériau qui liait les pierres de Rome, <em>caementum</em> raconte notre méthode : des semaines de travail posées l’une sur l’autre, solidement liées entre elles.</p>
+      <p class="eyebrow">Notre mission</p>
+      <h2 id="mission" class="h2">Caementum ne vend pas un outil, mais <span class="hl">un niveau de présence.</span></h2>
+    </div>
+    <div style="display:grid;gap:20px;align-content:start">
+      <p class="lead">Les applications automatisées distribuent des plans standardisés, sans suivi réel. Beaucoup de coureurs finissent par abandonner faute de soutien.</p>
+      <p class="measure">Caementum fait l’inverse : un coach analyse, conçoit et ajuste chaque plan à la main, avec une relation directe et sincère. Du latin <em>caementum</em>, le matériau qui liait les pierres de Rome : des semaines de travail posées l’une sur l’autre, solidement liées.</p>
+      <div><a class="btn btn--dark" href="a-propos.html">Découvrir notre approche</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="slab" data-tone="chalk" aria-labelledby="haut">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Ce qui nous distingue</p>
+      <h2 id="haut" class="h2">Le haut niveau, <span class="hl">à votre allure.</span></h2>
+      <p class="lead">Un coaching premium, construit sur l’expertise du terrain et une vraie relation entre le coach et le coureur.</p>
     </div>
     <div class="wall wall--2">
-      <div class="block value"><h3>Humain</h3><p>Chaque plan est écrit à la main, après l’analyse de vos retours. Aucune automatisation.</p></div>
-      <div class="block value"><h3>Exigence</h3><p>La rigueur du haut niveau, transmise à tous les profils et dosée pour vous.</p></div>
-      <div class="block value"><h3>Sincérité</h3><p>Un canal direct avec votre entraîneur, des conseils honnêtes, des objectifs réalistes.</p></div>
-      <div class="block value"><h3>Constance</h3><p>Un suivi qui dure et un plan qui évolue avec votre forme, votre horaire et vos imprévus.</p></div>
+      <div class="block value"><span class="num">#01</span><h3>Aucun algorithme</h3><p>Chaque plan est conçu et ajusté à la main par un coach expert, jamais généré par une machine.</p></div>
+      <div class="block value"><span class="num">#02</span><h3>Suivi par un athlète</h3><p>Vous êtes guidé par quelqu’un qui connaît la compétition de l’intérieur, du premier départ à la finale.</p></div>
+      <div class="block value"><span class="num">#03</span><h3>100 % sur mesure</h3><p>Votre niveau, votre objectif, votre horaire et vos blessures passées : tout est pris en compte.</p></div>
+      <div class="block value"><span class="num">#04</span><h3>Un plan qui évolue</h3><p>Un suivi régulier et des ajustements selon vos retours réels, pas un calendrier figé.</p></div>
     </div>
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="distingue">
+<section class="slab" data-tone="ink" aria-labelledby="disc">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="distingue" class="h2">Ce qui nous distingue.</h2>
-      <p class="lead">Entre une application et un coach privé hors de prix, il y avait un vide. Caementum le comble.</p>
+      <p class="eyebrow">Trois disciplines</p>
+      <h2 id="disc" class="h2">Piste. Route. <span class="hl">Trail.</span></h2>
+      <p class="lead">Un plan par terrain, écrit pour vous. Choisissez votre discipline, nous écrivons la suite.</p>
     </div>
-    <div class="wall wall--3 who">
-      <div class="block"><h3>Un athlète international</h3><p>Alexandre Ben Ammar a participé aux Jeux olympiques de Rio, et il est cinq fois champion de France et vingt fois champion de Tunisie. Son expérience vient du terrain.</p></div>
-      <div class="block"><h3>Un plan écrit pour vous</h3><p>Votre niveau, vos blessures passées, votre horaire : tout est pris en compte, jamais un modèle générique.</p></div>
-      <div class="block"><h3>Un accompagnement à 360°</h3><p>Entraînement, récupération, nutrition et prévention des blessures pensés ensemble.</p></div>
+    <div class="disc-grid">
+      <a class="disc" href="formations.html#piste"><span class="disc-art"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#262626"/><g stroke="#4a4a4a" stroke-width="3" fill="none"><path d="M-40 400 L150 120"/><path d="M20 400 L160 120"/><path d="M90 400 L170 120"/><path d="M170 400 L180 120"/><path d="M250 400 L190 120"/><path d="M320 400 L200 120"/><path d="M380 400 L210 120"/></g><rect y="110" width="300" height="12" fill="#3a3a3a"/></svg></span><span class="disc-tag">Performance et élite</span><span class="disc-body"><span class="disc-name">Piste</span><span class="disc-txt">800 m, 1 500 m, 3 000 m, 3 000 m steeple, 5 000 m.</span><span class="disc-price">Dès 150 $ pour 1 mois</span></span></a><a class="disc" href="formations.html#route"><span class="disc-art"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#2a2a2a"/><path d="M130 120 H170 L300 400 H-0 Z" fill="#1c1c1c"/><g fill="#6a6a6a"><path d="M148 150 h4 v14 h-4z"/><path d="M146 196 h8 v26 h-8z"/><path d="M143 262 h14 v42 h-14z"/><path d="M138 346 h24 v54 h-24z"/></g><rect y="110" width="300" height="12" fill="#3a3a3a"/></svg></span><span class="disc-tag">Marathon et distance</span><span class="disc-body"><span class="disc-name">Route</span><span class="disc-txt">5 km, 10 km, Semi-marathon, Marathon, Ultra-marathon.</span><span class="disc-price">Dès 120 $ pour 1 mois</span></span></a><a class="disc" href="formations.html#trail"><span class="disc-art"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#242424"/><path d="M0 250 L70 150 L120 215 L190 110 L300 250 V400 H0Z" fill="#363636"/><path d="M0 300 L90 220 L160 280 L240 190 L300 270 V400 H0Z" fill="#2c2c2c"/><path d="M0 360 L110 300 L200 350 L300 310 V400 H0Z" fill="#1f1f1f"/></svg></span><span class="disc-tag">Nature et ultra</span><span class="disc-body"><span class="disc-name">Trail</span><span class="disc-txt">Trail court, Trail long, Ultra-trail.</span><span class="disc-price">Dès 80 $ pour 1 mois</span></span></a>
     </div>
-    <div class="actions mt-l"><a class="btn btn--primary" href="a-propos.html">Découvrir l’origine du projet</a></div>
-  </div>
-</section>
-
-<section class="slab" data-tone="chalk" aria-labelledby="forms">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="forms" class="h2">Les formations.</h2>
-      <p class="lead">Trois disciplines, un seul entraîneur. Choisissez votre terrain, puis votre durée.</p>
-    </div>
-    <div class="wall wall--3">
-      <article class="block value" style="display:grid;gap:12px;align-content:start"><h3>Piste</h3><p>Performance et élite. Pour viser un chrono : vitesse maximale aérobie, technique de course et séances spécifiques à la piste.</p><p class="price-line"><span class="price-big" style="font-size:2rem">150 $</span><span class="price-unit">pour 1 mois, avant taxes</span></p><div class="actions"><a class="btn btn--dark" href="formations.html#piste">Voir la formation</a></div></article><article class="block value" style="display:grid;gap:12px;align-content:start"><h3>Route</h3><p>Marathon et distance. 10 km, semi-marathon ou marathon : une préparation construite autour de votre date de course et de votre stratégie.</p><p class="price-line"><span class="price-big" style="font-size:2rem">120 $</span><span class="price-unit">pour 1 mois, avant taxes</span></p><div class="actions"><a class="btn btn--dark" href="formations.html#route">Voir la formation</a></div></article><article class="block value" style="display:grid;gap:12px;align-content:start"><h3>Trail</h3><p>Nature et ultra. Dénivelé, terrain technique, longues distances : un plan qui prépare les jambes à la montagne et la tête à la durée.</p><p class="price-line"><span class="price-big" style="font-size:2rem">80 $</span><span class="price-unit">pour 1 mois, avant taxes</span></p><div class="actions"><a class="btn btn--dark" href="formations.html#trail">Voir la formation</a></div></article>
-    </div>
-    <p class="fine mt-l">Forfaits de 6 mois (−10 %) et de 12 mois (−20 %). Pack Communautaire dès 19,99 $ par mois. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
-  </div>
-</section>
-
-<section class="slab" data-tone="ink" aria-labelledby="shop">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="shop" class="h2">La boutique.</h2>
-      <p class="lead">Des vêtements de sport pensés pour courir, conçus sous la marque. La collection arrive : découvrez les premières pièces.</p>
-    </div>
-    <div class="shop">
-      <article class="product" data-product="tshirt">
-  <div class="product-photo"><div class="product-ph" role="img" aria-label="Photo du produit à venir : T-shirt de course"><svg class="product-ph-mark" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="" aria-hidden="true">
-<g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
-<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g>
-</svg></div></div>
-  <div class="product-body">
-    <h3>T-shirt de course</h3>
-    <p style="margin:0"><span class="tbd">Fiche provisoire</span></p>
-    <p class="product-desc">[Description provisoire : matière, coupe, usage.]</p>
-    <p class="product-price"><span class="tbd">Prix à confirmer</span></p>
-    <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-tshirt" value="TP"><span>TP</span></label><label><input type="radio" name="t-tshirt" value="P"><span>P</span></label><label><input type="radio" name="t-tshirt" value="M" checked><span>M</span></label><label><input type="radio" name="t-tshirt" value="G"><span>G</span></label><label><input type="radio" name="t-tshirt" value="TG"><span>TG</span></label><label><input type="radio" name="t-tshirt" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--primary" data-order="tshirt" href="commande.html?produit=tshirt">Me prévenir de la sortie</a>
-  </div>
-</article>
-<article class="product" data-product="camisole">
-  <div class="product-photo"><div class="product-ph" role="img" aria-label="Photo du produit à venir : Camisole de course"><svg class="product-ph-mark" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="" aria-hidden="true">
-<g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
-<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g>
-</svg></div></div>
-  <div class="product-body">
-    <h3>Camisole de course</h3>
-    <p style="margin:0"><span class="tbd">Fiche provisoire</span></p>
-    <p class="product-desc">[Description provisoire : matière, coupe, usage.]</p>
-    <p class="product-price"><span class="tbd">Prix à confirmer</span></p>
-    <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-camisole" value="TP"><span>TP</span></label><label><input type="radio" name="t-camisole" value="P"><span>P</span></label><label><input type="radio" name="t-camisole" value="M" checked><span>M</span></label><label><input type="radio" name="t-camisole" value="G"><span>G</span></label><label><input type="radio" name="t-camisole" value="TG"><span>TG</span></label><label><input type="radio" name="t-camisole" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--primary" data-order="camisole" href="commande.html?produit=camisole">Me prévenir de la sortie</a>
-  </div>
-</article>
-<article class="product" data-product="short">
-  <div class="product-photo"><div class="product-ph" role="img" aria-label="Photo du produit à venir : Short de course"><svg class="product-ph-mark" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="" aria-hidden="true">
-<g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
-<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g>
-</svg></div></div>
-  <div class="product-body">
-    <h3>Short de course</h3>
-    <p style="margin:0"><span class="tbd">Fiche provisoire</span></p>
-    <p class="product-desc">[Description provisoire : matière, longueur, poches.]</p>
-    <p class="product-price"><span class="tbd">Prix à confirmer</span></p>
-    <fieldset class="sizes"><legend>Taille</legend><label><input type="radio" name="t-short" value="TP"><span>TP</span></label><label><input type="radio" name="t-short" value="P"><span>P</span></label><label><input type="radio" name="t-short" value="M" checked><span>M</span></label><label><input type="radio" name="t-short" value="G"><span>G</span></label><label><input type="radio" name="t-short" value="TG"><span>TG</span></label><label><input type="radio" name="t-short" value="TTG"><span>TTG</span></label></fieldset>
-    <a class="btn btn--primary" data-order="short" href="commande.html?produit=short">Me prévenir de la sortie</a>
-  </div>
-</article>
-    </div>
-    <div class="actions mt-l"><a class="btn btn--light" href="boutique.html">Voir toute la boutique</a></div>
+    <p class="fine mt-l">Forfaits de 6 mois (−10 %) et de 12 mois (−20 %). Pack Communautaire dès 19,99 $ par mois. Prix avant taxes. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
   </div>
 </section>
 
 <section class="slab" data-tone="chalk" id="methode" aria-labelledby="meth">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="meth" class="h2">De la découverte à la ligne de départ.</h2>
-      <p class="lead">Un parcours simple, en six étapes, où l’humain garde la main du début à la fin.</p>
+      <p class="eyebrow">Le parcours</p>
+      <h2 id="meth" class="h2">Six étapes, <span class="hl">un seul coach.</span></h2>
+      <p class="lead">De l’inscription au premier débriefing, vous savez toujours ce qui vous attend.</p>
     </div>
-    <ol class="wall wall--3">
-      <li class="block step"><span class="step-n" aria-hidden="true">1</span><h3>Réservation et paiement</h3><p>Vous choisissez votre formation et votre forfait, puis vous payez en ligne en toute sécurité.</p></li>
-      <li class="block step"><span class="step-n" aria-hidden="true">2</span><h3>Planification de la visio</h3><p>Alexandre vous contacte pour fixer le moment de votre visioconférence d’évaluation.</p></li>
-      <li class="block step"><span class="step-n" aria-hidden="true">3</span><h3>Visio d’évaluation</h3><p>Une conversation sur vos objectifs, votre niveau, vos antécédents, vos disponibilités et vos contraintes.</p></li>
-      <li class="block step"><span class="step-n" aria-hidden="true">4</span><h3>Conception manuelle</h3><p>Alexandre écrit votre plan lui-même, adapté à votre profil unique. Aucune automatisation.</p></li>
-      <li class="block step"><span class="step-n" aria-hidden="true">5</span><h3>Livraison de votre plan</h3><p>Vous recevez votre programme détaillé, prêt à suivre dès la première semaine.</p></li>
-      <li class="block step"><span class="step-n" aria-hidden="true">6</span><h3>Suivi et ajustements</h3><p>Avec les forfaits de 6 et 12 mois : une visio de suivi chaque mois et un nouveau plan adapté à votre progression.</p></li>
+    <ol class="timeline">
+      <li><span class="tl-n">01</span><h3>Paiement sécurisé</h3><p>Vous choisissez votre formation et votre durée, puis vous payez en ligne.</p></li><li><span class="tl-n">02</span><h3>Planification</h3><p>Alexandre vous contacte pour fixer votre visioconférence d’évaluation.</p></li><li><span class="tl-n">03</span><h3>Visio d’évaluation</h3><p>Objectifs, niveau, antécédents, disponibilités et contraintes.</p></li><li><span class="tl-n">04</span><h3>Conception manuelle</h3><p>Alexandre écrit votre plan lui-même, sans automatisation.</p></li><li><span class="tl-n">05</span><h3>Livraison sur mesure</h3><p>Vous recevez votre programme détaillé, prêt à suivre.</p></li><li><span class="tl-n">06</span><h3>Suivi et ajustements</h3><p>Visio de suivi chaque mois avec les forfaits de 6 et 12 mois.</p></li>
     </ol>
+    <p class="quote">« Zéro automatisation. Chaque séance est écrite par le coach après analyse de vos retours. »</p>
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="faq">
+<section class="slab" data-tone="ink" aria-labelledby="fond">
+  <div class="wrap split split--even founder">
+    <figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="900" height="900" loading="lazy" decoding="async"></figure>
+    <div style="display:grid;gap:22px;align-content:center">
+      <p class="eyebrow">Le fondateur</p>
+      <h2 id="fond" class="h2">Alexandre <span class="hl">Ben Ammar</span></h2>
+      <p class="lead">Athlète international, il a participé aux Jeux olympiques de Rio. Il transmet la rigueur du haut niveau à tous les profils.</p>
+      <ul class="check-list">
+        <li>Participation aux Jeux olympiques de Rio</li>
+        <li>Finaliste et deux participations aux championnats du monde</li>
+        <li>Cinq fois champion de France, vingt fois champion de Tunisie</li>
+        <li>Champion de la Méditerranée, finaliste aux championnats d’Afrique</li>
+      </ul>
+      <div class="actions"><a class="btn btn--primary" href="a-propos.html">Notre histoire</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="slab slab--blue slab--slant" data-tone="ink" aria-labelledby="shop">
+  <div class="wrap split split--even">
+    <div style="display:grid;gap:22px;align-content:center">
+      <p class="eyebrow">La boutique</p>
+      <h2 id="shop" class="h2">Portez la <span class="hl">croisée.</span></h2>
+      <p class="lead">Des vêtements de course aux couleurs de la marque : pour s’entraîner, pour courir, pour se reconnaître. La collection est en préparation.</p>
+      <div class="actions"><a class="btn btn--light" href="boutique.html">Voir la boutique</a></div>
+    </div>
+    <div class="band-art"><svg class="garment garment--lg" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M62 38 L90 28 Q100 42 110 28 L138 38 L176 70 L158 94 L142 82 L142 172 L58 172 L58 82 L42 94 L24 70 Z" fill="#111"/><path d="M24 70 L42 94 M176 70 L158 94" stroke="#1652f0" stroke-width="6"/><g transform="translate(86 70) scale(0.28)" fill="#fff"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
+<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg><svg class="garment garment--md" viewBox="0 0 200 200" role="img" aria-label="Visuel provisoire du produit"><path d="M38 116 Q38 58 100 58 Q162 58 162 116 Z" fill="#111"/><path d="M38 108 H162 V118 H38 Z" fill="#1652f0"/><path d="M100 118 Q176 114 188 136 Q150 140 100 128 Z" fill="#111"/><g transform="translate(80 70) scale(0.24)" fill="#fff"><g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
+<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g></g></svg></div>
+  </div>
+</section>
+
+<section class="slab" data-tone="chalk" aria-labelledby="faq">
   <div class="wrap">
-    <div class="section-head"><h2 id="faq" class="h2">Questions fréquentes</h2></div>
+    <div class="section-head"><p class="eyebrow">Questions fréquentes</p><h2 id="faq" class="h2">Avant de <span class="hl">commencer.</span></h2></div>
     <div class="faq"><details><summary>Est-ce vraiment sans algorithme ?</summary><div class="answer"><p>Oui. Chaque plan est écrit à la main par Alexandre après avoir lu vos retours. Il n’y a ni générateur de plans, ni intelligence artificielle qui décide de vos séances.</p></div></details><details><summary>Quelle formation choisir ?</summary><div class="answer"><p>Piste pour viser un chrono du 800 m au 5 000 m, route pour préparer un 10 km, un semi ou un marathon, trail pour le dénivelé et l’ultra. En cas de doute, écrivez-nous : nous vous aidons à choisir.</p></div></details><details><summary>Je débute. Est-ce pour moi ?</summary><div class="answer"><p>Oui. Les programmes s’adaptent à votre niveau, du premier 10 km à la compétition. Un débutant y gagne de la structure et de la sécurité : une progression qui évite la blessure et le découragement.</p></div></details><details><summary>Comment se passe la visio d’évaluation ?</summary><div class="answer"><p>Après votre paiement, Alexandre vous contacte pour planifier une visioconférence. Il fait le tour de votre niveau, de vos objectifs, de vos antécédents, de votre disponibilité et de vos contraintes, puis il crée votre plan à la main.</p></div></details><details><summary>Les forfaits se renouvellent-ils automatiquement ?</summary><div class="answer"><p>Non. Les forfaits de 1, 6 et 12 mois sont des paiements uniques : rien ne se renouvelle sans votre accord. Seul le pack Communautaire est un abonnement mensuel, que vous pouvez arrêter en tout temps.</p></div></details><details><summary>Les prix incluent-ils les taxes ?</summary><div class="answer"><p>Non. Tous les prix sont en dollars canadiens et s’affichent avant taxes. La TPS et la TVQ s’ajoutent au paiement.</p></div></details><details><summary>Pourquoi des forfaits de 6 et 12 mois ?</summary><div class="answer"><p>Une préparation de marathon ou d’ultra se construit en cycles de plusieurs mois. Avec les forfaits de 6 et 12 mois, vous avez une visioconférence de suivi chaque mois et un nouveau plan à chaque étape, et vous économisez : 10 % sur 6 mois, 20 % sur 12 mois.</p></div></details><details><summary>Le coaching se fait-il à distance ?</summary><div class="answer"><p>Oui. Alexandre est à Montréal et coache partout au Québec par vidéo et par échanges directs, selon votre horaire.</p></div></details><details><summary>Comment fonctionne la boutique ?</summary><div class="answer"><p>Les vêtements Caementum se commandent en ligne : vous choisissez le produit et la taille, puis vous finalisez votre commande. Les produits, les prix et les délais de livraison seront confirmés à l’ouverture de la boutique.</p></div></details></div>
   </div>
 </section>
@@ -204,9 +183,9 @@
 <g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g>
 </svg>
     <div>
-      <h2 id="cta-titre" class="h2">Posez la première pierre.</h2>
-      <p class="lead">Choisissez votre formation, ou écrivez à Alexandre pour trouver la bonne.</p>
-      <div class="actions"><a class="btn btn--primary" href="formations.html#tarifs">Acheter une formation</a><a class="btn btn--ghost" href="contact.html">Nous écrire</a></div>
+      <h2 id="cta-titre" class="h2">Courez avec un vrai coach.</h2>
+      <p class="lead">Choisissez votre formation, réservez votre visio et recevez un plan écrit pour vous.</p>
+      <div class="actions"><a class="btn btn--primary" href="formations.html#tarifs">Acheter une formation</a><a class="btn btn--ghost" href="contact.html">Poser une question</a></div>
     </div>
   </div>
 </section>

@@ -40,9 +40,15 @@ Tout se modifie dans `src/lib.mjs`, puis `node tools/build.mjs` régénère les 
 6. **Taxes** : prix avant taxes (TPS 5 %, TVQ 9,975 %). Inscription aux fichiers de la TPS et de la TVQ obligatoire au-delà de 30 000 $ de revenus taxables sur quatre trimestres.
 7. **Marque** : faire vérifier « Caementum » à l'OPIC avant d'investir dans la publicité.
 
+## Photos
+
+Les photos sont dans `assets/img/photos/` : `hero.jpg` (bannière d'accueil, affichée en noir et blanc) et `fondateur.jpg` (recadrage serré, section du fondateur et page À propos). Pour les remplacer, déposer une nouvelle photo sous le même nom puis `node tools/build.mjs`. Format conseillé : JPG, 1600 px de large, moins de 300 Ko.
+
+**Droits d'auteur :** confirmer que vous détenez les droits de la photo utilisée. Une autre photo fournie porte le filigrane « © Manu Chapelle / Photoathle.fr » : elle n'est pas utilisée, car elle appartient à ce photographe (licence nécessaire, et le filigrane ne doit pas être retiré).
+
 ## Identité visuelle
 
-D'après le logo fourni : un X fait de bandes diagonales, noir et blanc, bleu électrique `#1652f0` en accent et vert lime `#c6ff00` pour les marqueurs. Titres en Archivo italique gras, texte en Inter (licence SIL Open Font License, hébergées localement). Le logo de l'image portait le nom **PACENAX** : seul le symbole a été repris, avec le nom Caementum Performance.
+D'après le logo fourni et les captures de référence : un X fait de bandes diagonales, noir et blanc, bleu électrique `#1652f0` en accent, lignes diagonales bleues, photos en noir et blanc, bordure inclinée, frise d'étapes. Titres en Barlow Condensed, nom de marque en Archivo italique gras, texte en Inter (licence SIL Open Font License, hébergées localement). Le logo de l'image portait le nom **PACENAX** : seul le symbole a été repris, avec le nom Caementum Performance.
 
 ## Points à confirmer
 

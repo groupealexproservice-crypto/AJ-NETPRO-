@@ -68,12 +68,12 @@ export const RECORDS = [
 // price : nombre en dollars canadiens, ou null tant que le prix n'est pas fixé.
 const TAILLES = ['TP', 'P', 'M', 'G', 'TG', 'TTG'];
 export const PRODUCTS = [
-  { id: 'tshirt', name: 'T-shirt de course', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
-  { id: 'camisole', name: 'Camisole de course', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
-  { id: 'short', name: 'Short de course', desc: '[Description provisoire : matière, longueur, poches.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
-  { id: 'coupe-vent', name: 'Coupe-vent', desc: '[Description provisoire : matière, protection, poids.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
-  { id: 'kangourou', name: 'Chandail à capuchon', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
-  { id: 'casquette', name: 'Casquette', desc: '[Description provisoire : matière, ajustement.]', sizes: ['Taille unique'], price: null, photo: '', provisoire: true },
+  { id: 'tshirt', cat: 'haut', name: 'T-shirt de course', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'camisole', cat: 'haut', name: 'Camisole de course', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'short', cat: 'bas', name: 'Short de course', desc: '[Description provisoire : matière, longueur, poches.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'coupe-vent', cat: 'haut', name: 'Coupe-vent', desc: '[Description provisoire : matière, protection, poids.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'kangourou', cat: 'haut', name: 'Chandail à capuchon', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'casquette', cat: 'accessoire', name: 'Casquette', desc: '[Description provisoire : matière, ajustement.]', sizes: ['Taille unique'], price: null, photo: '', provisoire: true },
 ];
 export const tbd = (label = 'Provisoire') => `<span class="tbd">${label}</span>`;
 
@@ -105,11 +105,14 @@ export const perMonth = (total, months) => Math.round(total / months);
 export const saving = (p, term) => (term === 'six' ? p.monthly * 6 - p.six : p.monthly * 12 - p.year);
 
 // ----- Marque : le X en bandes diagonales (deux longues barres, deux paires de barres courtes) -----
+export function markInner(a = () => '') {
+  return `<g transform="rotate(-45 50 50)"><rect${a('mk mk-l1')} x="5" y="41.5" width="90" height="7"/><rect${a('mk mk-l2')} x="5" y="51.5" width="90" height="7"/></g>
+<g transform="rotate(45 50 50)"><rect${a('mk mk-s1')} x="9" y="40.5" width="26" height="8.5"/><rect${a('mk mk-s1')} x="9" y="51" width="26" height="8.5"/><rect${a('mk mk-s2')} x="65" y="40.5" width="26" height="8.5"/><rect${a('mk mk-s2')} x="65" y="51" width="26" height="8.5"/></g>`;
+}
 export function markSvg({ className = '', animate = false, title = '' } = {}) {
   const a = (c) => (animate ? ` class="${c}"` : '');
   return `<svg class="${className}" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="${title}"${title ? '' : ' aria-hidden="true"'}>
-<g transform="rotate(-45 50 50)"><rect${a('mk mk-l1')} x="5" y="41.5" width="90" height="7"/><rect${a('mk mk-l2')} x="5" y="51.5" width="90" height="7"/></g>
-<g transform="rotate(45 50 50)"><rect${a('mk mk-s1')} x="9" y="40.5" width="26" height="8.5"/><rect${a('mk mk-s1')} x="9" y="51" width="26" height="8.5"/><rect${a('mk mk-s2')} x="65" y="40.5" width="26" height="8.5"/><rect${a('mk mk-s2')} x="65" y="51" width="26" height="8.5"/></g>
+${markInner(a)}
 </svg>`;
 }
 
@@ -159,7 +162,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/fonts/archivo-black-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-cond-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 ${jsonld}
