@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /inscription.html
+Disallow: /panier.html
+Disallow: /merci.html
+Sitemap: https://caementumperformance.com/sitemap.xml
