@@ -29,16 +29,16 @@ export const PACKS = {
     monthly: 150, six: 810, year: 1440,
   },
   route: {
-    id: 'route', name: 'Route', tagline: 'Marathon et distance',
-    pitch: '10 km ou marathon : une préparation construite autour de votre date de course et de votre stratégie.',
-    for: 'Coureurs et coureuses engagés qui préparent un 10 km ou un marathon, du premier objectif au chrono visé.',
-    includes: ['Plan marathon ou 10 km', 'Stratégie de course personnalisée', 'Débriefing hebdomadaire avec votre entraîneur'],
+    id: 'route', name: 'Route', tagline: 'Du 10 km au marathon',
+    pitch: '10 km, semi-marathon ou marathon : une préparation construite autour de votre date de course et de votre stratégie.',
+    for: 'Coureurs et coureuses engagés qui préparent un 10 km, un semi-marathon ou un marathon, du premier objectif au chrono visé.',
+    includes: ['Plan 10 km, semi-marathon ou marathon', 'Stratégie de course personnalisée', 'Débriefing hebdomadaire avec votre entraîneur'],
     monthly: 120, six: 650, year: 1150,
   },
   trail: {
-    id: 'trail', name: 'Trail', tagline: 'Nature et ultra',
+    id: 'trail', name: 'Trail', tagline: 'Trail et ultra-trail',
     pitch: 'Dénivelé, terrain technique, longues distances : un plan qui prépare les jambes à la montagne et la tête à la durée.',
-    for: 'Coureurs de sentiers, du premier trail court à l’ultra, qui veulent gérer le dénivelé sans se blesser.',
+    for: 'Coureurs de sentiers, du premier trail à l’ultra-trail, qui veulent gérer le dénivelé sans se blesser.',
     includes: ['Gestion du dénivelé', 'Renforcement musculaire spécifique', 'Débriefing hebdomadaire avec votre entraîneur'],
     monthly: 80, six: 430, year: 770,
   },
@@ -48,8 +48,8 @@ export const COMMUNAUTAIRE = {
   includes: ['Accès à la communauté privée', 'Un entraînement collectif par semaine', 'Échanges entre membres', 'Conseils et motivation du coach'],
 };
 PACKS.piste.distances = ['800 m', '1 500 m', '3 000 m', '5 000 m', '10 000 m', '3 000 m steeple'];
-PACKS.route.distances = ['10 km', 'Marathon'];
-PACKS.trail.distances = ['Trail court', 'Trail long', 'Ultra-trail'];
+PACKS.route.distances = ['10 km', 'Semi-marathon', 'Marathon'];
+PACKS.trail.distances = ['Trail', 'Ultra-trail'];
 
 export const PALMARES = [
   ['Championnats du monde', 'Finaliste, deux participations'],

@@ -57,7 +57,7 @@ const subset = FAQ.filter(([q]) => /renouvellent|taxes|forfaits de 6|Quelle form
 export default {
   file: 'formations.html',
   title: 'Formations de course à pied : piste, route et trail',
-  description: 'Formations de coaching de course à pied pour toutes les personnes : piste (800 m au 10 000 m, steeple), route (10 km, marathon) et trail. Plans écrits à la main, dès 80 $. Achat en ligne.',
+  description: 'Formations de coaching de course à pied pour toutes les personnes : piste (800 m au 10 000 m, steeple), route (10 km, semi-marathon, marathon), trail et ultra-trail. Plans écrits à la main, dès 80 $. Achat en ligne.',
   schema: [faqSchema(subset)],
   body: `
 <section class="page-head">

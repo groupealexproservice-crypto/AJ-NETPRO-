@@ -3,13 +3,13 @@ import { PACKS, money, markSvg, markInner, tbd } from './lib.mjs';
 
 export const FAQ = [
   ['Est-ce vraiment sans algorithme ?', '<p>Oui. Chaque plan est écrit à la main par Alexandre après avoir lu vos retours. Il n’y a ni générateur de plans, ni intelligence artificielle qui décide de vos séances.</p>'],
-  ['Quelle formation choisir ?', '<p>Piste pour viser un chrono du 800 m au 10 000 m, route pour préparer un 10 km ou un marathon, trail pour le dénivelé et l’ultra. En cas de doute, écrivez-nous : nous vous aidons à choisir.</p>'],
+  ['Quelle formation choisir ?', '<p>Piste pour viser un chrono du 800 m au 10 000 m, route pour préparer un 10 km, un semi-marathon ou un marathon, trail et ultra-trail pour le dénivelé et la durée. En cas de doute, écrivez-nous : nous vous aidons à choisir.</p>'],
   ['La formation est-elle la même pour tout le monde ?', '<p>Oui, il y a une seule formation par discipline, ouverte à toutes les personnes, quel que soit leur genre. Votre plan est ensuite écrit à la main selon votre niveau, votre objectif, vos disponibilités et vos antécédents.</p>'],
   ['Je débute. Est-ce pour moi ?', '<p>Oui. Les programmes s’adaptent à votre niveau, du premier 10 km à la compétition. Un débutant y gagne de la structure et de la sécurité : une progression qui évite la blessure et le découragement.</p>'],
   ['Comment se passe la visio d’évaluation ?', '<p>Après votre paiement, Alexandre vous contacte pour planifier une visioconférence. Il fait le tour de votre niveau, de vos objectifs, de vos antécédents, de votre disponibilité et de vos contraintes, puis il crée votre plan à la main.</p>'],
   ['Les forfaits se renouvellent-ils automatiquement ?', '<p>Non. Les forfaits de 1, 6 et 12 mois sont des paiements uniques : rien ne se renouvelle sans votre accord. Seul le pack Communautaire est un abonnement mensuel, que vous pouvez arrêter en tout temps.</p>'],
   ['Les prix incluent-ils les taxes ?', '<p>Non. Tous les prix sont en dollars canadiens et s’affichent avant taxes. La TPS et la TVQ s’ajoutent au paiement.</p>'],
-  ['Pourquoi des forfaits de 6 et 12 mois ?', '<p>Une préparation de marathon ou d’ultra se construit en cycles de plusieurs mois. Avec les forfaits de 6 et 12 mois, vous avez une visioconférence de suivi chaque mois et un nouveau plan à chaque étape, et vous économisez : 10 % sur 6 mois, 20 % sur 12 mois.</p>'],
+  ['Pourquoi des forfaits de 6 et 12 mois ?', '<p>Une préparation de marathon ou d’ultra-trail se construit en cycles de plusieurs mois. Avec les forfaits de 6 et 12 mois, vous avez une visioconférence de suivi chaque mois et un nouveau plan à chaque étape, et vous économisez : 10 % sur 6 mois, 20 % sur 12 mois.</p>'],
   ['Le coaching se fait-il à distance ?', '<p>Oui. Alexandre est à Montréal et coache partout au Québec par vidéo et par échanges directs, selon votre horaire.</p>'],
   ['Comment fonctionne la boutique ?', '<p>Les vêtements Caementum se commandent en ligne : vous choisissez le produit et la taille, puis vous finalisez votre commande. Les produits, les prix et les délais de livraison seront confirmés à l’ouverture de la boutique.</p>'],
 ];
