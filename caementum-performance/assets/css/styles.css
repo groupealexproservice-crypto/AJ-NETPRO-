@@ -430,3 +430,14 @@ p { text-wrap: pretty; }
 .contact-grid > *, .split > *, .form-row > *, .field, .hero-grid > *, .wall > *, .disc-grid > *, .shop > * { min-width: 0; }
 .input, .select, .textarea { min-width: 0; max-width: 100%; }
 .info-block, .summary, .site-footer li { overflow-wrap: anywhere; }
+
+/* ---------- Photos ---------- */
+.hero-figure img { object-position: 38% 50%; box-shadow: 0 20px 50px rgba(0, 0, 0, .45); }
+.frame-photo--wide { margin-top: 0; }
+.frame-photo--wide img { aspect-ratio: 21 / 9; object-position: 50% 40%; box-shadow: var(--shadow); }
+.disc-img[src$="piste.jpg"] { object-position: 50% 15%; }
+.disc-img[src$="route.jpg"] { object-position: 45% 50%; }
+.disc-img[src$="trail.jpg"] { object-position: 35% 50%; }
+.disc-img[src$="groupes.jpg"] { object-position: 50% 45%; }
+.frame-photo img[src$="piste.jpg"] { object-position: 50% 15%; }
+.frame-photo img[src$="trail.jpg"] { object-position: 35% 50%; }

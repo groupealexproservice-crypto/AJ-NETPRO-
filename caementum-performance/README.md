@@ -97,3 +97,7 @@ Publier le dossier `caementum-performance/` tel quel (`netlify.toml` fournit les
 - L'accueil n'utilise plus la photo précédente : le héros fonctionne sans photo (logo en grand). Les anciennes photos sont rangées dans `assets/img/photos/_ancien/` et ne sont plus affichées. Pour une photo de héros, déposer `assets/img/photos/hero.jpg`.
 - Nouveau service : `groupes.html`, abonnement mensuel de **19,98 $ avant taxes** (une activité de course à pied organisée par semaine, groupe privé). Jour, heure, lieu et niveau sont marqués « À compléter ».
 - Parcours d'inscription : `inscription.html?pack=communautaire&duree=monthly`. Lien de paiement Stripe à renseigner dans `assets/js/config.js` (`checkout.communautaire.monthly`).
+
+## Photos (Adobe Stock, licenciées)
+
+`assets/img/photos/` : `hero.jpg` (accueil, ID Adobe Stock 311231719), `piste.jpg` (339860370), `route.jpg` (500274904), `trail.jpg` (370473942), `groupes.jpg` (301438911). Photos de remplacement provisoires, à remplacer par de vraies photos de l'équipe quand elles seront prêtes (même nom de fichier).

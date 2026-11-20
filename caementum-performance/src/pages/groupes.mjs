@@ -1,4 +1,4 @@
-import { layout, ctaBand, money, COMMUNAUTAIRE, tbd, SITE } from '../lib.mjs';
+import { layout, ctaBand, money, COMMUNAUTAIRE, tbd, SITE, hasPhoto } from '../lib.mjs';
 import { faqHtml, faqSchema } from '../parts.mjs';
 
 const GROUPE_FAQ = [
@@ -37,6 +37,8 @@ export default {
     </div>
   </div>
 </section>
+
+${hasPhoto('groupes.jpg') ? '<section class="slab slab--tight" data-tone="chalk" aria-label="Photo"><div class="wrap"><figure class="frame-photo frame-photo--wide"><img src="assets/img/photos/groupes.jpg" alt="Groupe de coureurs et de coureuses en sortie, au lever du soleil" width="1400" height="933" loading="lazy" decoding="async"></figure></div></section>' : ''}
 
 <section class="slab slab--mist" data-tone="chalk" aria-labelledby="comment">
   <div class="wrap">

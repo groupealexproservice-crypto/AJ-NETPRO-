@@ -46,7 +46,7 @@ export default {
       </div>
     </div>
     ${hasPhoto('hero.jpg')
-      ? '<figure class="hero-figure"><img src="assets/img/photos/hero.jpg" alt="Coureur à l’entraînement" width="1600" height="1100" fetchpriority="high"></figure>'
+      ? '<figure class="hero-figure"><img src="assets/img/photos/hero.jpg" alt="Coureur en montagne à la lumière du lever du jour" width="1800" height="1200" fetchpriority="high"></figure>'
       : `<div class="hero-art" aria-hidden="true">${markSvg({ className: 'hero-mark' })}</div>`}
   </div>
   <div class="wrap">
@@ -68,7 +68,7 @@ export default {
     </div>
     <div class="disc-grid">
       ${Object.values(PACKS).map((p) => `<a class="disc" href="formations.html#${p.id}"><span class="disc-art">${hasPhoto(p.id + '.jpg') ? `<img class="disc-img" src="assets/img/photos/${p.id}.jpg" alt="" loading="lazy" decoding="async">` : art[p.id]}</span><span class="disc-tag">Formation</span><span class="disc-body"><span class="disc-name">${p.name}</span><span class="disc-txt">${p.distances.join(', ')}.</span><span class="disc-price">Dès ${money(Math.round(p.year / 12))} par mois</span><span class="disc-note">Forfait 12 mois, paiement unique</span></span></a>`).join('')}
-      <a class="disc" href="groupes.html"><span class="disc-art">${art.groupes}</span><span class="disc-tag">Abonnement</span><span class="disc-body"><span class="disc-name">Groupes de course</span><span class="disc-txt">Une activité de course à pied organisée chaque semaine.</span><span class="disc-price">${money(COMMUNAUTAIRE.monthly)} par mois</span><span class="disc-note">Sans engagement</span></span></a>
+      <a class="disc" href="groupes.html"><span class="disc-art">${hasPhoto('groupes.jpg') ? '<img class="disc-img" src="assets/img/photos/groupes.jpg" alt="" loading="lazy" decoding="async">' : art.groupes}</span><span class="disc-tag">Abonnement</span><span class="disc-body"><span class="disc-name">Groupes de course</span><span class="disc-txt">Une activité de course à pied organisée chaque semaine.</span><span class="disc-price">${money(COMMUNAUTAIRE.monthly)} par mois</span><span class="disc-note">Sans engagement</span></span></a>
     </div>
     <p class="fine mt-l">Prix avant taxes. Formations : prix par mois avec le forfait de 12 mois (−20 %), payé en une fois, ou forfaits de 6 mois (−10 %) et de 1 mois. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
   </div>
