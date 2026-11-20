@@ -56,12 +56,14 @@
 
   // Formulaires
   var fmt = new Intl.NumberFormat("fr-CA", { style: "currency", currency: "CAD", minimumFractionDigits: 0, maximumFractionDigits: 2 });
-  var TERMS = { monthly: "Mensuel", six: "6 mois", year: "12 mois" };
+  var TERMS = { monthly: "Forfait 1 mois", six: "Forfait 6 mois", year: "Forfait 12 mois" };
   var catalogue = null;
   var catEl = doc.getElementById("catalogue");
   if (catEl) { try { catalogue = JSON.parse(catEl.textContent); } catch (e) {} }
 
   var params = new URLSearchParams(location.search);
+  var sujet = params.get("sujet"), csel = doc.getElementById("c-sujet");
+  if (csel && sujet) { for (var q = 0; q < csel.options.length; q++) { if (csel.options[q].value === sujet) { csel.selectedIndex = q; break; } } }
   var pack = params.get("pack") || "piste";
   var duree = params.get("duree") || "six";
   if (catalogue) {
@@ -70,11 +72,11 @@
     var p = catalogue[pack];
     var set = function (k, v) { var el = doc.querySelector('[data-sum="' + k + '"]'); if (el) el.textContent = v; };
     set("programme", p.nom);
-    set("duree", TERMS[duree]);
+    set("duree", pack === "communautaire" ? "Abonnement mensuel" : TERMS[duree]);
     set("total", fmt.format(p[duree]));
     var fp = doc.getElementById("f-programme"), fd = doc.getElementById("f-duree");
     if (fp) fp.value = p.nom;
-    if (fd) fd.value = TERMS[duree];
+    if (fd) fd.value = pack === "communautaire" ? "Abonnement mensuel" : TERMS[duree];
   }
 
   function encode(form) {
@@ -132,6 +134,7 @@
     var texte = doc.querySelector("[data-merci-texte]");
     if (s === "message") { titre.textContent = "Message envoyé."; texte.textContent = "Alexandre vous répond personnellement dans les meilleurs délais."; }
     if (s === "demande") { titre.textContent = "Inscription reçue."; texte.textContent = "Alexandre prépare votre diagnostic et vous écrit très vite pour confirmer la suite, y compris le paiement."; }
+    if (s === "attente") { titre.textContent = "Vous êtes sur la liste."; texte.textContent = "Nous vous écrirons dès qu’il y aura du nouveau."; }
     if (s === "paye") { titre.textContent = "Paiement confirmé. Bienvenue."; texte.textContent = "Réservez maintenant votre visio de diagnostic."; }
   }
 })();

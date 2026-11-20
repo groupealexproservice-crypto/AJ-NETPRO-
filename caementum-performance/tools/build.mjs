@@ -8,12 +8,14 @@ import programmes from '../src/pages/programmes.mjs';
 import tarifs from '../src/pages/tarifs.mjs';
 import aPropos from '../src/pages/a-propos.mjs';
 import contact from '../src/pages/contact.mjs';
+import collectif from '../src/pages/collectif.mjs';
+import bientot from '../src/pages/bientot.mjs';
 import inscription from '../src/pages/inscription.mjs';
 import merci from '../src/pages/merci.mjs';
 import { cgv, confidentialite, mentions, notFound } from '../src/pages/legal.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const pages = [index, programmes, tarifs, aPropos, contact, inscription, merci, cgv, confidentialite, mentions, notFound];
+const pages = [index, programmes, tarifs, collectif, bientot, aPropos, contact, inscription, merci, cgv, confidentialite, mentions, notFound];
 
 for (const p of pages) fs.writeFileSync(path.join(root, p.file), layout(p));
 

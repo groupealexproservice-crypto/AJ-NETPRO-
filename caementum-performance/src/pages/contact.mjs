@@ -17,7 +17,7 @@ export default {
 <section class="slab" data-tone="chalk" aria-labelledby="ecrire">
   <div class="wrap contact-grid">
     <div id="appel">
-      <h2 id="ecrire" class="h2" style="margin-bottom:28px">Écrire à Alexandre</h2>
+      <h2 id="ecrire" class="h2" style="margin-bottom:28px" tabindex="-1">Écrire à Alexandre</h2>
       <form class="form" name="contact" method="POST" action="merci.html?statut=message" data-form="contact" novalidate>
         <input type="hidden" name="form-name" value="contact">
         <p class="hp" aria-hidden="true"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -30,6 +30,7 @@ export default {
           <select class="select" id="c-sujet" name="sujet">
             <option value="">Choisir</option>
             <option>Piste</option><option>Route (10 km, semi, marathon)</option><option>Trail</option>
+            <option value="collectif">Offre collective (entreprise, école, association)</option>
             <option>Je ne sais pas encore</option>
           </select>
         </div>

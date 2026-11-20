@@ -33,7 +33,43 @@ export const PACKS = {
     monthly: 80, six: 430, year: 770,
   },
 };
-export const SQUAD = { monthly: 19.99 };
+export const COMMUNAUTAIRE = {
+  monthly: 19.99,
+  includes: ['Accès à la communauté privée', 'Un entraînement collectif par semaine', 'Échanges entre membres', 'Conseils et motivation du coach'],
+};
+PACKS.piste.distances = ['800 m', '1 500 m', '3 000 m', '3 000 m steeple', '5 000 m'];
+PACKS.route.distances = ['5 km', '10 km', 'Semi-marathon', 'Marathon', 'Ultra-marathon'];
+PACKS.trail.distances = ['Trail court', 'Trail long', 'Ultra-trail'];
+
+export const PALMARES = [
+  ['Championnats de Tunisie', '22 titres nationaux : 2 000 m, 3 000 m steeple, 5 000 m', '2008 à 2024'],
+  ['Championnats de France', '5 titres : 3 000 m steeple, 5 000 m', '2011 à 2019'],
+  ['Championnats d’Europe', 'Finaliste', '2011'],
+  ['Championnats du monde juniors', 'Participation', '2012'],
+  ['Championnats de la Méditerranée', 'Champion', '2016'],
+  ['Championnats d’Afrique', 'Participation (Afrique du Sud)', '2016'],
+  ['Jeux olympiques de Rio', 'Qualification', '2016'],
+];
+export const RECORDS = [
+  ['800 m', '1:47', 'Élite nationale'],
+  ['1 500 m', '3:47', 'Élite internationale'],
+  ['3 000 m steeple', '8:33', 'Niveau olympique'],
+  ['5 000 m (piste)', '13:16', 'Élite internationale'],
+  ['10 km (route)', '28:22', 'Élite internationale'],
+];
+export const COLLECTIF = [
+  { name: 'Essentiel', text: 'Une séance collective par semaine. Idéal pour les petites structures.' },
+  { name: 'Performance', text: 'Deux séances par semaine et suivi numérique inclus. Le choix le plus complet pour une organisation.' },
+  { name: 'Premium', text: 'Jusqu’à trois séances par semaine, avec des bilans individuels personnalisés.' },
+];
+export const A_VENIR = [
+  { name: 'L’application Caementum', text: 'Votre planning, le détail de chaque séance, le suivi de vos performances et la messagerie directe avec votre entraîneur, au même endroit.' },
+  { name: 'Synchronisation avec votre montre', text: 'Envoi des séances et retour des données avec Apple Watch, Garmin, COROS et Strava.' },
+  { name: 'Nutrition et récupération', text: 'Des repères concrets pour mieux manger, dormir et récupérer, intégrés à votre programme.' },
+  { name: 'Camps d’entraînement', text: 'Des stages en personne avec Alexandre, pour vivre l’entraînement de haut niveau de l’intérieur.' },
+  { name: 'Webinaires', text: 'Des rencontres en ligne sur la physiologie, la biomécanique et les stratégies d’entraînement.' },
+  { name: 'Programme de parrainage', text: 'Une façon de remercier les coureurs qui font découvrir Caementum à leur entourage.' },
+];
 export const ADDONS = [
   { name: 'Visioconférence individuelle', price: 49, text: 'Un appel vidéo privé avec Alexandre pour un point précis : technique, plan, blessure légère.' },
   { name: 'Analyse des objectifs et des compétitions', price: 29, text: 'Votre calendrier de courses passé au crible pour placer les bons objectifs aux bons moments.' },
@@ -86,11 +122,18 @@ const NAV = [
   ['programmes.html', 'Programmes'],
   ['index.html#methode', 'Méthode'],
   ['tarifs.html', 'Tarifs'],
+  ['collectif.html', 'Collectif'],
   ['a-propos.html', 'Le coach'],
   ['contact.html', 'Contact'],
 ];
 
-export function layout({ file, title, description, body, tone = 'ink', schema = [], noindex = false, bodyClass = '' }) {
+// Espaces insécables dans les nombres et unités (texte seulement, jamais dans les attributs)
+const nbText = (html) => html.replace(/>([^<]+)</g, (m, t) => '>' + t
+  .replace(/(\d) (?=\d{3}(?!\d))/g, '$1\u00a0')
+  .replace(/(\d) (m|km|s|min|h|mois|titres|%|\$)(?![\p{L}])/gu, '$1\u00a0$2') + '<');
+
+export function layout({ file, title, description, body: rawBody, tone = 'ink', schema = [], noindex = false, bodyClass = '' }) {
+  const body = nbText(rawBody);
   const url = `${SITE.url}/${file === 'index.html' ? '' : file}`;
   const fullTitle = file === 'index.html' ? `${SITE.name} | Coaching de course à pied avec un athlète olympique` : `${title} | ${SITE.name}`;
   const jsonld = schema.length
@@ -154,6 +197,8 @@ ${body}
         <ul>
           <li><a href="programmes.html">Programmes</a></li>
           <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="collectif.html">Collectif</a></li>
+          <li><a href="bientot.html">Bientôt</a></li>
           <li><a href="a-propos.html">Le coach</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>

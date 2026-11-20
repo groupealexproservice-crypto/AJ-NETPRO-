@@ -17,6 +17,7 @@ export function packPanel(p, { withLinks = true } = {}) {
       <h3>${p.name}</h3>
       <p class="tag">${p.tagline}</p>
       <p>${p.pitch}</p>
+      <p class="dist">Distances : ${p.distances.join(', ')}.</p>
       <ul class="ticks">${p.includes.map((i) => `<li>${i}</li>`).join('')}</ul>
       <div class="panel-foot">
         <p class="price-line"><span class="price-big">${money(p.monthly)}</span><span class="price-unit">par mois, avant taxes</span></p>
@@ -30,11 +31,11 @@ export const FAQ = [
   ['Est-ce vraiment sans algorithme ?', '<p>Oui. Chaque plan est écrit à la main par Alexandre après avoir lu vos retours. Il n’y a ni générateur de plans, ni intelligence artificielle qui décide de vos séances.</p>'],
   ['Quel programme choisir ?', '<p>Le programme suit votre terrain. Piste pour viser un chrono sur 800 m à 5 000 m, route pour préparer un 10 km, un semi ou un marathon, trail pour le dénivelé et l’ultra. En cas de doute, un appel avec Alexandre sert justement à choisir avec vous.</p>'],
   ['Je débute. Est-ce pour moi ?', '<p>Oui. Les programmes s’adaptent à votre niveau, du premier 10 km à la compétition. Un débutant y gagne surtout de la structure et de la sécurité : une progression qui évite la blessure et le découragement.</p>'],
-  ['Comment se passe le diagnostic ?', '<p>Après votre inscription, vous avez un appel vidéo avec Alexandre. Il comprend votre niveau, votre historique, vos contraintes de vie et votre objectif, puis il écrit votre plan.</p>'],
+  ['Comment se passe la visio d’évaluation ?', '<p>Après votre paiement, Alexandre vous contacte pour planifier une visioconférence d’environ 20 à 30 minutes. Il fait le tour de votre niveau, de vos objectifs, de vos antécédents, de votre disponibilité et de vos contraintes, puis il crée votre plan à la main.</p>'],
   ['Puis-je changer de programme en cours de route ?', '<p>Oui, par exemple passer de la route au trail à la fin d’une préparation. Écrivez-nous et nous ajustons votre abonnement.</p>'],
-  ['Comment annuler ?', '<p>L’abonnement mensuel est sans engagement : vous pouvez l’arrêter en tout temps en nous écrivant. Les forfaits de 6 et 12 mois suivent les conditions de vente, que vous trouverez sur la page <a class="link" href="conditions-de-vente.html">Conditions de vente</a>.</p>'],
+  ['Les forfaits se renouvellent-ils automatiquement ?', '<p>Non. Les forfaits de 1, 6 et 12 mois sont des paiements uniques : rien ne se renouvelle sans votre accord. Seul le pack Communautaire est un abonnement mensuel, que vous pouvez arrêter en tout temps. Les détails sont dans les <a class="link" href="conditions-de-vente.html">conditions de vente</a>.</p>'],
   ['Les prix incluent-ils les taxes ?', '<p>Non. Tous les prix sont en dollars canadiens et s’affichent avant taxes. La TPS et la TVQ s’ajoutent au paiement.</p>'],
-  ['Pourquoi des forfaits de 6 et 12 mois ?', '<p>Une préparation de marathon ou d’ultra se construit en cycles de plusieurs mois. Le forfait suit ce rythme et vous fait économiser : 10 % sur 6 mois, 20 % sur 12 mois.</p>'],
+  ['Pourquoi des forfaits de 6 et 12 mois ?', '<p>Une préparation de marathon ou d’ultra se construit en cycles de plusieurs mois. Avec les forfaits de 6 et 12 mois, vous avez une visioconférence de suivi chaque mois, un nouveau plan à chaque étape, et vous économisez : 10 % sur 6 mois, 20 % sur 12 mois.</p>'],
   ['Le coaching se fait-il à distance ?', '<p>Oui. Alexandre est à Montréal et coache partout au Québec par vidéo et par échanges directs, selon votre horaire.</p>'],
 ];
 export function faqHtml(items = FAQ) {

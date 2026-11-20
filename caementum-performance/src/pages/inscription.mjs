@@ -1,4 +1,4 @@
-import { layout, PACKS, SQUAD, money } from '../lib.mjs';
+import { layout, PACKS, COMMUNAUTAIRE, money } from '../lib.mjs';
 
 export default {
   file: 'inscription.html',
@@ -71,7 +71,7 @@ export default {
     piste: { nom: 'Piste', monthly: PACKS.piste.monthly, six: PACKS.piste.six, year: PACKS.piste.year },
     route: { nom: 'Route', monthly: PACKS.route.monthly, six: PACKS.route.six, year: PACKS.route.year },
     trail: { nom: 'Trail', monthly: PACKS.trail.monthly, six: PACKS.trail.six, year: PACKS.trail.year },
-    squad: { nom: 'Squad', monthly: SQUAD.monthly, six: SQUAD.monthly * 6, year: SQUAD.monthly * 12 },
+    communautaire: { nom: 'Communautaire', monthly: COMMUNAUTAIRE.monthly, six: COMMUNAUTAIRE.monthly, year: COMMUNAUTAIRE.monthly },
   })}</script>
 `,
 };

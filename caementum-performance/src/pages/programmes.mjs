@@ -15,14 +15,15 @@ const section = (p, tone) => `
         <div class="panel-art" style="height:auto">${pixelRunner(p.id, { className: 'runner' })}${ground[p.id]}</div>
       </div>
       <div class="block">
-        <p class="price-line"><span class="price-big">${money(p.monthly)}</span><span class="price-unit">par mois</span></p>
-        <p class="fine" style="margin-top:10px">6 mois : ${money(p.six)} (économie de ${money(saving(p, 'six'))}). 12 mois : ${money(p.year)} (économie de ${money(saving(p, 'year'))}). Avant taxes.</p>
+        <p class="price-line"><span class="price-big">${money(p.monthly)}</span><span class="price-unit">pour 1 mois</span></p>
+        <p class="fine" style="margin-top:10px">Forfait 1 mois. 6 mois : ${money(p.six)} (économie de ${money(saving(p, 'six'))}). 12 mois : ${money(p.year)} (économie de ${money(saving(p, 'year'))}). Paiements uniques, avant taxes.</p>
       </div>
     </div>
     <div style="display:grid;gap:22px;align-content:start">
       <h2 id="t-${p.id}" class="h2">${p.name} : ${p.tagline.toLowerCase()}</h2>
       <p class="lead">${p.pitch}</p>
       <p><strong>Pour qui ?</strong> ${p.for}</p>
+      <div><h3 style="font-weight:600;margin-bottom:10px">Distances couvertes</h3><ul class="tag-list">${p.distances.map((d) => `<li>${d}</li>`).join('')}</ul></div>
       <div>
         <h3 style="font-weight:600;margin-bottom:10px">Ce que vous travaillez</h3>
         <ul class="ticks">${WORK[p.id].map((w) => `<li>${w}</li>`).join('')}</ul>

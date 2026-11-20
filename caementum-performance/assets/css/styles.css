@@ -222,7 +222,8 @@ main:focus { outline: none; }
 .seg input:checked + span { background: var(--ink); color: #fff; }
 .seg input:checked + span small { color: var(--dim-on-ink); }
 .seg input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 3px; }
-.price-card { display: grid; gap: 22px; align-content: start; background: var(--limestone); padding: clamp(24px, 2.8vw, 40px); }
+.price-card { display: flex; flex-direction: column; gap: 22px; background: var(--limestone); padding: clamp(24px, 2.8vw, 40px); }
+.price-card > .btn { margin-top: auto; }
 .price-card h3 { font-family: var(--display); letter-spacing: .14em; font-size: 1.8rem; font-weight: 600; line-height: 1; }
 .price-card .tag { color: var(--dim-on-chalk); margin-top: 6px; }
 .term { display: grid; gap: 6px; }
@@ -316,3 +317,28 @@ html.js .term-label { display: none; }
 [data-tone="chalk"] .block--ink { background: var(--ink); color: #fff; }
 [data-tone="chalk"] .price-unit { color: var(--dim-on-chalk); }
 [data-tone="chalk"] .block--ink .price-unit { color: var(--dim-on-ink); }
+
+/* ===== Contenu complet : distances, tableaux, listes ===== */
+.dist { color: var(--dim-on-ink); font-size: .95rem; }
+[data-tone="chalk"] .compare th, [data-tone="chalk"] .compare td { background: var(--limestone); }
+[data-tone="chalk"] .compare thead th { background: transparent; }
+[data-tone="chalk"] .compare .dim { color: var(--dim-on-chalk); }
+.compare--tight { min-width: 560px; }
+.compare caption { text-align: left; padding: 0 0 14px; font-family: var(--display); letter-spacing: .08em; font-weight: 600; font-size: 1.15rem; caption-side: top; }
+.tag-list { display: flex; flex-wrap: wrap; gap: var(--mortar); margin: 6px 0 0; }
+.tag-list li { background: var(--stone-2); padding: 8px 14px; font-size: .92rem; }
+[data-tone="chalk"] .tag-list li { background: var(--limestone-2); }
+.incl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--mortar); }
+.incl .block { display: grid; gap: 14px; align-content: start; }
+.incl h3 { font-family: var(--display); letter-spacing: .1em; font-weight: 600; font-size: 1.25rem; }
+@media (max-width: 800px) { .incl { grid-template-columns: 1fr; } }
+.soon { display: grid; gap: 12px; align-content: start; min-height: 200px; }
+.soon h3 { font-family: var(--display); letter-spacing: .08em; font-weight: 600; font-size: 1.25rem; line-height: 1.2; }
+.soon p { color: var(--dim-on-ink); }
+
+.page-head + .slab[data-tone="ink"] { padding-top: 0; }
+
+/* Deux dalles de même ton qui se suivent : filet fin et espacement réduit */
+.slab[data-tone="ink"] + .slab[data-tone="ink"] { padding-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--stone-2); }
+.slab[data-tone="chalk"] + .slab[data-tone="chalk"] { padding-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--limestone-2); }
+.page-head + .slab[data-tone="ink"] { border-top: 0; }

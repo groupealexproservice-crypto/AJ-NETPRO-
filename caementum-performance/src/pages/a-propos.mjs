@@ -1,4 +1,4 @@
-import { layout, markSvg, ctaBand, SITE } from '../lib.mjs';
+import { layout, markSvg, ctaBand, SITE, PALMARES, RECORDS } from '../lib.mjs';
 
 export default {
   file: 'a-propos.html',
@@ -36,18 +36,38 @@ export default {
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="valeurs">
+<section class="slab" data-tone="ink" aria-labelledby="palmares">
   <div class="wrap">
-    <div class="section-head"><h2 id="valeurs" class="h2">Ce qui guide chaque plan.</h2></div>
-    <div class="wall wall--3 who">
-      <div class="block"><h3>Sincérité</h3><p>Une performance durable exige une connexion réelle entre l’entraîneur et l’athlète. Vous parlez à une personne, pas à un tableau de bord.</p></div>
-      <div class="block"><h3>Exigence</h3><p>La rigueur du haut niveau, transmise à tous les profils, à la mesure de ce que vous pouvez réellement faire.</p></div>
-      <div class="block"><h3>Présence</h3><p>Un plan évolutif, ajusté selon vos retours, votre horaire et votre forme du jour. Vous n’êtes jamais seul avec votre plan.</p></div>
+    <div class="section-head"><h2 id="palmares" class="h2">Palmarès et records.</h2><p class="lead">Une carrière construite sur la piste et sur la route, du niveau national au niveau olympique.</p></div>
+    <div class="table-wrap">
+      <table class="compare compare--tight">
+        <caption>Principales compétitions</caption>
+        <thead><tr><th scope="col">Compétition</th><th scope="col">Résultat</th><th scope="col">Année</th></tr></thead>
+        <tbody>${PALMARES.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>
+    <div class="table-wrap mt-l">
+      <table class="compare compare--tight">
+        <caption>Records personnels</caption>
+        <thead><tr><th scope="col">Distance</th><th scope="col">Performance</th><th scope="col">Niveau</th></tr></thead>
+        <tbody>${RECORDS.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td></tr>`).join('')}</tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<section class="slab" data-tone="chalk" aria-labelledby="nom">
+<section class="slab" data-tone="chalk" aria-labelledby="valeurs">
+  <div class="wrap">
+    <div class="section-head"><h2 id="valeurs" class="h2">Ce qui guide chaque plan.</h2></div>
+    <div class="wall wall--3">
+      <div class="block principle"><h3>Sincérité</h3><p>Une performance durable exige une connexion réelle entre l’entraîneur et l’athlète. Vous parlez à une personne, pas à un tableau de bord.</p></div>
+      <div class="block principle"><h3>Exigence</h3><p>La rigueur du haut niveau, transmise à tous les profils, à la mesure de ce que vous pouvez réellement faire.</p></div>
+      <div class="block principle"><h3>Présence</h3><p>Un plan évolutif, ajusté selon vos retours, votre horaire et votre forme du jour. Vous n’êtes jamais seul avec votre plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slab" data-tone="ink" aria-labelledby="nom">
   <div class="wrap split split--even">
     <div style="display:grid;gap:20px;align-content:start">
       <h2 id="nom" class="h2">Pourquoi « Caementum » ?</h2>

@@ -1,13 +1,13 @@
-import { layout, markSvg, PACKS, money, ctaBand, SITE } from '../lib.mjs';
+import { layout, markSvg, PACKS, money, ctaBand, SITE, COMMUNAUTAIRE, A_VENIR } from '../lib.mjs';
 import { packPanel, faqHtml, faqSchema } from '../parts.mjs';
 
 const steps = [
-  ['Paiement sécurisé', 'Vous choisissez votre programme et votre durée, puis vous payez en ligne en toute sécurité.'],
-  ['Visio de diagnostic', 'Un appel vidéo pour comprendre votre niveau, vos contraintes de vie et votre objectif.'],
-  ['Conception manuelle', 'Alexandre écrit votre plan lui-même. Aucune automatisation, aucun modèle générique.'],
-  ['Livraison sur mesure', 'Vous recevez un plan construit pour vous, prêt à suivre dès la première semaine.'],
-  ['Débriefing hebdomadaire', 'Un point chaque semaine sur vos sensations, vos résultats et ce qui a bougé dans votre vie.'],
-  ['Ajustement continu', 'Votre plan évolue avec vos retours, vos imprévus et votre état de forme réel.'],
+  ['Réservation et paiement', 'Vous choisissez votre programme et votre forfait, puis vous payez en ligne en toute sécurité.'],
+  ['Planification de la visio', 'Alexandre vous contacte pour fixer le moment de votre visioconférence d’évaluation.'],
+  ['Visio d’évaluation', 'Une conversation d’environ 20 à 30 minutes : objectifs, niveau, antécédents, disponibilités et contraintes.'],
+  ['Conception manuelle', 'Alexandre écrit votre plan lui-même, adapté à votre profil unique. Aucune automatisation.'],
+  ['Livraison de votre plan', 'Vous recevez votre programme détaillé, prêt à suivre dès la première semaine.'],
+  ['Suivi et ajustements', 'Avec les forfaits de 6 et 12 mois : une visio de suivi chaque mois et un nouveau plan adapté à votre progression.'],
 ];
 
 export default {
@@ -48,8 +48,8 @@ export default {
   </div>
   <div class="wrap">
     <div class="wall wall--4 cred">
-      <div class="block"><p class="cred-main">Jeux olympiques de Rio 2016</p><p class="cred-sub">Athlète olympique, toujours en activité.</p></div>
-      <div class="block"><p class="cred-main">22 titres nationaux</p><p class="cred-sub">2 000 m, 3 000 m steeple et 5 000 m.</p></div>
+      <div class="block"><p class="cred-main">Qualifié aux Jeux olympiques de Rio 2016</p><p class="cred-sub">Athlète de haut niveau, toujours en activité.</p></div>
+      <div class="block"><p class="cred-main">22 titres nationaux</p><p class="cred-sub">2 000 m, 3 000 m steeple et 5 000 m, plus 5 titres français.</p></div>
       <div class="block"><p class="cred-main">Champion de la Méditerranée</p><p class="cred-sub">Sacré en 2016.</p></div>
       <div class="block"><p class="cred-main">13 min 16 s au 5 000 m</p><p class="cred-sub">28 min 22 s au 10 km.</p></div>
     </div>
@@ -142,6 +142,20 @@ export default {
           <tr><th scope="row">Prix par mois</th><td class="dim">Faible</td><td class="is-us">80 $ à 150 $</td><td>Environ 300 $ et plus</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<section class="slab" data-tone="chalk" aria-labelledby="plus">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="plus" class="h2">Et pour aller plus loin.</h2>
+      <p class="lead">Courir seul, en groupe ou en équipe : Caementum s’adapte à votre façon de progresser.</p>
+    </div>
+    <div class="wall wall--3">
+      <div class="block principle"><h3>Communautaire</h3><p>${money(COMMUNAUTAIRE.monthly)} par mois. Une communauté privée, un entraînement collectif par semaine et les conseils du coach.</p><p style="margin-top:14px"><a class="link" href="tarifs.html#communautaire">Rejoindre la communauté</a></p></div>
+      <div class="block principle"><h3>Collectif</h3><p>Entreprises, écoles, associations et résidences : des séances collectives pour installer une culture de santé et de performance.</p><p style="margin-top:14px"><a class="link" href="collectif.html">Découvrir l’offre collective</a></p></div>
+      <div class="block principle"><h3>Bientôt</h3><p>L’application, la synchronisation avec votre montre, la nutrition et la récupération, les camps d’entraînement et plus encore.</p><p style="margin-top:14px"><a class="link" href="bientot.html">Voir ce qui s’en vient</a></p></div>
     </div>
   </div>
 </section>
