@@ -1,6 +1,6 @@
 /* Caementum Performance — système « mur de pierres » : blocs pleins, joints fins, noir et blanc du logo. */
 
-@font-face { font-family: "Cinzel"; src: url("../fonts/cinzel.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Archivo Display"; src: url("../fonts/archivo-black-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; font-display: swap; }
 @font-face { font-family: "Inter"; src: url("../fonts/inter-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Inter"; src: url("../fonts/inter-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Inter"; src: url("../fonts/inter-semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
@@ -18,7 +18,9 @@
   --mortar: 6px;
   --wrap: 1240px;
   --gutter: clamp(20px, 4vw, 48px);
-  --display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --display: "Archivo Display", "Arial Black", "Helvetica Neue", sans-serif;
+  --blue: #1652f0;
+  --lime: #c6ff00;
   --text: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
@@ -342,3 +344,111 @@ html.js .term-label { display: none; }
 .slab[data-tone="ink"] + .slab[data-tone="ink"] { padding-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--stone-2); }
 .slab[data-tone="chalk"] + .slab[data-tone="chalk"] { padding-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--limestone-2); }
 .page-head + .slab[data-tone="ink"] { border-top: 0; }
+
+
+/* =====================================================================
+   Identité visuelle d'après le logo : X en bandes diagonales,
+   noir et blanc, bleu électrique, touche de vert lime, italique gras.
+   ===================================================================== */
+:root { font-synthesis: none; }
+.h1, .h2, .h3-display, .brand-name, .panel h3, .price-card h3, .cred-main, .step-n, .price-big, .quote, .who h3, .mini, .facts b,
+.compare thead th, .compare caption, .addon-price, .foot-name, .info-block h3, .soon h3, .incl h3, .summary .total, .product h3, .value h3 {
+  font-family: var(--display); font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .005em; line-height: .98;
+}
+.h1 { font-size: clamp(2.7rem, 7vw, 6rem); }
+.h2 { font-size: clamp(2rem, 4.2vw, 3.6rem); }
+.h3-display { font-size: clamp(1.5rem, 2.4vw, 2.1rem); }
+.brand-name { font-size: 1.25rem; letter-spacing: .02em; }
+.brand-sub { letter-spacing: .38em; }
+.page-head .h1 { font-size: clamp(2.4rem, 5.6vw, 4.8rem); max-width: 20ch; }
+.cred-main, .panel h3, .price-card h3, .who h3, .mini, .product h3, .value h3 { letter-spacing: .015em; }
+.step-n { color: var(--blue); }
+[data-tone="ink"] .step-n { color: var(--lime); }
+.price-big { letter-spacing: 0; }
+
+/* Boutons : italiques, inclinés, bleu électrique */
+.btn { transform: skewX(-8deg); font-style: italic; font-weight: 600; }
+.btn--primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn--primary:hover { background: #fff; color: var(--ink); border-color: #fff; }
+[data-tone="chalk"] .btn--primary:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.link { text-decoration-color: var(--blue); text-decoration-thickness: 2px; }
+[data-tone="ink"] .link { text-decoration-color: var(--lime); }
+:focus-visible { outline-color: var(--blue); }
+[data-tone="ink"] :focus-visible, .site-header :focus-visible, .site-footer :focus-visible { outline-color: var(--lime); }
+
+/* Blocs : angle coupé, comme les barres du logo */
+.block, .panel, .price-card, .info-block, .summary, .addon, .squad, .product, .quote {
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+}
+.nav a:hover, .nav a[aria-current="page"] { border-bottom-color: var(--lime); }
+.site-header { border-bottom: 0; box-shadow: inset 0 -3px 0 var(--blue); }
+
+/* Marque dans l'en-tête et le pied de page */
+.brand-mark { width: 40px; height: 40px; }
+.foot-mark { width: 84px; height: 84px; }
+.cta-mark { width: clamp(150px, 20vw, 250px); height: auto; }
+
+/* Héros : grand X, motif de barres en fond, une seule animation */
+.hero { background-color: var(--ink); background-image: repeating-linear-gradient(135deg, transparent 0 34px, rgba(255, 255, 255, .035) 34px 37px); }
+.hero-mark { width: min(100%, 540px); aspect-ratio: 1; height: auto; }
+.hero-mark .mk, .hero-mark .mk-sq { transform-box: fill-box; opacity: 0; animation: slide 1s var(--ease) forwards; }
+.hero-mark .mk-l1 { --dx: -70px; animation-delay: .15s; }
+.hero-mark .mk-l2 { --dx: 70px; animation-delay: .3s; }
+.hero-mark .mk-s1 { --dx: -40px; animation-delay: .6s; }
+.hero-mark .mk-s2 { --dx: 40px; animation-delay: .75s; }
+.hero-mark .mk { transform: translateX(var(--dx, 0)); }
+@keyframes slide { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-mark .mk { opacity: 1; transform: none; animation: none; } }
+.hero-mark .mk-l2, .hero-mark .mk-s2 { color: #fff; }
+
+/* Marqueur de texte provisoire */
+.tbd { display: inline-block; background: var(--lime); color: var(--ink); font: 600 .7rem/1 var(--text); letter-spacing: .06em; padding: 4px 8px; text-transform: uppercase; vertical-align: middle; font-style: normal; }
+
+/* Boutique */
+.shop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--mortar); }
+@media (max-width: 1000px) { .shop { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .shop { grid-template-columns: 1fr; } }
+.product { background: var(--limestone); display: flex; flex-direction: column; color: var(--ink); }
+.product-photo { aspect-ratio: 4 / 5; background: var(--ink); position: relative; overflow: hidden; }
+.product-photo img { width: 100%; height: 100%; object-fit: cover; }
+.product-ph { width: 100%; height: 100%; display: grid; place-items: center; background-image: repeating-linear-gradient(135deg, transparent 0 22px, rgba(255, 255, 255, .05) 22px 24px); }
+.product-ph-mark { width: 46%; height: auto; color: #fff; opacity: .9; }
+.product-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.product h3 { font-size: 1.35rem; }
+.product-desc { color: var(--dim-on-chalk); font-size: .95rem; }
+.product-price { font-family: var(--display); font-style: italic; font-weight: 900; font-size: 1.6rem; }
+.product .btn { margin-top: auto; }
+.sizes { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.sizes legend { float: left; margin-right: 10px; font-weight: 600; font-size: .9rem; padding: 0; }
+.sizes label { position: relative; cursor: pointer; }
+.sizes input { position: absolute; opacity: 0; inset: 0; }
+.sizes span { display: block; min-width: 40px; padding: 7px 10px; text-align: center; background: #fff; font-weight: 600; font-size: .85rem; border: 1px solid var(--ink); }
+.sizes input:checked + span { background: var(--ink); color: #fff; }
+.sizes input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* Univers : quatre entrées vers les formations et la boutique */
+.door { display: grid; gap: 10px; align-content: start; min-height: 190px; text-decoration: none; color: #fff; transition: background-color .2s; }
+.door:hover { background: var(--blue); }
+.door h3 { font-family: var(--display); font-style: italic; font-weight: 900; text-transform: uppercase; font-size: 1.6rem; line-height: 1; }
+.door p { color: var(--dim-on-ink); font-size: .95rem; }
+.door:hover p { color: #fff; }
+.door .go { margin-top: auto; font-weight: 600; font-style: italic; }
+.value h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.value p { color: var(--dim-on-chalk); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--mortar); }
+.chips li { background: var(--stone-2); padding: 8px 14px; font-size: .9rem; }
+.palm { display: grid; gap: var(--mortar); }
+.palm li { background: var(--stone-1); padding: 20px 26px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; }
+.palm b { font-family: var(--display); font-style: italic; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; line-height: 1.1; }
+.palm span { color: var(--lime); font-weight: 600; font-style: italic; text-align: right; }
+@media (max-width: 600px) { .palm li { grid-template-columns: 1fr; } .palm span { text-align: left; } }
+.social-list { display: grid; gap: 10px; margin-top: 6px; }
+.social-list a { color: #fff; font-weight: 600; }
+
+[data-tone="ink"] .value p { color: var(--dim-on-ink); }
+[data-tone="ink"] .value h3 { color: #fff; }
+.price-card .btn--primary:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.price-card .term .price-unit, .price-card .tag { color: var(--dim-on-chalk); }
+.price-card { color: var(--ink); }
+.panel .btn--primary:hover { background: #fff; color: var(--ink); }
+@media (max-width: 1000px) { .hero-mark { width: min(56%, 260px); } }

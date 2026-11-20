@@ -1,5 +1,4 @@
 // Briques communes du site Caementum Performance : données, formats, marque, gabarit de page.
-import { pixelRunner } from '../tools/pixels.mjs';
 
 export const SITE = {
   name: 'Caementum Performance',
@@ -7,6 +6,13 @@ export const SITE = {
   email: 'bonjour@caementumperformance.com', // à remplacer
   locale: 'fr-CA',
   city: 'Montréal',
+  // Réseaux sociaux : coller l'adresse complète de chaque compte. Vide = affiché comme « lien à venir ».
+  socials: [
+    { name: 'Instagram', url: '' },
+    { name: 'Strava', url: '' },
+    { name: 'TikTok', url: '' },
+    { name: 'Facebook', url: '' },
+  ],
 };
 
 // ----- Offres et prix (hors taxes, en dollars canadiens) -----
@@ -42,21 +48,35 @@ PACKS.route.distances = ['5 km', '10 km', 'Semi-marathon', 'Marathon', 'Ultra-ma
 PACKS.trail.distances = ['Trail court', 'Trail long', 'Ultra-trail'];
 
 export const PALMARES = [
-  ['Championnats de Tunisie', '22 titres nationaux : 2 000 m, 3 000 m steeple, 5 000 m', '2008 à 2024'],
-  ['Championnats de France', '5 titres : 3 000 m steeple, 5 000 m', '2011 à 2019'],
-  ['Championnats d’Europe', 'Finaliste', '2011'],
-  ['Championnats du monde juniors', 'Participation', '2012'],
-  ['Championnats de la Méditerranée', 'Champion', '2016'],
-  ['Championnats d’Afrique', 'Participation (Afrique du Sud)', '2016'],
-  ['Jeux olympiques de Rio', 'Qualification', '2016'],
+  ['Jeux olympiques de Rio', 'Participation'],
+  ['Championnats du monde', 'Finaliste, deux participations'],
+  ['Championnats de France', 'Cinq fois champion'],
+  ['Championnats de Tunisie', 'Vingt fois champion'],
+  ['Championnats de la Méditerranée', 'Champion'],
+  ['Championnats d’Afrique', 'Finaliste'],
 ];
 export const RECORDS = [
-  ['800 m', '1:47', 'Élite nationale'],
-  ['1 500 m', '3:47', 'Élite internationale'],
-  ['3 000 m steeple', '8:33', 'Niveau olympique'],
-  ['5 000 m (piste)', '13:16', 'Élite internationale'],
-  ['10 km (route)', '28:22', 'Élite internationale'],
+  ['800 m', '1:47'],
+  ['1 500 m', '3:47'],
+  ['3 000 m steeple', '8:33'],
+  ['5 000 m (piste)', '13:16'],
+  ['10 km (route)', '28:22'],
 ];
+
+// ----- Boutique : fiches PROVISOIRES. Remplacer nom, description, prix et photo quand les produits seront définis. -----
+// photo : nom d'un fichier déposé dans assets/img/produits/ (laisser '' tant qu'il n'y a pas de photo).
+// price : nombre en dollars canadiens, ou null tant que le prix n'est pas fixé.
+const TAILLES = ['TP', 'P', 'M', 'G', 'TG', 'TTG'];
+export const PRODUCTS = [
+  { id: 'tshirt', name: 'T-shirt de course', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'camisole', name: 'Camisole de course', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'short', name: 'Short de course', desc: '[Description provisoire : matière, longueur, poches.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'coupe-vent', name: 'Coupe-vent', desc: '[Description provisoire : matière, protection, poids.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'kangourou', name: 'Chandail à capuchon', desc: '[Description provisoire : matière, coupe, usage.]', sizes: TAILLES, price: null, photo: '', provisoire: true },
+  { id: 'casquette', name: 'Casquette', desc: '[Description provisoire : matière, ajustement.]', sizes: ['Taille unique'], price: null, photo: '', provisoire: true },
+];
+export const tbd = (label = 'Provisoire') => `<span class="tbd">${label}</span>`;
+
 export const COLLECTIF = [
   { name: 'Essentiel', text: 'Une séance collective par semaine. Idéal pour les petites structures.' },
   { name: 'Performance', text: 'Deux séances par semaine et suivi numérique inclus. Le choix le plus complet pour une organisation.' },
@@ -84,46 +104,21 @@ export const money = nf;
 export const perMonth = (total, months) => Math.round(total / months);
 export const saving = (p, term) => (term === 'six' ? p.monthly * 6 - p.six : p.monthly * 12 - p.year);
 
-// ----- Marque : le C en blocs de pierre -----
-const pt = (cx, cy, r, a) => [cx + r * Math.cos((a * Math.PI) / 180), cy + r * Math.sin((a * Math.PI) / 180)];
-export function markPaths(cx, cy, R) {
-  const r = R * 0.66;
-  const widths = [40, 35, 30, 25, 20, 16, 12, 9, 6];
-  const gaps = [2.5, 3.5, 4.5, 6, 7.5, 9, 11, 13];
-  let a = 38;
-  const out = [];
-  widths.forEach((w, i) => {
-    const a1 = a, a2 = a + w;
-    const [x1, y1] = pt(cx, cy, R, a1), [x2, y2] = pt(cx, cy, R, a2);
-    const [x3, y3] = pt(cx, cy, r, a2), [x4, y4] = pt(cx, cy, r, a1);
-    const mid = ((a1 + a2) / 2) * Math.PI / 180;
-    out.push({
-      d: `M${x1.toFixed(2)},${y1.toFixed(2)} A${R},${R} 0 0 1 ${x2.toFixed(2)},${y2.toFixed(2)} L${x3.toFixed(2)},${y3.toFixed(2)} A${r},${r} 0 0 0 ${x4.toFixed(2)},${y4.toFixed(2)} Z`,
-      tx: Math.cos(mid), ty: Math.sin(mid),
-    });
-    if (i < gaps.length) a = a2 + gaps[i];
-  });
-  const s = R * 0.17;
-  return { blocks: out, square: { x: cx - s / 2 + R * 0.08, y: cy - s / 2, s } };
+// ----- Marque : le X en bandes diagonales (deux longues barres, deux paires de barres courtes) -----
+export function markSvg({ className = '', animate = false, title = '' } = {}) {
+  const a = (c) => (animate ? ` class="${c}"` : '');
+  return `<svg class="${className}" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="${title}"${title ? '' : ' aria-hidden="true"'}>
+<g transform="rotate(-45 50 50)"><rect${a('mk mk-l1')} x="5" y="41.5" width="90" height="7"/><rect${a('mk mk-l2')} x="5" y="51.5" width="90" height="7"/></g>
+<g transform="rotate(45 50 50)"><rect${a('mk mk-s1')} x="9" y="40.5" width="26" height="8.5"/><rect${a('mk mk-s1')} x="9" y="51" width="26" height="8.5"/><rect${a('mk mk-s2')} x="65" y="40.5" width="26" height="8.5"/><rect${a('mk mk-s2')} x="65" y="51" width="26" height="8.5"/></g>
+</svg>`;
 }
-export function markSvg({ className = '', size = 260, animate = false, title = '' } = {}) {
-  const R = size / 2 - 6, c = size / 2;
-  const { blocks, square } = markPaths(c, c, R);
-  const paths = blocks
-    .map((b, i) => `<path${animate ? ` class="mk" style="--i:${i};--tx:${b.tx.toFixed(3)};--ty:${b.ty.toFixed(3)}"` : ''} d="${b.d}"/>`)
-    .join('');
-  const sq = `<rect${animate ? ' class="mk mk-sq" style="--i:9;--tx:0;--ty:0"' : ''} x="${square.x.toFixed(2)}" y="${square.y.toFixed(2)}" width="${square.s.toFixed(2)}" height="${square.s.toFixed(2)}"/>`;
-  return `<svg class="${className}" viewBox="0 0 ${size} ${size}" fill="currentColor" role="img" aria-label="${title}"${title ? '' : ' aria-hidden="true"'}>${paths}${sq}</svg>`;
-}
-export { pixelRunner };
 
 // ----- Gabarit de page -----
 const NAV = [
-  ['programmes.html', 'Programmes'],
-  ['index.html#methode', 'Méthode'],
-  ['tarifs.html', 'Tarifs'],
-  ['collectif.html', 'Collectif'],
-  ['a-propos.html', 'Le coach'],
+  ['index.html', 'Accueil'],
+  ['formations.html', 'Formations'],
+  ['boutique.html', 'Boutique'],
+  ['a-propos.html', 'À propos'],
   ['contact.html', 'Contact'],
 ];
 
@@ -132,10 +127,14 @@ const nbText = (html) => html.replace(/>([^<]+)</g, (m, t) => '>' + t
   .replace(/(\d) (?=\d{3}(?!\d))/g, '$1\u00a0')
   .replace(/(\d) (m|km|s|min|h|mois|titres|%|\$)(?![\p{L}])/gu, '$1\u00a0$2') + '<');
 
+export const socialItems = () => SITE.socials.map((x) => (x.url
+  ? `<li><a href="${x.url}" rel="noopener me" target="_blank">${x.name}</a></li>`
+  : `<li>${x.name} <span class="tbd">lien à venir</span></li>`)).join('');
+
 export function layout({ file, title, description, body: rawBody, tone = 'ink', schema = [], noindex = false, bodyClass = '' }) {
   const body = nbText(rawBody);
   const url = `${SITE.url}/${file === 'index.html' ? '' : file}`;
-  const fullTitle = file === 'index.html' ? `${SITE.name} | Coaching de course à pied avec un athlète olympique` : `${title} | ${SITE.name}`;
+  const fullTitle = file === 'index.html' ? `${SITE.name} | Coaching de course à pied et vêtements de sport` : `${title} | ${SITE.name}`;
   const jsonld = schema.length
     ? `<script type="application/ld+json">${JSON.stringify(schema.length === 1 ? schema[0] : { '@context': 'https://schema.org', '@graph': schema.map((s) => { const { ['@context']: _c, ...rest } = s; return rest; }) })}</script>`
     : '';
@@ -160,7 +159,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/fonts/cinzel.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-black-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 ${jsonld}
@@ -170,13 +169,13 @@ ${jsonld}
 <header class="site-header">
   <div class="wrap bar">
     <a class="brand" href="index.html" aria-label="Caementum Performance, accueil">
-      ${markSvg({ className: 'brand-mark', size: 120 })}
+      ${markSvg({ className: 'brand-mark' })}
       <span class="brand-text"><span class="brand-name">Caementum</span><span class="brand-sub">Performance</span></span>
     </a>
     <nav id="nav" class="nav" aria-label="Navigation principale">
       ${NAV.map(([h, l]) => `<a href="${h}">${l}</a>`).join('\n      ')}
     </nav>
-    <a class="btn btn--light btn--sm bar-cta" href="contact.html#appel">Parler à Alexandre</a>
+    <a class="btn btn--primary btn--sm bar-cta" href="formations.html#tarifs">Acheter une formation</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="sr">Menu</span></button>
   </div>
 </header>
@@ -187,19 +186,17 @@ ${body}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        ${markSvg({ className: 'foot-mark', size: 160 })}
+        ${markSvg({ className: 'foot-mark' })}
         <p class="foot-name">Caementum</p>
         <p class="foot-sub">Performance</p>
-        <p class="foot-tag">Coaching de course à pied, 100 % humain.</p>
+        <p class="foot-tag">Coaching de course à pied 100 % humain et vêtements de sport.</p>
       </div>
       <nav aria-label="Pied de page">
         <h2 class="foot-h">Explorer</h2>
         <ul>
-          <li><a href="programmes.html">Programmes</a></li>
-          <li><a href="tarifs.html">Tarifs</a></li>
-          <li><a href="collectif.html">Collectif</a></li>
-          <li><a href="bientot.html">Bientôt</a></li>
-          <li><a href="a-propos.html">Le coach</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -217,6 +214,7 @@ ${body}
           <li><a data-email href="mailto:${SITE.email}">${SITE.email}</a></li>
           <li>${SITE.city}, Québec</li>
           <li>Coaching à distance partout au Québec</li>
+          ${socialItems()}
         </ul>
       </div>
     </div>
@@ -235,7 +233,7 @@ export const btn = (href, label, variant = 'light', extra = '') => `<a class="bt
 export function ctaBand({ title, text, primary, secondary }) {
   return `<section class="slab" data-tone="ink" aria-labelledby="cta-titre">
   <div class="wrap cta-band">
-    ${markSvg({ className: 'cta-mark', size: 260 })}
+    ${markSvg({ className: 'cta-mark' })}
     <div>
       <h2 id="cta-titre" class="h2">${title}</h2>
       <p class="lead">${text}</p>

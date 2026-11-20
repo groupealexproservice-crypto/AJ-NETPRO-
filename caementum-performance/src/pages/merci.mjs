@@ -10,7 +10,8 @@ export default {
 <section class="page-head">
   <div class="wrap">
     <h1 class="h1" data-merci-titre>Merci, c’est bien reçu.</h1>
-    <p class="lead" data-merci-texte>Alexandre vous répond personnellement dans les meilleurs délais.</p>
+    <p class="lead" data-merci-texte>Nous vous répondons personnellement dans les meilleurs délais.</p>
+    <div class="actions"><a class="btn btn--primary" href="formations.html">Voir les formations</a><a class="btn btn--ghost" href="boutique.html">Voir la boutique</a></div>
   </div>
 </section>
 <section class="slab" data-tone="chalk" aria-labelledby="suite">

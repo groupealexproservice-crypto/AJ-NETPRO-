@@ -1,90 +1,70 @@
-import { layout, markSvg, ctaBand, SITE, PALMARES, RECORDS } from '../lib.mjs';
+import { layout, markSvg, ctaBand, SITE, PALMARES, tbd } from '../lib.mjs';
 
 export default {
   file: 'a-propos.html',
-  title: 'Alexandre Ben Ammar, athlète olympique et entraîneur',
-  description: 'Alexandre Ben Ammar : athlète olympique à Rio 2016, champion de la Méditerranée et 22 fois champion national. Découvrez la méthode derrière Caementum Performance.',
+  title: 'À propos : Alexandre Ben Ammar et l’approche Caementum',
+  description: 'Athlète international, participant aux Jeux olympiques de Rio, cinq fois champion de France et vingt fois champion de Tunisie : découvrez l’origine et l’approche de Caementum Performance.',
   schema: [{
     '@context': 'https://schema.org', '@type': 'Person', name: 'Alexandre Ben Ammar',
-    jobTitle: 'Entraîneur de course à pied et athlète olympique', url: `${SITE.url}/a-propos.html`,
+    jobTitle: 'Entraîneur de course à pied et athlète international', url: `${SITE.url}/a-propos.html`,
     workLocation: { '@type': 'City', name: 'Montréal' },
   }],
   body: `
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Un champion qui entraîne, pas un entraîneur qui commente.</h1>
-    <p class="lead">Alexandre Ben Ammar court au plus haut niveau. Ce qu’il apprend sur la piste, il le met dans vos plans.</p>
+    <h1 class="h1">Un athlète international derrière chaque plan.</h1>
+    <p class="lead">Caementum Performance est le projet d’Alexandre Ben Ammar : mettre l’expérience du haut niveau au service de tous les coureurs.</p>
   </div>
 </section>
 
-<section class="slab" data-tone="chalk" aria-labelledby="parcours">
+<section class="slab" data-tone="chalk" aria-labelledby="origine">
   <div class="wrap split">
     <figure class="portrait" aria-label="Portrait d’Alexandre Ben Ammar" data-photo-placeholder>
-      ${markSvg({ size: 300 })}
+      ${markSvg()}
     </figure>
     <div style="display:grid;gap:22px;align-content:start">
-      <h2 id="parcours" class="h2">Un parcours forgé sur la piste.</h2>
-      <p class="lead">Athlète olympique à Rio en 2016 et 22 fois champion national, Alexandre est aussi champion de la Méditerranée. Il court toujours et vise une nouvelle qualification olympique.</p>
-      <p class="measure">Cette expérience, il la rend accessible. Sa conviction est simple : la performance durable demande une relation directe et sincère entre l’entraîneur et l’athlète. C’est pourquoi chaque plan est conçu à la main, et pourquoi chaque semaine se termine par une vraie conversation.</p>
-      <ul class="facts">
-        <li><b>Jeux olympiques de Rio 2016</b><span>Athlète olympique.</span></li>
-        <li><b>22 titres nationaux</b><span>2 000 m, 3 000 m steeple et 5 000 m.</span></li>
-        <li><b>Champion de la Méditerranée</b><span>Titre remporté en 2016.</span></li>
-        <li><b>13 min 16 s au 5 000 m</b><span>Record personnel. Au 10 km : 28 min 22 s.</span></li>
-      </ul>
+      <h2 id="origine" class="h2">L’origine du projet.</h2>
+      <p class="lead">Les applications d’entraînement distribuent des plans en grand nombre, mais très peu offrent un vrai suivi. Beaucoup de coureurs finissent seuls devant un calendrier qui ne tient pas compte de leur vie.</p>
+      <p class="measure">Alexandre, athlète international de haut niveau, a voulu faire l’inverse : un accompagnement direct, sincère et exigeant, où chaque plan est écrit à la main. Rendre accessible ce que seuls les athlètes d’élite recevaient.</p>
+      <p class="measure">${tbd('Texte provisoire')} Ajoutez ici l’histoire personnelle d’Alexandre : ses débuts, un souvenir marquant de course, ce qui l’a poussé à créer Caementum.</p>
     </div>
   </div>
 </section>
 
 <section class="slab" data-tone="ink" aria-labelledby="palmares">
   <div class="wrap">
-    <div class="section-head"><h2 id="palmares" class="h2">Palmarès et records.</h2><p class="lead">Une carrière construite sur la piste et sur la route, du niveau national au niveau olympique.</p></div>
-    <div class="table-wrap">
-      <table class="compare compare--tight">
-        <caption>Principales compétitions</caption>
-        <thead><tr><th scope="col">Compétition</th><th scope="col">Résultat</th><th scope="col">Année</th></tr></thead>
-        <tbody>${PALMARES.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td></tr>`).join('')}</tbody>
-      </table>
-    </div>
-    <div class="table-wrap mt-l">
-      <table class="compare compare--tight">
-        <caption>Records personnels</caption>
-        <thead><tr><th scope="col">Distance</th><th scope="col">Performance</th><th scope="col">Niveau</th></tr></thead>
-        <tbody>${RECORDS.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td></tr>`).join('')}</tbody>
-      </table>
-    </div>
+    <div class="section-head"><h2 id="palmares" class="h2">Palmarès.</h2><p class="lead">Athlète international. Une carrière faite de départs, de finales et de titres.</p></div>
+    <ul class="palm">${PALMARES.map(([a, b]) => `<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>
   </div>
 </section>
 
-<section class="slab" data-tone="chalk" aria-labelledby="valeurs">
+<section class="slab" data-tone="chalk" aria-labelledby="approche">
   <div class="wrap">
-    <div class="section-head"><h2 id="valeurs" class="h2">Ce qui guide chaque plan.</h2></div>
-    <div class="wall wall--3">
-      <div class="block principle"><h3>Sincérité</h3><p>Une performance durable exige une connexion réelle entre l’entraîneur et l’athlète. Vous parlez à une personne, pas à un tableau de bord.</p></div>
-      <div class="block principle"><h3>Exigence</h3><p>La rigueur du haut niveau, transmise à tous les profils, à la mesure de ce que vous pouvez réellement faire.</p></div>
-      <div class="block principle"><h3>Présence</h3><p>Un plan évolutif, ajusté selon vos retours, votre horaire et votre forme du jour. Vous n’êtes jamais seul avec votre plan.</p></div>
+    <div class="section-head"><h2 id="approche" class="h2">L’approche Caementum.</h2></div>
+    <div class="wall wall--2">
+      <div class="block value"><h3>Zéro algorithme</h3><p>Un expert conçoit, analyse et adapte chaque plan manuellement. Votre entraîneur lit vos retours.</p></div>
+      <div class="block value"><h3>Une relation directe</h3><p>Un canal privilégié entre le coach et le coureur, pour la motivation, les doutes et les ajustements.</p></div>
+      <div class="block value"><h3>Un plan qui évolue</h3><p>Votre progression, votre horaire et votre forme du jour font bouger le plan, semaine après semaine.</p></div>
+      <div class="block value"><h3>Une vision à 360°</h3><p>Entraînement, nutrition, récupération et prévention des blessures, pensés comme un tout.</p></div>
     </div>
   </div>
 </section>
 
 <section class="slab" data-tone="ink" aria-labelledby="nom">
   <div class="wrap split split--even">
-    <div style="display:grid;gap:20px;align-content:start">
-      <h2 id="nom" class="h2">Pourquoi « Caementum » ?</h2>
-      <p class="lead">En latin, le <em>caementum</em> est le matériau qui liait les pierres des constructions romaines. Le mot a donné « ciment ».</p>
-    </div>
+    <div style="display:grid;gap:20px;align-content:start"><h2 id="nom" class="h2">Pourquoi « Caementum » ?</h2><p class="lead">En latin, le <em>caementum</em> est le matériau qui liait les pierres des constructions romaines. Le mot a donné « ciment ».</p></div>
     <div style="display:grid;gap:18px;align-content:start">
       <p>Une belle performance ne tient pas sur un coup d’éclat. Elle tient sur des semaines de travail posées les unes sur les autres, solidement liées entre elles.</p>
-      <p>Notre logo reprend cette idée : un C bâti de blocs de pierre qui se desserrent en montant, comme la foulée qui passe de la fondation au mouvement.</p>
+      <p>Notre symbole, un X fait de barres qui se croisent, rappelle les couloirs d’une piste : des lignes parallèles, un même cap.</p>
     </div>
   </div>
 </section>
 
 ${ctaBand({
     title: 'Courons dans la même direction.',
-    text: 'Choisissez votre programme, ou parlez d’abord à Alexandre.',
-    primary: '<a class="btn btn--light" href="programmes.html">Voir les programmes</a>',
-    secondary: '<a class="btn btn--ghost" href="contact.html#appel">Parler à Alexandre</a>',
+    text: 'Choisissez votre formation, ou écrivez-nous.',
+    primary: '<a class="btn btn--primary" href="formations.html">Voir les formations</a>',
+    secondary: '<a class="btn btn--ghost" href="contact.html">Nous écrire</a>',
   })}
 `,
 };

@@ -1,10 +1,10 @@
-import { layout, markSvg, PACKS, money, ctaBand, SITE, COMMUNAUTAIRE, A_VENIR } from '../lib.mjs';
-import { packPanel, faqHtml, faqSchema } from '../parts.mjs';
+import { layout, markSvg, PACKS, PRODUCTS, money, ctaBand, SITE, COMMUNAUTAIRE } from '../lib.mjs';
+import { productCard, faqHtml, faqSchema } from '../parts.mjs';
 
 const steps = [
-  ['Réservation et paiement', 'Vous choisissez votre programme et votre forfait, puis vous payez en ligne en toute sécurité.'],
+  ['Réservation et paiement', 'Vous choisissez votre formation et votre forfait, puis vous payez en ligne en toute sécurité.'],
   ['Planification de la visio', 'Alexandre vous contacte pour fixer le moment de votre visioconférence d’évaluation.'],
-  ['Visio d’évaluation', 'Une conversation d’environ 20 à 30 minutes : objectifs, niveau, antécédents, disponibilités et contraintes.'],
+  ['Visio d’évaluation', 'Une conversation sur vos objectifs, votre niveau, vos antécédents, vos disponibilités et vos contraintes.'],
   ['Conception manuelle', 'Alexandre écrit votre plan lui-même, adapté à votre profil unique. Aucune automatisation.'],
   ['Livraison de votre plan', 'Vous recevez votre programme détaillé, prêt à suivre dès la première semaine.'],
   ['Suivi et ajustements', 'Avec les forfaits de 6 et 12 mois : une visio de suivi chaque mois et un nouveau plan adapté à votre progression.'],
@@ -13,22 +13,15 @@ const steps = [
 export default {
   file: 'index.html',
   title: 'Accueil',
-  description: 'Coaching de course à pied 100 % humain par Alexandre Ben Ammar, athlète olympique. Piste, route et trail, partout au Québec. Dès 80 $ par mois.',
+  description: 'Caementum Performance : coaching de course à pied 100 % humain par un athlète international, et vêtements de sport de la marque. Piste, route et trail, partout au Québec.',
   schema: [
     {
       '@context': 'https://schema.org', '@type': 'ProfessionalService', name: SITE.name, url: SITE.url,
-      description: 'Coaching de course à pied personnalisé, par un athlète olympique, partout au Québec.',
+      description: 'Coaching de course à pied personnalisé par un athlète international, et vêtements de sport de la marque.',
       areaServed: [{ '@type': 'AdministrativeArea', name: 'Québec' }, { '@type': 'City', name: 'Montréal' }],
       address: { '@type': 'PostalAddress', addressLocality: 'Montréal', addressRegion: 'QC', addressCountry: 'CA' },
-      priceRange: '80 $ à 150 $ par mois',
+      priceRange: '80 $ à 150 $',
       founder: { '@type': 'Person', name: 'Alexandre Ben Ammar' },
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog', name: 'Programmes de coaching',
-        itemListElement: Object.values(PACKS).map((p) => ({
-          '@type': 'Offer', name: `Programme ${p.name}`, description: p.pitch, priceCurrency: 'CAD', price: String(p.monthly),
-          priceSpecification: { '@type': 'UnitPriceSpecification', price: String(p.monthly), priceCurrency: 'CAD', unitText: 'mois' },
-        })),
-      },
     },
     faqSchema(),
   ],
@@ -37,130 +30,96 @@ export default {
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1 id="h1" class="h1">La performance se construit.</h1>
-      <p class="lead">Coaching de course à pied 100 % humain, signé Alexandre Ben Ammar, athlète olympique. Piste, route ou trail, partout au Québec.</p>
+      <p class="lead">Coaching de course à pied 100 % humain, plans écrits à la main, et vêtements de sport pour celles et ceux qui s’entraînent sérieusement.</p>
       <div class="actions">
-        <a class="btn btn--light" href="programmes.html">Voir les programmes</a>
-        <a class="btn btn--ghost" href="contact.html#appel">Parler à Alexandre</a>
+        <a class="btn btn--primary" href="formations.html">Voir les formations</a>
+        <a class="btn btn--ghost" href="boutique.html">Découvrir la boutique</a>
       </div>
-      <p class="hero-note">Chaque plan est écrit à la main. Aucun algorithme.</p>
+      <p class="hero-note">Piste, route ou trail. Partout au Québec.</p>
     </div>
-    ${markSvg({ className: 'hero-mark', size: 520, animate: true, title: 'Le logo Caementum : un C fait de blocs de pierre qui se desserrent comme une foulée' })}
+    ${markSvg({ className: 'hero-mark', animate: true, title: 'Le logo Caementum Performance : un X fait de bandes diagonales' })}
   </div>
   <div class="wrap">
     <div class="wall wall--4 cred">
-      <div class="block"><p class="cred-main">Qualifié aux Jeux olympiques de Rio 2016</p><p class="cred-sub">Athlète de haut niveau, toujours en activité.</p></div>
-      <div class="block"><p class="cred-main">22 titres nationaux</p><p class="cred-sub">2 000 m, 3 000 m steeple et 5 000 m, plus 5 titres français.</p></div>
-      <div class="block"><p class="cred-main">Champion de la Méditerranée</p><p class="cred-sub">Sacré en 2016.</p></div>
-      <div class="block"><p class="cred-main">13 min 16 s au 5 000 m</p><p class="cred-sub">28 min 22 s au 10 km.</p></div>
+      <a class="block door" href="formations.html#piste"><h3>Piste</h3><p>Du 800 m au 5 000 m : le chrono avant tout.</p><span class="go">Voir la formation</span></a>
+      <a class="block door" href="formations.html#route"><h3>Route</h3><p>Du 5 km au marathon et à l’ultra.</p><span class="go">Voir la formation</span></a>
+      <a class="block door" href="formations.html#trail"><h3>Trail</h3><p>Dénivelé, nature et ultra-trail.</p><span class="go">Voir la formation</span></a>
+      <a class="block door" href="boutique.html"><h3>Boutique</h3><p>Les vêtements de la marque, pour courir et s’entraîner.</p><span class="go">Entrer dans la boutique</span></a>
     </div>
   </div>
   <div style="height:clamp(56px,8vw,112px)"></div>
 </section>
 
-<section class="slab" data-tone="chalk" aria-labelledby="philo">
+<section class="slab" data-tone="chalk" aria-labelledby="mission">
   <div class="wrap split">
     <div class="split-sticky">
-      <h2 id="philo" class="h2">Une application vous donne un plan. Ici, quelqu’un le lit chaque semaine.</h2>
-      <p class="lead">Beaucoup de coureurs abandonnent faute de suivi. Caementum remplace l’automatisme par une présence.</p>
+      <h2 id="mission" class="h2">Rendre le haut niveau accessible.</h2>
+      <p class="lead">Caementum est né d’une conviction : la performance durable demande une relation directe et sincère entre un entraîneur et un coureur. Pas un algorithme, une personne.</p>
+      <p class="measure">Du nom latin du matériau qui liait les pierres de Rome, <em>caementum</em> raconte notre méthode : des semaines de travail posées l’une sur l’autre, solidement liées entre elles.</p>
     </div>
     <div class="wall wall--2">
-      <div class="block principle"><h3>Écrit à la main</h3><p>Chaque séance est conçue par Alexandre après l’analyse de vos retours. Pas de modèle générique, pas d’automatisation.</p></div>
-      <div class="block principle"><h3>Ajusté à votre vie</h3><p>Horaire chargé, fatigue, petite blessure : votre plan suit votre état de forme réel, pas un calendrier théorique.</p></div>
-      <div class="block principle"><h3>Une vraie personne répond</h3><p>Un canal direct avec votre entraîneur et un débriefing chaque semaine pour garder le cap.</p></div>
-      <div class="block principle"><h3>Pensé à 360°</h3><p>Entraînement, nutrition, récupération et prévention travaillent ensemble plutôt que chacun de son côté.</p></div>
+      <div class="block value"><h3>Humain</h3><p>Chaque plan est écrit à la main, après l’analyse de vos retours. Aucune automatisation.</p></div>
+      <div class="block value"><h3>Exigence</h3><p>La rigueur du haut niveau, transmise à tous les profils et dosée pour vous.</p></div>
+      <div class="block value"><h3>Sincérité</h3><p>Un canal direct avec votre entraîneur, des conseils honnêtes, des objectifs réalistes.</p></div>
+      <div class="block value"><h3>Constance</h3><p>Un suivi qui dure et un plan qui évolue avec votre forme, votre horaire et vos imprévus.</p></div>
     </div>
   </div>
 </section>
 
-<section class="slab" data-tone="ink" id="programmes" aria-labelledby="prog">
+<section class="slab" data-tone="ink" aria-labelledby="distingue">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="prog" class="h2">Trois disciplines, un seul entraîneur.</h2>
-      <p class="lead">Chaque programme a son plan, ses séances et son suivi. Choisissez celui de votre terrain.</p>
+      <h2 id="distingue" class="h2">Ce qui nous distingue.</h2>
+      <p class="lead">Entre une application et un coach privé hors de prix, il y avait un vide. Caementum le comble.</p>
+    </div>
+    <div class="wall wall--3 who">
+      <div class="block"><h3>Un athlète international</h3><p>Alexandre Ben Ammar a participé aux Jeux olympiques de Rio, et il est cinq fois champion de France et vingt fois champion de Tunisie. Son expérience vient du terrain.</p></div>
+      <div class="block"><h3>Un plan écrit pour vous</h3><p>Votre niveau, vos blessures passées, votre horaire : tout est pris en compte, jamais un modèle générique.</p></div>
+      <div class="block"><h3>Un accompagnement à 360°</h3><p>Entraînement, récupération, nutrition et prévention des blessures pensés ensemble.</p></div>
+    </div>
+    <div class="actions mt-l"><a class="btn btn--primary" href="a-propos.html">Découvrir l’origine du projet</a></div>
+  </div>
+</section>
+
+<section class="slab" data-tone="chalk" aria-labelledby="forms">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="forms" class="h2">Les formations.</h2>
+      <p class="lead">Trois disciplines, un seul entraîneur. Choisissez votre terrain, puis votre durée.</p>
     </div>
     <div class="wall wall--3">
-      ${Object.values(PACKS).map((p) => packPanel(p)).join('\n')}
+      ${Object.values(PACKS).map((p) => `<article class="block value" style="display:grid;gap:12px;align-content:start"><h3>${p.name}</h3><p>${p.tagline}. ${p.pitch}</p><p class="price-line"><span class="price-big" style="font-size:2rem">${money(p.monthly)}</span><span class="price-unit">pour 1 mois, avant taxes</span></p><div class="actions"><a class="btn btn--dark" href="formations.html#${p.id}">Voir la formation</a></div></article>`).join('')}
     </div>
-    <p class="fine mt-l">Forfaits de 6 mois (−10 %) et de 12 mois (−20 %) disponibles. Prix avant taxes, en dollars canadiens. <a class="link" href="tarifs.html">Voir tous les tarifs</a>.</p>
+    <p class="fine mt-l">Forfaits de 6 mois (−10 %) et de 12 mois (−20 %). Pack Communautaire dès ${money(COMMUNAUTAIRE.monthly)} par mois. <a class="link" href="formations.html#tarifs">Voir tous les tarifs</a>.</p>
+  </div>
+</section>
+
+<section class="slab" data-tone="ink" aria-labelledby="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="shop" class="h2">La boutique.</h2>
+      <p class="lead">Des vêtements de sport pensés pour courir, conçus sous la marque. La collection arrive : découvrez les premières pièces.</p>
+    </div>
+    <div class="shop">
+      ${PRODUCTS.slice(0, 3).map(productCard).join('\n')}
+    </div>
+    <div class="actions mt-l"><a class="btn btn--light" href="boutique.html">Voir toute la boutique</a></div>
   </div>
 </section>
 
 <section class="slab" data-tone="chalk" id="methode" aria-labelledby="meth">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="meth" class="h2">De l’inscription à la ligne de départ.</h2>
+      <h2 id="meth" class="h2">De la découverte à la ligne de départ.</h2>
       <p class="lead">Un parcours simple, en six étapes, où l’humain garde la main du début à la fin.</p>
     </div>
     <ol class="wall wall--3">
       ${steps.map(([t, d], i) => `<li class="block step"><span class="step-n" aria-hidden="true">${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('\n      ')}
     </ol>
-    <p class="quote">« Zéro automatisation. Chaque séance est écrite par le coach après l’analyse de vos retours. »</p>
   </div>
 </section>
 
-<section class="slab" data-tone="ink" aria-labelledby="qui">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="qui" class="h2">Pour chaque coureur, un objectif différent.</h2>
-    </div>
-    <div class="wall wall--3 who">
-      <div class="block"><h3>Débutants</h3><p><strong>Structure et sécurité.</strong> Une progression claire pour prendre de bonnes habitudes et éviter la blessure.</p></div>
-      <div class="block"><h3>Compétiteurs</h3><p><strong>Chrono et affûtage.</strong> Des séances ciblées pour battre votre record le jour de la course.</p></div>
-      <div class="block"><h3>Élites</h3><p><strong>Gains marginaux.</strong> Le détail qui fait la différence quand l’écart se joue à quelques secondes.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slab" data-tone="chalk" aria-labelledby="coach">
-  <div class="wrap split">
-    <figure class="portrait" aria-label="Portrait d’Alexandre Ben Ammar" data-photo-placeholder>
-      ${markSvg({ size: 300 })}
-    </figure>
-    <div class="split-sticky">
-      <h2 id="coach" class="h2">Alexandre Ben Ammar</h2>
-      <p class="lead">Athlète olympique à Rio en 2016, champion de la Méditerranée la même année et 22 fois champion national. Il entraîne comme il a appris à courir : sur la piste, pas dans les manuels.</p>
-      <p class="measure">Toujours en activité, Alexandre vise une nouvelle qualification olympique. Sa méthode vient du terrain, et il la met au service de tous les profils : du coureur qui débute à celui qui prépare le chrono de sa vie.</p>
-      <div class="actions"><a class="btn btn--dark" href="a-propos.html">Découvrir son parcours</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="slab" data-tone="ink" aria-labelledby="cmp">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="cmp" class="h2">Entre l’application et le coach privé, il y avait un vide.</h2>
-      <p class="lead">Caementum offre l’expertise d’un olympique à un prix accessible pour le coureur engagé.</p>
-    </div>
-    <div class="table-wrap">
-      <table class="compare">
-        <thead><tr><th scope="col"><span class="sr">Critère</span></th><th scope="col">Application</th><th scope="col" class="is-us">Caementum</th><th scope="col">Coach privé</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Plan écrit par un humain</th><td class="dim">Non, généré automatiquement</td><td class="is-us">Oui, à la main</td><td>Oui</td></tr>
-          <tr><th scope="row">Ajustement selon vos retours</th><td class="dim">Limité</td><td class="is-us">Chaque semaine</td><td>Oui</td></tr>
-          <tr><th scope="row">Échange direct avec l’entraîneur</th><td class="dim">Non</td><td class="is-us">Oui</td><td>Oui</td></tr>
-          <tr><th scope="row">Expérience olympique</th><td class="dim">Non</td><td class="is-us">Oui, Rio 2016</td><td class="dim">Variable</td></tr>
-          <tr><th scope="row">Prix par mois</th><td class="dim">Faible</td><td class="is-us">80 $ à 150 $</td><td>Environ 300 $ et plus</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="slab" data-tone="chalk" aria-labelledby="plus">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="plus" class="h2">Et pour aller plus loin.</h2>
-      <p class="lead">Courir seul, en groupe ou en équipe : Caementum s’adapte à votre façon de progresser.</p>
-    </div>
-    <div class="wall wall--3">
-      <div class="block principle"><h3>Communautaire</h3><p>${money(COMMUNAUTAIRE.monthly)} par mois. Une communauté privée, un entraînement collectif par semaine et les conseils du coach.</p><p style="margin-top:14px"><a class="link" href="tarifs.html#communautaire">Rejoindre la communauté</a></p></div>
-      <div class="block principle"><h3>Collectif</h3><p>Entreprises, écoles, associations et résidences : des séances collectives pour installer une culture de santé et de performance.</p><p style="margin-top:14px"><a class="link" href="collectif.html">Découvrir l’offre collective</a></p></div>
-      <div class="block principle"><h3>Bientôt</h3><p>L’application, la synchronisation avec votre montre, la nutrition et la récupération, les camps d’entraînement et plus encore.</p><p style="margin-top:14px"><a class="link" href="bientot.html">Voir ce qui s’en vient</a></p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slab" data-tone="chalk" aria-labelledby="faq">
+<section class="slab" data-tone="ink" aria-labelledby="faq">
   <div class="wrap">
     <div class="section-head"><h2 id="faq" class="h2">Questions fréquentes</h2></div>
     ${faqHtml()}
@@ -169,9 +128,9 @@ export default {
 
 ${ctaBand({
     title: 'Posez la première pierre.',
-    text: 'Parlez à Alexandre pour choisir le bon programme, ou inscrivez-vous directement.',
-    primary: '<a class="btn btn--light" href="contact.html#appel">Parler à Alexandre</a>',
-    secondary: '<a class="btn btn--ghost" href="tarifs.html">Voir les tarifs</a>',
+    text: 'Choisissez votre formation, ou écrivez à Alexandre pour trouver la bonne.',
+    primary: '<a class="btn btn--primary" href="formations.html#tarifs">Acheter une formation</a>',
+    secondary: '<a class="btn btn--ghost" href="contact.html">Nous écrire</a>',
   })}
 `,
 };

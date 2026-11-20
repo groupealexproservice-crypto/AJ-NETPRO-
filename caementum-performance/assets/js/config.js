@@ -12,10 +12,13 @@ window.CAEMENTUM = {
 
   // Liens de paiement Stripe (Payment Links), un par programme et par durée.
   // Laisser vide tant que Stripe n'est pas configuré : la demande est alors envoyée à Alexandre.
+  // Boutique : un lien de paiement Stripe par produit (identifiants : tshirt, camisole, short, coupe-vent, kangourou, casquette).
+  products: { tshirt: "", camisole: "", short: "", "coupe-vent": "", kangourou: "", casquette: "" },
+
   checkout: {
     piste: { monthly: "", six: "", year: "" },
     route: { monthly: "", six: "", year: "" },
     trail: { monthly: "", six: "", year: "" },
-    squad: { monthly: "", six: "", year: "" }
+    communautaire: { monthly: "", six: "", year: "" }
   }
 };

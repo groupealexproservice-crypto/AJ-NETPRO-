@@ -53,7 +53,7 @@ export default {
         </div>
         <label class="check"><input type="checkbox" name="conditions" required><span>J’ai lu et j’accepte les <a class="link" href="conditions-de-vente.html">conditions de vente</a> et la <a class="link" href="confidentialite.html">politique de confidentialité</a>.</span></label>
         <div class="form-status" role="status" aria-live="polite" hidden></div>
-        <div><button class="btn btn--dark" type="submit" data-submit>Continuer vers le paiement</button></div>
+        <div><button class="btn btn--primary" type="submit" data-submit>Continuer vers le paiement</button></div>
       </form>
     </div>
     <aside class="summary" aria-labelledby="resume">
@@ -63,7 +63,7 @@ export default {
         <div><dt>Durée</dt><dd data-sum="duree">6 mois</dd></div>
         <div><dt>Total avant taxes</dt><dd class="total" data-sum="total">${money(PACKS.piste.six)}</dd></div>
       </dl>
-      <p class="fine">La TPS et la TVQ s’ajoutent au paiement. <a class="link" href="tarifs.html">Modifier mon choix</a></p>
+      <p class="fine">La TPS et la TVQ s’ajoutent au paiement. <a class="link" href="formations.html#tarifs">Modifier mon choix</a></p>
     </aside>
   </div>
 </section>

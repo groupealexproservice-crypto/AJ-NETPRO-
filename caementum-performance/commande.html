@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commande | Caementum Performance</title>
+<meta name="description" content="Commandez un vêtement de la marque Caementum Performance.">
+<link rel="canonical" href="https://caementumperformance.com/commande.html">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:site_name" content="Caementum Performance">
+<meta property="og:title" content="Commande | Caementum Performance">
+<meta property="og:description" content="Commandez un vêtement de la marque Caementum Performance.">
+<meta property="og:url" content="https://caementumperformance.com/commande.html">
+<meta property="og:image" content="https://caementumperformance.com/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/archivo-black-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body class="">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Caementum Performance, accueil">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="" aria-hidden="true">
+<g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
+<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g>
+</svg>
+      <span class="brand-text"><span class="brand-name">Caementum</span><span class="brand-sub">Performance</span></span>
+    </a>
+    <nav id="nav" class="nav" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="formations.html">Formations</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn btn--primary btn--sm bar-cta" href="formations.html#tarifs">Acheter une formation</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="sr">Menu</span></button>
+  </div>
+</header>
+<main id="contenu" tabindex="-1">
+
+<section class="page-head">
+  <div class="wrap">
+    <h1 class="h1" data-commande-titre>Votre commande.</h1>
+    <p class="lead">Quelques informations pour préparer votre commande.</p>
+  </div>
+</section>
+<section class="slab" data-tone="chalk" aria-labelledby="cmd">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 id="cmd" class="h2" style="margin-bottom:28px">Vos informations</h2>
+      <form class="form" name="commande" method="POST" action="merci.html?statut=commande" data-form="commande" novalidate>
+        <input type="hidden" name="form-name" value="commande">
+        <input type="hidden" name="produit" id="o-produit">
+        <p class="hp" aria-hidden="true"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="form-row">
+          <div class="field"><label for="o-taille">Taille</label><select class="select" id="o-taille" name="taille"></select></div>
+          <div class="field"><label for="o-qte">Quantité</label><input class="input" id="o-qte" name="quantite" type="number" min="1" max="10" value="1" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="o-prenom">Prénom</label><input class="input" id="o-prenom" name="prenom" autocomplete="given-name" required></div>
+          <div class="field"><label for="o-nom">Nom</label><input class="input" id="o-nom" name="nom" autocomplete="family-name" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="o-courriel">Courriel</label><input class="input" id="o-courriel" name="courriel" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="o-tel">Téléphone <span class="hint">(facultatif)</span></label><input class="input" id="o-tel" name="telephone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="o-adresse">Adresse de livraison <span class="hint">(facultatif tant que la boutique n’est pas ouverte)</span></label><textarea class="textarea" id="o-adresse" name="adresse" autocomplete="street-address" style="min-height:100px"></textarea></div>
+        <label class="check"><input type="checkbox" name="conditions" required><span>J’accepte les <a class="link" href="conditions-de-vente.html">conditions de vente</a> et la <a class="link" href="confidentialite.html">politique de confidentialité</a>.</span></label>
+        <div class="form-status" role="status" aria-live="polite" hidden></div>
+        <div><button class="btn btn--primary" type="submit" data-submit>Envoyer</button></div>
+      </form>
+    </div>
+    <aside class="summary" aria-labelledby="resume">
+      <h2 id="resume" class="h3-display">Votre pièce</h2>
+      <dl>
+        <div><dt>Produit</dt><dd data-osum="produit">T-shirt de course</dd></div>
+        <div><dt>Taille</dt><dd data-osum="taille">M</dd></div>
+        <div><dt>Prix avant taxes</dt><dd class="total" data-osum="prix">À confirmer</dd></div>
+      </dl>
+      <p class="fine">Les prix et la livraison seront confirmés à l’ouverture de la boutique. <a class="link" href="boutique.html">Modifier mon choix</a></p>
+    </aside>
+  </div>
+</section>
+<script type="application/json" id="catalogue-produits">{"tshirt":{"nom":"T-shirt de course","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"camisole":{"nom":"Camisole de course","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"short":{"nom":"Short de course","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"coupe-vent":{"nom":"Coupe-vent","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"kangourou":{"nom":"Chandail à capuchon","tailles":["TP","P","M","G","TG","TTG"],"prix":null},"casquette":{"nom":"Casquette","tailles":["Taille unique"],"prix":null}}</script>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg class="foot-mark" viewBox="0 0 100 100" fill="currentColor" role="img" aria-label="" aria-hidden="true">
+<g transform="rotate(-45 50 50)"><rect x="5" y="41.5" width="90" height="7"/><rect x="5" y="51.5" width="90" height="7"/></g>
+<g transform="rotate(45 50 50)"><rect x="9" y="40.5" width="26" height="8.5"/><rect x="9" y="51" width="26" height="8.5"/><rect x="65" y="40.5" width="26" height="8.5"/><rect x="65" y="51" width="26" height="8.5"/></g>
+</svg>
+        <p class="foot-name">Caementum</p>
+        <p class="foot-sub">Performance</p>
+        <p class="foot-tag">Coaching de course à pied 100 % humain et vêtements de sport.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <h2 class="foot-h">Explorer</h2>
+        <ul>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Informations légales">
+        <h2 class="foot-h">Informations</h2>
+        <ul>
+          <li><a href="conditions-de-vente.html">Conditions de vente</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="foot-h">Nous joindre</h2>
+        <ul>
+          <li><a data-email href="mailto:bonjour@caementumperformance.com">bonjour@caementumperformance.com</a></li>
+          <li>Montréal, Québec</li>
+          <li>Coaching à distance partout au Québec</li>
+          <li>Instagram <span class="tbd">lien à venir</span></li><li>Strava <span class="tbd">lien à venir</span></li><li>TikTok <span class="tbd">lien à venir</span></li><li>Facebook <span class="tbd">lien à venir</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-legal">© <span data-year>2026</span> Caementum Performance. Prix en dollars canadiens, taxes (TPS et TVQ) en sus.</p>
+  </div>
+</footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

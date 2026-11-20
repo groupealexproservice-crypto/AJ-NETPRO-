@@ -14,6 +14,8 @@ export const cgv = {
 <p>Les services sont offerts par [nom légal du prestataire], [travailleur autonome ou société], exerçant sous le nom Caementum Performance, à Montréal (Québec). Contact : <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>
 <h2>2. Les services</h2>
 <p>Caementum Performance offre du coaching de course à pied à distance : plans d’entraînement personnalisés, diagnostic vidéo, débriefings hebdomadaires et ajustements, selon le programme choisi (Piste, Route, Trail ou Communautaire) décrit sur le site.</p>
+<h2>2.1 Vêtements</h2>
+<p>La boutique propose des vêtements de la marque. [Produits, délais de livraison, frais d’expédition, politique d’échange et de retour à définir à l’ouverture de la boutique, en conformité avec la Loi sur la protection du consommateur.]</p>
 <h2>3. Prix et taxes</h2>
 <p>Les prix sont affichés en dollars canadiens, avant taxes. La TPS et la TVQ s’ajoutent au paiement lorsqu’elles s’appliquent. [Numéros de TPS et de TVQ à indiquer.]</p>
 <h2>4. Paiement</h2>
@@ -77,7 +79,7 @@ export const mentions = {
 <h2>Propriété intellectuelle</h2>
 <p>Le nom Caementum Performance, le logo et les contenus de ce site sont protégés. Toute reproduction sans autorisation est interdite.</p>
 <h2>Crédits</h2>
-<p>Typographies : Cinzel et Inter, sous licence SIL Open Font License.</p>`),
+<p>Typographies : Archivo et Inter, sous licence SIL Open Font License.</p>`),
 };
 
 export const notFound = {
@@ -86,5 +88,5 @@ export const notFound = {
   description: 'Cette page n’existe pas ou a été déplacée.',
   noindex: true,
   schema: [],
-  body: `<section class="page-head"><div class="wrap"><h1 class="h1">Cette page est introuvable.</h1><p class="lead">Elle a peut-être été déplacée. Retournez à l’accueil ou consultez les programmes.</p><div class="actions"><a class="btn btn--light" href="index.html">Retour à l’accueil</a><a class="btn btn--ghost" href="programmes.html">Voir les programmes</a></div></div></section>`,
+  body: `<section class="page-head"><div class="wrap"><h1 class="h1">Cette page est introuvable.</h1><p class="lead">Elle a peut-être été déplacée. Retournez à l’accueil ou consultez les programmes.</p><div class="actions"><a class="btn btn--light" href="index.html">Retour à l’accueil</a><a class="btn btn--ghost" href="formations.html">Voir les formations</a></div></div></section>`,
 };

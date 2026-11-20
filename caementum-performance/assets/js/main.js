@@ -79,6 +79,35 @@
     if (fd) fd.value = pack === "communautaire" ? "Abonnement mensuel" : TERMS[duree];
   }
 
+
+  // Boutique : la taille choisie suit le bouton de commande
+  doc.querySelectorAll("[data-product]").forEach(function (card) {
+    var id = card.getAttribute("data-product"), a = card.querySelector("[data-order]");
+    function sync() {
+      var r = card.querySelector("input[type=radio]:checked");
+      a.href = "commande.html?produit=" + id + (r ? "&taille=" + encodeURIComponent(r.value) : "");
+    }
+    card.addEventListener("change", sync); sync();
+  });
+
+  // Page de commande
+  var catP = doc.getElementById("catalogue-produits");
+  if (catP) {
+    var cat = {}; try { cat = JSON.parse(catP.textContent); } catch (e) {}
+    var pid = params.get("produit"); if (!cat[pid]) pid = Object.keys(cat)[0];
+    var prod = cat[pid], tsel = doc.getElementById("o-taille");
+    doc.getElementById("o-produit").value = prod.nom;
+    prod.tailles.forEach(function (t) { var o = doc.createElement("option"); o.textContent = t; o.value = t; tsel.appendChild(o); });
+    var want = params.get("taille"); if (want) tsel.value = want; else if (prod.tailles.indexOf("M") > -1) tsel.value = "M";
+    var upd = function () {
+      var set2 = function (k, v) { var el = doc.querySelector('[data-osum="' + k + '"]'); if (el) el.textContent = v; };
+      set2("produit", prod.nom); set2("taille", tsel.value); set2("prix", prod.prix == null ? "À confirmer" : fmt.format(prod.prix));
+    };
+    tsel.addEventListener("change", upd); upd();
+    pack = pid; duree = "commande";
+    if (prod.prix == null) { var t2 = doc.querySelector("[data-commande-titre]"); if (t2) t2.textContent = "Être prévenu de la sortie."; var sb = doc.querySelector("[data-submit]"); if (sb) sb.textContent = "Me prévenir"; }
+  }
+
   function encode(form) {
     var data = new FormData(form), out = new URLSearchParams();
     data.forEach(function (v, k) { out.append(k, v); });
@@ -116,7 +145,7 @@
       fetch(C.formEndpoint || "/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: encode(form) })
         .then(function (r) { if (!r.ok) throw new Error("http " + r.status); })
         .then(function () {
-          var link = isInscription && C.checkout && C.checkout[pack] && C.checkout[pack][duree];
+          var link = isInscription ? (C.checkout && C.checkout[pack] && C.checkout[pack][duree]) : (form.getAttribute("data-form") === "commande" && C.products && C.products[pack]);
           if (link) { location.href = link; return; }
           location.href = form.getAttribute("action");
         })
@@ -134,6 +163,7 @@
     var texte = doc.querySelector("[data-merci-texte]");
     if (s === "message") { titre.textContent = "Message envoyé."; texte.textContent = "Alexandre vous répond personnellement dans les meilleurs délais."; }
     if (s === "demande") { titre.textContent = "Inscription reçue."; texte.textContent = "Alexandre prépare votre diagnostic et vous écrit très vite pour confirmer la suite, y compris le paiement."; }
+    if (s === "commande") { titre.textContent = "Commande reçue."; texte.textContent = "Nous vous écrivons très vite pour confirmer les détails, le prix et la livraison."; }
     if (s === "attente") { titre.textContent = "Vous êtes sur la liste."; texte.textContent = "Nous vous écrirons dès qu’il y aura du nouveau."; }
     if (s === "paye") { titre.textContent = "Paiement confirmé. Bienvenue."; texte.textContent = "Réservez maintenant votre visio de diagnostic."; }
   }
