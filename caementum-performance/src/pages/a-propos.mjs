@@ -25,6 +25,7 @@ export default {
       <h2 id="origine" class="h2">L’origine du projet.</h2>
       <p class="lead">Les applications d’entraînement distribuent des plans en grand nombre, mais très peu offrent un vrai suivi. Beaucoup de coureurs finissent seuls devant un calendrier qui ne tient pas compte de leur vie.</p>
       <p class="measure">Alexandre, athlète international de haut niveau, a voulu faire l’inverse : un accompagnement direct, sincère et exigeant, où chaque plan est écrit à la main. Rendre accessible ce que seuls les athlètes d’élite recevaient.</p>
+      <p class="measure">Vous êtes suivi par un athlète professionnel et des coachs. L’équipe compte plus de 40 ans d’expérience dans le milieu.</p>
       <p class="measure">${tbd('Texte provisoire')} Ajoutez ici l’histoire personnelle d’Alexandre : ses débuts, un souvenir marquant de course, ce qui l’a poussé à créer Caementum.</p>
     </div>
   </div>

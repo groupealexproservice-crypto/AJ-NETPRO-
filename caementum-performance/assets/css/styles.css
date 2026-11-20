@@ -520,11 +520,12 @@ html.js .term-label { display: none; }
 .step-n, [data-tone="ink"] .step-n { color: var(--blue); }
 
 /* Chiffres du palmarès */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--mortar); }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--mortar); }
 .stats li { padding: 8px clamp(14px, 2vw, 32px); border-left: 3px solid var(--blue); display: grid; gap: 8px; align-content: start; }
 .stats b { font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 6vw, 5.2rem); line-height: .9; color: var(--ink); text-transform: uppercase; }
 .stats span { color: var(--dim-on-chalk); font-size: .98rem; max-width: 18ch; }
-@media (max-width: 800px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px; } }
+@media (max-width: 1000px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 12px; } }
+@media (max-width: 600px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Disciplines : cartes illustrées avec étiquette bleue */
 .disc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--mortar); }
