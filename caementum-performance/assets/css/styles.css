@@ -662,3 +662,6 @@ html.js .term-label { display: none; }
 [data-tone="ink"] .seg input:checked + span { background: var(--blue); color: #fff; }
 [data-tone="ink"] .seg input:checked + span small { color: #fff; }
 [data-tone="ink"] .seg input:focus-visible + span { outline-color: #fff; }
+.seg span { color: var(--ink); }
+.seg input:checked + span { color: #fff; }
+[data-tone="ink"] .seg input:checked + span { background: var(--blue); color: #fff; }
