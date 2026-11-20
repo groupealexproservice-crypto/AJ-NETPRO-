@@ -658,3 +658,7 @@ html.js .term-label { display: none; }
 .hero-photo-split img { filter: grayscale(1) contrast(1.1) brightness(.72); }
 .hero-photo-split::after { background: rgba(22, 82, 240, .14); }
 @media (max-width: 1000px) { .hero-photo-split img { filter: grayscale(1) contrast(1.05) brightness(.34); } .hero-photo-split::after { background: rgba(17, 17, 17, .35); } }
+/* Sélecteur de durée sur fond noir : choix actif en bleu, texte lisible */
+[data-tone="ink"] .seg input:checked + span { background: var(--blue); color: #fff; }
+[data-tone="ink"] .seg input:checked + span small { color: #fff; }
+[data-tone="ink"] .seg input:focus-visible + span { outline-color: #fff; }
