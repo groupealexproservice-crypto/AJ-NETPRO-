@@ -48,25 +48,22 @@
 </header>
 <main id="contenu" tabindex="-1">
 
-<section class="hero hero--split" aria-labelledby="h1">
-  <div class="hero-photo-split" aria-hidden="true"><img src="assets/img/photos/hero.jpg" alt="" width="1600" height="1148" fetchpriority="high"></div>
-  <svg class="hero-edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M15.5 0 L1.5 100" stroke="#1652f0" stroke-width="7" fill="none" vector-effect="non-scaling-stroke"/><path d="M12 0 L-2 100" stroke="#1d3fa8" stroke-width="3" fill="none" vector-effect="non-scaling-stroke"/></svg>
+<section class="hero" aria-labelledby="h1">
+  <svg class="hero-lanes" viewBox="0 0 600 600" preserveAspectRatio="xMaxYMin meet" aria-hidden="true"><path d="M330 0 L600 270"/><path d="M400 0 L600 200"/></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Coaching · Course à pied</p>
+      <p class="eyebrow">Coaching de course à pied</p>
       <h1 id="h1" class="h1">La performance <span class="hl">se construit.</span></h1>
       <p class="lead">Aucun algorithme. Chaque plan est écrit à la main par un athlète international, après analyse de vos retours. Piste, route ou trail, partout au Québec.</p>
       <div class="actions">
-        <a class="btn btn--primary" href="formations.html">Voir les formations <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary" href="formations.html">Voir les formations</a>
         <a class="btn btn--ghost" href="boutique.html">Découvrir la boutique</a>
       </div>
     </div>
+    <figure class="hero-figure"><img src="assets/img/photos/hero.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="1600" height="1148" fetchpriority="high"></figure>
   </div>
-</section>
-
-<section class="slab slab--tight" data-tone="chalk" aria-label="Palmarès en chiffres">
   <div class="wrap">
-    <ul class="stats">
+    <ul class="hero-facts" aria-label="Palmarès en chiffres">
       <li><b>20</b><span>fois champion de Tunisie</span></li>
       <li><b>5</b><span>fois champion de France</span></li>
       <li><b>2</b><span>participations aux championnats du monde</span></li>
@@ -74,12 +71,12 @@
       <li><b>40+</b><span>ans d’expérience dans le milieu</span></li>
     </ul>
   </div>
+  <div style="height:clamp(56px,8vw,120px)"></div>
 </section>
 
 <section class="slab slab--mist" data-tone="chalk" aria-labelledby="mission">
   <div class="wrap split">
     <div class="split-sticky">
-      <p class="eyebrow">Notre mission</p>
       <h2 id="mission" class="h2">Caementum ne vend pas un outil, mais <span class="hl">un niveau de présence.</span></h2>
     </div>
     <div style="display:grid;gap:20px;align-content:start">
@@ -94,15 +91,14 @@
 <section class="slab" data-tone="chalk" aria-labelledby="haut">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Ce qui nous distingue</p>
       <h2 id="haut" class="h2">Le haut niveau, <span class="hl">à votre allure.</span></h2>
       <p class="lead">Un coaching premium, construit sur l’expertise du terrain et une vraie relation entre le coach et le coureur.</p>
     </div>
     <div class="wall wall--2">
-      <div class="block value"><span class="num">#01</span><h3>Aucun algorithme</h3><p>Chaque plan est conçu et ajusté à la main par un coach expert, jamais généré par une machine.</p></div>
-      <div class="block value"><span class="num">#02</span><h3>Suivi par un athlète professionnel et des coachs</h3><p>Vous êtes guidé par un athlète qui connaît la compétition de l’intérieur et par des coachs, avec plus de 40 ans d’expérience dans le milieu.</p></div>
-      <div class="block value"><span class="num">#03</span><h3>100 % sur mesure</h3><p>Votre niveau, votre objectif, votre horaire et vos blessures passées : tout est pris en compte.</p></div>
-      <div class="block value"><span class="num">#04</span><h3>Un plan qui évolue</h3><p>Un suivi régulier et des ajustements selon vos retours réels, pas un calendrier figé.</p></div>
+      <div class="block value"><span class="num">01</span><h3>Aucun algorithme</h3><p>Chaque plan est conçu et ajusté à la main par un coach expert, jamais généré par une machine.</p></div>
+      <div class="block value"><span class="num">02</span><h3>Suivi par un athlète professionnel et des coachs</h3><p>Vous êtes guidé par un athlète qui connaît la compétition de l’intérieur et par des coachs, avec plus de 40 ans d’expérience dans le milieu.</p></div>
+      <div class="block value"><span class="num">03</span><h3>100 % sur mesure</h3><p>Votre niveau, votre objectif, votre horaire et vos blessures passées : tout est pris en compte.</p></div>
+      <div class="block value"><span class="num">04</span><h3>Un plan qui évolue</h3><p>Un suivi régulier et des ajustements selon vos retours réels, pas un calendrier figé.</p></div>
     </div>
   </div>
 </section>
@@ -110,7 +106,6 @@
 <section class="slab" data-tone="ink" aria-labelledby="disc">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Trois disciplines</p>
       <h2 id="disc" class="h2">Piste. Route. <span class="hl">Trail.</span></h2>
       <p class="lead">Un plan par terrain, écrit pour vous, ouvert à toutes les personnes. Choisissez votre discipline, nous écrivons la suite.</p>
     </div>
@@ -124,7 +119,6 @@
 <section class="slab" data-tone="chalk" id="methode" aria-labelledby="meth">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Le parcours</p>
       <h2 id="meth" class="h2">Six étapes, <span class="hl">un seul coach.</span></h2>
       <p class="lead">De l’inscription au premier débriefing, vous savez toujours ce qui vous attend.</p>
     </div>
@@ -139,7 +133,6 @@
   <div class="wrap split split--even founder">
     <figure class="founder-photo"><img src="assets/img/photos/fondateur.jpg" alt="Alexandre Ben Ammar franchit la rivière lors d’un 3 000 m steeple" width="900" height="900" loading="lazy" decoding="async"></figure>
     <div style="display:grid;gap:22px;align-content:center">
-      <p class="eyebrow">Le fondateur</p>
       <h2 id="fond" class="h2">Alexandre Ben Ammar</h2>
       <p class="lead">Athlète international, Alexandre a fondé Caementum pour transmettre à chaque coureur la rigueur du haut niveau et une vraie relation humaine.</p>
       <ul class="rows">
@@ -158,7 +151,6 @@
 <section class="slab slab--blue slab--slant" data-tone="ink" aria-labelledby="shop">
   <div class="wrap split split--even">
     <div style="display:grid;gap:22px;align-content:center">
-      <p class="eyebrow">La boutique</p>
       <h2 id="shop" class="h2">Portez la <span class="hl">croisée.</span></h2>
       <p class="lead">Des vêtements de course aux couleurs de la marque : pour s’entraîner, pour courir, pour se reconnaître. La collection est en préparation.</p>
       <div class="actions"><a class="btn btn--light" href="boutique.html">Voir la boutique</a></div>
