@@ -41,10 +41,10 @@ export function Sculpture3D({ alt, hint }: { alt: string; hint: string }) {
           shadow-softness="1"
           exposure="1"
           environment-image="legacy"
-          camera-orbit="-10deg 80deg auto"
+          camera-orbit="20deg 68deg auto"
           field-of-view="26deg"
-          min-polar-angle="55deg"
-          max-polar-angle="95deg"
+          min-polar-angle="50deg"
+          max-polar-angle="88deg"
           touch-action="pan-y"
           reveal="auto"
           onError={() => setFailed(true)}

@@ -26,7 +26,7 @@ Phase 2 — Performance
 - Le visualiseur 3D (≈ 1 Mo) ne doit jamais bloquer le chargement initial.
 
 Phase 3 — Direction artistique
-- La sculpture 3D actuelle est un graphique à barres recoloré ; elle ne reflète pas la pyramide du logo. Concevoir une sculpture pyramidale (structure, élévation, vision), sobre, noir/graphite/or, avec affiche statique et mode mouvement réduit.
+- (Fait) La sculpture 3D est maintenant une pyramide avec orbite dorée (scripts/build-sculpture.py). À affiner par un artiste 3D si la direction le souhaite.
 - Remplacer la photo d'architecture générique par des visuels authentiques et libres de droits ou fournis par l'entreprise (Montréal, travail d'équipe, tableaux de bord), avec textes alternatifs.
 - Corriger l'alignement du bloc d'introduction du héros (retrait irrégulier par rapport au titre sur ordinateur) et vérifier la cohérence des espacements sur toutes les pages.
 - Rester sobre : aucun effet décoratif sans fonction.

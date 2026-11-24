@@ -81,7 +81,7 @@ Variables : voir `.env.example` (toutes documentées). En production, le serveur
 
 ## Sculpture 3D
 
-Section « Trois repères qui montent ensemble » de l'accueil (`src/components/Sculpture3D.tsx`). Le modèle `public/models/sculpture-aurex.glb` (460 Ko) est affiché avec `@google/model-viewer`. L'image fixe `public/images/sculpture-aurex.webp` s'affiche d'abord ; le moteur 3D (~300 Ko compressés) n'est téléchargé que lorsque la section approche de l'écran. Si WebGL ou le téléchargement échoue, l'image reste. Pas de zoom ni de panoramique (le défilement de la page n'est pas capturé) ; la rotation automatique est désactivée en mode mouvement réduit. Le fichier source Blender est dans `assets-3d/sculpture-aurex.blend`.
+Section « Une structure. Un cap. Une orbite. » de l'accueil (`src/components/Sculpture3D.tsx`). Le modèle `public/models/sculpture-aurex.glb` (200 Ko, généré par `scripts/build-sculpture.py`, affiche par `scripts/render-poster.cjs`) est affiché avec `@google/model-viewer`. L'image fixe `public/images/sculpture-aurex.webp` s'affiche d'abord ; le moteur 3D (~300 Ko compressés) n'est téléchargé que lorsque la section approche de l'écran. Si WebGL ou le téléchargement échoue, l'image reste. Pas de zoom ni de panoramique (le défilement de la page n'est pas capturé) ; la rotation automatique est désactivée en mode mouvement réduit. Le fichier source Blender est dans `assets-3d/sculpture-aurex.blend`.
 
 ## Architecture et sécurité
 

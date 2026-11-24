@@ -104,8 +104,8 @@ export default function Home() {
         <div className="shell signature-grid">
           <div className="signature-copy">
             <p className="eyebrow">{fr ? "Notre signature" : "Our signature"}</p>
-            <h2 id="signature-title">{fr ? "Trois repères qui montent ensemble." : "Three markers that rise together."}</h2>
-            <p>{fr ? "La sculpture AUREX résume notre façon de travailler : la stratégie fixe la direction, la technologie rend l’action possible, la performance se mesure et s’ajuste. Chaque barre s’appuie sur la précédente." : "The AUREX sculpture sums up how we work: strategy sets the direction, technology makes action possible, performance is measured and adjusted. Each bar builds on the one before."}</p>
+            <h2 id="signature-title">{fr ? "Une structure. Un cap. Une orbite." : "A structure. A direction. An orbit."}</h2>
+            <p>{fr ? "La sculpture AUREX résume notre façon de travailler : la stratégie fixe la direction, la technologie rend l’action possible, la performance se mesure et s’ajuste. La pyramide représente la structure et l’élévation ; l’orbite dorée, le mouvement continu qui mesure et ajuste." : "The AUREX sculpture sums up how we work: strategy sets the direction, technology makes action possible, performance is measured and adjusted. The pyramid stands for structure and elevation; the golden orbit, the continuous movement that measures and adjusts."}</p>
             <dl className="signature-legend">
               <div><dt>{fr ? "Stratégie" : "Strategy"}</dt><dd>{fr ? "Choisir où concentrer les efforts, et pourquoi." : "Choose where to focus effort, and why."}</dd></div>
               <div><dt>{fr ? "Technologie" : "Technology"}</dt><dd>{fr ? "Concevoir les outils et les automatisations qui rendent la stratégie praticable." : "Design the tools and automations that make the strategy workable."}</dd></div>
@@ -114,7 +114,7 @@ export default function Home() {
             <ArrowLink to="/methode">{t("method")}</ArrowLink>
           </div>
           <Sculpture3D
-            alt={fr ? "Sculpture AUREX : trois barres verticales croissantes, graphite et bleu cobalt, sur un socle circulaire" : "AUREX sculpture: three rising vertical bars in graphite and cobalt blue on a circular base"}
+            alt={fr ? "Sculpture AUREX : une pyramide argentée et graphite entourée d’une orbite dorée, sur un socle noir circulaire" : "AUREX sculpture: a silver and graphite pyramid circled by a golden orbit, on a circular black base"}
             hint={fr ? "Faites glisser pour faire pivoter la sculpture." : "Drag to rotate the sculpture."}
           />
         </div>

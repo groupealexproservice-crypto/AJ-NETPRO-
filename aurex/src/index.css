@@ -152,7 +152,7 @@ a:hover .rollover > span, button:hover .rollover > span { transform: translateY(
 .hero-line { display: block; }
 .hero-character { display: inline-block; opacity: 0; animation: characterIn .6s ease-out forwards; animation-delay: var(--char-delay); }
 @keyframes characterIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.hero-intro { width: min(52%, 620px); margin-left: clamp(0px, 10vw, 150px); }
+.hero-intro { width: min(52%, 620px); margin-left: 0; }
 .hero-intro > p { max-width: 62ch; margin-bottom: 30px; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .button-light, .button-ghost, .button-primary, .button-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; padding: 0 23px; border-radius: 999px; font-size: 13.5px; font-weight: 500; transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
