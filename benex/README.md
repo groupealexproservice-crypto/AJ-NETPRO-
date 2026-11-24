@@ -29,7 +29,7 @@ Données de démonstration (**jamais en production**) : `npm run db:seed:demo` c
 | `npm run check` | Compilation TypeScript (client et serveur) |
 | `npm run lint` | ESLint |
 | `npm test` | 15 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
-| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 31 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
+| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 35 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
 | `npm run assets` | Régénère brochures PDF FR/EN et images de partage depuis `src/content.ts` (Playwright requis) |
 
 ## Production
@@ -53,6 +53,10 @@ Variables : voir `.env.example` (toutes documentées). En production, le serveur
 
 ### Docker
 `docker build -t benex .` puis monter un volume sur `/app/storage` et fournir les variables d'environnement.
+
+## Sculpture 3D
+
+Section « Trois repères qui montent ensemble » de l'accueil (`src/components/Sculpture3D.tsx`). Le modèle `public/models/sculpture-benex.glb` (460 Ko) est affiché avec `@google/model-viewer`. L'image fixe `public/images/sculpture-benex.webp` s'affiche d'abord ; le moteur 3D (~300 Ko compressés) n'est téléchargé que lorsque la section approche de l'écran. Si WebGL ou le téléchargement échoue, l'image reste. Pas de zoom ni de panoramique (le défilement de la page n'est pas capturé) ; la rotation automatique est désactivée en mode mouvement réduit. Le fichier source Blender est dans `assets-3d/sculpture-benex.blend`.
 
 ## Architecture et sécurité
 

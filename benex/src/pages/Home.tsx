@@ -7,6 +7,7 @@ import { GrowthMorph } from "../components/GrowthMorph";
 import { ArrowLink, PageMeta, Rollover } from "../components/Layout";
 import { CtaBand, SectionHeading } from "../components/Sections";
 import { OrientationAssistant } from "../components/OrientationAssistant";
+import { Sculpture3D } from "../components/Sculpture3D";
 import { useSolutions } from "../hooks/useSolutions";
 
 function AnimatedLine({ text, delay }: { text: string; delay: number }) {
@@ -70,6 +71,26 @@ export default function Home() {
         </div>
         <div className="principles-row">
           {principles.map((principle, index) => <div key={principle.fr}><span>0{index + 1}</span><p>{tx(principle, lang)}</p></div>)}
+        </div>
+      </section>
+
+      <section className="signature-section section" aria-labelledby="signature-title">
+        <div className="shell signature-grid">
+          <div className="signature-copy">
+            <p className="eyebrow">Strategy. Innovation. Growth.</p>
+            <h2 id="signature-title">{lang === "fr" ? "Trois repères qui montent ensemble." : "Three markers that rise together."}</h2>
+            <p>{lang === "fr" ? "La sculpture BENEX résume notre façon de travailler : la stratégie fixe la direction, l’innovation rend l’action possible, la croissance se mesure et s’ajuste. Chaque barre s’appuie sur la précédente." : "The BENEX sculpture sums up how we work: strategy sets the direction, innovation makes action possible, growth is measured and adjusted. Each bar builds on the one before."}</p>
+            <dl className="signature-legend">
+              <div><dt>Strategy</dt><dd>{lang === "fr" ? "Choisir où concentrer les efforts, et pourquoi." : "Choose where to focus effort, and why."}</dd></div>
+              <div><dt>Innovation</dt><dd>{lang === "fr" ? "Concevoir les outils et les processus qui rendent la stratégie praticable." : "Design the tools and processes that make the strategy workable."}</dd></div>
+              <div><dt>Growth</dt><dd>{lang === "fr" ? "Mesurer les résultats convenus et optimiser en continu." : "Measure the agreed outcomes and keep optimizing."}</dd></div>
+            </dl>
+            <ArrowLink to="/methode">{t("method")}</ArrowLink>
+          </div>
+          <Sculpture3D
+            alt={lang === "fr" ? "Sculpture BENEX : trois barres verticales croissantes, graphite et bleu cobalt, sur un socle circulaire" : "BENEX sculpture: three rising vertical bars in graphite and cobalt blue on a circular base"}
+            hint={lang === "fr" ? "Faites glisser pour faire pivoter la sculpture." : "Drag to rotate the sculpture."}
+          />
         </div>
       </section>
 

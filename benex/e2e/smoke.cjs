@@ -8,7 +8,7 @@ const results = [];
 const check = (name, ok, detail = "") => { results.push({ name, ok }); console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? " — " + detail : ""}`); };
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"] });
   const errors = [];
   const newPage = async (opts = {}) => {
     const ctx = await browser.newContext({ locale: "fr-CA", viewport: { width: 1440, height: 900 }, ...opts });
@@ -155,6 +155,19 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await mp.goto(BASE + "/fr/solutions", { waitUntil: "networkidle" });
   await mp.screenshot({ path: `${SHOTS}/mobile-solutions.png` });
   check("no horizontal scroll on mobile solutions", (await mp.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)));
+
+  // 8b. 3D sculpture: still first, model loaded on demand, no auto-rotation under reduced motion
+  await page.goto(BASE + "/fr", { waitUntil: "networkidle" });
+  check("sculpture still image is present before the 3D engine loads", (await page.locator(".sculpture img.sculpture-still").count()) === 1);
+  await page.locator(".sculpture").scrollIntoViewIfNeeded();
+  const loaded = await page.waitForFunction(() => document.querySelector("model-viewer")?.loaded === true, null, { timeout: 25000 }).then(() => true).catch(() => false);
+  check("3D sculpture loads and is interactive", loaded && (await page.locator("model-viewer[camera-controls]").count()) === 1);
+  check("3D sculpture has an accessible description", ((await page.evaluate(() => document.querySelector("model-viewer")?.alt)) || "").length > 20);
+  await page.locator(".signature-section").screenshot({ path: `${SHOTS}/sculpture-section.png` });
+  const rmv = await newPage({ reducedMotion: "reduce" }); await rmv.page.goto(BASE + "/fr", { waitUntil: "networkidle" });
+  await rmv.page.locator(".sculpture").scrollIntoViewIfNeeded();
+  await rmv.page.waitForFunction(() => document.querySelector("model-viewer")?.loaded === true, null, { timeout: 25000 }).catch(() => {});
+  check("3D sculpture does not auto-rotate under reduced motion", (await rmv.page.evaluate(() => document.querySelector("model-viewer")?.autoRotate)) === false);
 
   // 9. Reduced motion
   const rm = await newPage({ reducedMotion: "reduce" }); await rm.page.goto(BASE + "/fr", { waitUntil: "networkidle" });
