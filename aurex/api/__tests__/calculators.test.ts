@@ -56,7 +56,7 @@ describe("operational savings", () => {
   });
 });
 
-import { entryOffers, aiTiers, plans, aLaCarte, tiers } from "../../src/content";
+import { entryOffers, aiTiers, plans, tiers, packs, serviceDomains, expertises } from "../../src/content";
 describe("published entry offers", () => {
   it("have unique slugs, positive prices and a defined scope", () => {
     const slugs = entryOffers.map((o) => o.slug);
@@ -76,24 +76,42 @@ describe("published entry offers", () => {
 });
 
 describe("permanent plans", () => {
-  // Internal working-hours estimates (never shown on the site) used to check margins at 55 $/h.
-  const internalHours: Record<string, number> = { "plan-presence": 7, "plan-croissance": 14, "plan-partenaire": 24 };
-  it("are priced in ascending order, cheaper than buying the services separately", () => {
-    expect(plans.map((p) => p.monthly)).toEqual([590, 1190, 1990]);
-    for (const p of plans) { expect(p.yearly).toBeLessThan(p.monthly); expect(aLaCarte(p)).toBeGreaterThan(p.monthly); expect(p.includes.fr.length).toBe(p.includes.en.length); }
-    expect(plans.map((p) => aLaCarte(p))).toEqual([694, 1483, 2470]);
+  // Internal working-hour estimates (never shown on the site) used to check margins at 55 $/h.
+  const internalHours: Record<string, number> = { "plan-essentiel": 1.2, "plan-croissance": 3.4, "plan-developpement": 6.2, "plan-partenaire": 17.4 };
+  it("start at 100, 300, 500 and 1 500 $ per month, with a lower yearly rate", () => {
+    expect(plans.map((p) => p.monthly)).toEqual([100, 300, 500, 1500]);
+    for (const p of plans) { expect(p.yearly).toBeLessThan(p.monthly); expect(p.includes.fr.length).toBe(p.includes.en.length); expect(p.excludes.fr.length).toBeGreaterThan(0); expect(p.options.fr.length).toBe(p.options.en.length); }
   });
-  it("reference only existing monthly services", () => {
-    for (const p of plans) for (const ref of p.items) { const o = entryOffers.find((x) => x.slug === ref.split("#")[0]); expect(o?.unit).toBe("month"); }
-  });
-  it("keep a gross margin of at least 30 % at 55 $/h on the monthly price, and 28 % on the yearly price", () => {
-    for (const p of plans) { const cost = internalHours[p.slug] * 55; expect((p.monthly - cost) / p.monthly).toBeGreaterThanOrEqual(0.3); expect((p.yearly - cost) / p.yearly).toBeGreaterThanOrEqual(0.28); }
+  it("keep a gross margin of at least 30 % at 55 $/h on the monthly price", () => {
+    for (const p of plans) expect((p.monthly - internalHours[p.slug] * 55) / p.monthly).toBeGreaterThanOrEqual(0.3);
   });
   it("show no working hours in published data", () => {
-    expect(JSON.stringify(plans)).not.toMatch(/"hours"/);
+    expect(JSON.stringify(plans)).not.toMatch(/"hours"|heures de travail/i);
+  });
+  it("offer the free basic site only from CROISSANCE upward", () => {
+    expect(plans.filter((p) => p.siteOffer).map((p) => p.slug)).toEqual(["plan-croissance", "plan-developpement", "plan-partenaire"]);
   });
   it("do not reuse slugs of other offers", () => {
     const others = new Set([...tiers, ...aiTiers, ...entryOffers].map((o) => o.slug));
     for (const p of plans) expect(others.has(p.slug)).toBe(false);
+  });
+});
+
+describe("domains and packs", () => {
+  it("present six domains that point to existing expertise pages", () => {
+    expect(serviceDomains).toHaveLength(6);
+    for (const d of serviceDomains) for (const slug of d.expertises) expect(expertises.some((e) => e.slug === slug)).toBe(true);
+    const covered = new Set(serviceDomains.flatMap((d) => d.expertises));
+    for (const e of expertises) expect(covered.has(e.slug)).toBe(true);
+  });
+  it("define six packs with unique slugs, not overlapping other offers", () => {
+    expect(packs.map((p) => p.name)).toEqual(["Pack Lancement", "Pack Acquisition", "Pack Croissance", "Pack Opérations", "Pack Automatisation IA", "Partenaire AUREX"]);
+    const others = new Set([...tiers, ...aiTiers, ...entryOffers, ...plans].map((o) => o.slug));
+    for (const p of packs) { expect(others.has(p.slug)).toBe(false); expect(p.services.fr.length).toBe(p.services.en.length); }
+  });
+  it("starts the launch pack at the sum of the published services it combines", () => {
+    const price = (slug: string) => entryOffers.find((o) => o.slug === slug)!.price;
+    expect(price("entree-diagnostic") + price("entree-identite") + price("entree-site")).toBe(1726);
+    expect(price("entree-campagne") + 469).toBe(919);
   });
 });

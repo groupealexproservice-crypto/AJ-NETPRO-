@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { Link } from "../components/LocaleLink";
 import { ArrowRight, Check } from "lucide-react";
+import { DomainsAndWays } from "../components/Offer";
 import { aiPole, businessSolutions, expertises, kpis, outcomes, poles, sectorExpertises, sectors, tx, txList, whyAurex } from "../content";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta } from "../components/Layout";
@@ -127,6 +128,7 @@ export function SolutionsPage() {
     <PageHero eyebrow="AUREX / SOLUTIONS" title={fr ? "Votre objectif d’abord. Les expertises ensuite." : "Your objective first. The expertise next."} text={fr ? "Nous partons de ce que vous voulez accomplir, puis nous mobilisons les expertises qui y mènent. Une seule équipe, plusieurs leviers." : "We start from what you want to achieve, then bring in the expertise that gets you there. One team, several levers."}>
       <ArrowLink to="/diagnostic">{t("diagnostic")}</ArrowLink>
     </PageHero>
+    <DomainsAndWays withWays={false} />
     <section className="outcome-list shell section">
       {outcomes.map((outcome) => (
         <article key={outcome.key} className="outcome-row">

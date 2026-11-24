@@ -178,6 +178,8 @@ export * from "./data/why";
 export * from "./data/innovations";
 export * from "./data/entryOffers";
 export * from "./data/plans";
+export * from "./data/aiService";
+export * from "./data/packs";
 /** The thirteen industries served. */
 export const sectors: Sector[] = buildSectors(legacySectors);
 

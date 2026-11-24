@@ -1,7 +1,8 @@
 import { Fragment, type CSSProperties } from "react";
+import { DomainsAndWays } from "../components/Offer";
 import { Link } from "../components/LocaleLink";
 import { ArrowRight } from "lucide-react";
-import { aiPole, automations, expertises, insights, kpis, methodSteps, outcomes, poles, sectors, tiers, tx } from "../content";
+import { positioning, aiPole, automations, expertises, insights, kpis, methodSteps, outcomes, poles, sectors, tiers, tx } from "../content";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta, Rollover } from "../components/Layout";
 import { CtaBand, SectionHeading } from "../components/Sections";
@@ -57,7 +58,7 @@ export default function Home() {
             <AnimatedLine text={lines[0]} delay={0.1} /><AnimatedLine text={lines[1]} delay={0.55} /><AnimatedLine text={lines[2]} delay={1.0} />
           </h1>
           <div className="hero-intro">
-            <p>{fr ? "AUREX Solutions accompagne les entreprises dans leur développement commercial, leur transformation numérique et l’optimisation de leurs opérations grâce à des solutions stratégiques, technologiques et marketing adaptées à leurs ambitions." : "AUREX Solutions supports businesses in their commercial development, digital transformation and operational optimization through strategic, technological and marketing solutions tailored to their ambitions."}</p>
+            <p>{tx(positioning, lang)}</p>
             <div className="hero-actions">
               <Link to="/expertises" className="button-light"><Rollover>{t("discover")}</Rollover><ArrowRight size={18} /></Link>
               <Link to="/consultation" className="button-ghost" onClick={() => track("cta_consultation")}><Rollover>{t("consult")}</Rollover><ArrowRight size={18} /></Link>
@@ -81,6 +82,8 @@ export default function Home() {
       </section>
 
       {/* 3. Architecture */}
+      <DomainsAndWays />
+
       <section className="architecture-section section" aria-labelledby="arch-title">
         <div className="shell">
           <p className="eyebrow">{fr ? "Notre organisation" : "How we are organized"}</p>

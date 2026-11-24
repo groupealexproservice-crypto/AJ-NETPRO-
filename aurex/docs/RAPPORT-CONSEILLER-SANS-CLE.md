@@ -75,7 +75,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Temps économisé, Productivité, Coûts opérationnels, Retour sur investissement (ROI).
 > 
-> À explorer aussi : AUREX AI & Automation, Catalogue d’automatisation et statuts.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, AUREX AI & Automation.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -95,7 +95,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Taux de conversion, Chiffre d’affaires, Temps économisé, Coût d’acquisition client (CAC).
 > 
-> À explorer aussi : Offres d’entrée et prix publics, Forfaits permanents (accompagnement continu).
+> À explorer aussi : Forfaits permanents (accompagnement continu), Offres d’entrée et prix publics.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -133,7 +133,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > - 05 Mesure — Suivre les résultats à travers des indicateurs précis.
 > - 06 Optimisation — Améliorer continuellement les performances et accompagner la croissance.
 > 
-> À explorer aussi : Intelligence artificielle et automatisation, PME et entrepreneurs.
+> À explorer aussi : Six domaines de services, trois façons de travailler et packs intégrés, Intelligence artificielle et automatisation.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -163,21 +163,19 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > Voici comment AUREX peut vous accompagner :
 > 
-> **Hôtellerie et restauration.** Créer une expérience distinctive avant, pendant et après la visite.
+> **Agents IA et automatisation : ce qui est possible, budgets et précautions**
 > 
-> **Enjeux fréquents** :
-> - Accroître la visibilité et les réservations directes.
-> - Maintenir une expérience de marque cohérente.
-> - Optimiser la planification et la qualité de service.
+> Un agent IA, expliqué simplement : Un agent IA est un assistant numérique qui exécute une tâche précise à partir de règles et de renseignements que vous approuvez : répondre à une question courante, noter une demande, proposer un rendez-vous. Il fait la première étape ; une personne valide ou prend le relais quand la situation est complexe, sensible ou incertaine.
+> - Agent téléphonique (appels entrants) — Accueillir l’appelant et répondre aux questions courantes à partir de renseignements approuvés, Recueillir le nom, les coordonnées et le motif de l’appel, Qualifier une demande ; prendre, modifier ou confirmer un rendez-vous si le calendrier le permet. Outils : Ligne téléphonique (numéro ou téléphonie existante), calendrier, CRM ou courriel, plateforme vocale. Le transfert vers une personne est toujours prévu.
+> - Agent de clavardage sur le site Web — Répondre aux questions courantes, Orienter les visiteurs vers le bon service, Recueillir les renseignements nécessaires à une soumission. Outils : Votre site Web, une adresse courriel ou un CRM pour recevoir les demandes.
+> - Agent de réception et de rendez-vous — Répondre aux demandes reçues par téléphone ou formulaire, Vérifier les disponibilités dans un calendrier connecté, Proposer un rendez-vous selon vos règles. Outils : Calendrier (Google, Microsoft), messagerie, formulaire.
+> - Agent de soutien administratif — Classer les demandes entrantes, Préparer des résumés de courriels ou de conversations, Acheminer une demande au bon membre de l’équipe. Outils : Courriel, feuilles de calcul, outils de gestion de tâches.
+> - Agent connecté au CRM — Organiser les renseignements que les prospects fournissent volontairement, Ajouter ou mettre à jour une fiche si le CRM et les autorisations le permettent, Rappeler à l’équipe les suivis à effectuer. Outils : CRM avec accès autorisé (par exemple HubSpot, Salesforce) : possibilités d’intégration, non des partenariats.
+> - Automatisations de marketing et de communication — Déclencher des communications après une demande ou un rendez-vous, Préparer des brouillons de contenu ou de courriels, Organiser les demandes de plusieurs canaux. Outils : Plateforme de courriel, calendrier, outils d’automatisation (n8n, Make, Zapier).
+> - Automatisations internes et opérationnelles — Relier formulaires, calendriers, feuilles de calcul, systèmes de gestion et messagerie, Réduire les doubles saisies, Transmettre une tâche à la bonne équipe. Outils : Vos logiciels, par connexion directe ou plateforme d’automatisation, selon les accès disponibles.
+> Budgets mensuels :
 > 
-> **Pistes AUREX, à valider avec vous** :
-> - Identité, contenus et plateformes de réservation.
-> - Campagnes locales et gestion de la réputation.
-> - Processus opérationnels et indicateurs de service.
-> 
-> **Expertises mobilisées d’abord** : Marketing stratégique et numérique, Customer marketing et expérience client, Solutions opérationnelles.
-> 
-> À explorer aussi : Sept solutions d’affaires intégrées.
+> À explorer aussi : Hôtellerie et restauration, Sept solutions d’affaires intégrées.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -217,7 +215,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Temps économisé, Productivité, Coûts opérationnels, Retour sur investissement (ROI).
 > 
-> À explorer aussi : Catalogue d’automatisation et statuts, Solutions logistiques et chaîne d’approvisionnement.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, Catalogue d’automatisation et statuts.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -237,7 +235,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Taux de conversion, Chiffre d’affaires, Temps économisé, Coût d’acquisition client (CAC).
 > 
-> À explorer aussi : Customer marketing et expérience client, Offres d’entrée et prix publics.
+> À explorer aussi : Customer marketing et expérience client, Agents IA et automatisation : ce qui est possible, budgets et précautions.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -297,7 +295,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Temps économisé, Productivité, Coûts opérationnels, Retour sur investissement (ROI).
 > 
-> À explorer aussi : AUREX AI & Automation, Catalogue d’automatisation et statuts.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, AUREX AI & Automation.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -310,7 +308,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > AUREX Solutions ne publie aucun client, témoignage, partenariat, certification, résultat chiffré ni présence internationale qui n’ait été vérifié et autorisé par écrit. Aucune étude de cas n’est affichée pour le moment : elles seront publiées après validation des faits et autorisation des clients concernés. L’entreprise est établie à Montréal. Pour connaître l’équipe ou obtenir des références, le plus simple est de demander une consultation.
 > 
-> À explorer aussi : Hôtellerie et restauration, Marketing stratégique et numérique.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, Hôtellerie et restauration.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -434,7 +432,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > **Transparence avant tout.** Trois façons de travailler ensemble :
 > - Prestation individuelle — Un besoin précis, un périmètre fermé, un devis. Idéal pour un diagnostic, un site, une étude ou une campagne.
-> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le volume d’heures est défini au devis.
+> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le périmètre est défini au devis.
 > - Intervention sur mesure — Une combinaison d’expertises construite autour de votre situation, pour les besoins plus larges ou plus complexes.
 > Les montants sont en dollars canadiens (CAD), taxes en sus, établis sur devis après un diagnostic partagé. Les honoraires AUREX, les budgets publicitaires (investis directement auprès des plateformes) et les outils ou licences sont indiqués séparément.
 > 
@@ -445,7 +443,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > **Transparence avant tout.** Trois façons de travailler ensemble :
 > - Prestation individuelle — Un besoin précis, un périmètre fermé, un devis. Idéal pour un diagnostic, un site, une étude ou une campagne.
-> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le volume d’heures est défini au devis.
+> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le périmètre est défini au devis.
 > - Intervention sur mesure — Une combinaison d’expertises construite autour de votre situation, pour les besoins plus larges ou plus complexes.
 > Les montants sont en dollars canadiens (CAD), taxes en sus, établis sur devis après un diagnostic partagé. Les honoraires AUREX, les budgets publicitaires (investis directement auprès des plateformes) et les outils ou licences sont indiqués séparément.
 > 
@@ -456,7 +454,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > **Transparence avant tout.** Trois façons de travailler ensemble :
 > - Prestation individuelle — Un besoin précis, un périmètre fermé, un devis. Idéal pour un diagnostic, un site, une étude ou une campagne.
-> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le volume d’heures est défini au devis.
+> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le périmètre est défini au devis.
 > - Intervention sur mesure — Une combinaison d’expertises construite autour de votre situation, pour les besoins plus larges ou plus complexes.
 > Les montants sont en dollars canadiens (CAD), taxes en sus, établis sur devis après un diagnostic partagé. Les honoraires AUREX, les budgets publicitaires (investis directement auprès des plateformes) et les outils ou licences sont indiqués séparément.
 > 
@@ -478,7 +476,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Rendement publicitaire (ROAS), Coût d’acquisition client (CAC), Taux de conversion, Retour sur investissement (ROI).
 > 
-> À explorer aussi : Calculateurs d’affaires, Analyse de marché et intelligence économique.
+> À explorer aussi : Calculateurs d’affaires, Agents IA et automatisation : ce qui est possible, budgets et précautions.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -487,7 +485,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > **Transparence avant tout.** Trois façons de travailler ensemble :
 > - Prestation individuelle — Un besoin précis, un périmètre fermé, un devis. Idéal pour un diagnostic, un site, une étude ou une campagne.
-> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le volume d’heures est défini au devis.
+> - Abonnement mensuel — Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le périmètre est défini au devis.
 > - Intervention sur mesure — Une combinaison d’expertises construite autour de votre situation, pour les besoins plus larges ou plus complexes.
 > Les montants sont en dollars canadiens (CAD), taxes en sus, établis sur devis après un diagnostic partagé. Les honoraires AUREX, les budgets publicitaires (investis directement auprès des plateformes) et les outils ou licences sont indiqués séparément.
 > 
@@ -502,7 +500,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > AUREX Solutions ne publie aucun client, témoignage, partenariat, certification, résultat chiffré ni présence internationale qui n’ait été vérifié et autorisé par écrit. Aucune étude de cas n’est affichée pour le moment : elles seront publiées après validation des faits et autorisation des clients concernés. L’entreprise est établie à Montréal. Pour connaître l’équipe ou obtenir des références, le plus simple est de demander une consultation.
 > 
-> À explorer aussi : Customer marketing et expérience client, Solutions aux entreprises.
+> À explorer aussi : Customer marketing et expérience client, Six domaines de services, trois façons de travailler et packs intégrés.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -528,6 +526,8 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > AUREX Solutions ne publie aucun client, témoignage, partenariat, certification, résultat chiffré ni présence internationale qui n’ait été vérifié et autorisé par écrit. Aucune étude de cas n’est affichée pour le moment : elles seront publiées après validation des faits et autorisation des clients concernés. L’entreprise est établie à Montréal. Pour connaître l’équipe ou obtenir des références, le plus simple est de demander une consultation.
 > 
+> À explorer aussi : Six domaines de services, trois façons de travailler et packs intégrés.
+> 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
 ### price — Avez-vous des bureaux en Europe ?
@@ -538,6 +538,8 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > **Références, témoignages et certifications**
 > 
 > AUREX Solutions ne publie aucun client, témoignage, partenariat, certification, résultat chiffré ni présence internationale qui n’ait été vérifié et autorisé par écrit. Aucune étude de cas n’est affichée pour le moment : elles seront publiées après validation des faits et autorisation des clients concernés. L’entreprise est établie à Montréal. Pour connaître l’équipe ou obtenir des références, le plus simple est de demander une consultation.
+> 
+> À explorer aussi : Six domaines de services, trois façons de travailler et packs intégrés.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -576,7 +578,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > AUREX Solutions n’affirme pas être entièrement conforme à la Loi 25, à la LCAP ou à la loi 96 : ces points doivent être validés par un professionnel du droit, et l’entreprise le documente. Sur le site, le consentement est demandé de façon explicite avant toute demande, avec la version du texte conservée. Pour la prospection par courriel, la LCAP exige en général un consentement exprès ou, dans des cas limités, tacite, l’identification de l’expéditeur et un moyen de se désabonner : on n’envoie donc pas de courriels commerciaux sans consentement. Pour l’IA, nous appliquons des permissions définies, une supervision humaine et la minimisation des données. Ne saisissez jamais de renseignements sensibles dans cette conversation (numéro d’assurance sociale, carte de crédit, mot de passe) : ils ne sont pas nécessaires et ne doivent pas être partagés ici. Les détails figurent dans la politique de confidentialité.
 > 
-> À explorer aussi : Santé, AUREX AI & Automation.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, Santé.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -596,7 +598,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Temps économisé, Productivité, Coûts opérationnels, Retour sur investissement (ROI).
 > 
-> À explorer aussi : AUREX AI & Automation, Conseil stratégique et analyse d’affaires.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, AUREX AI & Automation.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -616,7 +618,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Temps économisé, Productivité, Coûts opérationnels, Retour sur investissement (ROI).
 > 
-> À explorer aussi : AUREX AI & Automation, Conseil stratégique et analyse d’affaires.
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions, AUREX AI & Automation.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -638,16 +640,19 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > Voici comment AUREX peut vous accompagner :
 > 
-> **Solutions aux entreprises**
+> **Six domaines de services, trois façons de travailler et packs intégrés**
 > 
-> - Gagner davantage de clients — Visibilité, acquisition, publicité et prospection B2B organisées autour d’un pipeline suivi. (Marketing stratégique et numérique, Publicité numérique et campagnes PPC, Création, développement et croissance des entreprises)
-> - Augmenter le chiffre d’affaires — Meilleure conversion, ventes complémentaires, fidélisation et nouveaux marchés. (Création de sites web et solutions numériques, Customer marketing et expérience client, Analyse de marché et intelligence économique)
-> - Réduire les coûts — Processus simplifiés, tâches automatisées et dépenses mieux contrôlées. (Solutions opérationnelles, Intelligence artificielle et automatisation)
-> - Optimiser les opérations — Organisation, logistique et tableaux de bord pour décider avec des faits. (Solutions opérationnelles, Solutions logistiques et chaîne d’approvisionnement)
-> - Améliorer la rentabilité — Analyse des marges, des risques et des priorités avant d’investir. (Conseil stratégique et analyse d’affaires, Publicité numérique et campagnes PPC)
-> - Construire une croissance durable — Une entreprise structurée, une feuille de route et des indicateurs suivis dans le temps. (Création, développement et croissance des entreprises, Conseil stratégique et analyse d’affaires)
+> AUREX Solutions aide les entreprises à mieux se présenter, à attirer des clients et à améliorer leurs opérations grâce au Web, au marketing, au conseil et à l’intelligence artificielle.
+> - Sites Web et présence numérique — Création, refonte, pages de vente, formulaires, entretien et amélioration du site.
+> - Image de marque et création numérique — Identité visuelle, images, contenu, publicité visuelle et matériel de communication.
+> - Marketing et acquisition de clients — Campagnes publicitaires, marketing par courriel, visibilité locale, prospection et suivi des résultats.
+> - Études de marché et développement commercial — Analyse de marché et de la concurrence, développement de services, plans de croissance et recherche d’occasions d’affaires.
+> - Opérations et logistique — Diagnostic des processus, amélioration de l’efficacité, optimisation des flux et plan d’action.
+> - Automatisation et agents IA — Automatisation des tâches, agents de clavardage ou de soutien et agents téléphoniques lorsque les outils du client le permettent.
+> Trois façons de travailler :
+> - Services ponctuels — Vous savez ce que vous voulez acheter : un site, une campagne, une étude, un diagnostic, une automatisation. Prix, livrables, échéancier et limites sont définis avant le début.
 > 
-> À explorer aussi : Customer marketing et expérience client, Création de sites web et solutions numériques.
+> À explorer aussi : Solutions aux entreprises, Customer marketing et expérience client.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -706,6 +711,8 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > AUREX Solutions n’affirme pas être entièrement conforme à la Loi 25, à la LCAP ou à la loi 96 : ces points doivent être validés par un professionnel du droit, et l’entreprise le documente. Sur le site, le consentement est demandé de façon explicite avant toute demande, avec la version du texte conservée. Pour la prospection par courriel, la LCAP exige en général un consentement exprès ou, dans des cas limités, tacite, l’identification de l’expéditeur et un moyen de se désabonner : on n’envoie donc pas de courriels commerciaux sans consentement. Pour l’IA, nous appliquons des permissions définies, une supervision humaine et la minimisation des données. Ne saisissez jamais de renseignements sensibles dans cette conversation (numéro d’assurance sociale, carte de crédit, mot de passe) : ils ne sont pas nécessaires et ne doivent pas être partagés ici. Les détails figurent dans la politique de confidentialité.
 > 
+> À explorer aussi : Agents IA et automatisation : ce qui est possible, budgets et précautions.
+> 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
 ### en — What does AUREX Solutions do?
@@ -726,7 +733,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > **Transparency first.** Three ways to work together:
 > - Individual service — One clear need, a closed scope, one proposal. Ideal for a diagnostic, a site, a study or a campaign.
-> - Monthly subscription — A team available every month to steer, optimize and report. Hours are defined in the proposal.
+> - Monthly subscription — A team available every month to steer, optimize and report. The scope is defined in the proposal.
 > - Tailored engagement — A combination of expertise built around your situation, for broader or more complex needs.
 > Amounts are in Canadian dollars (CAD), taxes extra, set by proposal after a shared diagnostic. AUREX fees, advertising budgets (invested directly with the platforms) and tools or licences are shown separately.
 > 
@@ -803,7 +810,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **How we measure** : Time saved, Productivity, Operating costs, Return on investment (ROI).
 > 
-> Also worth exploring : AUREX AI & Automation, Market analysis and business intelligence.
+> Also worth exploring : AUREX AI & Automation, AI agents and automation: possibilities, budgets and precautions.
 > 
 > Benefits are targeted objectives, not guarantees. A diagnostic clarifies the scope that fits your situation: would you like to request a consultation?
 
@@ -868,12 +875,14 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > **Forfaits permanents (accompagnement continu)**
 > 
 > Pour les entreprises qui veulent déléguer durablement, AUREX propose trois forfaits permanents, en dollars canadiens, taxes en sus.
-> - AUREX PRÉSENCE — 790 $ par mois (750 $ avec engagement de 12 mois), 9 heures incluses par mois : Maintenance, hébergement et sauvegardes du site, Mises à jour et petites modifications du contenu, Réseaux sociaux : 1 profil, 8 publications par mois, Fiche Google à jour et suivi des avis, Rapport mensuel simple. Non inclus : Publicité payante, Refonte du site.
-> - AUREX CROISSANCE — 1 490 $ par mois (1 415 $ avec engagement de 12 mois), 17 heures incluses par mois : Tout AUREX PRÉSENCE, Réseaux sociaux : 2 plateformes, 12 publications par mois, SEO local et visibilité IA (une page ou un article par mois), Gestion Google Ads (le budget publicitaire est en sus), Optimisation mensuelle du site et des formulaires, Tableau de bord des demandes et bilan trimestriel. Non inclus : Développement sur mesure, Systèmes d’IA complexes.
-> - AUREX PARTENAIRE — 2 990 $ par mois (2 840 $ avec engagement de 12 mois), 35 heures incluses par mois : Tout AUREX CROISSANCE, Automatisations suivies et améliorées chaque mois, Assistant IA sur votre contenu, mis à jour, Rencontre stratégique mensuelle et feuille de route, Veille concurrentielle synthétisée, Tableau de bord de pilotage et bilan trimestriel détaillé. Non inclus : Projets d’envergure (soumis séparément).
-> Conditions : Engagement minimum de 6 mois, puis mensuel avec préavis de 30 jours ; Heures de travail incluses chaque mois ; tout travail additionnel est soumis à votre approbation ; Budget publicitaire, licences et frais de tiers en sus, au coût réel ; Rapport mensuel et bilan trimestriel avec indicateurs convenus. Aucun résultat n’est garanti ; un rapport mensuel et un bilan trimestriel mesurent l’avancement.
+> - ESSENTIEL — à partir de 100 $ par mois (95 $ avec engagement de 12 mois). Pour : Travailleurs autonomes et très petites entreprises qui ont déjà un site et veulent qu’il reste à jour et sécurisé. Inclus : Surveillance, sauvegardes et mises à jour du site : en continu, rapport chaque mois ; Fiche Google à jour et une réponse aux avis : chaque mois ; Une petite modification de contenu (environ 15 minutes) : chaque mois ; Rapport mensuel automatique d’une page. Non inclus : Publications sur les réseaux sociaux, Nouvelles pages ou refonte, Hébergement et nom de domaine (au coût réel), Publicité. Options : Hébergement géré : au coût réel, Modification supplémentaire : sur devis, Passer à CROISSANCE pour publier sur les réseaux.
+> - CROISSANCE — à partir de 300 $ par mois (285 $ avec engagement de 12 mois). Pour : Petites entreprises locales (commerces, métiers, services) qui veulent une présence régulière sur un réseau social. Inclus : Tout ESSENTIEL ; 4 publications par mois sur 1 profil (textes et visuels sur gabarits, assistés par IA) ; 1 révision par publication, avec votre approbation avant la mise en ligne ; Rapport mensuel commenté d’une page, avec une recommandation. Non inclus : Photographie et vidéo, Publicité payante, Plus d’un profil, Création de pages du site. Options : 4 publications de plus : 150 $ par mois, Deuxième profil : sur devis, Passer à DÉVELOPPEMENT pour le SEO local.
+> - DÉVELOPPEMENT — à partir de 500 $ par mois (475 $ avec engagement de 12 mois). Pour : Entreprises locales qui veulent apparaître dans les recherches Google et sur les cartes. Inclus : Tout CROISSANCE ; SEO local : 1 page ou article optimisé par mois ; Optimisation de la fiche Google et suivi de vos positions : chaque mois ; Recommandations d’amélioration du site dans le rapport mensuel. Non inclus : Publicité payante, Plus d’un profil social, Refonte du site, Création de liens externes payants. Options : Infolettre mensuelle : 249 $ par mois, Page ou article de plus : 150 $, Passer à PARTENAIRE pour la publicité et le suivi stratégique.
+> - PARTENAIRE — à partir de 1 500 $ par mois (1 425 $ avec engagement de 12 mois). Pour : PME qui veulent confier leur visibilité et leur acquisition de clients, avec un interlocuteur régulier. Inclus : Tout DÉVELOPPEMENT ; Plan de 90 jours au départ, centré sur une priorité principale : une fois, puis révisé chaque trimestre ; 12 publications par mois sur 2 plateformes ; Gestion Google Ads : 1 à 2 campagnes (budget publicitaire en sus), optimisation et rapport mensuels ; Rencontre stratégique de 45 minutes : chaque mois ; Tableau de bord des demandes et des indicateurs convenus. Non inclus : Budget publicitaire, Développement de site sur mesure, Agents IA et automatisations (offerts en option), Plus de 2 campagnes publicitaires. Options : Suivi d’automatisation : 290 $ par mois, Assistant IA — suivi : 349 $ par mois, Veille concurrentielle : 199 $ par mois, Agent téléphonique IA : voir Automatisation.
+> Conditions : Prix de départ en dollars canadiens, taxes en sus, par mois ; Engagement minimum de 6 mois, puis mensuel avec préavis de 30 jours ; engagement de 12 mois à −5 % ; Le périmètre est précisé à la signature ; tout travail additionnel est soumis à votre approbation ; Budget publicitaire, nom de domaine, hébergement, licences et frais de tiers en sus, au coût réel ; Aucun résultat de vente ou de clientèle n’est garanti : un rapport mensuel et des indicateurs convenus mesurent l’avancement.
+> Site Web de base offert avec un engagement de 12 mois : Pour tout engagement de 12 mois à CROISSANCE, DÉVELOPPEMENT ou PARTENAIRE, la création d’un site Web de base est offerte. Ce n’est pas un site gratuit pour toute demande : voici exactement ce qui est inclus. Inclus : Site de base de 3 pages (Accueil, Services, Contact) avec CROISSANCE et DÉVELOPPEMENT ; jusqu’à 5 pages avec PARTENAIRE ; Gabarit adapté aux mobiles, formulaire de contact, bases du référencement ; 2 rondes de révisions ; Mise en ligne dans un délai cible de 4 à 6 semaines après réception de vos contenus. Non inclus : Nom de domaine et hébergement (au coût réel ; l’entretien du site est inclus dans votre forfait) ; Applications ou extensions payantes ; Boutique en ligne, réservation, espace membre et fonctions avancées ; Rédaction, photographie et traduction : sur devis. Si vous résiliez avant la fin des 12 mois, la valeur du site (469 $ pour 3 pages, 1 490 $ pour 5 pages) est due au prorata des mois restants. Le site vous appartient une fois ce montant réglé.
 > 
-> À explorer aussi : Création, développement et croissance des entreprises, Conseil stratégique et analyse d’affaires.
+> À explorer aussi : Création, développement et croissance des entreprises, Six domaines de services, trois façons de travailler et packs intégrés.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -882,18 +891,18 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
 > Here is how AUREX can support you :
 > 
-> **AUREX AI & Automation**
+> **Six service areas, three ways to work and integrated packs**
 > 
-> AUREX AI & Automation: Artificial intelligence across every department.
-> Custom agents:
-> - Sales agent — Prepares follow-ups, reminders and opportunity summaries.
-> - Marketing agent — Proposes content, calendars and campaign analyses.
-> - Prospecting agent — Researches and qualifies prospects against your criteria and consent rules.
-> - Customer service agent — Answers common questions and routes complex requests to a person.
-> - Administrative agent — Sorts documents, drafts messages and schedules appointments.
-> - Data analysis agent — Consolidates your data and produces readable reports.
-> - Logistics management agent — Watches stock, orders and lead times, and flags deviations.
+> AUREX Solutions helps businesses present themselves better, attract customers and improve their operations through the web, marketing, consulting and artificial intelligence.
+> - Websites and digital presence — Creation, redesign, sales pages, forms, upkeep and improvement of the site.
+> - Brand image and digital creation — Visual identity, images, content, visual advertising and communication material.
+> - Marketing and customer acquisition — Ad campaigns, e-mail marketing, local visibility, prospecting and results tracking.
+> - Market studies and business development — Market and competition analysis, service development, growth plans and search for business opportunities.
+> - Operations and logistics — Process diagnostic, efficiency improvement, flow optimization and action plan.
+> - Automation and AI agents — Task automation, chat or support agents and phone agents when the client’s tools allow.
+> Three ways to work :
+> - One-off services — You know what you want to buy: a site, a campaign, a study, a diagnostic, an automation. Price, deliverables, timeline and limits are set before the start.
 > 
-> Also worth exploring : References, testimonials and certifications, Performance indicators.
+> Also worth exploring : AUREX AI & Automation, AI agents and automation: possibilities, budgets and precautions.
 > 
 > Benefits are targeted objectives, not guarantees. A diagnostic clarifies the scope that fits your situation: would you like to request a consultation?

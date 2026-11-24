@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "../components/LocaleLink";
-import { agents, automationCatalog, availabilityLabel, governance, innovationIdeas, integrations, tx, type Availability } from "../content";
+import { agents, aiBudgetNote, aiBudgets, aiCaveat, aiFaq, aiPlain, aiPractices, aiPracticesNote, aiQuoteInfo, aiSteps, aiStepsNote, agentKinds, txList, automationCatalog, availabilityLabel, governance, innovationIdeas, integrations, tx, type Availability } from "../content";
 import { adProfitability, automationGains, defaultAdInputs, defaultAutomationInputs, defaultSavingsInputs, operationalSavings, type AdInputs, type AutomationInputs, type SavingsInputs } from "../calculators";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta } from "../components/Layout";
@@ -170,6 +170,32 @@ export function AutomationPage() {
       <AskAurex placeholder={fr ? "Quelles tâches pourrait-on automatiser chez nous ?" : "Which tasks could we automate?"} label={fr ? "Poser une question au conseiller IA" : "Ask the AI advisor"} />
       <ArrowLink to="/calculateurs">{fr ? "Calculer les gains" : "Calculate the gains"}</ArrowLink>
     </PageHero>
+    <Section eyebrow={fr ? "En termes simples" : "In plain terms"} title={tx(aiPlain.title, lang)}>
+      <p className="muted-note">{tx(aiPlain.text, lang)}</p>
+    </Section>
+    <Section eyebrow={fr ? "Ce que les agents peuvent faire" : "What agents can do"} title={fr ? "Sept familles d’agents et d’automatisations." : "Seven families of agents and automations."}>
+      <div className="auto-grid">{agentKinds.map((k) => <article key={k.key}><h3>{tx(k.title, lang)}</h3><ul>{txList(k.can, lang).map((x) => <li key={x}>{x}</li>)}</ul><p><strong>{fr ? "Outils possibles : " : "Possible tools: "}</strong>{tx(k.tools, lang)}</p></article>)}</div>
+      <p className="muted-note">{tx(aiCaveat, lang)}</p>
+    </Section>
+    <Section eyebrow={fr ? "Notre méthode" : "Our method"} title={fr ? "Huit étapes, de la découverte au suivi." : "Eight steps, from discovery to follow-up."}>
+      <ol className="ai-steps">{aiSteps.map((st) => <li key={st.title.fr}><strong>{tx(st.title, lang)}</strong> {tx(st.text, lang)}</li>)}</ol>
+      <p className="muted-note">{tx(aiStepsNote, lang)}</p>
+    </Section>
+    <Section eyebrow={fr ? "Budgets mensuels" : "Monthly budgets"} title={fr ? "Ce que peut couvrir chaque budget, avec réalisme." : "What each budget can realistically cover."}>
+      <div className="entry-grid">{aiBudgets.map((b) => <article key={b.price} className="entry-card"><h3>{tx(b.title, lang)}</h3><p>{tx(b.covers, lang)}</p><p className="entry-upgrade"><strong>{fr ? "Non couvert : " : "Not covered: "}</strong>{tx(b.notCovered, lang)}</p></article>)}</div>
+      <p className="muted-note">{tx(aiBudgetNote, lang)} <Link to="/tarifs#unite">{fr ? "Voir les prix de départ" : "See starting prices"}</Link></p>
+    </Section>
+    <Section eyebrow={fr ? "Confidentialité et limites" : "Privacy and limits"} title={fr ? "Des pratiques prudentes, dès la conception." : "Careful practices, from the design stage."}>
+      <ul className="plan-terms">{txList(aiPractices, lang).map((x) => <li key={x}>{x}</li>)}</ul>
+      <p className="muted-note">{tx(aiPracticesNote, lang)}</p>
+    </Section>
+    <Section eyebrow={fr ? "Questions fréquentes" : "Frequently asked questions"} title={fr ? "Ce que les dirigeants demandent le plus." : "What business owners ask most."}>
+      <div className="agent-grid">{aiFaq.map((f) => <div key={f.q.fr}><h3>{tx(f.q, lang)}</h3><p>{tx(f.a, lang)}</p></div>)}</div>
+    </Section>
+    <Section eyebrow={fr ? "Avant une soumission" : "Before a quote"} title={fr ? "Ce que nous avons besoin de savoir." : "What we need to know."}>
+      <ul className="plan-terms">{txList(aiQuoteInfo, lang).map((x) => <li key={x}>{x}</li>)}</ul>
+      <div className="engagement-actions"><ArrowLink to="/diagnostic">{t("diagnostic")}</ArrowLink><ArrowLink to="/consultation">{t("consult")}</ArrowLink></div>
+    </Section>
     <Section eyebrow={fr ? "Catalogue" : "Catalogue"} title={fr ? "Douze familles d’automatisation." : "Twelve families of automation."}>
       <div className="auto-grid">{automationCatalog.map((item) => <article key={item.key}><StatusChip status={item.status} /><h3>{tx(item.title, lang)}</h3><p>{tx(item.text, lang)}</p></article>)}</div>
       <p className="muted-note">{fr ? "Le statut indique la maturité de chaque offre : disponible, en développement ou ambition. Chaque projet est cadré lors d’un diagnostic." : "The status shows the maturity of each offer: available, in development or ambition. Each project is scoped during a diagnostic."}</p>

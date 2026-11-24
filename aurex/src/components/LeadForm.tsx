@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useSearchParams } from "react-router";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { aiTiers, entryOffers, plans, expertises, sectors, tiers, tx } from "../content";
+import { aiTiers, entryOffers, packs, plans, expertises, sectors, tiers, tx } from "../content";
 import { track } from "../lib/track";
 import { useLanguage } from "../i18n";
 import { trpc } from "../providers/trpc";
@@ -27,7 +27,7 @@ export function LeadForm({ mode }: { mode: LeadMode }) {
   const { lang, t } = useLanguage();
   const [params] = useSearchParams();
   const allTiers = [...tiers, ...aiTiers];
-  const solutionSlugs = [...allTiers.map((s) => s.slug), ...entryOffers.map((o) => o.slug), ...plans.map((o) => o.slug)];
+  const solutionSlugs = [...allTiers.map((s) => s.slug), ...entryOffers.map((o) => o.slug), ...plans.map((o) => o.slug), ...packs.map((o) => o.slug)];
   const presetSolution = solutionSlugs.includes(params.get("solution") ?? "") ? params.get("solution")! : "";
   const presetSector = sectors.some((s) => s.slug === params.get("sector")) ? params.get("sector")! : "";
   const [form, setForm] = useState<FormState>({ ...initialState, solution: presetSolution, sector: presetSector });
@@ -128,7 +128,7 @@ export function LeadForm({ mode }: { mode: LeadMode }) {
 
   const engagementFields = needsSolutionChoice && (
     <div className="form-grid two-columns">
-      <label className="field"><span>{fr ? "Offre envisagée" : "Offer of interest"}</span><select value={form.solution} onChange={(e) => update("solution", e.target.value)}><option value="">{fr ? "À déterminer avec vous" : "To be defined with you"}</option>{allTiers.map((s) => <option key={s.slug} value={s.slug}>{s.name} — {tx(s.verb, lang)}</option>)}{plans.map((o) => <option key={o.slug} value={o.slug}>{o.name} — {fr ? "forfait permanent" : "permanent plan"}</option>)}{entryOffers.map((o) => <option key={o.slug} value={o.slug}>{tx(o.title, lang)}</option>)}</select></label>
+      <label className="field"><span>{fr ? "Offre envisagée" : "Offer of interest"}</span><select value={form.solution} onChange={(e) => update("solution", e.target.value)}><option value="">{fr ? "À déterminer avec vous" : "To be defined with you"}</option>{allTiers.map((s) => <option key={s.slug} value={s.slug}>{s.name} — {tx(s.verb, lang)}</option>)}{packs.map((o) => <option key={o.slug} value={o.slug}>{o.name} — {fr ? "pack intégré" : "integrated pack"}</option>)}{plans.map((o) => <option key={o.slug} value={o.slug}>{o.name} — {fr ? "forfait permanent" : "permanent plan"}</option>)}{entryOffers.map((o) => <option key={o.slug} value={o.slug}>{tx(o.title, lang)}</option>)}</select></label>
       <label className="field"><span>{fr ? "Type d’accompagnement" : "Type of engagement"} *</span><select value={form.engagementType} onChange={(e) => update("engagementType", e.target.value)} required><option value="">{t("select")}</option><option value="mandate">{fr ? "Mandat ponctuel (sur devis)" : "One-off mandate (quoted)"}</option><option value="monthly">{fr ? "Accompagnement mensuel (sur devis)" : "Monthly support (quoted)"}</option><option value="undecided">{fr ? "Je ne sais pas encore" : "Not sure yet"}</option></select></label>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Check } from "lucide-react";
 import { Link } from "../components/LocaleLink";
-import { agents, aiAcrossExpertise, entryOffers, plans, planTerms, aLaCarte, type EntryOffer, aiCosts, aiTiers, automations, expertises, formats, governance, integrations, tiers, tx, txList, valueFramework, kpis, type Tier } from "../content";
+import { agents, aiAcrossExpertise, entryOffers, plans, planTerms, siteOffer, type EntryOffer, aiCosts, aiTiers, automations, expertises, formats, governance, integrations, tiers, tx, txList, valueFramework, kpis, type Tier } from "../content";
 import { defaultInputs, defaultScenarios, inputWarnings, simulate, type Scenario, type SimInputs } from "../simulator";
 import { useLanguage } from "../i18n";
 import { trpc } from "../providers/trpc";
@@ -10,6 +10,7 @@ import { CtaBand, PageHero } from "../components/Sections";
 import { Glyph } from "../components/Glyphs";
 import { DashboardPreview } from "../components/DashboardPreview";
 import { track } from "../lib/track";
+import { PacksSection } from "../components/Offer";
 import { fmtMoney, fmtNum } from "../lib/format";
 import { AskAurex } from "../components/AssistantChat";
 
@@ -47,15 +48,23 @@ function PlanCard({ plan }: { plan: (typeof plans)[number] }) {
   const fr = lang === "fr";
   return (
     <article className={`plan-card${plan.highlight ? " plan-card-featured" : ""}`} id={plan.slug}>
-      {plan.highlight && <p className="plan-badge">{fr ? "Le plus choisi pour grandir" : "Best for growing"}</p>}
+      {plan.highlight && <p className="plan-badge">{fr ? "Le plus choisi" : "Most chosen"}</p>}
       <h3>{plan.name}</h3>
       <p className="plan-tagline">{tx(plan.tagline, lang)}</p>
+      <p className="entry-from">{fr ? "À partir de" : "From"}</p>
       <p className="entry-price"><strong>{fmtMoney(plan.monthly, lang)}</strong><span>{fr ? " / mois" : " / month"}</span></p>
       <p className="entry-upgrade">{fr ? "Ou " : "Or "}<strong>{fmtMoney(plan.yearly, lang)}</strong>{fr ? " / mois avec un engagement de 12 mois (−5 %)" : " / month with a 12-month commitment (−5%)"}</p>
-      <p className="plan-saving">{fr ? "Valeur à la carte : " : "À la carte value: "}<s>{fmtMoney(aLaCarte(plan), lang)}</s> {fr ? "— vous économisez" : "— you save"} <strong>{fmtMoney(aLaCarte(plan) - plan.monthly, lang)}</strong>{fr ? " par mois" : " per month"}</p>
-      <p className="plan-audience">{tx(plan.audience, lang)}</p>
+      <dl className="plan-facts">
+        <div><dt>{fr ? "Pour qui" : "Who it is for"}</dt><dd>{tx(plan.forWho, lang)}</dd></div>
+        <div><dt>{fr ? "Problème résolu" : "Problem solved"}</dt><dd>{tx(plan.problem, lang)}</dd></div>
+      </dl>
+      <p className="plan-sub">{fr ? "Inclus, avec la fréquence" : "Included, with frequency"}</p>
       <ul>{txList(plan.includes, lang).map((x) => <li key={x}><Check size={15} aria-hidden="true" />{x}</li>)}</ul>
-      <p className="entry-upgrade"><strong>{fr ? "Non inclus : " : "Not included: "}</strong>{txList(plan.excludes, lang).join(", ")}</p>
+      <p className="entry-upgrade"><strong>{fr ? "Suivi : " : "Follow-up: "}</strong>{tx(plan.followUp, lang)}</p>
+      <p className="entry-upgrade"><strong>{fr ? "Non inclus : " : "Not included: "}</strong>{txList(plan.excludes, lang).join(" · ")}</p>
+      <p className="entry-upgrade"><strong>{fr ? "Options : " : "Options: "}</strong>{txList(plan.options, lang).join(" · ")}</p>
+      <p className="plan-why"><strong>{fr ? "Pourquoi ce forfait : " : "Why this plan: "}</strong>{tx(plan.why, lang)}</p>
+      {plan.siteOffer && <p className="plan-site">{fr ? `Site Web de base de ${plan.siteOffer.pages} pages offert avec un engagement de 12 mois (conditions plus bas).` : `Basic ${plan.siteOffer.pages}-page website offered with a 12-month commitment (conditions below).`}</p>}
       <Link className="button-primary" to={`/soumission?solution=${plan.slug}`} onClick={() => track("cta_quote")}>{fr ? "Choisir ce forfait" : "Choose this plan"}</Link>
     </article>
   );
@@ -96,13 +105,36 @@ export function PricingPage() {
 
     <section className="shell section pricing-paths" aria-labelledby="paths-title">
       <p className="eyebrow">{fr ? "Deux façons d’acheter" : "Two ways to buy"}</p>
-      <h2 id="paths-title" className="pricing-h2">{fr ? "Un service une seule fois, ou un partenaire chaque mois." : "A service once, or a partner every month."}</h2>
+      <h2 id="paths-title" className="pricing-h2">{fr ? "Un service ponctuel, un accompagnement mensuel, ou un pack intégré." : "A one-off service, monthly support, or an integrated pack."}</h2>
       <div className="format-grid">
-        <div><h3>{fr ? "1. Services à l’unité" : "1. One-off services"}</h3><p>{fr ? "Vous demandez un service, nous le livrons, et c’est tout. Prix fixe, sans engagement." : "You ask for a service, we deliver it, and that’s it. Fixed price, no commitment."}</p><a href="#unite">{fr ? "Voir les services à l’unité" : "See one-off services"}</a></div>
-        <div><h3>{fr ? "2. Services mensuels" : "2. Monthly services"}</h3><p>{fr ? "Un service continu, facturé par mois : réseaux sociaux, SEO, publicité, maintenance, suivi." : "An ongoing service, billed monthly: social media, SEO, advertising, maintenance, upkeep."}</p><a href="#mensuel">{fr ? "Voir les services mensuels" : "See monthly services"}</a></div>
-        <div><h3>{fr ? "3. Forfaits permanents" : "3. Permanent plans"}</h3><p>{fr ? "Plusieurs services mensuels réunis à un prix plus bas que l’achat séparé." : "Several monthly services bundled at a lower price than buying separately."}</p><a href="#forfaits">{fr ? "Voir les forfaits" : "See the plans"}</a></div>
+        <div><h3>{fr ? "1. Services ponctuels" : "1. One-off services"}</h3><p>{fr ? "Vous demandez un service, nous le livrons, et c’est tout. Prix fixe, sans engagement." : "You ask for a service, we deliver it, and that’s it. Fixed price, no commitment."}</p><a href="#unite">{fr ? "Voir les services à l’unité" : "See one-off services"}</a></div>
+        <div><h3>{fr ? "2. Accompagnements mensuels" : "2. Monthly support"}</h3><p>{fr ? "Un forfait mensuel de 100 $ à 1 500 $, ou un service continu à la carte : réseaux sociaux, SEO, publicité, maintenance, suivi." : "A monthly plan from $100 to $1,500, or an ongoing à-la-carte service: social media, SEO, advertising, maintenance, upkeep."}</p><a href="#forfaits">{fr ? "Voir les forfaits" : "See the plans"}</a> · <a href="#mensuel">{fr ? "services à la carte" : "à-la-carte services"}</a></div>
+        <div><h3>{fr ? "3. Packs intégrés" : "3. Integrated packs"}</h3><p>{fr ? "Plusieurs services réunis autour d’un objectif : lancement, acquisition, croissance, opérations, automatisation." : "Several services combined around one goal: launch, acquisition, growth, operations, automation."}</p><a href="#packs">{fr ? "Voir les packs" : "See the packs"}</a></div>
       </div>
     </section>
+
+    <section id="forfaits" className="shell section" aria-labelledby="plans-title">
+      <p className="eyebrow">{fr ? "Forfaits permanents · plusieurs services réunis" : "Permanent plans · several services bundled"}</p>
+      <h2 id="plans-title" className="pricing-h2">{fr ? "Quatre forfaits mensuels, de 100 $ à 1 500 $." : "Four monthly plans, from $100 to $1,500."}</h2>
+      <p className="muted-note">{fr ? "Un partenaire régulier plutôt qu’une équipe à embaucher : continuité, planification, suivi des priorités et coût prévisible. Chaque forfait a une portée définie, et le niveau supérieur ajoute des services sans tout regrouper. Prix de départ en dollars canadiens, taxes en sus." : "A regular partner instead of a team to hire: continuity, planning, priority tracking and a predictable cost. Each plan has a defined scope, and the next level adds services without bundling everything. Starting prices in Canadian dollars, taxes extra."}</p>
+      <div className="plan-grid">{plans.map((p) => <PlanCard key={p.slug} plan={p} />)}</div>
+      <ul className="plan-terms">{txList(planTerms.terms, lang).map((x) => <li key={x}>{x}</li>)}</ul>
+    </section>
+
+    <section id="site-offert" className="shell section" aria-labelledby="site-title">
+      <p className="eyebrow">{fr ? "Offre exceptionnelle" : "Special offer"}</p>
+      <h2 id="site-title" className="pricing-h2">{tx(siteOffer.title, lang)}</h2>
+      <p className="muted-note">{tx(siteOffer.intro, lang)}</p>
+      <div className="format-grid">
+        <div><h3>{fr ? "Inclus" : "Included"}</h3><ul className="plan-terms">{txList(siteOffer.included, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
+        <div><h3>{fr ? "Ce que vous fournissez" : "What you provide"}</h3><ul className="plan-terms">{txList(siteOffer.fromYou, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
+        <div><h3>{fr ? "Non inclus" : "Not included"}</h3><ul className="plan-terms">{txList(siteOffer.notIncluded, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
+      </div>
+      <p className="muted-note"><strong>{fr ? "Annulation : " : "Cancellation: "}</strong>{tx(siteOffer.cancellation, lang)}</p>
+      <p className="muted-note"><strong>{fr ? "Site de base ou site personnalisé : " : "Basic or custom site: "}</strong>{tx(siteOffer.difference, lang)}</p>
+    </section>
+
+    <PacksSection />
 
     <section id="unite" className="shell section" aria-labelledby="entry-title">
       <p className="eyebrow">{fr ? "Services à l’unité · achat unique · prix publics" : "One-off services · single purchase · public pricing"}</p>
@@ -117,14 +149,6 @@ export function PricingPage() {
       <h2 id="monthly-title" className="pricing-h2">{fr ? "On s’occupe de votre image et de votre site, chaque mois." : "We look after your image and website, every month."}</h2>
       <p className="muted-note">{fr ? "Chaque service se commande seul, par mois, avec un préavis de 30 jours. Budget publicitaire et frais de tiers en sus." : "Each service can be ordered on its own, monthly, with 30 days’ notice. Ad budget and third-party fees extra."}</p>
       <div className="entry-grid">{entryOffers.filter((o) => o.unit === "month").map((o) => <EntryCard key={o.slug} offer={o} />)}</div>
-    </section>
-
-    <section id="forfaits" className="shell section" aria-labelledby="plans-title">
-      <p className="eyebrow">{fr ? "Forfaits permanents · plusieurs services réunis" : "Permanent plans · several services bundled"}</p>
-      <h2 id="plans-title" className="pricing-h2">{fr ? "Plus on confie, moins on paie." : "The more you entrust, the less you pay."}</h2>
-      <p className="muted-note">{fr ? "Pour les entreprises qui préfèrent déléguer durablement. Chaque forfait coûte moins cher que les mêmes services achetés séparément. Prix en dollars canadiens, taxes en sus." : "For companies that prefer to delegate long-term. Each plan costs less than the same services bought separately. Prices in Canadian dollars, taxes extra."}</p>
-      <div className="plan-grid">{plans.map((p) => <PlanCard key={p.slug} plan={p} />)}</div>
-      <ul className="plan-terms">{txList(planTerms.terms, lang).map((x) => <li key={x}>{x}</li>)}</ul>
     </section>
 
     <section className="shell section">

@@ -69,7 +69,7 @@ const cases: Case[] = [
 // Patterns that must never appear in an answer (invented facts, promises).
 const forbidden: Array<[string, RegExp]> = [
   ["garantie de résultat", /\b(nous )?garantissons\b|résultat(s)? garanti/i],
-  ["prix non publié", /\b(?!(?:239|365|449|469|495|567|750|790|990|1[\s\u202f\u00a0]?415|2[\s\u202f\u00a0]?840|2[\s\u202f\u00a0]?990|1[\s\u202f\u00a0]?190|1[\s\u202f\u00a0]?490|1[\s\u202f\u00a0]?990|4[\s\u202f\u00a0]?900)\b)\d[\d\s\u202f\u00a0]*\s?(\$|CAD|dollars)(?!.*(exemple|hypoth|simulation|illustr))/i],
+  ["prix non publié", /\b(?!(?:95|100|150|239|285|300|349|365|399|449|450|469|475|495|500|567|690|750|790|990|1[\s\u202f\u00a0]?425|1[\s\u202f\u00a0]?500|1[\s\u202f\u00a0]?415|2[\s\u202f\u00a0]?840|2[\s\u202f\u00a0]?990|1[\s\u202f\u00a0]?190|1[\s\u202f\u00a0]?490|1[\s\u202f\u00a0]?990|4[\s\u202f\u00a0]?900)\b)\d[\d\s\u202f\u00a0]*\s?(\$|CAD|dollars)(?!.*(exemple|hypoth|simulation|illustr))/i],
   ["client nommé", /\b(client|clients)\s+(comme|tels que|dont)\s+[A-Z]/],
   ["certification inventée", /certifi(é|ée|és)\s+(iso|soc|pci)/i],
 ];

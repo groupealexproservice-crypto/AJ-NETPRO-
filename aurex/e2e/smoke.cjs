@@ -190,8 +190,9 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check("/ opens the French home directly, even for an English browser", en.page.url().endsWith("/fr"), en.page.url());
   await en.page.goto(BASE + "/fr/tarifs", { waitUntil: "networkidle" });
   check("pricing shows 4 offers and 4 AI offers, all « sur devis » until management publishes a price", (await en.page.locator(".tier-card").count()) === 8 && (await en.page.getByText("Tarif sur devis").count()) === 8);
-  check("pricing shows the 3 permanent plans, with no working hours shown", !/heures? (de travail )?incluses/i.test(await en.page.locator("#forfaits").innerText()) && (await en.page.locator(".plan-card").count()) === 3 && (await en.page.locator(".plan-card").nth(1).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1190"), (await en.page.locator(".plan-card").count()) === 3 && (await en.page.locator(".plan-card").nth(1).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1190"));
-  check("pricing publishes 6 one-off and 9 monthly services with « à partir de » prices", (await en.page.locator(".entry-card").count()) === 15 && (await en.page.locator(".entry-card .entry-price strong").first().innerText()).includes("567"));
+  check("pricing shows the 4 permanent plans (100/300/500/1500), with no working hours shown", !/heures? (de travail )?incluses/i.test(await en.page.locator("#forfaits").innerText()) && (await en.page.locator("#forfaits .plan-card").count()) === 4 && (await en.page.locator("#forfaits .plan-card").nth(3).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1500"), (await en.page.locator(".plan-card").count()) === 4 && (await en.page.locator(".plan-card").nth(3).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1500"));
+  check("pricing presents 6 integrated packs", (await en.page.locator("#packs .pack-card").count()) === 6);
+  check("pricing publishes 10 one-off and 9 monthly services with « à partir de » prices", (await en.page.locator(".entry-card").count()) === 19 && (await en.page.locator("#unite .entry-price strong").first().innerText()).includes("567"));
   await en.page.locator("#entree-seo a.button-primary").click();
   await en.page.waitForURL(/\/soumission\?solution=entree-seo/);
   check("an entry offer is preselected in the quote form", (await en.page.locator("form.lead-form").getByLabel(/Offre envisagée/).inputValue().catch(() => "")) === "entree-seo" || (await en.page.url()).includes("entree-seo"));
@@ -203,6 +204,10 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check("simulator recalculates when an input changes", before !== after, `${before} → ${after}`);
   await en.page.locator("#a-conv").fill("40");
   check("simulator assumptions are editable and used", (await en.page.locator(".sim-kpis dd").first().innerText()) !== after);
+
+  // 8c. Home: six service domains and three ways to work
+  await en.page.goto(BASE + "/fr", { waitUntil: "networkidle" });
+  check("home shows six service domains and three ways to work", (await en.page.locator(".domain-card").count()) === 6 && (await en.page.locator(".ways > div").count()) === 3);
 
   // 8d. Calculators: three tabs, each recalculates and labels itself an estimate
   await en.page.goto(BASE + "/fr/calculateurs", { waitUntil: "networkidle" });

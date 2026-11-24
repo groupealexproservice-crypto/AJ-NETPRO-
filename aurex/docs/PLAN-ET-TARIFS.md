@@ -241,3 +241,6 @@ Coût interne 55 $/h (hypothèse). Heures internes estimées par mois : Présenc
 **Rentabilité** : avec 4 000 $ de frais fixes et une marge d'environ 35 %, il faut ≈ 11 400 $ de revenus mensuels. Exemple : 6 forfaits Croissance (7 140 $) + 5 forfaits Présence (2 950 $) + 2 Partenaire (3 980 $) = 14 070 $/mois, récurrents.
 
 **Prix par rapport au marché** : les agences affichent 1 500 à 5 000 $/mois pour des mandats comparables (section 2 de l'étude) ; Présence, Croissance et Partenaire se situent sous ces fourchettes. Revérifier avant publication.
+
+
+> **Mise à jour du 24 novembre 2026 (soir)** : les forfaits permanents des sections 10 et 11 (590 / 1 190 / 1 990 $) sont **remplacés** par les quatre forfaits à **100 / 300 / 500 / 1 500 $** décrits dans `docs/OFFRE-COMMERCIALE.md`, publiés sur le site. Les services à l'unité et mensuels à la carte restent valides. Voir aussi `docs/OFFRE-AUTOMATISATION-IA.md` et `docs/ANALYSE-STRATEGIQUE.md`.
