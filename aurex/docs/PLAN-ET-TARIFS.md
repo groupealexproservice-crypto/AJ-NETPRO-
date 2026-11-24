@@ -140,3 +140,20 @@ Fiches par service : chaque page d’expertise du site (10) présente déjà le 
 **Non réalisé / limites** : générateur d’estimation tarifaire (volontairement **non publié** : les prix doivent être validés par la direction avant affichage — il sera branché sur les tarifs publiés dans l’administration) ; recommandation automatique de services (le diagnostic et l’orientation à deux questions existants en tiennent lieu) ; recherche portant sur 17 firmes au lieu de 60 ; Europe non étudiée ; prix des concurrents non relevés (aucun n’est public) ; aucune donnée de volume de recherche.
 
 **À valider** : grille tarifaire, statuts des services, nom AUREX, textes juridiques, hypothèses de coûts (55 $/h, frais fixes), présence de l’équipe de développement pour applications/SaaS.
+
+## 8. Journal de la passe d'amélioration (phases 1 à 3 du prompt)
+
+**Mesures Lighthouse** (`bash scripts/lighthouse.sh`, serveur de production local, page d'accueil / expertise / tarifs / calculateurs) :
+
+| | Avant | Après |
+|---|---|---|
+| Performance ordinateur | 78–93 | **95–99** |
+| Performance mobile | 55–61 | **59–69** (varie d'une exécution à l'autre) |
+| Accessibilité | 95 (mobile) / 100 | **100** partout |
+| Décalage de mise en page (CLS) | 0,4 sur les pages intérieures | **0** |
+| Bonnes pratiques | 96 | 96–100 |
+| SEO | 100 | 100 |
+
+**Changements** : polices auto-hébergées (plus de requête vers Google, CSP resserrée), logos et photo du héros redimensionnés (logo 280 → 11 Ko, photo 450 → 167 Ko), bibliothèque de défilement doux retirée (accessibilité et poids), réseau de nœuds décoratif démarré en différé et allégé sur mobile, espace réservé de chargement pleine hauteur, bouton du conseiller IA nommé, sculpture 3D remplacée par une pyramide avec orbite dorée (`scripts/build-sculpture.py`, `scripts/render-poster.cjs`), alignement du texte d'accueil corrigé.
+
+**Non atteint** : performance mobile ≥ 90. Le site est une application rendue dans le navigateur : sur un téléphone simulé lent (CPU ×4), React prend 1 à 1,5 s à démarrer. Le levier restant est le **pré-rendu serveur de la première vue** (HTML déjà affiché avant le JavaScript), un chantier structurel à décider. Les phases 4 à 8 (contenu humain, aimant à prospects, test du conseiller avec clé réelle, intégration continue, déploiement, recherche complémentaire) dépendent de la direction ou de ressources externes et n'ont pas été faites.
