@@ -14,6 +14,7 @@ import { DashboardPreview } from "../components/DashboardPreview";
 import { TrustSection } from "../components/TrustSection";
 import { track } from "../lib/track";
 import { NeuralField } from "../components/NeuralField";
+import { AskBenex } from "../components/AssistantChat";
 
 function AnimatedLine({ text, delay }: { text: string; delay: number }) {
   return (
@@ -156,6 +157,7 @@ export default function Home() {
             <p className="eyebrow">{aiPole.name}</p>
             <h2 id="ai-title">{fr ? "L’intelligence artificielle au service de chaque département." : "Artificial intelligence serving every department."}</h2>
             <p>{fr ? "Agents personnalisés, automatisation commerciale, marketing, administrative et logistique, avec des permissions définies et une supervision humaine. L’expertise humaine, augmentée, jamais remplacée sans contrôle." : "Custom agents and sales, marketing, administrative and logistics automation, with defined permissions and human oversight. Human expertise, augmented, never replaced without control."}</p>
+            <AskBenex placeholder={fr ? "Posez votre question à notre conseiller IA…" : "Ask our AI advisor a question…"} label={fr ? "Poser une question au conseiller IA" : "Ask the AI advisor a question"} />
             <ArrowLink to="/intelligence-artificielle" light>{fr ? "Découvrir BENEX AI & Automation" : "Discover BENEX AI & Automation"}</ArrowLink>
           </div>
           <ul className="ai-band-list">{automations.map((a) => <li key={a.key}>{tx(a.title, lang)}</li>)}</ul>

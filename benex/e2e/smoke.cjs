@@ -197,6 +197,27 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await en.page.locator("#a-conv").fill("40");
   check("simulator assumptions are editable and used", (await en.page.locator(".sim-kpis dd").first().innerText()) !== after);
 
+  // 8e. AI advisor: answers from the firm's content, with sources, cost-awareness and keyboard handling
+  const chat = await newPage(); const cp3 = chat.page;
+  await cp3.goto(BASE + "/fr/intelligence-artificielle", { waitUntil: "networkidle" });
+  await cp3.locator(".page-hero #ask-benex-input").fill("Comment réduire mes coûts opérationnels ?");
+  await cp3.locator(".page-hero .ask-benex button").click();
+  await cp3.waitForSelector(".assistant-panel");
+  await cp3.waitForFunction(() => document.querySelectorAll(".assistant-bubble-bot").length >= 2, null, { timeout: 15000 });
+  await cp3.waitForTimeout(2500);
+  const answerText = await cp3.locator(".assistant-bubble-bot").last().innerText();
+  check("advisor answers a cost-reduction question with a structured explanation (not a price list)", /Ce que nous faisons/.test(answerText) && !/Transparence avant tout/.test(answerText));
+  check("advisor shows sources and a consultation shortcut", (await cp3.locator(".assistant-sources a").count()) >= 1 && (await cp3.locator(".assistant-actions a").count()) === 2);
+  check("advisor discloses that answers are automatic and not stored", /ne saisissez aucun renseignement personnel/i.test(await cp3.locator(".assistant-notice").innerText()));
+  await cp3.locator("#assistant-input").fill("Combien coûtent vos services ?"); await cp3.keyboard.press("Enter");
+  await cp3.waitForFunction(() => document.querySelectorAll(".assistant-bubble-bot").length >= 3, null, { timeout: 15000 });
+  await cp3.waitForTimeout(2000);
+  const priceText = await cp3.locator(".assistant-bubble-bot").last().innerText();
+  check("advisor answers a price question with « sur devis » and invents no amount", /devis/i.test(priceText) && !/\d\s?\$/.test(priceText));
+  await cp3.keyboard.press("Escape");
+  check("Escape closes the advisor and returns focus to its button", (await cp3.locator(".assistant-panel").count()) === 0 && (await cp3.evaluate(() => document.activeElement?.className)) === "assistant-launcher");
+  await cp3.locator("#assistant-input").count();
+
   // 9. Reduced motion
   const rm = await newPage({ reducedMotion: "reduce" }); await rm.page.goto(BASE + "/fr", { waitUntil: "networkidle" });
   const anim = await rm.page.evaluate(() => getComputedStyle(document.querySelector(".hero-character")).animationName);

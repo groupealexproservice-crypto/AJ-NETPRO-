@@ -10,6 +10,7 @@ import { CtaBand, PageHero } from "../components/Sections";
 import { Glyph } from "../components/Glyphs";
 import { DashboardPreview } from "../components/DashboardPreview";
 import { track } from "../lib/track";
+import { AskBenex } from "../components/AssistantChat";
 
 type Pricing = { slug: string; priceText: string | null; timeline: string | null };
 
@@ -211,6 +212,7 @@ export function AIPage() {
   return <>
     <PageMeta title="BENEX AI & Automation" description={fr ? "Agents intelligents et automatisation, avec gouvernance et supervision humaine." : "Intelligent agents and automation, with governance and human oversight."} />
     <PageHero glyph={<Glyph name="ai" size={56} />} eyebrow="BENEX AI & AUTOMATION" title={fr ? "Expertise humaine. Intelligence artificielle. Performance d’affaires." : "Human expertise. Artificial intelligence. Business performance."} text={fr ? "Nous concevons des agents et des automatisations adaptés à vos outils et à vos processus, avec des permissions définies et une supervision appropriée. L’IA n’est pas une page à part : elle traverse toutes nos expertises." : "We design agents and automations adapted to your tools and processes, with defined permissions and appropriate oversight. AI is not a separate page: it runs through all our expertise."}>
+      <AskBenex placeholder={fr ? "Demandez-nous comment l’IA peut servir votre entreprise…" : "Ask how AI can serve your business…"} label={fr ? "Poser une question au conseiller IA" : "Ask the AI advisor a question"} />
       <ArrowLink to="/consultation">{t("consult")}</ArrowLink>
     </PageHero>
 

@@ -44,3 +44,10 @@ Les cinq engagements (écouter avant de proposer, sérieux et discrétion, parle
 - **Noms de départements** (Strategy, Marketing, Digital, Operations, Logistics, Growth, BENEX AI & Automation) : propositions à valider.
 - **Technologies citées** (OpenAI, Microsoft 365, Google Workspace, HubSpot, Salesforce, Shopify, WordPress, n8n, Make, Zapier, Slack, Meta Ads, Google Ads) : possibilités d'intégration seulement ; marques appartenant à leurs propriétaires ; aucun partenariat affirmé.
 - **Agents IA et automatisations** : les capacités décrites doivent correspondre à ce que BENEX peut réellement livrer (permissions, supervision, tests).
+
+## Conseiller IA
+
+- **Modèle externe** : si `ANTHROPIC_API_KEY` est défini, le texte des questions (courriels et numéros masqués) est transmis à Anthropic pour produire la réponse. À mentionner dans la politique de confidentialité (fournisseur, finalité, hébergement hors Québec possible) et à évaluer au regard de la Loi 25 (transferts hors Québec). Sans clé, aucune donnée ne sort du serveur.
+- **Aucune conservation** du contenu des conversations ; seul un compteur anonyme est enregistré.
+- **Exactitude** : l'avis affiché rappelle que les réponses sont automatiques et à valider avec l'équipe. Les règles du conseiller (src : `api/assistant/engine.ts`) interdisent d'inventer prix, clients, résultats, partenariats ; BENEX doit relire ces règles et tester le conseiller avec sa clé avant publication.
+- **Non testé ici** : l'appel réel au modèle (aucune clé dans cet environnement). Le flux est testé avec un modèle simulé ; le mode « connaissances » est testé de bout en bout.

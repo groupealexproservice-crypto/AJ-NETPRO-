@@ -19,6 +19,8 @@ export const env = {
   uploadDir: process.env.UPLOAD_DIR ?? "./storage/uploads",
   adminEmail: (process.env.ADMIN_EMAIL ?? "").trim().toLowerCase(),
   adminPassword: process.env.ADMIN_PASSWORD ?? "",
+  anthropicKey: process.env.ANTHROPIC_API_KEY ?? "",
+  assistantModel: process.env.ASSISTANT_MODEL ?? "claude-sonnet-5-5",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB ?? 15),
   integrations: {
     crmWebhookUrl: process.env.CRM_WEBHOOK_URL ?? "",

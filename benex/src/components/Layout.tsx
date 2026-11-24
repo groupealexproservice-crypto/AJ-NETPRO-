@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import { useLanguage } from "../i18n";
 import { parseLocalized } from "../routes";
 import { track } from "../lib/track";
+import { AssistantChat } from "./AssistantChat";
 import { expertises, outcomes, sectors, tx } from "../content";
 import { trpc } from "../providers/trpc";
 
@@ -155,6 +156,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
       <main id="main-content">{children}</main>
       <Footer />
+      <AssistantChat />
     </>
   );
 }

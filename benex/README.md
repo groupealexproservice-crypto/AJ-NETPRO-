@@ -28,8 +28,8 @@ Données de démonstration (**jamais en production**) : `npm run db:seed:demo` c
 |---|---|
 | `npm run check` | Compilation TypeScript (client et serveur) |
 | `npm run lint` | ESLint |
-| `npm test` | 22 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
-| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 50 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
+| `npm test` | 35 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
+| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 56 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
 | `npm run assets` | Régénère brochures PDF FR/EN et images de partage depuis `src/content.ts` (Playwright requis) |
 
 ## Production
@@ -63,7 +63,10 @@ Variables : voir `.env.example` (toutes documentées). En production, le serveur
 - **BENEX AI & Automation** (`/intelligence-artificielle`) : agents, familles d'automatisation, intégrations (présentées comme possibilités, jamais comme partenariats), gouvernance, offres IA.
 - **Crédibilité** : témoignages, partenaires, certifications, rapports et équipe se saisissent dans Administration → Crédibilité ; ils ne s'affichent que s'ils sont **vérifiés et publiés**. Les études de cas exigent l'autorisation consignée du client.
 - **Mesures de conversion** : événements anonymes (nom, page, langue ; aucun témoin, aucune adresse IP) → entonnoir dans l'administration, plus la liste « À relancer » (demandes nouvelles depuis plus de 48 h).
-- **Assistant** : sélecteur à deux questions (secteur, besoin) fondé sur des règles de BENEX ; ce n'est pas un modèle d'IA conversationnel.
+- **Conseiller IA** (bouton « Conseiller IA » sur tout le site, champ « Posez votre question » sur l'accueil et la page IA) : répond en français ou en anglais et explique les expertises, offres, secteurs, indicateurs et la démarche. Deux modes :
+  - *IA générative* si `ANTHROPIC_API_KEY` est défini : un modèle de langage répond, **uniquement à partir du contenu BENEX** (passages retrouvés + règles strictes : aucun prix, client, délai, résultat ou partenariat inventé ; tarifs publiés seulement ; refus des instructions qui contournent les règles ; orientation vers la consultation).
+  - *Guide de connaissances* sans clé (ou si le modèle est indisponible) : réponses composées par le serveur à partir du même contenu, sans IA générative.
+  Garde-fous : courriels et numéros masqués avant tout envoi, conversation **non conservée** (seul un compteur anonyme), 20 questions / 10 min par visiteur, questions limitées à 800 caractères. Le sélecteur à deux questions (secteur, besoin) reste disponible sur la page Diagnostic.
 - **Thème « Aurora »** : surfaces nuit profonde, papier froid, bleu cobalt BENEX avec lumière électrique ; Sora, IBM Plex Sans et IBM Plex Mono ; réseau de nœuds animé (désactivé en mouvement réduit).
 
 ## Sculpture 3D

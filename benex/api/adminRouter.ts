@@ -7,6 +7,7 @@ import { getDb } from "./queries/connection";
 import { analyticsEvents, campaigns, caseStudies, clientItems, integrationEvents, leads, notifications, offerPricing, organizations, posts, projects, solutionContent, trustItems, users } from "@db/schema";
 import { hashPassword, passwordProblem } from "./auth/password";
 import { integrationStatus } from "./integrations";
+import { env } from "./lib/env";
 import { deleteStoredFile } from "./routes/files";
 
 const slug = z.string().trim().min(2).max(180).regex(/^[a-z0-9-]+$/);
@@ -50,7 +51,7 @@ export const adminRouter = createRouter({
       items: itemRows.map(({ fileKey, ...item }) => ({ ...item, hasFile: Boolean(fileKey) })),
       users: userRows.map((user) => ({ id: user.id, email: user.email, name: user.name, role: user.role, organizationId: user.organizationId, active: user.active, createdAt: user.createdAt, lastSignInAt: user.lastSignInAt })),
       posts: postRows, caseStudies: caseRows, campaigns: campaignRows, notifications: notificationRows,
-      solutions: solutionRows, integrationEvents: eventRows, integrations: integrationStatus(), pricing: pricingRows, trust: trustRows,
+      solutions: solutionRows, integrationEvents: eventRows, integrations: { ...integrationStatus(), assistant: env.anthropicKey ? "ai" : "knowledge" }, pricing: pricingRows, trust: trustRows,
     };
   }),
 
@@ -67,7 +68,7 @@ export const adminRouter = createRouter({
     const overdue = await db.select({ id: leads.id, reference: leads.reference, company: leads.company, name: leads.name, mode: leads.mode, createdAt: leads.createdAt }).from(leads).where(and(eq(leads.status, "new"), lt(leads.createdAt, sql`(now() - interval 2 day)`), sql`${leads.mode} <> 'newsletter'`)).orderBy(leads.createdAt).limit(20);
     return {
       byMode, byStatus, bySector, last30: last30[0]?.total ?? 0, overdue,
-      funnel: { visits: eventCount("page_view"), simulator: eventCount("simulator_run"), formStarted: eventCount("form_started"), consultationClicks: eventCount("cta_consultation"), quoteClicks: eventCount("cta_quote"), submitted: submitted[0]?.total ?? 0 },
+      funnel: { assistant: eventCount("assistant_message"), visits: eventCount("page_view"), simulator: eventCount("simulator_run"), formStarted: eventCount("form_started"), consultationClicks: eventCount("cta_consultation"), quoteClicks: eventCount("cta_quote"), submitted: submitted[0]?.total ?? 0 },
     };
   }),
 
