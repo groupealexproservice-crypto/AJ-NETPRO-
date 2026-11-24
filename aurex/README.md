@@ -123,3 +123,9 @@ Format : `POST` JSON `{ event, ref, sentAt, data }`, en-têtes `X-Aurex-Event` e
 - `docs/ETUDE-DE-MARCHE.md` : benchmark de 17 firmes, prix, demande, SWOT, opportunités, positionnement, SEO, conformité (sources et dates de consultation).
 - `docs/PLAN-ET-TARIFS.md` : catalogue, grille tarifaire recommandée **à valider avant publication**, marges, plan à 30/90/180/365 jours, modifications et limites.
 - Nouvelles pages : `/fr/calculateurs`, `/fr/automatisation`, `/fr/innovations`.
+
+## Tester le conseiller IA sans partager de clé
+```
+ANTHROPIC_API_KEY=votre_clé npx tsx scripts/eval-assistant.ts docs/RAPPORT-CONSEILLER.md
+```
+Le script pose 50 questions (services, secteurs, prix, conformité, hors sujet, tentatives de contournement, anglais), applique des contrôles automatiques (promesses, prix inventés, clients nommés) et écrit un rapport qui **ne contient aucune clé**. Sans clé, il évalue la base de connaissances (`docs/RAPPORT-CONSEILLER-SANS-CLE.md`).
