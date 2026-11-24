@@ -6,6 +6,7 @@ import { insights, methodSteps, principles, tx } from "../content";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta } from "../components/Layout";
 import { CtaBand, PageHero, SectionHeading } from "../components/Sections";
+import { Commitments, VisionBand } from "../components/Vision";
 import { LeadForm, type LeadMode } from "../components/LeadForm";
 import { OrientationAssistant } from "../components/OrientationAssistant";
 import { trpc } from "../providers/trpc";
@@ -23,6 +24,8 @@ export function AboutPage() {
     </section>
     <section className="principles-section section"><div className="shell"><SectionHeading eyebrow={lang === "fr" ? "Nos quatre principes" : "Our four principles"} title={lang === "fr" ? "Une discipline commune à chaque mission." : "A shared discipline for every mandate."} /><div className="principles-grid">{principles.map((principle, index) => <div key={principle.fr}><span>0{index + 1}</span><h3>{tx(principle, lang)}</h3></div>)}</div></div></section>
     <section className="about-360 shell section"><div><p className="eyebrow">BENEX 360</p><h2>{lang === "fr" ? "Une direction externalisée pour les entreprises qui veulent avancer avec cohérence." : "External leadership for businesses that want to move forward coherently."}</h2></div><div><p>{lang === "fr" ? "BENEX 360 agit comme une direction stratégique, commerciale, numérique et opérationnelle externalisée. L’accompagnement peut être ponctuel ou récurrent, selon la maturité et les besoins de votre organisation." : "BENEX 360 acts as an outsourced strategic, commercial, digital and operational leadership function. Support can be project-based or recurring, depending on your organization’s maturity and needs."}</p><ArrowLink to="/solutions/360">BENEX 360</ArrowLink></div></section>
+    <VisionBand />
+    <Commitments />
     <CtaBand />
   </>;
 }
@@ -96,7 +99,7 @@ export function InsightDetail() {
 }
 
 const leadCopy: Record<LeadMode, { fr: { title: string; text: string; eyebrow: string }; en: { title: string; text: string; eyebrow: string } }> = {
-  contact: { fr: { eyebrow: "BENEX / CONTACT", title: "Commençons par ce qui compte pour votre entreprise.", text: "Décrivez votre contexte et vos objectifs. Votre demande sera enregistrée dans notre suivi sécurisé afin d’orienter la prochaine étape." }, en: { eyebrow: "BENEX / CONTACT", title: "Let’s start with what matters to your business.", text: "Describe your context and objectives. Your request will be recorded in our secure follow-up system to guide the next step." } },
+  contact: { fr: { eyebrow: "BENEX / CONTACT", title: "Commençons par ce qui compte pour votre entreprise.", text: "Décrivez votre contexte et vos objectifs, avec vos mots. Chaque demande est enregistrée dans notre suivi sécurisé et examinée par l’équipe BENEX, qui vous indique la prochaine étape." }, en: { eyebrow: "BENEX / CONTACT", title: "Let’s start with what matters to your business.", text: "Describe your context and objectives. Your request will be recorded in our secure follow-up system to guide the next step." } },
   diagnostic: { fr: { eyebrow: "BENEX / DIAGNOSTIC INITIAL", title: "Trois étapes pour clarifier votre situation.", text: "Ce formulaire nous aide à comprendre votre organisation, vos difficultés et vos objectifs avant un premier échange. Il ne constitue pas un audit complet." }, en: { eyebrow: "BENEX / INITIAL DIAGNOSTIC", title: "Three steps to clarify your situation.", text: "This form helps us understand your organization, challenges and objectives before an initial conversation. It is not a full audit." } },
   quote: { fr: { eyebrow: "BENEX / SOUMISSION", title: "Une proposition construite autour de votre périmètre réel.", text: "Précisez les expertises recherchées et votre contexte. Nous pourrons ensuite définir les livrables, les étapes et les conditions d’une proposition personnalisée." }, en: { eyebrow: "BENEX / PROPOSAL", title: "A proposal built around your actual scope.", text: "Specify the expertise required and your context. We can then define deliverables, stages and terms for a tailored proposal." } },
   appointment: { fr: { eyebrow: "BENEX / CONSULTATION", title: "Planifions un premier échange structuré.", text: "Indiquez vos disponibilités et les sujets à aborder. La demande sera enregistrée immédiatement; la confirmation du rendez-vous demeure une étape distincte." }, en: { eyebrow: "BENEX / CONSULTATION", title: "Let’s schedule a structured first conversation.", text: "Share your availability and discussion topics. The request is recorded immediately; appointment confirmation remains a separate step." } },

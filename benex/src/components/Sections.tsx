@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ArrowDown } from "lucide-react";
 import { useLanguage } from "../i18n";
 import { ArrowLink } from "./Layout";
+import { Ornament } from "./Ornament";
 
 export function SectionHeading({ eyebrow, title, text, action }: { eyebrow: string; title: string; text?: string; action?: ReactNode }) {
   return (
@@ -27,6 +28,7 @@ export function PageHero({ eyebrow, title, text, children, glyph }: { eyebrow: s
           {children}
         </div>
         <ArrowDown className="page-hero-arrow" size={28} strokeWidth={1} aria-hidden="true" />
+        <Ornament variant={(["a", "b", "c"] as const)[title.length % 3]} />
       </div>
     </section>
   );

@@ -31,3 +31,7 @@ Le site n'envoie **aucun** courriel commercial. Toute campagne devra être envoy
 - Aucun client, témoignage, partenaire, chiffre ou résultat n'est affiché. Les « Réalisations » ne se publient qu'avec l'autorisation consignée du client (contrôle côté serveur).
 - Exemples sectoriels : présentés comme des **problématiques et solutions possibles**, pas comme des missions réalisées.
 - Brochures PDF : contiennent uniquement la description des expertises, offres, secteurs et méthode ; aucune tarification.
+
+## Engagements et ton (src/vision.ts)
+
+Les cinq engagements (écouter avant de proposer, sérieux et discrétion, parler vrai, protéger les renseignements, mesurer et rendre compte) et les phrases « Notre engagement envers vous » décrivent une **manière de travailler**, jamais un résultat. BENEX doit confirmer qu'elle peut les tenir et les faire appliquer (en particulier « chaque demande est examinée par l'équipe » et la confidentialité des documents) avant publication.

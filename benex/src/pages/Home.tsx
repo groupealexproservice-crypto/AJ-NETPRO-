@@ -9,6 +9,7 @@ import { CtaBand, SectionHeading } from "../components/Sections";
 import { OrientationAssistant } from "../components/OrientationAssistant";
 import { Sculpture3D } from "../components/Sculpture3D";
 import { Glyph } from "../components/Glyphs";
+import { Commitments, VisionBand } from "../components/Vision";
 import { useSolutions } from "../hooks/useSolutions";
 
 function AnimatedLine({ text, delay }: { text: string; delay: number }) {
@@ -66,7 +67,7 @@ export default function Home() {
         <div className="home-intro-grid">
           <h2>{lang === "fr" ? "La croissance ne se fragmente pas. Votre partenaire non plus." : "Growth is not fragmented. Your partner shouldn’t be either."}</h2>
           <div>
-            <p>{lang === "fr" ? "BENEX Solutions est un cabinet de conseil multidisciplinaire qui coordonne la stratégie, le marketing, la technologie et les opérations. Nous intervenons de la conception d’une entreprise jusqu’à son expansion, avec un interlocuteur unique et des priorités communes." : "BENEX Solutions is a multidisciplinary consulting firm coordinating strategy, marketing, technology and operations. We support businesses from inception through expansion, with a single point of contact and shared priorities."}</p>
+            <p>{lang === "fr" ? "BENEX Solutions est un cabinet de conseil multidisciplinaire qui coordonne la stratégie, le marketing, la technologie et les opérations. Nous intervenons de la conception d’une entreprise jusqu’à son expansion, avec un interlocuteur unique et des priorités communes. Derrière chaque projet, il y a des personnes et une ambition : nous les prenons au sérieux." : "BENEX Solutions is a multidisciplinary consulting firm coordinating strategy, marketing, technology and operations. We support businesses from inception through expansion, with a single point of contact and shared priorities. Behind every project there are people and an ambition: we take them seriously."}</p>
             <ArrowLink to="/a-propos">{t("about")}</ArrowLink>
           </div>
         </div>
@@ -169,6 +170,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <VisionBand />
+      <Commitments />
 
       <section className="method-preview section shell">
         <SectionHeading

@@ -7,6 +7,7 @@ import { ArrowLink, PageMeta } from "../components/Layout";
 import { CtaBand, PageHero, SectionHeading } from "../components/Sections";
 import { useSolutions } from "../hooks/useSolutions";
 import { Glyph } from "../components/Glyphs";
+import { PageCommitment } from "../components/Vision";
 import { NotFound } from "./CompanyPages";
 
 export function ExpertiseIndex() {
@@ -49,6 +50,7 @@ export function ExpertiseDetail() {
       <p className="eyebrow">{t("allSolutions")}</p>
       <div className="related-links">{related.map((solution) => <Link key={solution.slug} to={`/solutions/${solution.slug}`}><span>{solution.name}</span><p>{tx(solution.summary, lang)}</p><ArrowRight size={20} /></Link>)}</div>
     </section>
+    <PageCommitment kind="expertise" />
     <CtaBand />
   </>;
 }
@@ -93,6 +95,7 @@ export function SolutionDetail() {
       {[{ title: t("scope"), items: txList(solution.scope, lang) }, { title: t("deliverables"), items: txList(solution.deliverables, lang) }, { title: t("outcomes"), items: txList(solution.outcomes, lang) }].map((group, index) => <div key={group.title}><span>0{index + 1}</span><h3>{group.title}</h3><ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}
     </section>
     <section className="related-section shell section"><p className="eyebrow">{t("related")}</p><div className="related-links">{related.map((expertise) => <Link key={expertise.slug} to={`/expertises/${expertise.slug}`}><span>{tx(expertise.title, lang)}</span><p>{tx(expertise.short, lang)}</p><ArrowRight size={20} /></Link>)}</div></section>
+    <PageCommitment kind="solution" />
     <CtaBand />
   </>;
 }
@@ -121,6 +124,7 @@ export function SectorDetail() {
       <div><p className="eyebrow">{t("response")}</p><ol>{txList(sector.responses, lang).map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ol></div>
     </section>
     <section className="related-section shell section"><p className="eyebrow">{t("allSolutions")}</p><div className="related-links">{displaySolutions.slice(0, 3).map((solution) => <Link key={solution.slug} to={`/solutions/${solution.slug}`}><span>{solution.name}</span><p>{tx(solution.summary, lang)}</p><ArrowRight size={20} /></Link>)}</div></section>
+    <PageCommitment kind="sector" />
     <CtaBand />
   </>;
 }
