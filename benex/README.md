@@ -84,7 +84,7 @@ Format : `POST` JSON `{ event, ref, sentAt, data }`, en-têtes `X-Benex-Event` e
 - Courriel transactionnel : aucun courriel n'est envoyé aux visiteurs ni à l'équipe sans service raccordé via `NOTIFY_WEBHOOK_URL` (relais Make/Zapier/Slack ou fournisseur). Les alertes internes existent dans l'administration.
 - CRM, calendrier, outil marketing : points d'entrée prêts, aucun fournisseur choisi.
 - Domaine, HTTPS, `PUBLIC_URL`, sauvegardes de la base et du dossier `UPLOAD_DIR`.
-- Réinitialisation de mot de passe en libre-service : non incluse (l'équipe réinitialise via un nouveau compte ; changement de mot de passe disponible côté API `auth.changePassword`).
+- Réinitialisation de mot de passe oublié en libre-service : non incluse (le changement de mot de passe connecté est disponible dans les portails ; en cas d’oubli, l’équipe recrée le compte).
 
 **À valider par BENEX / un conseiller juridique** (voir `docs/CONFORMITE.md`) : textes de consentement, politique de confidentialité, responsable de la protection des renseignements personnels, identification de l'expéditeur pour la LCAP, durées de conservation.
 
