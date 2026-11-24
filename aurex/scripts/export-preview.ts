@@ -34,7 +34,8 @@ const banner = {
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 let count = 0;
-for (const [publicPath, file] of pagePaths) {
+// The site root (index.html) is the French home page itself: visitors land on it directly, with no language screen and no redirect.
+for (const [publicPath, file] of [...pagePaths, ["/fr", "index.html"] as [string, string]]) {
   await page.goto(BASE + publicPath, { waitUntil: "networkidle" });
   await page.waitForTimeout(250);
   const lang = publicPath.startsWith("/en") ? "en" : "fr";
