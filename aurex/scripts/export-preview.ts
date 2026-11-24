@@ -20,7 +20,7 @@ mkdirSync(OUT, { recursive: true });
 const css = readdirSync("dist/public/assets").find((f) => f.endsWith(".css"))!;
 mkdirSync(path.join(OUT, "assets"), { recursive: true });
 cpSync(`dist/public/assets/${css}`, path.join(OUT, "assets", css)); // scripts are not exported
-for (const dir of ["images", "icons", "brochures"]) cpSync(`public/${dir}`, path.join(OUT, dir), { recursive: true });
+for (const dir of ["images", "icons", "brochures", "brand"]) cpSync(`public/${dir}`, path.join(OUT, dir), { recursive: true });
 
 const banner = {
   fr: "Aperçu figé pour révision. Formulaires, connexion, espace client et administration fonctionnent sur le site complet.",
