@@ -5,6 +5,7 @@ import { ArrowRight, Menu, X, UserRound } from "lucide-react";
 import Lenis from "lenis";
 import { useLanguage } from "../i18n";
 import { parseLocalized } from "../routes";
+import { expertises, tx } from "../content";
 import { trpc } from "../providers/trpc";
 
 export function Brand({ inverted = false }: { inverted?: boolean }) {
@@ -180,6 +181,10 @@ function Footer() {
           <Link to="/methode">{t("method")}</Link>
           <Link to="/perspectives">{t("insights")}</Link>
           <Link to="/contact">{t("contact")}</Link>
+        </div>
+        <div className="footer-nav-group footer-expertises">
+          <p className="footer-label">{t("expertise")}</p>
+          {expertises.map((e) => <Link key={e.slug} to={`/expertises/${e.slug}`}>{tx(e.title, lang)}</Link>)}
         </div>
         <form className="newsletter" onSubmit={submit}>
           <div className="honeypot" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} /></label></div>

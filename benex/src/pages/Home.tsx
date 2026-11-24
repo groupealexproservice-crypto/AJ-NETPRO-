@@ -8,6 +8,7 @@ import { ArrowLink, PageMeta, Rollover } from "../components/Layout";
 import { CtaBand, SectionHeading } from "../components/Sections";
 import { OrientationAssistant } from "../components/OrientationAssistant";
 import { Sculpture3D } from "../components/Sculpture3D";
+import { Glyph } from "../components/Glyphs";
 import { useSolutions } from "../hooks/useSolutions";
 
 function AnimatedLine({ text, delay }: { text: string; delay: number }) {
@@ -104,7 +105,7 @@ export default function Home() {
         <div className="expertise-grid">
           {expertises.map((expertise, index) => (
             <Link to={`/expertises/${expertise.slug}`} key={expertise.slug} className={`expertise-item expertise-item-${index % 4}`}>
-              <span className="expertise-number">{expertise.number}</span>
+              <span className="expertise-number"><Glyph name={expertise.slug} size={46} /><i>{expertise.number}</i></span>
               <div><h3>{tx(expertise.title, lang)}</h3><p>{tx(expertise.short, lang)}</p></div>
               <ArrowRight size={24} strokeWidth={1.2} />
             </Link>
@@ -128,13 +129,43 @@ export default function Home() {
             <div className="solution-accordion">
               {displaySolutions.map((item, index) => (
                 <button key={item.slug} type="button" className={activeSolution === index ? "active" : ""} onClick={() => setActiveSolution(index)} aria-expanded={activeSolution === index}>
-                  <span>0{index + 1}</span>
+                  <span><Glyph name={item.slug} size={26} /></span>
                   <strong>{item.name}</strong>
                   <Plus size={19} strokeWidth={1.4} />
                   {activeSolution === index && <p>{tx(item.objective, lang)}</p>}
                 </button>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="engagement-section section" aria-labelledby="engagement-title">
+        <div className="shell">
+          <SectionHeading
+            eyebrow={lang === "fr" ? "Modes d’intervention" : "Ways of working"}
+            title={lang === "fr" ? "Un cadre clair, quel que soit le rythme de votre projet." : "A clear framework, whatever the pace of your project."}
+            text={lang === "fr" ? "Chaque mandat et chaque accompagnement sont établis sur devis, après un diagnostic partagé." : "Every mandate and every retainer is quoted after a shared diagnostic."}
+          />
+          <h2 id="engagement-title" className="sr-only">{lang === "fr" ? "Modes d’intervention" : "Ways of working"}</h2>
+          <div className="engagement-grid">
+            {[
+              { glyph: "launch", title: { fr: "Mandat ponctuel", en: "One-off mandate" }, lead: { fr: "Un objectif, un périmètre, des livrables définis.", en: "One objective, a defined scope, agreed deliverables." }, points: { fr: ["Lancement, refonte, étude ou déploiement", "Calendrier et responsabilités documentés", "Livraison suivie d’une revue des résultats convenus"], en: ["Launch, redesign, study or rollout", "Documented timeline and responsibilities", "Delivery followed by a review of agreed outcomes"] } },
+              { glyph: "performance", title: { fr: "Accompagnement mensuel", en: "Monthly support" }, lead: { fr: "Une équipe pluridisciplinaire à vos côtés, mois après mois.", en: "A multidisciplinary team beside you, month after month." }, points: { fr: ["Pilotage des priorités et des projets en cours", "Optimisation continue et rapports réguliers", "Expertises mobilisées selon l’évolution des besoins"], en: ["Steering of priorities and ongoing projects", "Continuous optimization and regular reporting", "Expertise engaged as needs evolve"] } },
+              { glyph: "360", title: { fr: "BENEX 360", en: "BENEX 360" }, lead: { fr: "Une direction externalisée, de la stratégie aux opérations.", en: "Outsourced leadership, from strategy to operations." }, points: { fr: ["Direction stratégique, commerciale, numérique et opérationnelle", "Comité de pilotage et indicateurs communs", "Interlocuteur unique pour l’ensemble des chantiers"], en: ["Strategic, commercial, digital and operational leadership", "Steering committee and shared indicators", "A single point of contact across all workstreams"] } },
+            ].map((mode) => (
+              <article key={mode.title.en} className="engagement-card">
+                <Glyph name={mode.glyph} size={52} />
+                <h3>{tx(mode.title, lang)}</h3>
+                <p>{tx(mode.lead, lang)}</p>
+                <ul>{mode.points[lang].map((point) => <li key={point}>{point}</li>)}</ul>
+                <span className="quote-label">{lang === "fr" ? "Sur devis" : "By proposal"}</span>
+              </article>
+            ))}
+          </div>
+          <div className="engagement-actions">
+            <ArrowLink to="/soumission">{t("quote")}</ArrowLink>
+            <ArrowLink to="/consultation">{t("consult")}</ArrowLink>
           </div>
         </div>
       </section>

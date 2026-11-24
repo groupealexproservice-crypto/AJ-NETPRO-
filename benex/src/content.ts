@@ -457,3 +457,13 @@ export const insights: Insight[] = [
     },
   },
 ];
+
+/** Which expertises each offer draws on. The single source for "related" links and the offer/expertise matrix. */
+export const solutionExpertises: Record<string, string[]> = {
+  launch: ["strategie-intelligence-economique", "identite-marque-communication", "developpement-web-transformation-numerique", "developpement-commercial-acquisition"],
+  digital: ["developpement-web-transformation-numerique", "intelligence-artificielle-automatisation", "marketing-digital-publicite"],
+  growth: ["developpement-commercial-acquisition", "marketing-digital-publicite"],
+  performance: ["performance-operationnelle-logistique", "conseil-accompagnement-entreprises"],
+  intelligence: ["intelligence-artificielle-automatisation", "performance-operationnelle-logistique"],
+  "360": expertises.map((expertise) => expertise.slug),
+};

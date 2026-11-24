@@ -16,11 +16,11 @@ export function SectionHeading({ eyebrow, title, text, action }: { eyebrow: stri
   );
 }
 
-export function PageHero({ eyebrow, title, text, children }: { eyebrow: string; title: string; text: string; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, text, children, glyph }: { eyebrow: string; title: string; text: string; children?: ReactNode; glyph?: ReactNode }) {
   return (
     <section className="page-hero">
       <div className="shell page-hero-grid">
-        <p className="eyebrow">{eyebrow}</p>
+        <p className="eyebrow">{glyph ? <span className="page-hero-glyph">{glyph}</span> : null}{eyebrow}</p>
         <h1>{title}</h1>
         <div className="page-hero-intro">
           <p>{text}</p>
