@@ -1345,3 +1345,4 @@ section.shell .auto-grid p { color: var(--text-muted); }
 .plan-card li { display: flex; gap: 8px; align-items: flex-start; } .plan-card li svg { margin-top: 3px; flex: none; color: var(--accent); }
 .plan-card .button-primary { margin-top: auto; align-self: flex-start; }
 .plan-terms { margin: 28px 0 8px; padding-left: 18px; font-size: 14px; color: var(--text-muted); display: grid; gap: 4px; }
+.plan-saving { margin: 0; font-size: 14px; } .plan-saving s { color: var(--text-muted); } .pricing-paths .format-grid a { display: inline-block; margin-top: 10px; }

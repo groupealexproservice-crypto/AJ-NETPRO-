@@ -208,24 +208,36 @@ Pour deux services, **aucun plancher montréalais comparable n’a été trouvé
 - Ne pas afficher « le moins cher à Montréal » : n’écrire que ce qui est démontrable (« à partir de 239 $/mois, prix publics »), à faire valider par un juriste.
 - Seuil de rentabilité à ces marges (≈ 35 %) : ≈ **11 400 $ de revenus par mois** pour 4 000 $ de frais fixes.
 
-## 11. Deux modèles de vente : services à l'unité et forfaits permanents (décision de la direction)
+## 11. Deux modèles de vente : services à l'unité et services mensuels permanents (décision de la direction)
 
-**Objectif** : vendre des **services directs** (achat unique, sans engagement) et, surtout, des **forfaits permanents** qui prennent en charge l'image, le site et la visibilité du client chaque mois, pour **garder les clients dans la durée**. Les deux sont publiés sur la page *Tarifs* : forfaits permanents en premier, offres d'entrée ensuite.
+**Objectif** : vendre des **services directs** (achat unique, sans engagement) et des **services permanents** facturés **par mois** (image, site, visibilité, suivi) pour **garder les clients dans la durée**, avec des forfaits qui réunissent plusieurs services mensuels à un prix **plus bas que l'achat séparé**. Les **heures de travail ne sont jamais affichées au client** : elles servent seulement au calcul interne ci-dessous.
 
-| Forfait | Prix / mois | Avec engagement de 12 mois (−5 %) | Heures incluses | Coût (55 $/h) | Marge | Équivalent à la carte |
-|---|---|---|---|---|---|---|
-| **AUREX PRÉSENCE** | 790 $ | 750 $ | 9 | 495 $ | 37 % (34 % annuel) | ≈ 904 $ (SEO 449 + réseaux 365 + maintenance 90) |
-| **AUREX CROISSANCE** | 1 490 $ | 1 415 $ | 17 | 935 $ | 37 % (34 %) | ≈ 1 583 $ (SEO 449 + réseaux 495 + Ads 449 + maintenance 190) |
-| **AUREX PARTENAIRE** | 2 990 $ | 2 840 $ | 35 | 1 925 $ | 36 % (32 %) | ≈ 3 000 $ et plus (Croissance + automatisation + assistant IA + stratégie) |
+### A. Services à l'unité (une fois) — publiés
+| Service | Prix | Contenu |
+|---|---|---|
+| Diagnostic stratégique express | 567 $ | rencontre de 3 h, lecture de la situation, rapport avec plan d'action |
+| Site vitrine — Gabarit | 469 $ | 3 pages bilingues, contenu fourni (version complète 5 pages, rédaction incluse : 1 490 $) |
+| Automatisation simple | 990 $ | 1 processus automatisé, documentation, prise en main |
+| Assistant IA — FAQ | 1 190 $ | assistant sur le contenu fourni, 1 canal (version complète : 1 490 $) |
+| Plan d'affaires / étude de marché | 1 990 $ | analyse du marché, modèle d'affaires, projections |
+| Site corporatif bilingue | 4 900 $ | structure, rédaction, FR/EN, SEO de base |
+Autres services à l'unité **sur devis** (aucun prix de marché relevé) : identité de marque, boutique en ligne, formation IA, audit opérationnel, diagnostic logistique, prospection ciblée.
 
-**Conditions affichées** : engagement minimum de 6 mois puis mensuel avec préavis de 30 jours ; heures incluses chaque mois, tout travail additionnel soumis à approbation ; budget publicitaire, licences et frais de tiers en sus ; rapport mensuel et bilan trimestriel. **Aucun résultat n'est promis.**
+### B. Services mensuels (permanents), à la carte — publiés
+SEO local Départ 239 $ (complet 449 $) · Réseaux sociaux Départ 365 $ (2 plateformes, 12 publications : 495 $) · Gestion Google Ads 449 $ ou 12 % du budget · Maintenance et hébergement du site 90 $ · Suivi de l'assistant IA 349 $ · Suivi des automatisations 290 $ · Infolettre mensuelle 249 $ · Veille concurrentielle 199 $ · Tableau de bord mensuel 149 $. Préavis de 30 jours.
 
-**Pourquoi ce modèle protège la marge et la fidélité**
-- Les heures incluses sont plafonnées : c'est ce qui garantit la marge (au moins 30 %, même au tarif annuel). Les dépassements sont facturés.
-- Le forfait coûte **moins cher que l'achat à la carte** des mêmes services : c'est l'incitation à rester.
-- Le bilan trimestriel et le tableau de bord installent une habitude de décision commune, ce qui réduit les départs.
-- Montée en gamme naturelle : offre d'entrée, puis Présence, Croissance, Partenaire.
+### C. Forfaits permanents — publiés
+| Forfait | Prix / mois | Engagement 12 mois | Valeur à la carte | Économie | Contenu |
+|---|---|---|---|---|---|
+| **AUREX PRÉSENCE** | **590 $** | 560 $ | 694 $ | 15 % | maintenance du site, réseaux (1 profil, 8 publications), fiche Google, SEO de départ |
+| **AUREX CROISSANCE** | **1 190 $** | 1 130 $ | 1 483 $ | 20 % | Présence + 2 plateformes, SEO complet, Google Ads, optimisation mensuelle |
+| **AUREX PARTENAIRE** | **1 990 $** | 1 890 $ | 2 470 $ | 19 % | Croissance + suivi d'automatisation, suivi d'assistant IA, veille, tableau de bord, rencontre stratégique |
 
-**Rentabilité** : avec 4 000 $ de frais fixes et une marge d'environ 36 %, il faut ≈ 11 100 $ de revenus mensuels. Exemple : 6 forfaits Croissance (8 940 $) + 4 forfaits Présence (3 160 $) = 12 100 $/mois, **récurrents**. Chaque client gardé 12 mois vaut 9 480 $ (Présence) à 35 880 $ (Partenaire) en revenus.
+Conditions : engagement minimum de 6 mois puis mensuel (préavis 30 jours) ; périmètre précisé à la signature, travail additionnel soumis à approbation ; budget publicitaire et frais de tiers en sus ; rapport mensuel et bilan trimestriel. **Aucun résultat n'est promis.**
 
-**Vérifications avant l'ouverture** : confirmer que les heures incluses suffisent réellement (mesurer sur les 5 premiers clients), que les clauses d'engagement sont validées par un juriste, et que les prix tiennent face aux concurrents (revérifier les planchers).
+### D. Calcul interne (ne pas publier)
+Coût interne 55 $/h (hypothèse). Heures internes estimées par mois : Présence 7 h (coût 385 $, marge 35 %, 31 % au tarif annuel) ; Croissance 14 h (770 $, 35 %, 32 %) ; Partenaire 24 h (1 320 $, 34 %, 30 %). **Si le travail réel dépasse ces heures, la marge baisse** : mesurer sur les 5 premiers clients et ajuster le périmètre, pas le prix affiché.
+
+**Rentabilité** : avec 4 000 $ de frais fixes et une marge d'environ 35 %, il faut ≈ 11 400 $ de revenus mensuels. Exemple : 6 forfaits Croissance (7 140 $) + 5 forfaits Présence (2 950 $) + 2 Partenaire (3 980 $) = 14 070 $/mois, récurrents.
+
+**Prix par rapport au marché** : les agences affichent 1 500 à 5 000 $/mois pour des mandats comparables (section 2 de l'étude) ; Présence, Croissance et Partenaire se situent sous ces fourchettes. Revérifier avant publication.

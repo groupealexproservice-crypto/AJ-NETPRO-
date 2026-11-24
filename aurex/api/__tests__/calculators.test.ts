@@ -56,7 +56,7 @@ describe("operational savings", () => {
   });
 });
 
-import { entryOffers, aiTiers, plans, tiers } from "../../src/content";
+import { entryOffers, aiTiers, plans, aLaCarte, tiers } from "../../src/content";
 describe("published entry offers", () => {
   it("have unique slugs, positive prices and a defined scope", () => {
     const slugs = entryOffers.map((o) => o.slug);
@@ -76,13 +76,21 @@ describe("published entry offers", () => {
 });
 
 describe("permanent plans", () => {
-  it("are priced in ascending order with a lower yearly rate and hours included", () => {
-    expect(plans.map((p) => p.monthly)).toEqual([790, 1490, 2990]);
-    for (const p of plans) { expect(p.yearly).toBeLessThan(p.monthly); expect(p.hours).toBeGreaterThan(0); expect(p.includes.fr.length).toBe(p.includes.en.length); }
-    expect(plans.map((p) => p.hours)).toEqual([...plans.map((p) => p.hours)].sort((a, b) => a - b));
+  // Internal working-hours estimates (never shown on the site) used to check margins at 55 $/h.
+  const internalHours: Record<string, number> = { "plan-presence": 7, "plan-croissance": 14, "plan-partenaire": 24 };
+  it("are priced in ascending order, cheaper than buying the services separately", () => {
+    expect(plans.map((p) => p.monthly)).toEqual([590, 1190, 1990]);
+    for (const p of plans) { expect(p.yearly).toBeLessThan(p.monthly); expect(aLaCarte(p)).toBeGreaterThan(p.monthly); expect(p.includes.fr.length).toBe(p.includes.en.length); }
+    expect(plans.map((p) => aLaCarte(p))).toEqual([694, 1483, 2470]);
   });
-  it("keep a gross margin of at least 30 % at 55 $/h, monthly and yearly", () => {
-    for (const p of plans) for (const price of [p.monthly, p.yearly]) expect((price - p.hours * 55) / price).toBeGreaterThanOrEqual(0.3);
+  it("reference only existing monthly services", () => {
+    for (const p of plans) for (const ref of p.items) { const o = entryOffers.find((x) => x.slug === ref.split("#")[0]); expect(o?.unit).toBe("month"); }
+  });
+  it("keep a gross margin of at least 30 % at 55 $/h on the monthly price, and 28 % on the yearly price", () => {
+    for (const p of plans) { const cost = internalHours[p.slug] * 55; expect((p.monthly - cost) / p.monthly).toBeGreaterThanOrEqual(0.3); expect((p.yearly - cost) / p.yearly).toBeGreaterThanOrEqual(0.28); }
+  });
+  it("show no working hours in published data", () => {
+    expect(JSON.stringify(plans)).not.toMatch(/"hours"/);
   });
   it("do not reuse slugs of other offers", () => {
     const others = new Set([...tiers, ...aiTiers, ...entryOffers].map((o) => o.slug));

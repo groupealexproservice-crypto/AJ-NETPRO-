@@ -14,7 +14,7 @@ export type EntryOffer = {
   price: number;
   unit: "month" | "once";
   /** "A la carte" projects without a lower local benchmark are flagged as projects. */
-  group: "entry" | "project";
+  group: "entry" | "project" | "monthly";
   scope: LocalizedList;
   upgrade?: { label: Localized; price: number; unit: "month" | "once" };
 };
@@ -42,6 +42,18 @@ export const entryOffers: EntryOffer[] = [
     scope: LL(["Analyse du marché et de la concurrence", "Modèle d’affaires et projections", "Document remis et présenté"], ["Market and competition analysis", "Business model and projections", "Document delivered and presented"]) },
   { slug: "projet-site-corporatif", title: L("Site corporatif bilingue", "Bilingual corporate website"), price: 4900, unit: "once", group: "project",
     scope: LL(["Structure et rédaction des pages", "Français et anglais", "Référencement de base et formulaires"], ["Page structure and copywriting", "French and English", "Basic SEO and forms"]) },
+  { slug: "mensuel-maintenance", title: L("Maintenance et hébergement du site", "Website maintenance and hosting"), price: 90, unit: "month", group: "monthly",
+    scope: LL(["Hébergement et certificat de sécurité", "Sauvegardes et mises à jour", "Petites modifications du contenu"], ["Hosting and security certificate", "Backups and updates", "Small content changes"]) },
+  { slug: "mensuel-assistant", title: L("Assistant IA — suivi mensuel", "AI assistant — monthly upkeep"), price: 349, unit: "month", group: "monthly",
+    scope: LL(["Mise à jour du contenu de l’assistant", "Vérification des réponses et correctifs", "Rapport des questions fréquentes"], ["Assistant content updates", "Answer checks and fixes", "Report on frequent questions"]) },
+  { slug: "mensuel-automatisation", title: L("Automatisation — suivi mensuel", "Automation — monthly upkeep"), price: 290, unit: "month", group: "monthly",
+    scope: LL(["Surveillance de vos automatisations", "Corrections et petits ajustements", "Rapport mensuel d’activité"], ["Monitoring of your automations", "Fixes and small adjustments", "Monthly activity report"]) },
+  { slug: "mensuel-courriel", title: L("Infolettre mensuelle", "Monthly newsletter"), price: 249, unit: "month", group: "monthly",
+    scope: LL(["Une infolettre rédigée et envoyée par mois", "Liste avec consentement et désabonnement", "Statistiques d’ouverture et de clics"], ["One newsletter written and sent per month", "Consent-based list with unsubscribe", "Open and click statistics"]) },
+  { slug: "mensuel-veille", title: L("Veille concurrentielle", "Competitive monitoring"), price: 199, unit: "month", group: "monthly",
+    scope: LL(["Surveillance de vos concurrents et de votre marché", "Synthèse mensuelle écrite", "Pistes d’action"], ["Monitoring of your competitors and market", "Written monthly summary", "Action ideas"]) },
+  { slug: "mensuel-tableau", title: L("Tableau de bord mensuel", "Monthly dashboard"), price: 149, unit: "month", group: "monthly",
+    scope: LL(["Vos indicateurs clés réunis en une page", "Commentaire d’analyse", "Rencontre de présentation de 30 minutes"], ["Your key indicators on one page", "Analysis commentary", "30-minute review meeting"]) },
 ];
 
 export const entryOfferBySlug = (slug: string) => entryOffers.find((o) => o.slug === slug);

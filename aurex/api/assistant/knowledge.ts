@@ -1,4 +1,4 @@
-import { entryOffers, plans, planTerms, agents, aiCosts, automationCatalog, availabilityLabel, businessSolutions, innovationIdeas, aiPole, aiTiers, automations, expertises, formats, governance, integrations, kpis, methodSteps, outcomes, poles, sectorExpertises, sectors, tiers, tx, txList, whyAurex, type Lang } from "../../src/content";
+import { entryOffers, plans, planTerms, aLaCarte, agents, aiCosts, automationCatalog, availabilityLabel, businessSolutions, innovationIdeas, aiPole, aiTiers, automations, expertises, formats, governance, integrations, kpis, methodSteps, outcomes, poles, sectorExpertises, sectors, tiers, tx, txList, whyAurex, type Lang } from "../../src/content";
 import { localizePath } from "../../src/routes";
 
 /**
@@ -122,7 +122,7 @@ export function buildDocs(lang: Lang): Doc[] {
   docs.push({
     id: "permanent-plans", kind: "offer", title: fr ? "Forfaits permanents (accompagnement continu)" : "Permanent plans (ongoing partnership)", path: url("/tarifs"), keywords: "forfait permanent mensuel abonnement accompagnement continu contrat long terme image site réseaux sociaux présence croissance partenaire engagement retenue plan monthly subscription ongoing retainer long-term contract image website social media presence growth partner commitment",
     text: (fr ? "Pour les entreprises qui veulent déléguer durablement, AUREX propose trois forfaits permanents, en dollars canadiens, taxes en sus.\n" : "For companies that want to delegate long-term, AUREX offers three permanent plans, in Canadian dollars, taxes extra.\n") +
-      bullets(plans.map((p) => `${p.name} — ${money(p.monthly)} ${fr ? "par mois" : "per month"} (${money(p.yearly)} ${fr ? "avec engagement de 12 mois" : "with a 12-month commitment"}), ${p.hours} ${fr ? "heures incluses par mois" : "hours included per month"} : ${txList(p.includes, lang).join(", ")}. ${fr ? "Non inclus" : "Not included"} : ${txList(p.excludes, lang).join(", ")}.`)) +
+      bullets(plans.map((p) => `${p.name} — ${money(p.monthly)} ${fr ? "par mois" : "per month"} (${money(p.yearly)} ${fr ? "avec engagement de 12 mois" : "with a 12-month commitment"}, ${fr ? "valeur à la carte" : "à la carte value"} ${money(aLaCarte(p))}) : ${txList(p.includes, lang).join(", ")}. ${fr ? "Non inclus" : "Not included"} : ${txList(p.excludes, lang).join(", ")}.`)) +
       `\n${fr ? "Conditions" : "Terms"} : ${txList(planTerms.terms, lang).join(" ; ")}. ${fr ? "Aucun résultat n’est garanti ; un rapport mensuel et un bilan trimestriel mesurent l’avancement." : "No result is guaranteed; a monthly report and a quarterly review track progress."}`,
   });
   docs.push({

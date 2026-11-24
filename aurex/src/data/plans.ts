@@ -1,4 +1,5 @@
 import type { Localized, LocalizedList } from "../content";
+import { entryOffers } from "./entryOffers";
 
 const L = (fr: string, en: string): Localized => ({ fr, en });
 const LL = (fr: string[], en: string[]): LocalizedList => ({ fr, en });
@@ -14,9 +15,10 @@ export type Plan = {
   tagline: Localized;
   audience: Localized;
   monthly: number;
-  /** Price per month with a 12-month commitment (5 % lower). */
+  /** Price per month with a 12-month commitment (about 5 % lower). */
   yearly: number;
-  hours: number;
+  /** Services bundled, as entry-offer slugs; "#full" uses the full version price. Used to show the à-la-carte value. */
+  items: string[];
   includes: LocalizedList;
   excludes: LocalizedList;
   highlight?: boolean;
@@ -26,8 +28,8 @@ export const planTerms = {
   minMonths: 6,
   noticeDays: 30,
   terms: LL(
-    ["Engagement minimum de 6 mois, puis mensuel avec préavis de 30 jours", "Heures de travail incluses chaque mois ; tout travail additionnel est soumis à votre approbation", "Budget publicitaire, licences et frais de tiers en sus, au coût réel", "Rapport mensuel et bilan trimestriel avec indicateurs convenus"],
-    ["6-month minimum commitment, then monthly with 30 days’ notice", "Working hours included each month; any extra work is subject to your approval", "Ad budget, licences and third-party fees extra, at cost", "Monthly report and quarterly review with agreed indicators"],
+    ["Engagement minimum de 6 mois, puis mensuel avec préavis de 30 jours", "Le périmètre est précisé à la signature ; tout travail additionnel est soumis à votre approbation", "Budget publicitaire, licences et frais de tiers en sus, au coût réel", "Rapport mensuel et bilan trimestriel avec indicateurs convenus"],
+    ["6-month minimum commitment, then monthly with 30 days’ notice", "The scope is set at signing; any extra work is subject to your approval", "Ad budget, licences and third-party fees extra, at cost", "Monthly report and quarterly review with agreed indicators"],
   ),
 };
 
@@ -36,7 +38,7 @@ export const plans: Plan[] = [
     slug: "plan-presence", name: "AUREX PRÉSENCE",
     tagline: L("Une image et un site toujours à jour.", "An image and a website that stay current."),
     audience: L("Petites entreprises et travailleurs autonomes qui veulent une présence professionnelle sans s’en occuper.", "Small businesses and self-employed professionals who want a professional presence without managing it."),
-    monthly: 790, yearly: 750, hours: 9,
+    monthly: 590, yearly: 560, items: ["entree-reseaux", "mensuel-maintenance", "entree-seo"],
     includes: LL(["Maintenance, hébergement et sauvegardes du site", "Mises à jour et petites modifications du contenu", "Réseaux sociaux : 1 profil, 8 publications par mois", "Fiche Google à jour et suivi des avis", "Rapport mensuel simple"], ["Website maintenance, hosting and backups", "Updates and small content changes", "Social media: 1 profile, 8 posts per month", "Up-to-date Google profile and review monitoring", "Simple monthly report"]),
     excludes: LL(["Publicité payante", "Refonte du site"], ["Paid advertising", "Website redesign"]),
   },
@@ -44,7 +46,7 @@ export const plans: Plan[] = [
     slug: "plan-croissance", name: "AUREX CROISSANCE",
     tagline: L("Plus de visibilité, plus de demandes.", "More visibility, more enquiries."),
     audience: L("PME qui veulent un flux régulier de nouveaux clients et un suivi des résultats.", "SMEs that want a steady flow of new customers and tracked results."),
-    monthly: 1490, yearly: 1415, hours: 17, highlight: true,
+    monthly: 1190, yearly: 1130, items: ["entree-reseaux#full", "entree-seo#full", "entree-ads", "mensuel-maintenance"], highlight: true,
     includes: LL(["Tout AUREX PRÉSENCE", "Réseaux sociaux : 2 plateformes, 12 publications par mois", "SEO local et visibilité IA (une page ou un article par mois)", "Gestion Google Ads (le budget publicitaire est en sus)", "Optimisation mensuelle du site et des formulaires", "Tableau de bord des demandes et bilan trimestriel"], ["Everything in AUREX PRÉSENCE", "Social media: 2 platforms, 12 posts per month", "Local SEO and AI visibility (one page or article per month)", "Google Ads management (ad budget extra)", "Monthly optimization of the site and forms", "Enquiry dashboard and quarterly review"]),
     excludes: LL(["Développement sur mesure", "Systèmes d’IA complexes"], ["Custom development", "Complex AI systems"]),
   },
@@ -52,10 +54,13 @@ export const plans: Plan[] = [
     slug: "plan-partenaire", name: "AUREX PARTENAIRE",
     tagline: L("Un partenaire de croissance, au quotidien.", "A growth partner, every day."),
     audience: L("Entreprises qui veulent confier plusieurs départements : image, acquisition, opérations et automatisation.", "Companies that want to entrust several departments: image, acquisition, operations and automation."),
-    monthly: 2990, yearly: 2840, hours: 35,
+    monthly: 1990, yearly: 1890, items: ["entree-reseaux#full", "entree-seo#full", "entree-ads", "mensuel-maintenance", "mensuel-automatisation", "mensuel-assistant", "mensuel-veille", "mensuel-tableau"],
     includes: LL(["Tout AUREX CROISSANCE", "Automatisations suivies et améliorées chaque mois", "Assistant IA sur votre contenu, mis à jour", "Rencontre stratégique mensuelle et feuille de route", "Veille concurrentielle synthétisée", "Tableau de bord de pilotage et bilan trimestriel détaillé"], ["Everything in AUREX CROISSANCE", "Automations monitored and improved each month", "AI assistant on your content, kept up to date", "Monthly strategy meeting and roadmap", "Summarized competitive monitoring", "Management dashboard and detailed quarterly review"]),
     excludes: LL(["Projets d’envergure (soumis séparément)"], ["Large-scale projects (quoted separately)"]),
   },
 ];
+
+/** Value of the bundled services bought one by one, per month. */
+export const aLaCarte = (plan: Plan) => plan.items.reduce((sum, ref) => { const [slug, full] = ref.split("#"); const o = entryOffers.find((x) => x.slug === slug); return sum + (full && o?.upgrade ? o.upgrade.price : o?.price ?? 0); }, 0);
 
 export const planBySlug = (slug: string) => plans.find((p) => p.slug === slug);
