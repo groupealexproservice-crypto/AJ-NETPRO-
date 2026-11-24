@@ -207,3 +207,25 @@ Pour deux services, **aucun plancher montréalais comparable n’a été trouvé
 - Une image « très bas prix » peut attirer des clients sensibles au prix et dévaluer l’expertise. Prévoir un **parcours de montée en gamme** (Départ, puis Complet, puis Premium) et des abonnements pour porter la marge.
 - Ne pas afficher « le moins cher à Montréal » : n’écrire que ce qui est démontrable (« à partir de 239 $/mois, prix publics »), à faire valider par un juriste.
 - Seuil de rentabilité à ces marges (≈ 35 %) : ≈ **11 400 $ de revenus par mois** pour 4 000 $ de frais fixes.
+
+## 11. Deux modèles de vente : services à l'unité et forfaits permanents (décision de la direction)
+
+**Objectif** : vendre des **services directs** (achat unique, sans engagement) et, surtout, des **forfaits permanents** qui prennent en charge l'image, le site et la visibilité du client chaque mois, pour **garder les clients dans la durée**. Les deux sont publiés sur la page *Tarifs* : forfaits permanents en premier, offres d'entrée ensuite.
+
+| Forfait | Prix / mois | Avec engagement de 12 mois (−5 %) | Heures incluses | Coût (55 $/h) | Marge | Équivalent à la carte |
+|---|---|---|---|---|---|---|
+| **AUREX PRÉSENCE** | 790 $ | 750 $ | 9 | 495 $ | 37 % (34 % annuel) | ≈ 904 $ (SEO 449 + réseaux 365 + maintenance 90) |
+| **AUREX CROISSANCE** | 1 490 $ | 1 415 $ | 17 | 935 $ | 37 % (34 %) | ≈ 1 583 $ (SEO 449 + réseaux 495 + Ads 449 + maintenance 190) |
+| **AUREX PARTENAIRE** | 2 990 $ | 2 840 $ | 35 | 1 925 $ | 36 % (32 %) | ≈ 3 000 $ et plus (Croissance + automatisation + assistant IA + stratégie) |
+
+**Conditions affichées** : engagement minimum de 6 mois puis mensuel avec préavis de 30 jours ; heures incluses chaque mois, tout travail additionnel soumis à approbation ; budget publicitaire, licences et frais de tiers en sus ; rapport mensuel et bilan trimestriel. **Aucun résultat n'est promis.**
+
+**Pourquoi ce modèle protège la marge et la fidélité**
+- Les heures incluses sont plafonnées : c'est ce qui garantit la marge (au moins 30 %, même au tarif annuel). Les dépassements sont facturés.
+- Le forfait coûte **moins cher que l'achat à la carte** des mêmes services : c'est l'incitation à rester.
+- Le bilan trimestriel et le tableau de bord installent une habitude de décision commune, ce qui réduit les départs.
+- Montée en gamme naturelle : offre d'entrée, puis Présence, Croissance, Partenaire.
+
+**Rentabilité** : avec 4 000 $ de frais fixes et une marge d'environ 36 %, il faut ≈ 11 100 $ de revenus mensuels. Exemple : 6 forfaits Croissance (8 940 $) + 4 forfaits Présence (3 160 $) = 12 100 $/mois, **récurrents**. Chaque client gardé 12 mois vaut 9 480 $ (Présence) à 35 880 $ (Partenaire) en revenus.
+
+**Vérifications avant l'ouverture** : confirmer que les heures incluses suffisent réellement (mesurer sur les 5 premiers clients), que les clauses d'engagement sont validées par un juriste, et que les prix tiennent face aux concurrents (revérifier les planchers).

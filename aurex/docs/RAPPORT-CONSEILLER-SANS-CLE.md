@@ -1,8 +1,8 @@
 # Rapport d’évaluation du conseiller IA
 
-Date : 2026-11-24 · Mode : base de connaissances seulement (aucune clé) · Questions : 50
+Date : 2026-11-24 · Mode : base de connaissances seulement (aucune clé) · Questions : 52
 
-**Contrôles automatiques : 48 réussis, 2 à examiner.** Ces contrôles sont des heuristiques (mots attendus, formules interdites) : lisez les réponses ci-dessous.
+**Contrôles automatiques : 49 réussis, 3 à examiner.** Ces contrôles sont des heuristiques (mots attendus, formules interdites) : lisez les réponses ci-dessous.
 
 Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 
@@ -35,7 +35,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Rendement publicitaire (ROAS), Coût d’acquisition client (CAC), Taux de conversion, Retour sur investissement (ROI).
 > 
-> À explorer aussi : Solutions aux entreprises, Customer marketing et expérience client.
+> À explorer aussi : Offres d’entrée et prix publics, Solutions aux entreprises.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -95,7 +95,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Taux de conversion, Chiffre d’affaires, Temps économisé, Coût d’acquisition client (CAC).
 > 
-> À explorer aussi : Commerce électronique, Sept solutions d’affaires intégrées.
+> À explorer aussi : Offres d’entrée et prix publics, Forfaits permanents (accompagnement continu).
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -237,7 +237,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Taux de conversion, Chiffre d’affaires, Temps économisé, Coût d’acquisition client (CAC).
 > 
-> À explorer aussi : Customer marketing et expérience client, Solutions aux entreprises.
+> À explorer aussi : Customer marketing et expérience client, Offres d’entrée et prix publics.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -660,7 +660,7 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > AUREX Solutions ne publie aucun client, témoignage, partenariat, certification, résultat chiffré ni présence internationale qui n’ait été vérifié et autorisé par écrit. Aucune étude de cas n’est affichée pour le moment : elles seront publiées après validation des faits et autorisation des clients concernés. L’entreprise est établie à Montréal. Pour connaître l’équipe ou obtenir des références, le plus simple est de demander une consultation.
 > 
-> À explorer aussi : AUREX AI & Automation, Customer marketing et expérience client.
+> À explorer aussi : AUREX AI & Automation, Offres d’entrée et prix publics.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 
@@ -836,7 +836,44 @@ Aucune clé ni donnée personnelle n’apparaît dans ce rapport.
 > 
 > **Comment nous mesurons** : Taux de conversion, Chiffre d’affaires, Temps économisé, Coût d’acquisition client (CAC).
 > 
-> À explorer aussi : Loi 25, LCAP et protection des renseignements personnels, Conseil stratégique et analyse d’affaires.
+> À explorer aussi : Loi 25, LCAP et protection des renseignements personnels, Offres d’entrée et prix publics.
+> 
+> Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
+
+### price — Avez-vous des forfaits mensuels pour garder mon site et mes réseaux à jour ?
+*Mode : knowledge* — ✅ contrôles automatiques passés
+
+> Voici comment AUREX peut vous accompagner :
+> 
+> **Création de sites web et solutions numériques.** Votre site est souvent la première rencontre avec votre entreprise. Nous le concevons pour inspirer confiance, répondre vite et transformer les visites en demandes.
+> 
+> **Ce que nous faisons** : Une plateforme sur mesure, accessible en permanence, reliée à vos outils et mesurée en continu.
+> 
+> **Ce que vous obtenez** :
+> - Architecture fonctionnelle et maquettes validées
+> - Plateforme responsive et accessible
+> - Intégrations et documentation technique
+> 
+> **Comment nous mesurons** : Taux de conversion, Chiffre d’affaires, Temps économisé, Coût d’acquisition client (CAC).
+> 
+> À explorer aussi : Forfaits permanents (accompagnement continu), Offres d’entrée et prix publics.
+> 
+> Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
+
+### price — Que comprend le forfait Croissance ?
+*Mode : knowledge* — ⚠️ interdit : prix non publié
+
+> Voici comment AUREX peut vous accompagner :
+> 
+> **Forfaits permanents (accompagnement continu)**
+> 
+> Pour les entreprises qui veulent déléguer durablement, AUREX propose trois forfaits permanents, en dollars canadiens, taxes en sus.
+> - AUREX PRÉSENCE — 790 $ par mois (750 $ avec engagement de 12 mois), 9 heures incluses par mois : Maintenance, hébergement et sauvegardes du site, Mises à jour et petites modifications du contenu, Réseaux sociaux : 1 profil, 8 publications par mois, Fiche Google à jour et suivi des avis, Rapport mensuel simple. Non inclus : Publicité payante, Refonte du site.
+> - AUREX CROISSANCE — 1 490 $ par mois (1 415 $ avec engagement de 12 mois), 17 heures incluses par mois : Tout AUREX PRÉSENCE, Réseaux sociaux : 2 plateformes, 12 publications par mois, SEO local et visibilité IA (une page ou un article par mois), Gestion Google Ads (le budget publicitaire est en sus), Optimisation mensuelle du site et des formulaires, Tableau de bord des demandes et bilan trimestriel. Non inclus : Développement sur mesure, Systèmes d’IA complexes.
+> - AUREX PARTENAIRE — 2 990 $ par mois (2 840 $ avec engagement de 12 mois), 35 heures incluses par mois : Tout AUREX CROISSANCE, Automatisations suivies et améliorées chaque mois, Assistant IA sur votre contenu, mis à jour, Rencontre stratégique mensuelle et feuille de route, Veille concurrentielle synthétisée, Tableau de bord de pilotage et bilan trimestriel détaillé. Non inclus : Projets d’envergure (soumis séparément).
+> Conditions : Engagement minimum de 6 mois, puis mensuel avec préavis de 30 jours ; Heures de travail incluses chaque mois ; tout travail additionnel est soumis à votre approbation ; Budget publicitaire, licences et frais de tiers en sus, au coût réel ; Rapport mensuel et bilan trimestriel avec indicateurs convenus. Aucun résultat n’est garanti ; un rapport mensuel et un bilan trimestriel mesurent l’avancement.
+> 
+> À explorer aussi : Création, développement et croissance des entreprises, Conseil stratégique et analyse d’affaires.
 > 
 > Les bénéfices sont des objectifs visés, non des garanties. Un diagnostic précise le périmètre adapté à votre situation : souhaitez-vous obtenir une consultation ?
 

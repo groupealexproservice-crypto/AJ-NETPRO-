@@ -190,6 +190,7 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check("/ opens the French home directly, even for an English browser", en.page.url().endsWith("/fr"), en.page.url());
   await en.page.goto(BASE + "/fr/tarifs", { waitUntil: "networkidle" });
   check("pricing shows 4 offers and 4 AI offers, all « sur devis » until management publishes a price", (await en.page.locator(".tier-card").count()) === 8 && (await en.page.getByText("Tarif sur devis").count()) === 8);
+  check("pricing shows the 3 permanent plans with monthly prices", (await en.page.locator(".plan-card").count()) === 3 && (await en.page.locator(".plan-card").nth(1).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1490"));
   check("pricing publishes the 9 entry/project offers with « à partir de » prices", (await en.page.locator(".entry-card").count()) === 9 && (await en.page.locator(".entry-card .entry-price strong").first().innerText()).includes("567"));
   await en.page.locator("#entree-seo a.button-primary").click();
   await en.page.waitForURL(/\/soumission\?solution=entree-seo/);

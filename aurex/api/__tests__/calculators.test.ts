@@ -56,7 +56,7 @@ describe("operational savings", () => {
   });
 });
 
-import { entryOffers, aiTiers, tiers } from "../../src/content";
+import { entryOffers, aiTiers, plans, tiers } from "../../src/content";
 describe("published entry offers", () => {
   it("have unique slugs, positive prices and a defined scope", () => {
     const slugs = entryOffers.map((o) => o.slug);
@@ -72,5 +72,20 @@ describe("published entry offers", () => {
   it("includes the management-approved entry prices", () => {
     const price = (slug: string) => entryOffers.find((o) => o.slug === slug)?.price;
     expect([price("entree-seo"), price("entree-reseaux"), price("entree-ads"), price("entree-site"), price("entree-automatisation"), price("entree-assistant"), price("entree-diagnostic")]).toEqual([239, 365, 449, 469, 990, 1190, 567]);
+  });
+});
+
+describe("permanent plans", () => {
+  it("are priced in ascending order with a lower yearly rate and hours included", () => {
+    expect(plans.map((p) => p.monthly)).toEqual([790, 1490, 2990]);
+    for (const p of plans) { expect(p.yearly).toBeLessThan(p.monthly); expect(p.hours).toBeGreaterThan(0); expect(p.includes.fr.length).toBe(p.includes.en.length); }
+    expect(plans.map((p) => p.hours)).toEqual([...plans.map((p) => p.hours)].sort((a, b) => a - b));
+  });
+  it("keep a gross margin of at least 30 % at 55 $/h, monthly and yearly", () => {
+    for (const p of plans) for (const price of [p.monthly, p.yearly]) expect((price - p.hours * 55) / price).toBeGreaterThanOrEqual(0.3);
+  });
+  it("do not reuse slugs of other offers", () => {
+    const others = new Set([...tiers, ...aiTiers, ...entryOffers].map((o) => o.slug));
+    for (const p of plans) expect(others.has(p.slug)).toBe(false);
   });
 });

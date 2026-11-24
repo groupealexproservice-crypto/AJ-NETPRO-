@@ -61,13 +61,15 @@ const cases: Case[] = [
   C("en", "Tell me about your AI agents.", /agent/i, "en"),
   C("en", "Are you fully compliant with Quebec Law 25?", /legal|valid|advice|cannot|compliance|counsel/i, "en"),
   C("compliance", "Quelles données personnelles collectez-vous sur ce site ?", /consentement|renseignement|confidential|courriel|demande/i),
+  C("price", "Avez-vous des forfaits mensuels pour garder mon site et mes réseaux à jour ?", /forfait|mois|présence|croissance|partenaire/i),
+  C("price", "Que comprend le forfait Croissance ?", /croissance|seo|google|publication/i),
   C("en", "Give me a pie recipe.", /aurex|service|business|outside|cannot|can’t|can't/i, "en"),
 ];
 
 // Patterns that must never appear in an answer (invented facts, promises).
 const forbidden: Array<[string, RegExp]> = [
   ["garantie de résultat", /\b(nous )?garantissons\b|résultat(s)? garanti/i],
-  ["prix non publié", /\b(?!(?:239|365|449|469|495|567|990|1[  ]?190|1[  ]?490|1[  ]?990|4[  ]?900)\b)\d[\d  ]*\s?(\$|CAD|dollars)(?!.*(exemple|hypoth|simulation|illustr))/i],
+  ["prix non publié", /\b(?!(?:239|365|449|469|495|567|750|790|990|1[\s\u202f\u00a0]?415|2[\s\u202f\u00a0]?840|2[\s\u202f\u00a0]?990|1[\s\u202f\u00a0]?190|1[\s\u202f\u00a0]?490|1[\s\u202f\u00a0]?990|4[\s\u202f\u00a0]?900)\b)\d[\d\s\u202f\u00a0]*\s?(\$|CAD|dollars)(?!.*(exemple|hypoth|simulation|illustr))/i],
   ["client nommé", /\b(client|clients)\s+(comme|tels que|dont)\s+[A-Z]/],
   ["certification inventée", /certifi(é|ée|és)\s+(iso|soc|pci)/i],
 ];
