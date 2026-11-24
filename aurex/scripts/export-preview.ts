@@ -4,7 +4,7 @@
  *   BASE_URL=http://127.0.0.1:3100 OUT_DIR=./preview npx tsx scripts/export-preview.ts
  */
 import { createRequire } from "node:module";
-import { cpSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { indexablePaths, localizePath } from "../src/routes";
 
@@ -19,7 +19,11 @@ for (const lang of ["fr", "en"] as const) for (const c of ["/desabonnement"]) { 
 mkdirSync(OUT, { recursive: true });
 const css = readdirSync("dist/public/assets").find((f) => f.endsWith(".css"))!;
 mkdirSync(path.join(OUT, "assets"), { recursive: true });
-cpSync(`dist/public/assets/${css}`, path.join(OUT, "assets", css)); // scripts are not exported
+// Scripts are not exported. The stylesheet and the self-hosted fonts are, with absolute URLs made relative
+// so the preview works from any folder (hosted previews do not serve the site root).
+for (const file of readdirSync("dist/public/assets").filter((f) => /\.(woff2?|ttf)$/.test(f))) cpSync(`dist/public/assets/${file}`, path.join(OUT, "assets", file));
+const stylesheet = readFileSync(`dist/public/assets/${css}`, "utf8").replaceAll("url(/assets/", "url(./").replaceAll("url(/images/", "url(../images/").replaceAll('url("/images/', 'url("../images/').replaceAll("url('/images/", "url('../images/");
+writeFileSync(path.join(OUT, "assets", css), stylesheet);
 for (const dir of ["images", "icons", "brochures", "brand"]) cpSync(`public/${dir}`, path.join(OUT, dir), { recursive: true });
 
 const banner = {
