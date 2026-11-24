@@ -157,3 +157,30 @@ Fiches par service : chaque page d’expertise du site (10) présente déjà le 
 **Changements** : polices auto-hébergées (plus de requête vers Google, CSP resserrée), logos et photo du héros redimensionnés (logo 280 → 11 Ko, photo 450 → 167 Ko), bibliothèque de défilement doux retirée (accessibilité et poids), réseau de nœuds décoratif démarré en différé et allégé sur mobile, espace réservé de chargement pleine hauteur, bouton du conseiller IA nommé, sculpture 3D remplacée par une pyramide avec orbite dorée (`scripts/build-sculpture.py`, `scripts/render-poster.cjs`), alignement du texte d'accueil corrigé.
 
 **Non atteint** : performance mobile ≥ 90. Le site est une application rendue dans le navigateur : sur un téléphone simulé lent (CPU ×4), React prend 1 à 1,5 s à démarrer. Le levier restant est le **pré-rendu serveur de la première vue** (HTML déjà affiché avant le JavaScript), un chantier structurel à décider. Les phases 4 à 8 (contenu humain, aimant à prospects, test du conseiller avec clé réelle, intégration continue, déploiement, recherche complémentaire) dépendent de la direction ou de ressources externes et n'ont pas été faites.
+
+## 9. Positionnement « prix les plus bas » (recherche du 24 novembre 2026)
+
+**Demande de la direction** : être le moins cher du marché montréalais. **Ce qui est réaliste** : être **sous les prix des agences structurées comparables** (équipe, suivi, bilingue, IA) sans descendre sous le coût. Être moins cher que *tous* ne l’est pas : des micro-offres à gabarit existent à 250–500 $ (voir plancher), impossibles à égaler avec un coût interne de 55 $/h. **Règle appliquée : marge brute minimale de 30 %** ; en dessous, chaque mandat perd de l’argent une fois les frais fixes payés.
+
+Les prix ci-dessous **remplacent le niveau « Accessible »** de la section 3 pour ces services. Ils sont recommandés, **non publiés** : à valider, puis à saisir dans l’administration (onglet *Tarifs*).
+
+| Service | Plancher du marché (offre limitée / gabarit) | Plus bas prix d’une agence structurée | **AUREX (accessible)** | Heures estimées* | Marge brute |
+|---|---|---|---|---|---|
+| Réseaux sociaux (12 publications, 2 plateformes) | 385 $/mois, 1 profil, 8 publ. ([Omnivision](https://www.omnivisiondesign.com/fr/reseaux-sociaux/forfaits-reseaux-sociaux/)) | 550 $/mois ([Persomarketing](https://persomarketing.ca/blog/gestion-des-r%C3%A9seaux-sociaux-en-pme-le-guide-complet)) ; 750 $ ([Codesource](https://codesource.marketing/services/marketing-numerique/gestion-des-medias-sociaux/)) ; 999 $ ([KPM](https://agencekpm.com/forfaits)) | **495 $/mois** | 6 | 33 % |
+| SEO local et visibilité IA (AEO) | 250 $/mois, départ ([Stillawake](https://stillawakemedia.com/fr/agence-seo-montreal)) | 450 $/mois ([OnePage Pro](https://onepagepro.ca/fr/referencement)) ; 797 $ ([Aurone](https://aurone.com/agence-seo/montreal)) ; 1 600 $ ([Iluma](https://ilumamarketing.com/tarifs)) | **449 $/mois** | 5 | 39 % |
+| Gestion Google Ads (minimum mensuel) | 477 $ ([Aurone](https://aurone.ca/agence-google-ads)) | 500 $ ([Lannkin](https://lannkin.ca/google-ads)) ; 699 $ ([Marketing Québec](https://marketingquebec.ca/guides/agence-google-ads-montreal)) ; 1 195 $ ([Falia](https://falia.co/publicite-payante/google-ads)) | **449 $** ou 12 % du budget (le plus élevé) | 5 | 39 % |
+| Site vitrine (5 pages, bilingue) | 499 $ gabarit ([SiteQC](https://agence.siteqc.ca/forfaits)) ; 490 $/an ([Tréma](https://tremaweb.com/creation-site-web-montreal)) | 1 695 $ ([Webmatic](https://www.creationdesitewebpascher.com/)) ; 2 397 $ ([Aurone](https://aurone.ca/agence-web-montreal)) ; 2 500–5 000 $ ([Web Nordique](https://webnordique.com)) | **1 490 $** | 18 | 34 % |
+| Site corporatif bilingue | — | 5 000 $ et plus ; 8 000–25 000 $ ([Falia](https://falia.co/perspectives/conception-de-site-web/combien-coute-un-site-web/)) | **4 900 $** | 55 | 38 % |
+| Automatisation simple (1 processus) | 1 200 $ ([Fred Marketing](https://fredmarketingweb.com/automatisation-ia/)) | 1 250–6 900 $ ([Ordinata](https://ordinata.ca)) | **990 $** | 12 | 33 % |
+| Assistant IA / chatbot (installation) | — | dès 1 250 $ ([Ordinata](https://ordinata.ca)) ; 3 000 $ ([Art Plus Code](https://www.artpluscode.com/services/intelligence-artificielle/)) | **1 490 $** | 18 | 34 % |
+| Diagnostic stratégique express | 597 $ pour 3 h (page datée de 2021, [source](https://karinestgermainblais.com/services)) | 1 950 $ ([Zone Graphique](https://zonegraphique.com/services), page ancienne) | **590 $** | 6 | 44 % |
+| Plan d’affaires / étude de marché | — | 2 500–8 000 $ consultant indépendant ([Falia](https://falia.co/perspectives/strategie-marketing/etude-de-marche)) | **1 990 $** | 25 | 31 % |
+
+\* Heures supposées **avec gabarits et assistance IA**, coût interne 55 $/h (hypothèse). Si vos heures réelles sont plus longues, la marge fond : mesurez-les sur les cinq premiers mandats.
+
+**Lecture honnête**
+- AUREX se place **sous les agences structurées** sur ces neuf services, et à **égalité ou légèrement au-dessus de quelques offres-gabarit ou à profil unique** (réseaux sociaux de base, site à 499 $, SEO de départ). Elles ne sont pas comparables : moins de plateformes, pas de suivi, pas de bilinguisme ni d’IA.
+- Les prix d’autres firmes viennent de leurs pages publiques ou de blogues commerciaux, **à des dates variables** (certains datent de 2020–2021). Ils changent souvent : revérifiez avant de publier.
+- **Seuil de rentabilité** : avec 4 000 $ de frais fixes et une marge moyenne d’environ 35 %, il faut ≈ **11 400 $ de revenus par mois** (contre 8 900 $ à 45 %).
+- **Ne publiez pas « le moins cher du marché »** sans preuve : une telle affirmation doit pouvoir être démontrée (à faire valider par un juriste). Préférez « prix publics, clairs et sans surprise ».
+- **Stratégie recommandée** : prix d’appel très bas sur 3 offres d’entrée (diagnostic express, SEO, automatisation simple) pour attirer, puis abonnements mensuels (réseaux sociaux, SEO, publicité, suivi d’automatisation) qui portent la marge. Les niveaux Professionnel et Premium de la section 3 restent inchangés.
