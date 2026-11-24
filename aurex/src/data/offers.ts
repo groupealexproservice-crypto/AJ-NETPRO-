@@ -117,7 +117,7 @@ export const aiTiers: Tier[] = [
 
 export const formats: Array<{ key: string; title: Localized; text: Localized }> = [
   { key: "service", title: L("Prestation individuelle", "Individual service"), text: L("Un besoin précis, un périmètre fermé, un devis. Idéal pour un diagnostic, un site, une étude ou une campagne.", "One clear need, a closed scope, one proposal. Ideal for a diagnostic, a site, a study or a campaign.") },
-  { key: "subscription", title: L("Abonnement mensuel", "Monthly subscription"), text: L("Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le volume d’heures est défini au devis.", "A team available every month to steer, optimize and report. Hours are defined in the proposal.") },
+  { key: "subscription", title: L("Abonnement mensuel", "Monthly subscription"), text: L("Une équipe disponible chaque mois pour piloter, optimiser et rendre compte. Le périmètre est défini au devis.", "A team available every month to steer, optimize and report. The scope is defined in the proposal.") },
   { key: "custom", title: L("Intervention sur mesure", "Tailored engagement"), text: L("Une combinaison d’expertises construite autour de votre situation, pour les besoins plus larges ou plus complexes.", "A combination of expertise built around your situation, for broader or more complex needs.") },
 ];
 
@@ -126,7 +126,7 @@ export const aiCosts: Array<{ title: Localized; text: Localized }> = [
   { title: L("Installation", "Setup"), text: L("Cadrage, configuration, intégrations, tests et documentation. Facturée une fois, selon le périmètre.", "Scoping, configuration, integrations, testing and documentation. Billed once, according to scope.") },
   { title: L("Maintenance", "Maintenance"), text: L("Surveillance, correctifs et ajustements. Souvent mensuelle, selon la criticité des automatisations.", "Monitoring, fixes and adjustments. Often monthly, depending on how critical the automations are.") },
   { title: L("Utilisation", "Usage"), text: L("Licences et consommation des services tiers (modèles d’IA, outils connectés). Indiquées séparément, au coût réel.", "Licences and consumption of third-party services (AI models, connected tools). Shown separately, at actual cost.") },
-  { title: L("Accompagnement", "Support"), text: L("Formation, suivi d’adoption et évolution des cas d’usage, en heures ou en abonnement.", "Training, adoption follow-up and evolution of use cases, by the hour or subscription.") },
+  { title: L("Accompagnement", "Support"), text: L("Formation, suivi d’adoption et évolution des cas d’usage, à la demande ou en abonnement.", "Training, adoption follow-up and evolution of use cases, on demand or by subscription.") },
 ];
 
 /** Which expertises AUREX would bring first to each industry. The single source for "related" links in both directions. */
