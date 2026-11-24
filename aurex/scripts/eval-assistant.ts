@@ -76,7 +76,8 @@ const key = process.env.ANTHROPIC_API_KEY;
 const out = process.argv[2] ?? "docs/RAPPORT-CONSEILLER.md";
 const rows: string[] = []; let pass = 0, flagged = 0;
 for (const c of cases) {
-  let text = "", mode = "?", note: string[] = [];
+  let text = "", mode = "?";
+  const note: string[] = [];
   try {
     const res = await answer({ messages: [{ role: "user", content: c.q }], lang: c.lang ?? "fr", published: [], apiKey: key, model: process.env.ASSISTANT_MODEL });
     text = res.answer; mode = res.mode + (res.degraded ? " (dégradé)" : "");
@@ -84,7 +85,7 @@ for (const c of cases) {
   if (c.expect && !c.expect.test(text)) note.push("réponse attendue non trouvée");
   for (const [label, re] of forbidden) if (re.test(text)) note.push("interdit : " + label);
   if (text.length < 20) note.push("réponse vide ou trop courte");
-  note.length ? flagged++ : pass++;
+  if (note.length) flagged++; else pass++;
   rows.push(`### ${c.kind} — ${c.q}\n*Mode : ${mode}* — ${note.length ? "⚠️ " + note.join("; ") : "✅ contrôles automatiques passés"}\n\n${text.replace(/\n/g, "\n> ").replace(/^/, "> ")}\n`);
 }
 const head = `# Rapport d’évaluation du conseiller IA\n\nDate : ${new Date().toISOString().slice(0, 10)} · Mode : ${key ? "modèle réel" : "base de connaissances seulement (aucune clé)"} · Questions : ${cases.length}\n\n**Contrôles automatiques : ${pass} réussis, ${flagged} à examiner.** Ces contrôles sont des heuristiques (mots attendus, formules interdites) : lisez les réponses ci-dessous.\n\nAucune clé ni donnée personnelle n’apparaît dans ce rapport.\n\n`;
