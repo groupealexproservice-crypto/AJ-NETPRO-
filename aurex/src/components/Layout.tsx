@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "rea
 import { useLocation } from "react-router";
 import { Link, NavLink } from "./LocaleLink";
 import { ArrowRight, Menu, X, UserRound } from "lucide-react";
-import Lenis from "lenis";
 import { useLanguage } from "../i18n";
 import { track } from "../lib/track";
 import { AssistantChat } from "./AssistantChat";
@@ -15,8 +14,8 @@ export function Brand({ inverted = true }: { inverted?: boolean }) {
   void inverted;
   return (
     <span className="brand" aria-label="AUREX Solutions">
-      <img className="brand-mark-img" src="/brand/aurex-mark.png" alt="" width={102} height={52} decoding="async" />
-      <img className="brand-wordmark-img" src="/brand/aurex-wordmark.png" alt="" width={146} height={31} decoding="async" />
+      <img className="brand-mark-img" src="/brand/aurex-mark-sm.webp" alt="" width={102} height={52} decoding="async" />
+      <img className="brand-wordmark-img" src="/brand/aurex-wordmark-sm.webp" alt="" width={146} height={31} decoding="async" />
     </span>
   );
 }
@@ -91,12 +90,6 @@ export function Layout({ children }: { children: ReactNode }) {
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ autoRaf: true, duration: 1.05 });
-    return () => lenis.destroy();
-  }, []);
 
   return (
     <>

@@ -16,7 +16,7 @@ const app = new Hono<{ Bindings: HttpBindings }>();
 
 // Everything the site loads comes from itself, plus Google Fonts. Inline styles are needed by React; no inline script is ever allowed.
 const CSP = [
-  "default-src 'self'", "script-src 'self' 'wasm-unsafe-eval'", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com data:",
+  "default-src 'self'", "script-src 'self' 'wasm-unsafe-eval'", "style-src 'self' 'unsafe-inline'", "font-src 'self' data:",
   "img-src 'self' data: blob:", "connect-src 'self'", "worker-src 'self' blob:", "media-src 'self' blob:", "object-src 'none'", "base-uri 'self'", "form-action 'self'", "frame-ancestors 'none'",
 ].join("; ");
 

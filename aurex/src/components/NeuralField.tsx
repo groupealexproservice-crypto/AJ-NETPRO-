@@ -21,7 +21,8 @@ export function NeuralField({ density = 1, className = "" }: { density?: number;
       width = canvas.clientWidth; height = canvas.clientHeight;
       canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = Math.round(Math.min(70, (width * height) / 16000) * density);
+      const small = width < 720;
+      const count = Math.round(Math.min(small ? 26 : 70, (width * height) / 16000) * density);
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width, y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
@@ -68,12 +69,17 @@ export function NeuralField({ density = 1, className = "" }: { density?: number;
       if (!should && running) { running = false; window.cancelAnimationFrame(frame); }
     };
 
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
-    const resizer = new ResizeObserver(resize);
-    observer.observe(canvas); resizer.observe(canvas);
-    document.addEventListener("visibilitychange", update);
-    resize(); update();
-    return () => { running = false; window.cancelAnimationFrame(frame); observer.disconnect(); resizer.disconnect(); document.removeEventListener("visibilitychange", update); };
+    // Decorative only: wait until the browser is idle so it never competes with the first paint.
+    let observer: IntersectionObserver | undefined, resizer: ResizeObserver | undefined;
+    const start = () => {
+      observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
+      resizer = new ResizeObserver(resize);
+      observer.observe(canvas); resizer.observe(canvas);
+      document.addEventListener("visibilitychange", update);
+      resize(); update();
+    };
+    const timer = window.setTimeout(start, 1200);
+    return () => { window.clearTimeout(timer); running = false; window.cancelAnimationFrame(frame); observer?.disconnect(); resizer?.disconnect(); document.removeEventListener("visibilitychange", update); };
   }, [density]);
 
   return <canvas ref={ref} className={`neural-field ${className}`} aria-hidden="true" />;

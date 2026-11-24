@@ -111,7 +111,7 @@ export function AssistantChat() {
   return (
     <>
       {!open && (
-        <button ref={launcherRef} type="button" className="assistant-launcher" onClick={() => setOpen(true)} aria-haspopup="dialog">
+        <button ref={launcherRef} type="button" className="assistant-launcher" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label={lang === "fr" ? "Ouvrir le conseiller IA" : "Open the AI advisor"}>
           <Sparkles size={18} aria-hidden="true" /><span>{fr ? "Conseiller IA" : "AI advisor"}</span><i aria-hidden="true" />
         </button>
       )}

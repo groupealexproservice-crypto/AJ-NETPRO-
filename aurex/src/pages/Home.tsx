@@ -65,7 +65,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <img className="hero-mark" src="/brand/aurex-mark.png" alt="" width={830} height={422} decoding="async" />
+        <img className="hero-mark" src="/brand/aurex-mark-lg.webp" alt="" width={760} height={386} loading="lazy" decoding="async" />
         <div className="hero-coordinate" aria-hidden="true">MONTRÉAL / QUÉBEC / CANADA<br />45.5019° N · 73.5674° W</div>
       </section>
 
