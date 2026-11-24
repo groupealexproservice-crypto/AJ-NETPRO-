@@ -23,7 +23,7 @@ const base = {
 const diagnostic = {
   ...base, mode: "diagnostic" as const, sector: "services-professionnels", budget: "a-definir",
   currentSituation: "Équipe de dix personnes, suivi des clients dispersé.", objectives: "Structurer l’acquisition d’ici douze mois.",
-  challenges: "Prospection irrégulière et outils non connectés.", services: ["strategie-intelligence-economique"], message: "",
+  challenges: "Prospection irrégulière et outils non connectés.", services: ["conseil-strategique-analyse-affaires"], message: "",
 };
 
 let adminUser: typeof users.$inferSelect, clientA: typeof users.$inferSelect, clientB: typeof users.$inferSelect;
@@ -37,7 +37,7 @@ beforeAll(async () => {
   const connection = await mysql.createConnection(process.env.DATABASE_URL!);
   await migrate(drizzle(connection), { migrationsFolder: "./db/migrations" });
   await connection.query("SET FOREIGN_KEY_CHECKS=0");
-  for (const table of ["clientItems", "projects", "users", "organizations", "leads", "notifications", "integrationEvents"]) await connection.query(`TRUNCATE TABLE \`${table}\``);
+  for (const table of ["clientItems", "projects", "users", "organizations", "leads", "notifications", "integrationEvents", "offerPricing", "trustItems", "analyticsEvents"]) await connection.query(`TRUNCATE TABLE \`${table}\``);
   await connection.end();
 
   const db = getDb();
@@ -87,14 +87,14 @@ describe("commercial requests", () => {
   });
 
   it("records a consultation as a request to confirm, with solution, engagement type and slot", async () => {
-    const result = await caller().leads.create({ ...base, mode: "appointment", sector: "construction", solution: "growth", engagementType: "monthly", preferredDate: tomorrow(), timeSlot: "afternoon", message: "Premier échange sur l’acquisition." });
+    const result = await caller().leads.create({ ...base, mode: "appointment", sector: "construction-immobilier", solution: "performance", engagementType: "monthly", preferredDate: tomorrow(), timeSlot: "afternoon", message: "Premier échange sur l’acquisition." });
     expect(result.status).toBe("to_confirm");
     const lead = (await caller(adminUser).admin.overview()).leads.find((l) => l.reference === result.reference);
-    expect(lead).toMatchObject({ solution: "growth", engagementType: "monthly", timeSlot: "afternoon", status: "new", confirmedAt: null });
+    expect(lead).toMatchObject({ solution: "performance", engagementType: "monthly", timeSlot: "afternoon", status: "new", confirmedAt: null });
   });
 
   it("rejects consultation dates in the past and unknown slots", async () => {
-    const appointment = { ...base, mode: "appointment" as const, sector: "construction", engagementType: "mandate", message: "Premier échange.", timeSlot: "morning" };
+    const appointment = { ...base, mode: "appointment" as const, sector: "construction-immobilier", engagementType: "mandate", message: "Premier échange.", timeSlot: "morning" };
     await expect(caller().leads.create({ ...appointment, preferredDate: yesterday() })).rejects.toThrow();
     await expect(caller().leads.create({ ...appointment, preferredDate: tomorrow(), timeSlot: "midnight" })).rejects.toThrow();
   });
@@ -174,5 +174,32 @@ describe("authorization", () => {
   it("refuses cross-site writes", async () => {
     const res = await app.request("/api/trpc/leads.subscribe", { method: "POST", headers: { origin: "https://evil.example", host: "benex.test", "content-type": "application/json" }, body: "{}" });
     expect(res.status).toBe(403);
+  });
+
+  it("keeps prices and credibility content private until management publishes and verifies them", async () => {
+    const admin = caller(adminUser);
+    await expect(caller(clientA).admin.upsertPricing({ slug: "essentiel", priceText: "1 $", timeline: "", published: true })).rejects.toMatchObject({ code: "FORBIDDEN" });
+    await expect(admin.admin.upsertPricing({ slug: "essentiel", priceText: "", timeline: "", published: true })).rejects.toThrow();
+    expect(await caller().content.pricing()).toEqual([]);
+    await admin.admin.upsertPricing({ slug: "essentiel", priceText: "Prix de test, taxes en sus", timeline: "", published: false });
+    expect(await caller().content.pricing()).toEqual([]);
+    await admin.admin.upsertPricing({ slug: "essentiel", priceText: "Prix de test, taxes en sus", timeline: "", published: true });
+    expect(await caller().content.pricing()).toEqual([{ slug: "essentiel", priceText: "Prix de test, taxes en sus", timeline: null }]);
+
+    const item = { kind: "testimonial" as const, titleFr: "Titre", titleEn: "Title", bodyFr: "", bodyEn: "", name: "", role: "", url: "", verified: false, published: false };
+    await expect(admin.admin.upsertTrustItem({ ...item, published: true })).rejects.toThrow();
+    await expect(admin.admin.upsertTrustItem({ ...item, verified: true, url: "javascript:alert(1)" })).rejects.toThrow();
+    await admin.admin.upsertTrustItem({ ...item, verified: true, published: false });
+    expect(await caller().content.trust()).toEqual([]);
+    await admin.admin.upsertTrustItem({ ...item, titleFr: "Publié", verified: true, published: true });
+    expect((await caller().content.trust()).map((t) => t.titleFr)).toEqual(["Publié"]);
+  });
+
+  it("records anonymous analytics events from an allowed list only", async () => {
+    await caller().analytics.track({ name: "page_view", path: "/fr/tarifs", lang: "fr" });
+    await expect(caller().analytics.track({ name: "secret" as never, path: "/fr", lang: "fr" })).rejects.toThrow();
+    await expect(caller().analytics.track({ name: "page_view", path: "/fr?email=a@b.c", lang: "fr" })).rejects.toThrow();
+    const stats = await caller(adminUser).admin.stats();
+    expect(stats.funnel.visits).toBe(1);
   });
 });

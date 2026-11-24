@@ -6,7 +6,7 @@ import { CONSENT_TEXT_VERSION, ENGAGEMENT_TYPES, TIME_SLOTS } from "@contracts/c
 import { createRouter, publicQuery } from "./middleware";
 import { getDb } from "./queries/connection";
 import { leads, notifications } from "@db/schema";
-import { expertises, sectors, solutions } from "../src/content";
+import { aiTiers, expertises, sectors, tiers } from "../src/content";
 import { emit } from "./integrations";
 
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -17,7 +17,7 @@ export function newReference(): string {
 
 const sectorSlugs = new Set(sectors.map((s) => s.slug));
 const expertiseSlugs = new Set(expertises.map((e) => e.slug));
-const solutionSlugs = new Set(solutions.map((s) => s.slug));
+const solutionSlugs = new Set([...tiers, ...aiTiers].map((s) => s.slug));
 
 const text = (min: number, max: number) => z.string().trim().min(min).max(max);
 const optional = (max: number) => z.string().trim().max(max).optional().default("");

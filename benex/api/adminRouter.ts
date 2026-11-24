@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { count, desc, eq, sql } from "drizzle-orm";
+import { and, count, desc, eq, lt, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { LEAD_STATUSES } from "@contracts/constants";
 import { createRouter, adminQuery } from "./middleware";
 import { getDb } from "./queries/connection";
-import { campaigns, caseStudies, clientItems, integrationEvents, leads, notifications, organizations, posts, projects, solutionContent, users } from "@db/schema";
+import { analyticsEvents, campaigns, caseStudies, clientItems, integrationEvents, leads, notifications, offerPricing, organizations, posts, projects, solutionContent, trustItems, users } from "@db/schema";
 import { hashPassword, passwordProblem } from "./auth/password";
 import { integrationStatus } from "./integrations";
 import { deleteStoredFile } from "./routes/files";
@@ -31,6 +31,7 @@ const caseInput = z.object({
 export const adminRouter = createRouter({
   overview: adminQuery.query(async () => {
     const db = getDb();
+    const [pricingRows, trustRows] = await Promise.all([db.select().from(offerPricing), db.select().from(trustItems).orderBy(desc(trustItems.createdAt))]);
     const [leadRows, orgRows, projectRows, itemRows, userRows, postRows, caseRows, campaignRows, notificationRows, solutionRows, eventRows] = await Promise.all([
       db.select().from(leads).orderBy(desc(leads.createdAt)),
       db.select().from(organizations).orderBy(organizations.name),
@@ -49,7 +50,7 @@ export const adminRouter = createRouter({
       items: itemRows.map(({ fileKey, ...item }) => ({ ...item, hasFile: Boolean(fileKey) })),
       users: userRows.map((user) => ({ id: user.id, email: user.email, name: user.name, role: user.role, organizationId: user.organizationId, active: user.active, createdAt: user.createdAt, lastSignInAt: user.lastSignInAt })),
       posts: postRows, caseStudies: caseRows, campaigns: campaignRows, notifications: notificationRows,
-      solutions: solutionRows, integrationEvents: eventRows, integrations: integrationStatus(),
+      solutions: solutionRows, integrationEvents: eventRows, integrations: integrationStatus(), pricing: pricingRows, trust: trustRows,
     };
   }),
 
@@ -59,7 +60,15 @@ export const adminRouter = createRouter({
     const byStatus = await db.select({ status: leads.status, total: count() }).from(leads).groupBy(leads.status);
     const bySector = await db.select({ sector: leads.sector, total: count() }).from(leads).where(sql`${leads.sector} is not null`).groupBy(leads.sector);
     const last30 = await db.select({ total: count() }).from(leads).where(sql`${leads.createdAt} >= (now() - interval 30 day)`);
-    return { byMode, byStatus, bySector, last30: last30[0]?.total ?? 0 };
+    const events = await db.select({ name: analyticsEvents.name, total: count() }).from(analyticsEvents).where(sql`${analyticsEvents.createdAt} >= (now() - interval 30 day)`).groupBy(analyticsEvents.name);
+    const eventCount = (name: string) => events.find((e) => e.name === name)?.total ?? 0;
+    const submitted = await db.select({ total: count() }).from(leads).where(and(sql`${leads.createdAt} >= (now() - interval 30 day)`, sql`${leads.mode} <> 'newsletter'`));
+    // Leads still "new" after 48 hours: the follow-up reminder list.
+    const overdue = await db.select({ id: leads.id, reference: leads.reference, company: leads.company, name: leads.name, mode: leads.mode, createdAt: leads.createdAt }).from(leads).where(and(eq(leads.status, "new"), lt(leads.createdAt, sql`(now() - interval 2 day)`), sql`${leads.mode} <> 'newsletter'`)).orderBy(leads.createdAt).limit(20);
+    return {
+      byMode, byStatus, bySector, last30: last30[0]?.total ?? 0, overdue,
+      funnel: { visits: eventCount("page_view"), simulator: eventCount("simulator_run"), formStarted: eventCount("form_started"), consultationClicks: eventCount("cta_consultation"), quoteClicks: eventCount("cta_quote"), submitted: submitted[0]?.total ?? 0 },
+    };
   }),
 
   updateLead: adminQuery.input(z.object({
@@ -174,6 +183,34 @@ export const adminRouter = createRouter({
     summaryFr: z.string().trim().min(10).max(5000), summaryEn: z.string().trim().min(10).max(5000),
   })).mutation(async ({ input }) => {
     await getDb().insert(solutionContent).values(input).onDuplicateKeyUpdate({ set: input });
+    return { ok: true };
+  }),
+
+  upsertPricing: adminQuery.input(z.object({
+    slug: z.string().regex(/^[a-z0-9-]{2,60}$/), priceText: z.string().trim().max(200), timeline: z.string().trim().max(200), published: z.boolean(),
+  })).mutation(async ({ input }) => {
+    const values = { slug: input.slug, priceText: input.priceText || null, timeline: input.timeline || null, published: input.published };
+    if (input.published && !input.priceText && !input.timeline) throw new TRPCError({ code: "BAD_REQUEST", message: "Enter a price or a timeline before publishing" });
+    await getDb().insert(offerPricing).values(values).onDuplicateKeyUpdate({ set: values });
+    return { ok: true };
+  }),
+
+  upsertTrustItem: adminQuery.input(z.object({
+    id: z.number().optional(), kind: z.enum(["testimonial", "partner", "certification", "report", "team"]),
+    titleFr: z.string().trim().min(2).max(255), titleEn: z.string().trim().min(2).max(255),
+    bodyFr: z.string().max(5000), bodyEn: z.string().max(5000), name: z.string().max(255), role: z.string().max(255),
+    url: z.string().max(500).refine((v) => v === "" || /^https?:\/\//.test(v), "URL must use HTTP or HTTPS"),
+    verified: z.boolean(), published: z.boolean(),
+  })).mutation(async ({ input }) => {
+    if (input.published && !input.verified) throw new TRPCError({ code: "BAD_REQUEST", message: "Verify the item before publishing it" });
+    const { id, ...fields } = input;
+    const values = { ...fields, bodyFr: fields.bodyFr || null, bodyEn: fields.bodyEn || null, name: fields.name || null, role: fields.role || null, url: fields.url || null };
+    if (id) await getDb().update(trustItems).set(values).where(eq(trustItems.id, id));
+    else await getDb().insert(trustItems).values(values);
+    return { ok: true };
+  }),
+  deleteTrustItem: adminQuery.input(z.object({ id: z.number() })).mutation(async ({ input }) => {
+    await getDb().delete(trustItems).where(eq(trustItems.id, input.id));
     return { ok: true };
   }),
 

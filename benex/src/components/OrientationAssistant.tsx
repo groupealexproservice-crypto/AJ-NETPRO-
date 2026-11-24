@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
-import { expertises, sectors, tx, type Localized } from "../content";
+import { aiTiers, expertises, sectors, tiers, tx, type Localized } from "../content";
 import { useLanguage } from "../i18n";
-import { useSolutions } from "../hooks/useSolutions";
+import { track } from "../lib/track";
+import { useEffect } from "react";
 import { ArrowLink } from "./Layout";
 import { Link } from "./LocaleLink";
 import { Glyph } from "./Glyphs";
@@ -15,24 +16,24 @@ import { Glyph } from "./Glyphs";
 type Need = { key: string; label: Localized; solution: string; expertises: string[] };
 
 const needs: Need[] = [
-  { key: "launch", label: { fr: "Lancer ou repositionner mon entreprise", en: "Launch or reposition my business" }, solution: "launch", expertises: ["strategie-intelligence-economique", "identite-marque-communication"] },
-  { key: "brand", label: { fr: "Renforcer mon image de marque", en: "Strengthen my brand" }, solution: "launch", expertises: ["identite-marque-communication", "marketing-digital-publicite"] },
-  { key: "digital", label: { fr: "Moderniser mon site et mes outils", en: "Modernize my website and tools" }, solution: "digital", expertises: ["developpement-web-transformation-numerique", "intelligence-artificielle-automatisation"] },
-  { key: "growth", label: { fr: "Trouver de nouveaux clients", en: "Find new customers" }, solution: "growth", expertises: ["developpement-commercial-acquisition", "marketing-digital-publicite"] },
-  { key: "operations", label: { fr: "Optimiser mes opérations", en: "Optimize my operations" }, solution: "performance", expertises: ["performance-operationnelle-logistique", "conseil-accompagnement-entreprises"] },
-  { key: "ai", label: { fr: "Automatiser avec l’intelligence artificielle", en: "Automate with artificial intelligence" }, solution: "intelligence", expertises: ["intelligence-artificielle-automatisation", "performance-operationnelle-logistique"] },
-  { key: "decision", label: { fr: "Éclairer une décision stratégique", en: "Inform a strategic decision" }, solution: "360", expertises: ["strategie-intelligence-economique", "conseil-accompagnement-entreprises"] },
-  { key: "global", label: { fr: "Coordonner plusieurs enjeux à la fois", en: "Coordinate several challenges at once" }, solution: "360", expertises: ["conseil-accompagnement-entreprises", "strategie-intelligence-economique"] },
+  { key: "launch", label: { fr: "Lancer ou repositionner mon entreprise", en: "Launch or reposition my business" }, solution: "essentiel", expertises: ["creation-developpement-croissance", "conseil-strategique-analyse-affaires"] },
+  { key: "brand", label: { fr: "Renforcer mon image et ma visibilité", en: "Strengthen my image and visibility" }, solution: "essentiel", expertises: ["marketing-strategique-numerique", "sites-web-solutions-numeriques"] },
+  { key: "digital", label: { fr: "Moderniser mon site et mes outils", en: "Modernize my website and tools" }, solution: "performance", expertises: ["sites-web-solutions-numeriques", "customer-marketing-experience-client"] },
+  { key: "growth", label: { fr: "Trouver de nouveaux clients", en: "Find new customers" }, solution: "performance", expertises: ["publicite-numerique-ppc", "marketing-strategique-numerique"] },
+  { key: "operations", label: { fr: "Optimiser mes opérations et ma logistique", en: "Optimize my operations and logistics" }, solution: "business", expertises: ["solutions-operationnelles", "logistique-chaine-approvisionnement"] },
+  { key: "ai", label: { fr: "Automatiser avec l’intelligence artificielle", en: "Automate with artificial intelligence" }, solution: "ai-business", expertises: ["intelligence-artificielle-automatisation", "solutions-operationnelles"] },
+  { key: "decision", label: { fr: "Éclairer une décision stratégique", en: "Inform a strategic decision" }, solution: "business", expertises: ["conseil-strategique-analyse-affaires", "analyse-marche-intelligence-economique"] },
+  { key: "global", label: { fr: "Coordonner plusieurs enjeux à la fois", en: "Coordinate several challenges at once" }, solution: "enterprise", expertises: ["conseil-strategique-analyse-affaires", "intelligence-artificielle-automatisation"] },
 ];
 
 export function OrientationAssistant() {
   const { lang, t } = useLanguage();
   const fr = lang === "fr";
-  const solutions = useSolutions();
   const [sector, setSector] = useState<string | null>(null);
   const [needKey, setNeedKey] = useState<string | null>(null);
   const need = needs.find((n) => n.key === needKey);
-  const solution = solutions.find((s) => s.slug === need?.solution);
+  const solution = [...tiers, ...aiTiers].find((s) => s.slug === need?.solution);
+  useEffect(() => { if (need) track("assistant_completed"); }, [need]);
   const sectorItem = sectors.find((s) => s.slug === sector);
   const step = !sector ? 1 : !need ? 2 : 3;
   const query = `?solution=${need?.solution ?? ""}&sector=${sector ?? ""}`;
@@ -43,7 +44,7 @@ export function OrientationAssistant() {
         <Sparkles size={28} strokeWidth={1.25} aria-hidden="true" />
         <div>
           <p className="eyebrow">{fr ? "Deux questions" : "Two questions"}</p>
-          <h2 id="assistant-title">{fr ? "Mettez notre expertise au service de votre défi." : "Put our expertise to work on your challenge."}</h2>
+          <h2 id="assistant-title">{fr ? "Dites-nous votre secteur et votre besoin." : "Tell us your industry and your need."}</h2>
           <p>{fr ? "Indiquez votre secteur et votre besoin : nous vous orientons vers l’offre, les expertises et le formulaire les plus pertinents." : "Tell us your industry and your need: we point you to the most relevant offer, expertise and form."}</p>
           <ol className="assistant-steps" aria-label={fr ? "Progression" : "Progress"}>
             {[fr ? "Votre secteur" : "Your industry", fr ? "Votre besoin" : "Your need", fr ? "Notre recommandation" : "Our recommendation"].map((label, index) => (
@@ -78,8 +79,8 @@ export function OrientationAssistant() {
         {step === 3 && need && solution && sectorItem && (
           <div className="assistant-answer">
             <p className="eyebrow">{t("recommended")}</p>
-            <div className="assistant-answer-title"><Glyph name={solution.slug} size={48} /><h3>{solution.name}</h3></div>
-            <p>{tx(solution.summary, lang)}</p>
+            <div className="assistant-answer-title"><Glyph name={solution.slug} size={48} /><div><p className="assistant-verb">{tx(solution.verb, lang)}</p><h3>{solution.name}</h3></div></div>
+            <p>{tx(solution.audience, lang)}</p>
             <p className="assistant-context">{fr ? "Pour : " : "For: "}{tx(sectorItem.name, lang)} · {tx(need.label, lang)}</p>
             <ul className="assistant-links">
               {need.expertises.map((slug) => {
@@ -91,7 +92,7 @@ export function OrientationAssistant() {
             <div className="assistant-answer-actions">
               <ArrowLink to={`/soumission${query}`} light>{t("quote")}</ArrowLink>
               <ArrowLink to={`/consultation${query}`} light>{t("consult")}</ArrowLink>
-              <ArrowLink to={`/solutions/${solution.slug}`} light>{t("learnMore")}</ArrowLink>
+              <ArrowLink to={`/tarifs#${solution.slug}`} light>{t("pricing")}</ArrowLink>
               <button type="button" className="text-button" onClick={() => { setSector(null); setNeedKey(null); }}><RotateCcw size={16} />{t("restart")}</button>
             </div>
           </div>

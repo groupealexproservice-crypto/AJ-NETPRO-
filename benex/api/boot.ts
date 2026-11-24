@@ -53,11 +53,8 @@ app.route("/", seoRoutes);
 app.get("/api/health", (c) => c.json({ ok: true }));
 app.all("/api/*", (c) => c.json({ error: "Not Found" }, 404));
 
-// "/" leads to the visitor's language: the same equivalent-page logic as the language switcher.
-app.get("/", (c) => {
-  const preferred = (c.req.header("accept-language") ?? "").toLowerCase();
-  return c.redirect(preferred.startsWith("en") ? "/en" : "/fr", 302);
-});
+// "/" goes straight to the French home page: no language selection screen. English is one click away in the menu.
+app.get("/", (c) => c.redirect("/fr", 302));
 
 app.onError((err, c) => {
   log.error("unhandled request error", {

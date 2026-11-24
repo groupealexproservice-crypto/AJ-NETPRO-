@@ -5,293 +5,6 @@ export type LocalizedList = { fr: string[]; en: string[] };
 export const tx = (value: Localized, lang: Lang) => value[lang];
 export const txList = (value: LocalizedList, lang: Lang) => value[lang];
 
-export type Expertise = {
-  slug: string;
-  number: string;
-  title: Localized;
-  short: Localized;
-  intro: Localized;
-  problems: LocalizedList;
-  services: LocalizedList;
-  deliverables: LocalizedList;
-};
-
-export const expertises: Expertise[] = [
-  {
-    slug: "identite-marque-communication",
-    number: "01",
-    title: { fr: "Identité de marque et communication", en: "Brand identity and communication" },
-    short: {
-      fr: "Une marque cohérente, reconnaissable et alignée sur votre ambition d’affaires.",
-      en: "A coherent, recognizable brand aligned with your business ambition.",
-    },
-    intro: {
-      fr: "Nous relions le positionnement stratégique, l’expression visuelle et les communications pour donner à votre entreprise une présence claire et crédible sur tous ses points de contact.",
-      en: "We connect strategic positioning, visual expression and communications to give your business a clear, credible presence at every touchpoint.",
-    },
-    problems: {
-      fr: ["Une image qui ne reflète plus la maturité de l’entreprise.", "Des messages et des supports incohérents d’un canal à l’autre.", "Une difficulté à se différencier dans un marché concurrentiel."],
-      en: ["An image that no longer reflects the company’s maturity.", "Inconsistent messages and materials across channels.", "Difficulty standing out in a competitive market."],
-    },
-    services: {
-      fr: ["Création et refonte de logos", "Identité visuelle complète", "Charte graphique", "Positionnement de marque", "Stratégie de communication", "Création de supports institutionnels", "Présentations commerciales", "Photographie et direction artistique", "Création de contenus numériques", "Gestion de la réputation en ligne"],
-      en: ["Logo creation and redesign", "Complete visual identity", "Brand guidelines", "Brand positioning", "Communication strategy", "Institutional materials", "Sales presentations", "Photography and art direction", "Digital content creation", "Online reputation management"],
-    },
-    deliverables: {
-      fr: ["Plateforme de marque et positionnement documenté", "Système d’identité visuelle et charte d’utilisation", "Bibliothèque de supports prioritaires", "Plan de communication et guide éditorial"],
-      en: ["Brand platform and documented positioning", "Visual identity system and usage guidelines", "Library of priority materials", "Communication plan and editorial guide"],
-    },
-  },
-  {
-    slug: "developpement-web-transformation-numerique",
-    number: "02",
-    title: { fr: "Développement web et transformation numérique", en: "Web development and digital transformation" },
-    short: {
-      fr: "Des plateformes utiles, performantes et intégrées à vos opérations.",
-      en: "Useful, high-performing platforms integrated with your operations.",
-    },
-    intro: {
-      fr: "Nous concevons des écosystèmes numériques qui servent réellement vos clients et vos équipes, de la vitrine institutionnelle aux outils métiers connectés.",
-      en: "We design digital ecosystems that genuinely serve your customers and teams, from institutional websites to connected business tools.",
-    },
-    problems: {
-      fr: ["Un site vieillissant qui freine la crédibilité et les conversions.", "Des outils isolés qui multiplient les saisies manuelles.", "Une expérience utilisateur complexe sur mobile comme sur ordinateur."],
-      en: ["An aging website that undermines credibility and conversions.", "Disconnected tools that multiply manual data entry.", "A complex user experience on mobile and desktop."],
-    },
-    services: {
-      fr: ["Création de sites web institutionnels", "Sites vitrines professionnels", "Plateformes de commerce électronique", "Applications web", "Portails clients", "Refonte et optimisation de sites existants", "Référencement naturel SEO", "Optimisation de l’expérience utilisateur", "Intégration de systèmes CRM", "Maintenance et sécurité numérique", "Analyse du trafic et des conversions"],
-      en: ["Institutional website development", "Professional showcase websites", "E-commerce platforms", "Web applications", "Client portals", "Website redesign and optimization", "Organic search optimization (SEO)", "User experience optimization", "CRM system integration", "Digital maintenance and security", "Traffic and conversion analysis"],
-    },
-    deliverables: {
-      fr: ["Architecture fonctionnelle et parcours utilisateurs", "Plateforme responsive et accessible", "Intégrations et documentation technique", "Tableau de suivi des performances et plan de maintenance"],
-      en: ["Functional architecture and user journeys", "Responsive, accessible platform", "Integrations and technical documentation", "Performance dashboard and maintenance plan"],
-    },
-  },
-  {
-    slug: "marketing-digital-publicite",
-    number: "03",
-    title: { fr: "Marketing et publicité", en: "Marketing and advertising" },
-    short: {
-      fr: "Des campagnes pilotées par les objectifs commerciaux, pas par la seule visibilité.",
-      en: "Campaigns driven by business objectives, not visibility alone.",
-    },
-    intro: {
-      fr: "Nous orchestrons les contenus, les audiences, les canaux et la mesure pour construire un système d’acquisition cohérent et améliorable.",
-      en: "We orchestrate content, audiences, channels and measurement to build a coherent, continuously improvable acquisition system.",
-    },
-    problems: {
-      fr: ["Des investissements publicitaires difficiles à relier aux ventes.", "Une présence irrégulière et des contenus sans ligne éditoriale.", "Des données de campagne dispersées et peu exploitables."],
-      en: ["Advertising spend that is difficult to connect to sales.", "Irregular presence and content without an editorial direction.", "Scattered campaign data that is hard to use."],
-    },
-    services: {
-      fr: ["Stratégie marketing complète", "Campagnes Meta Ads", "Campagnes Google Ads", "Publicité LinkedIn", "Gestion professionnelle des réseaux sociaux", "Calendriers éditoriaux", "Création de visuels publicitaires", "Campagnes de lancement", "Marketing de contenu", "Campagnes de courriels", "Optimisation des budgets publicitaires", "Analyse du retour sur investissement"],
-      en: ["Comprehensive marketing strategy", "Meta Ads campaigns", "Google Ads campaigns", "LinkedIn advertising", "Professional social media management", "Editorial calendars", "Advertising creative", "Launch campaigns", "Content marketing", "Email campaigns", "Advertising budget optimization", "Return on investment analysis"],
-    },
-    deliverables: {
-      fr: ["Plan d’acquisition multicanal", "Calendrier éditorial et concepts de campagne", "Configuration et suivi des campagnes", "Rapports de performance et recommandations d’optimisation"],
-      en: ["Multichannel acquisition plan", "Editorial calendar and campaign concepts", "Campaign setup and monitoring", "Performance reports and optimization recommendations"],
-    },
-  },
-  {
-    slug: "developpement-commercial-acquisition",
-    number: "04",
-    title: { fr: "Développement commercial et acquisition client", en: "Business development and customer acquisition" },
-    short: {
-      fr: "Une fonction de développement des affaires structurée et externalisée.",
-      en: "A structured, outsourced business development function.",
-    },
-    intro: {
-      fr: "Nous organisons la recherche d’opportunités, la qualification et le suivi commercial pour créer un pipeline lisible et durable, dans le respect des règles de consentement applicables.",
-      en: "We organize opportunity research, qualification and sales follow-up to create a clear, sustainable pipeline while respecting applicable consent rules.",
-    },
-    problems: {
-      fr: ["Une prospection irrégulière qui dépend du temps des dirigeants.", "Des opportunités mal qualifiées ou perdues faute de suivi.", "Une difficulté à accéder aux appels d’offres et aux bons décideurs."],
-      en: ["Irregular prospecting that depends on executive availability.", "Poorly qualified opportunities or losses due to missing follow-up.", "Difficulty accessing tenders and the right decision-makers."],
-    },
-    services: {
-      fr: ["Identification de marchés cibles", "Recherche de prospects qualifiés", "Constitution de bases de données commerciales", "Prospection B2B", "Recherche d’opportunités contractuelles", "Veille sur les appels d’offres publics et privés", "Création de campagnes de prospection", "Rédaction de courriels commerciaux personnalisés", "Préparation de propositions et de soumissions", "Gestion du pipeline commercial", "Relance et suivi des prospects", "Développement de partenariats stratégiques", "Analyse des performances commerciales"],
-      en: ["Target market identification", "Qualified prospect research", "Commercial database development", "B2B prospecting", "Contract opportunity research", "Public and private tender monitoring", "Outreach campaign development", "Personalized sales email writing", "Proposal and bid preparation", "Sales pipeline management", "Prospect follow-up", "Strategic partnership development", "Sales performance analysis"],
-    },
-    deliverables: {
-      fr: ["Cartographie des marchés et profils de clients cibles", "Base de prospects documentée et conforme", "Séquences de prospection et argumentaires", "Pipeline, propositions commerciales et rapports de suivi"],
-      en: ["Market mapping and target customer profiles", "Documented, compliant prospect database", "Outreach sequences and sales narratives", "Pipeline, sales proposals and follow-up reports"],
-    },
-  },
-  {
-    slug: "strategie-intelligence-economique",
-    number: "05",
-    title: { fr: "Stratégie et intelligence économique", en: "Strategy and business intelligence" },
-    short: {
-      fr: "Des décisions appuyées sur une lecture rigoureuse des marchés et des opportunités.",
-      en: "Decisions supported by a rigorous reading of markets and opportunities.",
-    },
-    intro: {
-      fr: "Nous transformons l’information sectorielle, concurrentielle et commerciale en choix stratégiques explicites, hiérarchisés et directement exploitables.",
-      en: "We turn industry, competitive and commercial information into explicit, prioritized and actionable strategic choices.",
-    },
-    problems: {
-      fr: ["Une croissance envisagée sans validation suffisante du marché.", "Des décisions tarifaires ou d’expansion fondées sur l’intuition.", "Une veille dispersée qui n’alimente pas la prise de décision."],
-      en: ["Growth plans without sufficient market validation.", "Pricing or expansion decisions based on intuition.", "Scattered monitoring that does not inform decision-making."],
-    },
-    services: {
-      fr: ["Études de marché", "Analyse sectorielle", "Analyse concurrentielle", "Analyse SWOT", "Études de faisabilité", "Plans d’affaires", "Stratégies de lancement", "Analyse du positionnement", "Stratégies tarifaires", "Identification des opportunités commerciales", "Plans de croissance", "Stratégies d’expansion géographique", "Veille stratégique"],
-      en: ["Market research", "Industry analysis", "Competitive analysis", "SWOT analysis", "Feasibility studies", "Business plans", "Go-to-market strategies", "Positioning analysis", "Pricing strategies", "Commercial opportunity identification", "Growth plans", "Geographic expansion strategies", "Strategic monitoring"],
-    },
-    deliverables: {
-      fr: ["Étude documentée et analyse concurrentielle", "Modèle d’affaires et hypothèses explicites", "Scénarios de croissance et matrice de priorisation", "Feuille de route stratégique et dispositif de veille"],
-      en: ["Documented research and competitive analysis", "Business model and explicit assumptions", "Growth scenarios and prioritization matrix", "Strategic roadmap and monitoring framework"],
-    },
-  },
-  {
-    slug: "performance-operationnelle-logistique",
-    number: "06",
-    title: { fr: "Performance opérationnelle et logistique", en: "Operational performance and logistics" },
-    short: {
-      fr: "Des opérations plus fluides, mesurables et adaptées à la croissance.",
-      en: "Smoother, measurable operations designed for growth.",
-    },
-    intro: {
-      fr: "Nous examinons les processus, les rôles, les flux et les indicateurs pour réduire les frictions et renforcer la qualité de service sans perdre de vue la réalité des équipes.",
-      en: "We examine processes, roles, flows and indicators to reduce friction and strengthen service quality while staying grounded in team realities.",
-    },
-    problems: {
-      fr: ["Des processus informels qui ralentissent l’exécution.", "Des coûts et des délais difficiles à expliquer.", "Une organisation qui peine à absorber l’augmentation du volume."],
-      en: ["Informal processes that slow execution.", "Costs and delays that are difficult to explain.", "An organization struggling to absorb increased volume."],
-    },
-    services: {
-      fr: ["Audit des opérations", "Analyse des processus internes", "Optimisation des méthodes de travail", "Organisation des équipes", "Planification des ressources", "Optimisation des flux logistiques", "Gestion des stocks et des approvisionnements", "Réduction des coûts opérationnels", "Création de procédures internes", "Mise en place d’indicateurs de performance", "Amélioration continue", "Optimisation de la qualité de service"],
-      en: ["Operations audit", "Internal process analysis", "Work method optimization", "Team organization", "Resource planning", "Logistics flow optimization", "Inventory and supply management", "Operating cost reduction", "Internal procedure development", "Performance indicator implementation", "Continuous improvement", "Service quality optimization"],
-    },
-    deliverables: {
-      fr: ["Cartographie des processus et diagnostic des irritants", "Procédures et responsabilités clarifiées", "Plan d’optimisation des ressources et des flux", "Indicateurs de performance et rituel d’amélioration continue"],
-      en: ["Process mapping and friction diagnostic", "Clarified procedures and responsibilities", "Resource and flow optimization plan", "Performance indicators and continuous improvement cadence"],
-    },
-  },
-  {
-    slug: "intelligence-artificielle-automatisation",
-    number: "07",
-    title: { fr: "Intelligence artificielle et automatisation", en: "Artificial intelligence and automation" },
-    short: {
-      fr: "Des technologies ciblées qui libèrent du temps et renforcent la décision.",
-      en: "Targeted technologies that free up time and strengthen decision-making.",
-    },
-    intro: {
-      fr: "Nous identifions les cas d’usage à valeur réelle, puis intégrons l’IA et l’automatisation dans des workflows maîtrisés, documentés et adoptés par les équipes.",
-      en: "We identify high-value use cases, then integrate AI and automation into controlled, documented workflows that teams can adopt.",
-    },
-    problems: {
-      fr: ["Des tâches répétitives qui mobilisent les équipes à faible valeur.", "Des données dispersées et des rapports produits manuellement.", "Un intérêt pour l’IA sans cas d’usage ni cadre de gouvernance."],
-      en: ["Repetitive tasks consuming team time with little value.", "Scattered data and manually produced reports.", "Interest in AI without clear use cases or governance."],
-    },
-    services: {
-      fr: ["Création et intégration d’agents IA", "Assistants virtuels professionnels", "Automatisation des tâches administratives", "Automatisation des processus commerciaux", "Automatisation des rapports", "Gestion intelligente des données", "Intégration des outils métiers", "Tableaux de bord décisionnels", "Automatisation des workflows", "Accompagnement à l’adoption de l’intelligence artificielle"],
-      en: ["AI agent creation and integration", "Professional virtual assistants", "Administrative task automation", "Sales process automation", "Report automation", "Intelligent data management", "Business tool integration", "Decision-making dashboards", "Workflow automation", "AI adoption support"],
-    },
-    deliverables: {
-      fr: ["Cartographie et priorisation des cas d’usage", "Workflows automatisés et règles de contrôle", "Agents ou assistants configurés et documentés", "Tableaux de bord et accompagnement à l’adoption"],
-      en: ["Use-case mapping and prioritization", "Automated workflows and control rules", "Configured, documented agents or assistants", "Dashboards and adoption support"],
-    },
-  },
-  {
-    slug: "conseil-accompagnement-entreprises",
-    number: "08",
-    title: { fr: "Conseil et accompagnement des entreprises", en: "Business consulting and support" },
-    short: {
-      fr: "Une direction stratégique externe pour structurer et piloter le développement.",
-      en: "External strategic leadership to structure and guide development.",
-    },
-    intro: {
-      fr: "Nous accompagnons les dirigeants dans la durée pour clarifier les responsabilités, structurer les services, piloter les projets et maintenir l’alignement entre les objectifs et l’exécution.",
-      en: "We support executives over time to clarify responsibilities, structure departments, guide projects and maintain alignment between objectives and execution.",
-    },
-    problems: {
-      fr: ["Une entreprise qui grandit sans structure organisationnelle adaptée.", "Des projets nombreux, mais insuffisamment priorisés ou pilotés.", "Des dirigeants isolés face à des décisions transversales."],
-      en: ["A company growing without an adapted organizational structure.", "Numerous projects without sufficient prioritization or oversight.", "Executives isolated when facing cross-functional decisions."],
-    },
-    services: {
-      fr: ["Accompagnement à la création d’entreprise", "Structuration organisationnelle", "Définition des responsabilités internes", "Conseil en gestion", "Accompagnement des dirigeants", "Plans de transformation", "Pilotage de projets", "Stratégie de développement", "Suivi des objectifs", "Accompagnement à long terme"],
-      en: ["Business creation support", "Organizational structuring", "Internal responsibility definition", "Management consulting", "Executive support", "Transformation plans", "Project leadership", "Development strategy", "Objective monitoring", "Long-term support"],
-    },
-    deliverables: {
-      fr: ["Structure organisationnelle et matrice des responsabilités", "Plan de transformation priorisé", "Gouvernance de projet et outils de pilotage", "Rituel de suivi des objectifs et accompagnement des dirigeants"],
-      en: ["Organizational structure and responsibility matrix", "Prioritized transformation plan", "Project governance and management tools", "Objective review cadence and executive support"],
-    },
-  },
-];
-
-export type Solution = {
-  slug: string;
-  name: string;
-  category: Localized;
-  summary: Localized;
-  objective: Localized;
-  scope: LocalizedList;
-  deliverables: LocalizedList;
-  outcomes: LocalizedList;
-};
-
-export const solutions: Solution[] = [
-  {
-    slug: "launch",
-    name: "BENEX Launch",
-    category: { fr: "Création", en: "Creation" },
-    summary: { fr: "Passer d’une ambition à un lancement structuré, crédible et commercialisable.", en: "Move from ambition to a structured, credible and market-ready launch." },
-    objective: { fr: "Réunir les fondations stratégiques, visuelles, numériques et commerciales nécessaires au démarrage d’une entreprise.", en: "Bring together the strategic, visual, digital and commercial foundations needed to start a business." },
-    scope: { fr: ["Étude de marché initiale et positionnement", "Identité de marque et supports essentiels", "Site web et présence numérique", "Plan de lancement et stratégie commerciale"], en: ["Initial market research and positioning", "Brand identity and essential materials", "Website and digital presence", "Launch plan and sales strategy"] },
-    deliverables: { fr: ["Dossier de positionnement", "Identité et charte graphique", "Plateforme web de lancement", "Feuille de route commerciale"], en: ["Positioning brief", "Identity and brand guidelines", "Launch web platform", "Commercial roadmap"] },
-    outcomes: { fr: ["Clarifier l’offre et les marchés prioritaires", "Présenter une marque cohérente", "Disposer d’outils de vente utilisables", "Orchestrer les premières actions d’acquisition"], en: ["Clarify the offer and priority markets", "Present a coherent brand", "Provide usable sales tools", "Coordinate initial acquisition activities"] },
-  },
-  {
-    slug: "digital",
-    name: "BENEX Digital",
-    category: { fr: "Transformation", en: "Transformation" },
-    summary: { fr: "Faire de votre écosystème numérique un levier d’efficacité et de croissance.", en: "Turn your digital ecosystem into a lever for efficiency and growth." },
-    objective: { fr: "Moderniser les points de contact numériques et connecter les outils qui soutiennent le parcours client.", en: "Modernize digital touchpoints and connect the tools supporting the customer journey." },
-    scope: { fr: ["Site web et expérience utilisateur", "Référencement et présence digitale", "CRM et outils numériques", "Automatisation des parcours et mesure"], en: ["Website and user experience", "Search visibility and digital presence", "CRM and digital tools", "Journey automation and measurement"] },
-    deliverables: { fr: ["Architecture et plateforme numérique", "Intégrations documentées", "Plan SEO et tableaux de suivi", "Guide d’utilisation et de maintenance"], en: ["Digital architecture and platform", "Documented integrations", "SEO plan and monitoring dashboards", "Usage and maintenance guide"] },
-    outcomes: { fr: ["Améliorer les parcours de conversion", "Réduire les saisies redondantes", "Centraliser l’information client", "Piloter la performance numérique"], en: ["Improve conversion journeys", "Reduce duplicate data entry", "Centralize customer information", "Manage digital performance"] },
-  },
-  {
-    slug: "growth",
-    name: "BENEX Growth",
-    category: { fr: "Acquisition", en: "Acquisition" },
-    summary: { fr: "Structurer un moteur commercial qui transforme les marchés ciblés en opportunités suivies.", en: "Build a commercial engine that turns target markets into tracked opportunities." },
-    objective: { fr: "Coordonner prospection, marketing et suivi commercial autour d’un pipeline partagé.", en: "Coordinate prospecting, marketing and sales follow-up around a shared pipeline." },
-    scope: { fr: ["Recherche de clients et d’opportunités", "Campagnes marketing et prospection", "Propositions commerciales et appels d’offres", "Gestion du pipeline et analyse"], en: ["Customer and opportunity research", "Marketing and outreach campaigns", "Sales proposals and tenders", "Pipeline management and analysis"] },
-    deliverables: { fr: ["Plan d’acquisition et ciblage", "Campagnes et argumentaires", "Pipeline et modèles de propositions", "Rapports de performance commerciale"], en: ["Acquisition plan and targeting", "Campaigns and sales narratives", "Pipeline and proposal templates", "Sales performance reports"] },
-    outcomes: { fr: ["Accroître la régularité de la prospection", "Améliorer la qualification", "Renforcer le suivi des opportunités", "Éclairer les décisions d’investissement commercial"], en: ["Increase prospecting consistency", "Improve qualification", "Strengthen opportunity follow-up", "Inform commercial investment decisions"] },
-  },
-  {
-    slug: "performance",
-    name: "BENEX Performance",
-    category: { fr: "Opérations", en: "Operations" },
-    summary: { fr: "Aligner processus, ressources et logistique sur les exigences de votre croissance.", en: "Align processes, resources and logistics with your growth requirements." },
-    objective: { fr: "Améliorer l’exécution et la qualité de service en agissant sur les irritants opérationnels mesurables.", en: "Improve execution and service quality by addressing measurable operational friction." },
-    scope: { fr: ["Audit et cartographie des opérations", "Processus et organisation des équipes", "Flux logistiques, stocks et ressources", "Indicateurs et amélioration continue"], en: ["Operations audit and mapping", "Processes and team organization", "Logistics flows, inventory and resources", "Indicators and continuous improvement"] },
-    deliverables: { fr: ["Diagnostic opérationnel", "Procédures et responsabilités", "Plan d’optimisation", "Tableau de bord de performance"], en: ["Operational diagnostic", "Procedures and responsibilities", "Optimization plan", "Performance dashboard"] },
-    outcomes: { fr: ["Réduire les frictions et les reprises", "Clarifier l’organisation du travail", "Améliorer l’utilisation des ressources", "Installer une discipline d’amélioration"], en: ["Reduce friction and rework", "Clarify work organization", "Improve resource utilization", "Establish a discipline of improvement"] },
-  },
-  {
-    slug: "intelligence",
-    name: "BENEX Intelligence",
-    category: { fr: "Technologie", en: "Technology" },
-    summary: { fr: "Moderniser les opérations grâce à des cas d’usage IA et d’automatisation maîtrisés.", en: "Modernize operations through controlled AI and automation use cases." },
-    objective: { fr: "Transformer les tâches répétitives et les données sous-exploitées en workflows fiables et en information décisionnelle.", en: "Turn repetitive tasks and underused data into reliable workflows and decision-ready information." },
-    scope: { fr: ["Cadrage des cas d’usage et gouvernance", "Agents IA et assistants professionnels", "Automatisation des workflows", "Données, rapports et tableaux de bord"], en: ["Use-case framing and governance", "AI agents and professional assistants", "Workflow automation", "Data, reporting and dashboards"] },
-    deliverables: { fr: ["Feuille de route des cas d’usage", "Solutions configurées et documentées", "Contrôles et règles d’utilisation", "Formation et suivi d’adoption"], en: ["Use-case roadmap", "Configured, documented solutions", "Controls and usage rules", "Training and adoption monitoring"] },
-    outcomes: { fr: ["Libérer du temps pour les tâches à valeur", "Fiabiliser les rapports", "Améliorer l’accès à l’information", "Adopter l’IA avec des règles claires"], en: ["Free time for high-value work", "Improve reporting reliability", "Improve access to information", "Adopt AI with clear rules"] },
-  },
-  {
-    slug: "360",
-    name: "BENEX 360",
-    category: { fr: "Conseil global", en: "Integrated consulting" },
-    summary: { fr: "Une direction externalisée pour coordonner stratégie, commercial, numérique et opérations.", en: "External leadership coordinating strategy, sales, digital and operations." },
-    objective: { fr: "Créer un accompagnement transversal et évolutif autour des priorités propres à votre organisation.", en: "Create cross-functional, scalable support around your organization’s specific priorities." },
-    scope: { fr: ["Diagnostic global et gouvernance", "Combinaison personnalisée des expertises", "Pilotage de projets et accompagnement des dirigeants", "Suivi des objectifs et optimisation continue"], en: ["Comprehensive diagnostic and governance", "Custom combination of expertise", "Project leadership and executive support", "Objective monitoring and continuous optimization"] },
-    deliverables: { fr: ["Feuille de route intégrée", "Comité de pilotage et indicateurs", "Plans de projet coordonnés", "Recommandations stratégiques périodiques"], en: ["Integrated roadmap", "Steering committee and indicators", "Coordinated project plans", "Periodic strategic recommendations"] },
-    outcomes: { fr: ["Aligner les initiatives entre elles", "Simplifier la coordination des partenaires", "Accélérer la prise de décision", "Maintenir une vision globale de la performance"], en: ["Align initiatives", "Simplify partner coordination", "Accelerate decision-making", "Maintain a comprehensive view of performance"] },
-  },
-];
 
 export type Sector = {
   slug: string;
@@ -299,9 +12,11 @@ export type Sector = {
   intro: Localized;
   challenges: LocalizedList;
   responses: LocalizedList;
+  benefits?: LocalizedList;
 };
 
-export const sectors: Sector[] = [
+
+const legacySectors: Sector[] = [
   {
     slug: "services-professionnels",
     name: { fr: "Services professionnels", en: "Professional services" },
@@ -374,13 +89,6 @@ export const sectors: Sector[] = [
   },
 ];
 
-export const methodSteps = [
-  { number: "01", title: { fr: "Diagnostic et compréhension", en: "Diagnostic and understanding" }, text: { fr: "Nous cadrons les enjeux, les objectifs, les contraintes et la réalité de vos équipes.", en: "We frame the issues, objectives, constraints and realities facing your teams." } },
-  { number: "02", title: { fr: "Analyse stratégique", en: "Strategic analysis" }, text: { fr: "Nous analysons les marchés, les données, les processus et les options pour hiérarchiser les décisions.", en: "We analyze markets, data, processes and options to prioritize decisions." } },
-  { number: "03", title: { fr: "Conception des solutions", en: "Solution design" }, text: { fr: "Nous définissons le périmètre, les livrables, les responsabilités et les indicateurs de réussite.", en: "We define scope, deliverables, responsibilities and success indicators." } },
-  { number: "04", title: { fr: "Déploiement opérationnel", en: "Operational deployment" }, text: { fr: "Nous coordonnons l’exécution, documentons les outils et accompagnons l’adoption.", en: "We coordinate execution, document tools and support adoption." } },
-  { number: "05", title: { fr: "Mesure et optimisation continue", en: "Measurement and continuous optimization" }, text: { fr: "Nous suivons les résultats convenus, tirons les apprentissages et ajustons les priorités.", en: "We track agreed outcomes, capture learnings and adjust priorities." } },
-];
 
 export const principles = [
   { fr: "Comprendre les enjeux", en: "Understand the issues" },
@@ -459,11 +167,14 @@ export const insights: Insight[] = [
 ];
 
 /** Which expertises each offer draws on. The single source for "related" links and the offer/expertise matrix. */
-export const solutionExpertises: Record<string, string[]> = {
-  launch: ["strategie-intelligence-economique", "identite-marque-communication", "developpement-web-transformation-numerique", "developpement-commercial-acquisition"],
-  digital: ["developpement-web-transformation-numerique", "intelligence-artificielle-automatisation", "marketing-digital-publicite"],
-  growth: ["developpement-commercial-acquisition", "marketing-digital-publicite"],
-  performance: ["performance-operationnelle-logistique", "conseil-accompagnement-entreprises"],
-  intelligence: ["intelligence-artificielle-automatisation", "performance-operationnelle-logistique"],
-  "360": expertises.map((expertise) => expertise.slug),
-};
+
+export * from "./data/kpis";
+export * from "./data/poles";
+export * from "./data/expertises";
+import { buildSectors } from "./data/sectors";
+export * from "./data/offers";
+export * from "./data/ai";
+export * from "./data/why";
+/** The eleven industries served. */
+export const sectors: Sector[] = buildSectors(legacySectors);
+

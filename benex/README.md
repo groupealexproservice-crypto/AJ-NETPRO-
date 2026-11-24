@@ -28,8 +28,8 @@ Données de démonstration (**jamais en production**) : `npm run db:seed:demo` c
 |---|---|
 | `npm run check` | Compilation TypeScript (client et serveur) |
 | `npm run lint` | ESLint |
-| `npm test` | 15 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
-| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 35 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
+| `npm test` | 22 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
+| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 50 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
 | `npm run assets` | Régénère brochures PDF FR/EN et images de partage depuis `src/content.ts` (Playwright requis) |
 
 ## Production
@@ -53,6 +53,18 @@ Variables : voir `.env.example` (toutes documentées). En production, le serveur
 
 ### Docker
 `docker build -t benex .` puis monter un volume sur `/app/storage` et fournir les variables d'environnement.
+
+## Positionnement, contenus et fonctions commerciales (v2)
+
+- **Architecture** : six départements (Strategy, Marketing, Digital, Operations, Logistics, Growth) et une unité transversale **BENEX AI & Automation**. Dix expertises (A à J), chacune avec une page répondant aux huit questions : problème, solution, intervention, livrables, bénéfices, mesure (indicateurs), coût, pourquoi BENEX. Onze secteurs, méthodologie en six étapes. Données dans `src/data/` et `src/content.ts`, textes bilingues.
+- **Accueil** : `/` ouvre directement la page française (`/fr`), sans écran de choix de langue ; l'anglais est dans le menu.
+- **Tarifs et offres** (`/tarifs`) : quatre offres (ESSENTIEL, PERFORMANCE, BUSINESS, ENTERPRISE) et quatre offres IA (AI START, BUSINESS, PERFORMANCE, ENTERPRISE). **Aucun tarif ni délai n'est inventé** : tant que la direction ne les saisit pas et ne les publie pas (Administration → Tarifs), le site affiche « Tarif sur devis ».
+- **Simulateur de rentabilité** (`/simulateur`) : calcul transparent (formules affichées), hypothèses modifiables, trois scénarios, clairement étiqueté « simulation ». Logique testée dans `src/simulator.ts`.
+- **BENEX AI & Automation** (`/intelligence-artificielle`) : agents, familles d'automatisation, intégrations (présentées comme possibilités, jamais comme partenariats), gouvernance, offres IA.
+- **Crédibilité** : témoignages, partenaires, certifications, rapports et équipe se saisissent dans Administration → Crédibilité ; ils ne s'affichent que s'ils sont **vérifiés et publiés**. Les études de cas exigent l'autorisation consignée du client.
+- **Mesures de conversion** : événements anonymes (nom, page, langue ; aucun témoin, aucune adresse IP) → entonnoir dans l'administration, plus la liste « À relancer » (demandes nouvelles depuis plus de 48 h).
+- **Assistant** : sélecteur à deux questions (secteur, besoin) fondé sur des règles de BENEX ; ce n'est pas un modèle d'IA conversationnel.
+- **Thème « Aurora »** : surfaces nuit profonde, papier froid, bleu cobalt BENEX avec lumière électrique ; Sora, IBM Plex Sans et IBM Plex Mono ; réseau de nœuds animé (désactivé en mouvement réduit).
 
 ## Sculpture 3D
 

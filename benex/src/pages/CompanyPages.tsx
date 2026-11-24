@@ -6,7 +6,8 @@ import { insights, methodSteps, principles, tx } from "../content";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta } from "../components/Layout";
 import { CtaBand, PageHero, SectionHeading } from "../components/Sections";
-import { Commitments, VisionBand } from "../components/Vision";
+import { Commitments, VisionBand, WhyBenex } from "../components/Vision";
+import { TrustSection } from "../components/TrustSection";
 import { LeadForm, type LeadMode } from "../components/LeadForm";
 import { OrientationAssistant } from "../components/OrientationAssistant";
 import { trpc } from "../providers/trpc";
@@ -23,9 +24,10 @@ export function AboutPage() {
       <div className="about-copy"><p>{lang === "fr" ? "Nous intervenons à chaque étape du développement : création de l’identité, structuration de l’offre, acquisition de nouveaux clients, amélioration des opérations et expansion commerciale. Cette continuité réduit les angles morts entre les décisions stratégiques et leur mise en œuvre." : "We support every development stage: identity creation, offer structuring, new customer acquisition, operational improvement and commercial expansion. This continuity reduces blind spots between strategic decisions and implementation."}</p><p>{lang === "fr" ? "Notre rôle n’est pas d’ajouter des initiatives. Il est de relier les bonnes initiatives, de clarifier les responsabilités et de définir les indicateurs qui permettront d’apprendre et d’ajuster." : "Our role is not to add initiatives. It is to connect the right initiatives, clarify responsibilities and define the indicators that support learning and adjustment."}</p></div>
     </section>
     <section className="principles-section section"><div className="shell"><SectionHeading eyebrow={lang === "fr" ? "Nos quatre principes" : "Our four principles"} title={lang === "fr" ? "Une discipline commune à chaque mission." : "A shared discipline for every mandate."} /><div className="principles-grid">{principles.map((principle, index) => <div key={principle.fr}><span>0{index + 1}</span><h3>{tx(principle, lang)}</h3></div>)}</div></div></section>
-    <section className="about-360 shell section"><div><p className="eyebrow">BENEX 360</p><h2>{lang === "fr" ? "Une direction externalisée pour les entreprises qui veulent avancer avec cohérence." : "External leadership for businesses that want to move forward coherently."}</h2></div><div><p>{lang === "fr" ? "BENEX 360 agit comme une direction stratégique, commerciale, numérique et opérationnelle externalisée. L’accompagnement peut être ponctuel ou récurrent, selon la maturité et les besoins de votre organisation." : "BENEX 360 acts as an outsourced strategic, commercial, digital and operational leadership function. Support can be project-based or recurring, depending on your organization’s maturity and needs."}</p><ArrowLink to="/solutions/360">BENEX 360</ArrowLink></div></section>
+    <WhyBenex />
     <VisionBand />
     <Commitments />
+    <TrustSection />
     <CtaBand />
   </>;
 }
@@ -33,7 +35,7 @@ export function AboutPage() {
 export function MethodPage() {
   const { lang, t } = useLanguage();
   return <>
-    <PageMeta title={t("method")} description={lang === "fr" ? "Un processus en cinq étapes, du diagnostic à l’optimisation continue." : "A five-step process from diagnosis to continuous optimization."} />
+    <PageMeta title={t("method")} description={lang === "fr" ? "Une méthodologie en six étapes, du diagnostic à l’optimisation continue." : "A six-step methodology from diagnosis to continuous optimization."} />
     <PageHero eyebrow="BENEX / MÉTHODE" title={lang === "fr" ? "Comprendre juste. Concevoir clair. Déployer pour de vrai." : "Understand accurately. Design clearly. Deploy for real."} text={lang === "fr" ? "Notre méthode crée une ligne de responsabilité continue entre les enjeux de départ, les solutions choisies et les résultats suivis." : "Our method creates a continuous line of accountability between initial challenges, chosen solutions and tracked outcomes."} />
     <section className="method-detail shell section">{methodSteps.map((step) => <div key={step.number} className="method-detail-row"><span>{step.number}</span><h2>{tx(step.title, lang)}</h2><p>{tx(step.text, lang)}</p><div className="method-output">{lang === "fr" ? "Validation avec les parties prenantes" : "Validation with stakeholders"}</div></div>)}</section>
     <section className="method-commitment section"><div className="shell"><p className="eyebrow">{lang === "fr" ? "Notre engagement" : "Our commitment"}</p><h2>{lang === "fr" ? "Pas de solution avant la compréhension. Pas de indicateur sans décision associée." : "No solution before understanding. No indicator without an associated decision."}</h2><ArrowLink to="/diagnostic" light>{t("diagnostic")}</ArrowLink></div></section>
@@ -70,10 +72,10 @@ export function InsightsPage() {
   const { data: posts = [] } = trpc.content.publishedPosts.useQuery();
   return <>
     <PageMeta title={t("allInsights")} description={lang === "fr" ? "Analyses BENEX sur la stratégie, la transformation numérique et la performance." : "BENEX analysis on strategy, digital transformation and performance."} />
-    <PageHero eyebrow="BENEX / PERSPECTIVES" title={lang === "fr" ? "Des analyses pour éclairer les décisions, pas pour suivre les modes." : "Analysis to inform decisions, not follow trends."} text={lang === "fr" ? "Nos perspectives explorent les choix de structuration, de transformation et de développement qui façonnent une croissance durable." : "Our perspectives explore the structuring, transformation and development choices that shape sustainable growth."} />
+    <PageHero eyebrow="BENEX / RESSOURCES" title={lang === "fr" ? "Des analyses pour éclairer les décisions, pas pour suivre les modes." : "Analysis to inform decisions, not follow trends."} text={lang === "fr" ? "Nos perspectives explorent les choix de structuration, de transformation et de développement qui façonnent une croissance durable." : "Our perspectives explore the structuring, transformation and development choices that shape sustainable growth."} />
     <section className="insights-directory shell section">
-      {posts.map((post) => <Link to={`/perspectives/${post.slug}`} key={`db-${post.id}`} className="insight-directory-row"><div><p className="eyebrow">BENEX / ANALYSE</p><h2>{lang === "fr" ? post.titleFr : post.titleEn}</h2></div><p>{lang === "fr" ? post.excerptFr : post.excerptEn}</p><ArrowRight size={24} strokeWidth={1.1} /></Link>)}
-      {insights.map((insight, index) => <Link to={`/perspectives/${insight.slug}`} key={insight.slug} className="insight-directory-row"><div><p className="eyebrow">0{posts.length + index + 1} / {tx(insight.category, lang)}</p><h2>{tx(insight.title, lang)}</h2></div><div><p>{tx(insight.excerpt, lang)}</p><span>{tx(insight.readingTime, lang)}</span></div><ArrowRight size={24} strokeWidth={1.1} /></Link>)}
+      {posts.map((post) => <Link to={`/ressources/${post.slug}`} key={`db-${post.id}`} className="insight-directory-row"><div><p className="eyebrow">BENEX / ANALYSE</p><h2>{lang === "fr" ? post.titleFr : post.titleEn}</h2></div><p>{lang === "fr" ? post.excerptFr : post.excerptEn}</p><ArrowRight size={24} strokeWidth={1.1} /></Link>)}
+      {insights.map((insight, index) => <Link to={`/ressources/${insight.slug}`} key={insight.slug} className="insight-directory-row"><div><p className="eyebrow">0{posts.length + index + 1} / {tx(insight.category, lang)}</p><h2>{tx(insight.title, lang)}</h2></div><div><p>{tx(insight.excerpt, lang)}</p><span>{tx(insight.readingTime, lang)}</span></div><ArrowRight size={24} strokeWidth={1.1} /></Link>)}
     </section>
   </>;
 }
@@ -91,7 +93,7 @@ export function InsightDetail() {
   return <>
     <PageMeta title={title} description={insight ? tx(insight.excerpt, lang) : (lang === "fr" ? post!.excerptFr : post!.excerptEn)} />
     <article className="article-page">
-      <header className="article-header shell"><Link to="/perspectives" className="back-link">{t("back")} — {t("insights")}</Link><p className="eyebrow">{category}</p><h1>{title}</h1><p>{insight ? tx(insight.excerpt, lang) : (lang === "fr" ? post!.excerptFr : post!.excerptEn)}</p></header>
+      <header className="article-header shell"><Link to="/ressources" className="back-link">{t("back")} — {t("insights")}</Link><p className="eyebrow">{category}</p><h1>{title}</h1><p>{insight ? tx(insight.excerpt, lang) : (lang === "fr" ? post!.excerptFr : post!.excerptEn)}</p></header>
       <div className="article-body shell">{body.map((section) => <section key={`${section.heading}-${section.text}`}><h2>{section.heading}</h2><p>{section.text}</p></section>)}</div>
     </article>
     <CtaBand />

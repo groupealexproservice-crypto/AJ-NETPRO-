@@ -1,6 +1,6 @@
 import { useLanguage } from "../i18n";
 import { commitments, pageCommitment, vision } from "../vision";
-import { tx } from "../content";
+import { tx, whyBenex } from "../content";
 import { ArrowLink } from "./Layout";
 
 /** Full-bleed architectural band carrying the vision statement. */
@@ -56,6 +56,23 @@ export function PageCommitment({ kind }: { kind: "expertise" | "solution" | "sec
       <div className="page-commitment-actions">
         <ArrowLink to="/consultation">{t("consult")}</ArrowLink>
         <ArrowLink to="/diagnostic">{t("diagnostic")}</ArrowLink>
+      </div>
+    </section>
+  );
+}
+
+/** The ten reasons to choose BENEX, as a plain index: statements of method, not claims of results. */
+export function WhyBenex() {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+  return (
+    <section className="why-section section" aria-labelledby="why-title">
+      <div className="shell why-grid">
+        <div className="why-intro">
+          <p className="eyebrow">{fr ? "Pourquoi choisir BENEX Solutions" : "Why choose BENEX Solutions"}</p>
+          <h2 id="why-title">{fr ? "Le marketing, la stratégie, la technologie et les opérations au sein d’un même partenaire." : "Marketing, strategy, technology and operations within a single partner."}</h2>
+        </div>
+        <ul className="why-list">{whyBenex.map((item) => <li key={item.title.en}><h3>{tx(item.title, lang)}</h3><p>{tx(item.text, lang)}</p></li>)}</ul>
       </div>
     </section>
   );

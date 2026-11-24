@@ -35,3 +35,12 @@ Le site n'envoie **aucun** courriel commercial. Toute campagne devra être envoy
 ## Engagements et ton (src/vision.ts)
 
 Les cinq engagements (écouter avant de proposer, sérieux et discrétion, parler vrai, protéger les renseignements, mesurer et rendre compte) et les phrases « Notre engagement envers vous » décrivent une **manière de travailler**, jamais un résultat. BENEX doit confirmer qu'elle peut les tenir et les faire appliquer (en particulier « chaque demande est examinée par l'équipe » et la confidentialité des documents) avant publication.
+
+## Mesures de conversion, simulateur, tarifs et technologies citées
+
+- **Mesures** : seuls le nom de l'événement, la page et la langue sont enregistrés. Aucune adresse IP, aucun témoin, aucun identifiant. À confirmer dans la politique de confidentialité.
+- **Simulateur** : les valeurs de départ sont illustratives et les pourcentages des scénarios sont des hypothèses modifiables ; la page rappelle que ce n'est ni une prévision ni une garantie. Les résultats ne sont pas enregistrés.
+- **Tarifs et délais** : jamais affichés avant publication par la direction. Contenu des quatre offres et des quatre offres IA = **proposition à valider** (services inclus, livrables, modalités).
+- **Noms de départements** (Strategy, Marketing, Digital, Operations, Logistics, Growth, BENEX AI & Automation) : propositions à valider.
+- **Technologies citées** (OpenAI, Microsoft 365, Google Workspace, HubSpot, Salesforce, Shopify, WordPress, n8n, Make, Zapier, Slack, Meta Ads, Google Ads) : possibilités d'intégration seulement ; marques appartenant à leurs propriétaires ; aucun partenariat affirmé.
+- **Agents IA et automatisations** : les capacités décrites doivent correspondre à ce que BENEX peut réellement livrer (permissions, supervision, tests).

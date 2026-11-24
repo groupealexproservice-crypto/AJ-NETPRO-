@@ -5,7 +5,8 @@ import { ArrowRight, Menu, X, UserRound } from "lucide-react";
 import Lenis from "lenis";
 import { useLanguage } from "../i18n";
 import { parseLocalized } from "../routes";
-import { expertises, sectors, solutions, tx } from "../content";
+import { track } from "../lib/track";
+import { expertises, outcomes, sectors, tx } from "../content";
 import { trpc } from "../providers/trpc";
 
 export function Brand({ inverted = false }: { inverted?: boolean }) {
@@ -31,17 +32,20 @@ export function ArrowLink({ to, children, light = false }: { to: string; childre
 
 const nav = [
   { key: "home", to: "/" },
-  { key: "about", to: "/a-propos" },
   { key: "expertise", to: "/expertises" },
   { key: "solutions", to: "/solutions" },
   { key: "sectors", to: "/secteurs" },
-  { key: "method", to: "/methode" },
-  { key: "work", to: "/realisations" },
-  { key: "insights", to: "/perspectives" },
+  { key: "pricing", to: "/tarifs" },
+  { key: "cases", to: "/etudes-de-cas" },
+  { key: "insights", to: "/ressources" },
+  { key: "about", to: "/a-propos" },
   { key: "contact", to: "/contact" },
 ];
 
 const secondaryNav = [
+  { key: "simulator", to: "/simulateur" },
+  { key: "ai", to: "/intelligence-artificielle" },
+  { key: "method", to: "/methode" },
   { key: "diagnostic", to: "/diagnostic" },
   { key: "quote", to: "/soumission" },
 ];
@@ -63,6 +67,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+    track("page_view");
   }, [location.pathname]);
 
   useEffect(() => {
@@ -99,9 +104,9 @@ export function Layout({ children }: { children: ReactNode }) {
                   <Rollover>{t(item.key)}</Rollover>
                 </NavLink>
               );
-              const panel = item.key === "expertise" ? { items: expertises.map((e) => ({ to: `/expertises/${e.slug}`, title: tx(e.title, lang), text: tx(e.short, lang) })), lead: lang === "fr" ? "Huit expertises, mobilisables seules ou en combinaison." : "Eight areas of expertise, engaged individually or together." }
-                : item.key === "solutions" ? { items: solutions.map((s) => ({ to: `/solutions/${s.slug}`, title: s.name, text: tx(s.summary, lang) })), lead: lang === "fr" ? "Six offres, sur devis, en mandat ponctuel ou en accompagnement mensuel." : "Six offers, quoted on request, as one-off mandates or monthly support." }
-                : item.key === "sectors" ? { items: sectors.map((x) => ({ to: `/secteurs/${x.slug}`, title: tx(x.name, lang), text: "" })), lead: lang === "fr" ? "Dix secteurs, leurs problématiques et nos pistes de solutions." : "Ten industries, their challenges and our possible approaches." }
+              const panel = item.key === "expertise" ? { items: expertises.map((e) => ({ to: `/expertises/${e.slug}`, title: tx(e.title, lang), text: tx(e.short, lang) })), lead: lang === "fr" ? "Dix expertises, mobilisables seules ou en combinaison." : "Ten areas of expertise, engaged individually or together." }
+                : item.key === "solutions" ? { items: outcomes.map((o) => ({ to: `/solutions`, title: tx(o.title, lang), text: tx(o.text, lang) })), lead: lang === "fr" ? "Partez de votre objectif : nous mobilisons les expertises qui y mènent." : "Start from your objective: we bring in the expertise that gets you there." }
+                : item.key === "sectors" ? { items: sectors.map((x) => ({ to: `/secteurs/${x.slug}`, title: tx(x.name, lang), text: "" })), lead: lang === "fr" ? "Onze secteurs, leurs problématiques et nos pistes de solutions." : "Eleven industries, their challenges and our possible approaches." }
                 : null;
               if (!panel) return <span key={item.to} className="nav-item">{link}</span>;
               return (
@@ -109,7 +114,7 @@ export function Layout({ children }: { children: ReactNode }) {
                   {link}
                   <div className={`mega-panel ${item.key === "sectors" ? "mega-compact" : ""}`}>
                     <p className="mega-lead">{panel.lead}</p>
-                    <ul>{panel.items.map((entry) => <li key={entry.to}><Link to={entry.to}><strong>{entry.title}</strong>{entry.text && <span>{entry.text}</span>}</Link></li>)}</ul>
+                    <ul>{panel.items.map((entry) => <li key={`${entry.to}-${entry.title}`}><Link to={entry.to}><strong>{entry.title}</strong>{entry.text && <span>{entry.text}</span>}</Link></li>)}</ul>
                     <ArrowLink to={item.to}>{t("viewAll")}</ArrowLink>
                   </div>
                 </span>
@@ -123,7 +128,7 @@ export function Layout({ children }: { children: ReactNode }) {
               <button type="button" onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button>
             </div>
             <Link to="/espace-client" className="client-link" aria-label={t("client")} title={t("client")}><UserRound size={19} strokeWidth={1.5} /></Link>
-            <Link to="/consultation" className="header-cta"><Rollover>{t("consult")}</Rollover><ArrowRight size={16} /></Link>
+            <Link to="/consultation" className="header-cta" onClick={() => track("cta_consultation")}><Rollover>{t("consultHeader")}</Rollover><ArrowRight size={16} /></Link>
             <button ref={open ? closeRef : undefined} type="button" className="menu-trigger" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? t("close") : t("menu")}>
               {open ? <X size={25} /> : <Menu size={25} />}
             </button>
@@ -179,8 +184,8 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-top shell">
         <div>
-          <p className="footer-signature">Strategy. Innovation. Growth.</p>
-          <h2>{lang === "fr" ? "Transformer les ambitions en résultats." : "Turn ambition into results."}</h2>
+          <p className="footer-signature">BENEX Solutions</p>
+          <h2>{lang === "fr" ? "Stratégie. Technologie. Performance. Croissance." : "Human expertise. Artificial intelligence. Business performance."}</h2>
         </div>
         <ArrowLink to="/consultation" light>{t("consult")}</ArrowLink>
       </div>
@@ -190,13 +195,16 @@ function Footer() {
           <Link to="/a-propos">{t("about")}</Link>
           <Link to="/expertises">{t("expertise")}</Link>
           <Link to="/solutions">{t("solutions")}</Link>
-          <Link to="/realisations">{t("work")}</Link>
+          <Link to="/etudes-de-cas">{t("cases")}</Link>
+          <Link to="/ressources">{t("insights")}</Link>
         </div>
         <div className="footer-nav-group">
           <p className="footer-label">{t("explore")}</p>
           <Link to="/secteurs">{t("sectors")}</Link>
+          <Link to="/tarifs">{t("pricing")}</Link>
+          <Link to="/simulateur">{t("simulator")}</Link>
+          <Link to="/intelligence-artificielle">{t("ai")}</Link>
           <Link to="/methode">{t("method")}</Link>
-          <Link to="/perspectives">{t("insights")}</Link>
           <Link to="/contact">{t("contact")}</Link>
         </div>
         <div className="footer-nav-group footer-expertises">

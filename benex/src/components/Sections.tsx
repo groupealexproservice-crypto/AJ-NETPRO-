@@ -3,6 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { useLanguage } from "../i18n";
 import { ArrowLink } from "./Layout";
 import { Ornament } from "./Ornament";
+import { NeuralField } from "./NeuralField";
 
 export function SectionHeading({ eyebrow, title, text, action }: { eyebrow: string; title: string; text?: string; action?: ReactNode }) {
   return (
@@ -38,6 +39,7 @@ export function CtaBand() {
   const { lang, t } = useLanguage();
   return (
     <section className="cta-band">
+      <NeuralField className="band-neural" density={0.7} />
       <div className="shell cta-band-inner">
         <p className="eyebrow">BENEX / 360</p>
         <h2>{lang === "fr" ? "Votre prochaine étape mérite une vue d’ensemble." : "Your next step deserves a comprehensive view."}</h2>

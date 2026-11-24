@@ -22,13 +22,14 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   const { ctx: visitor, page } = await newPage();
   await page.goto(BASE + "/", { waitUntil: "networkidle" });
   check("/ redirects to /fr for a French browser", page.url().endsWith("/fr"), page.url());
-  check("home headline in French", (await page.locator("h1").first().getAttribute("aria-label")) === "Construire. Transformer. Accélérer.");
+  check("home headline in French", (await page.locator("h1").first().getAttribute("aria-label")) === "Des stratégies intelligentes. Des résultats mesurables. Une croissance durable.");
+  check("home shows the three main buttons", (await page.locator(".hero-actions a").count()) === 3);
   await page.screenshot({ path: `${SHOTS}/fr-home.png` });
   const navTexts = await page.locator("header nav a").allInnerTexts();
   console.log("nav:", navTexts.map((t) => t.split("\n")[0]).join(" | "));
-  await page.goto(BASE + "/fr/expertises/identite-marque-communication", { waitUntil: "networkidle" });
+  await page.goto(BASE + "/fr/expertises/marketing-strategique-numerique", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "EN", exact: true }).click();
-  await page.waitForURL("**/en/expertise/identite-marque-communication");
+  await page.waitForURL("**/en/expertise/marketing-strategique-numerique");
   check("language switch opens the equivalent page", true, page.url());
   await page.waitForFunction(() => document.documentElement.lang === "en-CA", null, { timeout: 3000 }).catch(() => {});
   check("html lang switches to en-CA", (await page.evaluate(() => document.documentElement.lang)) === "en-CA");
@@ -46,21 +47,21 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   }
   check(`crawled ${seen.size} public pages, all internal links resolve`, broken.length === 0, broken.slice(0, 5).join("; "));
   const expectedPages = 2 * (1 + 12 + 8 + 6 + 10 + 2 + 2); // home+static, expertises, solutions, sectors, insights (2 articles), …
-  check("8 expertise pages × 2 languages exist", [...seen].filter((p) => /^\/fr\/expertises\/.+/.test(p)).length === 8);
-  check("10 sector pages exist", [...seen].filter((p) => /^\/fr\/secteurs\/.+/.test(p)).length === 10);
-  check("6 solution pages exist", [...seen].filter((p) => /^\/fr\/solutions\/.+/.test(p)).length === 6);
+  check("10 expertise pages exist", [...seen].filter((p) => /^\/fr\/expertises\/.+/.test(p)).length === 10);
+  check("11 sector pages exist", [...seen].filter((p) => /^\/fr\/secteurs\/.+/.test(p)).length === 11);
+  for (const path of ["/fr/tarifs", "/fr/simulateur", "/fr/intelligence-artificielle", "/fr/solutions", "/fr/etudes-de-cas", "/fr/ressources", "/fr/methode"]) check(`page exists: ${path}`, seen.has(path));
 
   // 3. Diagnostic in three steps
   await page.goto(BASE + "/fr/diagnostic", { waitUntil: "networkidle" });
   await page.locator("form.lead-form").getByLabel(/Nom complet/).fill("Camille Gagnon");
   await page.locator("form.lead-form").getByLabel(/Courriel professionnel/).fill("camille@exemple-diagnostic.test");
   await page.locator("form.lead-form").getByLabel(/^Entreprise/).fill("Gagnon & Fils");
-  await page.locator("form.lead-form").getByLabel(/Secteur d’activité/).selectOption("construction");
+  await page.locator("form.lead-form").getByLabel(/Secteur d’activité/).selectOption("construction-immobilier");
   await page.getByRole("button", { name: /Continuer/ }).click();
   await page.locator("form.lead-form").getByLabel(/Situation actuelle/).fill("Entreprise de quinze employés, soumissions faites à la main.");
   await page.locator("form.lead-form").getByLabel(/^Objectifs/).fill("Doubler le nombre de soumissions envoyées par mois.");
   await page.locator("form.lead-form").getByLabel(/Difficultés rencontrées/).fill("Aucun suivi des relances et outils dispersés.");
-  await page.locator("form.lead-form").getByText("Développement commercial et acquisition client").click();
+  await page.locator("form.lead-form").getByText("Création, développement et croissance des entreprises").click();
   await page.screenshot({ path: `${SHOTS}/fr-diagnostic-step2.png` });
   await page.getByRole("button", { name: /Continuer/ }).click();
   await page.getByRole("button", { name: /Envoyer la demande/ }).click();
@@ -72,12 +73,12 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await page.screenshot({ path: `${SHOTS}/fr-diagnostic-done.png` });
 
   // 4. Consultation request is presented as "to confirm"
-  await page.goto(BASE + "/fr/consultation?solution=growth", { waitUntil: "networkidle" });
+  await page.goto(BASE + "/fr/consultation?solution=performance", { waitUntil: "networkidle" });
   await page.locator("form.lead-form").getByLabel(/Nom complet/).fill("Luc Bélanger");
   await page.locator("form.lead-form").getByLabel(/Courriel professionnel/).fill("luc@exemple-consultation.test");
   await page.locator("form.lead-form").getByLabel(/^Entreprise/).fill("Bélanger Logistique");
   await page.locator("form.lead-form").getByLabel(/Secteur d’activité/).selectOption("transport-logistique");
-  check("solution preselected from the offer page", (await page.locator("form.lead-form").getByLabel(/Solution envisagée/).inputValue()) === "growth");
+  check("offer preselected from the pricing page", (await page.locator("form.lead-form").getByLabel(/Offre envisagée/).inputValue()) === "performance");
   await page.locator("form.lead-form").getByLabel(/Type d’accompagnement/).selectOption("monthly");
   await page.locator("form.lead-form").getByLabel(/Votre contexte/).fill("Nous voulons structurer la prospection B2B.");
   const d = new Date(); d.setDate(d.getDate() + 7);
@@ -146,7 +147,7 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check("keyboard focus is visible", outline !== "none", outline);
   const mob = await newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }); const mp = mob.page;
   await mp.goto(BASE + "/fr", { waitUntil: "networkidle" });
-  check("mobile header shows « Planifier une consultation »", await mp.locator("header .header-cta").isVisible());
+  check("mobile header shows the strategic consultation button", await mp.locator("header .header-cta").isVisible());
   check("no horizontal scroll on mobile home", (await mp.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)));
   await mp.screenshot({ path: `${SHOTS}/mobile-home.png` });
   await mp.getByRole("button", { name: "Menu" }).click(); await mp.waitForTimeout(500);
@@ -172,14 +173,29 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   // 8c. Two-question assistant carries its choices into the quote form; mega menu opens on hover
   const ast = await newPage({ viewport: { width: 1680, height: 950 } }); const ap2 = ast.page;
   await ap2.goto(BASE + "/fr/diagnostic", { waitUntil: "networkidle" });
-  await ap2.locator(".assistant-options button", { hasText: "Construction" }).click();
+  await ap2.locator(".assistant-options button", { hasText: "Construction et immobilier" }).click();
   await ap2.locator(".assistant-options button", { hasText: "Trouver de nouveaux clients" }).click();
-  check("assistant recommends BENEX Growth for construction + new customers", (await ap2.locator(".assistant-answer h3").innerText()) === "BENEX Growth");
+  check("assistant recommends PERFORMANCE for construction + new customers", (await ap2.locator(".assistant-answer h3").innerText()) === "PERFORMANCE");
   await ap2.getByRole("link", { name: /Demander une soumission/ }).last().click();
   await ap2.waitForURL("**/soumission**"); await ap2.waitForFunction(() => document.querySelector("form.lead-form select") !== null); await ap2.waitForTimeout(400);
-  check("assistant choices are preselected in the quote form", (await ap2.getByLabel(/Secteur d’activité/).inputValue()) === "construction" && (await ap2.getByLabel(/Solution envisagée/).inputValue()) === "growth");
+  check("assistant choices are preselected in the quote form", (await ap2.getByLabel(/Secteur d’activité/).inputValue()) === "construction-immobilier" && (await ap2.getByLabel(/Offre envisagée/).inputValue()) === "performance");
   await ap2.hover('.desktop-nav a[href="/fr/expertises"]'); await ap2.waitForTimeout(400);
-  check("mega menu lists the eight expertises on hover", (await ap2.locator(".mega-panel:visible li").count()) === 8);
+  check("mega menu lists the ten expertises on hover", (await ap2.locator(".mega-panel:visible li").count()) === 10);
+
+  // 8d. No language screen; pricing and simulator
+  const en = await newPage({ locale: "en-US" });
+  await en.page.goto(BASE + "/", { waitUntil: "networkidle" });
+  check("/ opens the French home directly, even for an English browser", en.page.url().endsWith("/fr"), en.page.url());
+  await en.page.goto(BASE + "/fr/tarifs", { waitUntil: "networkidle" });
+  check("pricing shows 4 offers and 4 AI offers, all « sur devis » until management publishes a price", (await en.page.locator(".tier-card").count()) === 8 && (await en.page.getByText("Tarif sur devis").count()) === 8);
+  await en.page.goto(BASE + "/fr/simulateur", { waitUntil: "networkidle" });
+  check("simulator labels itself as a simulation", await en.page.getByText("Simulation, non résultat.").isVisible());
+  const before = await en.page.locator(".sim-kpis dd").first().innerText();
+  await en.page.locator("#s-leads").fill("300");
+  const after = await en.page.locator(".sim-kpis dd").first().innerText();
+  check("simulator recalculates when an input changes", before !== after, `${before} → ${after}`);
+  await en.page.locator("#a-conv").fill("40");
+  check("simulator assumptions are editable and used", (await en.page.locator(".sim-kpis dd").first().innerText()) !== after);
 
   // 9. Reduced motion
   const rm = await newPage({ reducedMotion: "reduce" }); await rm.page.goto(BASE + "/fr", { waitUntil: "networkidle" });

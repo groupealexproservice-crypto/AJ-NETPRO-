@@ -16,6 +16,8 @@ const paths: Record<string, ReactNode> = {
   "performance-operationnelle-logistique": <><rect x="6" y="22" width="16" height="20" /><rect x="42" y="22" width="16" height="20" /><path d="M22 28h20M22 36h20" /><path d="M38 24l4 4-4 4M26 32l-4 4 4 4" stroke={A} /><path d="M32 8v8M32 48v8" /></>,
   "intelligence-artificielle-automatisation": <><circle cx="12" cy="14" r="3" /><circle cx="12" cy="32" r="3" /><circle cx="12" cy="50" r="3" /><circle cx="32" cy="23" r="3" /><circle cx="32" cy="41" r="3" /><circle cx="52" cy="32" r="5" stroke={A} /><path d="M15 14l14 9M15 32l14-9M15 32l14 9M15 50l14-9M35 23l13 7M35 41l13-7" /></>,
   "conseil-accompagnement-entreprises": <><circle cx="24" cy="32" r="16" /><circle cx="40" cy="32" r="16" stroke={A} /><path d="M32 18v28" /></>,
+  "analyse-marche": <><circle cx="26" cy="26" r="16" /><path d="M38 38l18 18" stroke={A} strokeWidth="2.5" /><path d="M16 32v-6M24 32V20M32 32v-9" /></>,
+  "logistique-boite": <><path d="M6 20 32 8l26 12v24L32 56 6 44z" /><path d="M6 20l26 12 26-12M32 32v24" stroke={A} /></>,
   // Offers
   launch: <><path d="M32 6 48 40H16z" /><path d="M32 6v52" stroke={A} /><path d="M10 58h44" /></>,
   digital: <><rect x="8" y="8" width="20" height="20" /><rect x="36" y="8" width="20" height="20" stroke={A} /><rect x="8" y="36" width="20" height="20" /><rect x="36" y="36" width="20" height="20" /></>,
@@ -25,8 +27,25 @@ const paths: Record<string, ReactNode> = {
   "360": <><circle cx="32" cy="32" r="22" /><path d="M32 10a22 22 0 0 1 19 11" stroke={A} strokeWidth="2.5" /><path d="M51 21l-1-8-8 2" stroke={A} /><circle cx="32" cy="32" r="8" /></>,
 };
 
+/** Names used across the site mapped onto the drawn set. */
+const alias: Record<string, string> = {
+  "marketing-strategique-numerique": "marketing-digital-publicite",
+  "customer-marketing-experience-client": "conseil-accompagnement-entreprises",
+  "publicite-numerique-ppc": "developpement-commercial-acquisition",
+  "sites-web-solutions-numeriques": "developpement-web-transformation-numerique",
+  "conseil-strategique-analyse-affaires": "strategie-intelligence-economique",
+  "analyse-marche-intelligence-economique": "analyse-marche",
+  "solutions-operationnelles": "performance-operationnelle-logistique",
+  "logistique-chaine-approvisionnement": "logistique-boite",
+  "creation-developpement-croissance": "growth",
+  strategy: "strategie-intelligence-economique", marketing: "marketing-digital-publicite", digital: "digital",
+  operations: "performance-operationnelle-logistique", logistics: "logistique-boite", growth: "growth", ai: "intelligence-artificielle-automatisation",
+  essentiel: "launch", performance: "growth", business: "performance", enterprise: "360",
+  "ai-start": "intelligence", "ai-business": "digital", "ai-performance": "performance", "ai-enterprise": "360",
+};
+
 export function Glyph({ name, size = 48 }: { name: string; size?: number }) {
-  const shape = paths[name];
+  const shape = paths[alias[name] ?? name] ?? paths[name];
   if (!shape) return null;
   return (
     <svg className="glyph" width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="square" strokeLinejoin="miter" aria-hidden="true" focusable="false">

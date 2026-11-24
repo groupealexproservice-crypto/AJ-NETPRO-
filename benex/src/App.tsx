@@ -6,9 +6,9 @@ import Login from "./pages/Login";
 import ClientPortal from "./pages/ClientPortal";
 import AdminPortal from "./pages/AdminPortal";
 import { AboutPage, ContactPage, InsightDetail, InsightsPage, LeadPage, MethodPage, NotFound, PrivacyPage, UnsubscribePage, WorkPage } from "./pages/CompanyPages";
-import { ExpertiseDetail, ExpertiseIndex, SectorDetail, SectorsPage, SolutionDetail, SolutionsPage } from "./pages/DirectoryPages";
+import { ExpertiseDetail, ExpertiseIndex, SectorDetail, SectorsPage, SolutionsPage } from "./pages/DirectoryPages";
+import { AIPage, PricingPage, SimulatorPage } from "./pages/ProductPages";
 import { localizePath } from "./routes";
-import { preferredLanguage } from "./i18n";
 import type { Lang } from "./content";
 
 function PublicSite() {
@@ -16,7 +16,7 @@ function PublicSite() {
 }
 
 function RedirectToLanguage() {
-  return <Navigate to={`/${preferredLanguage()}`} replace />;
+  return <Navigate to="/fr" replace />;
 }
 
 const pages: Array<[canonical: string, element: React.ReactElement]> = [
@@ -25,13 +25,15 @@ const pages: Array<[canonical: string, element: React.ReactElement]> = [
   ["/expertises", <ExpertiseIndex />],
   ["/expertises/:slug", <ExpertiseDetail />],
   ["/solutions", <SolutionsPage />],
-  ["/solutions/:slug", <SolutionDetail />],
   ["/secteurs", <SectorsPage />],
   ["/secteurs/:slug", <SectorDetail />],
+  ["/tarifs", <PricingPage />],
+  ["/etudes-de-cas", <WorkPage />],
+  ["/ressources", <InsightsPage />],
+  ["/ressources/:slug", <InsightDetail />],
   ["/methode", <MethodPage />],
-  ["/realisations", <WorkPage />],
-  ["/perspectives", <InsightsPage />],
-  ["/perspectives/:slug", <InsightDetail />],
+  ["/simulateur", <SimulatorPage />],
+  ["/intelligence-artificielle", <AIPage />],
   ["/contact", <ContactPage />],
   ["/diagnostic", <LeadPage mode="diagnostic" />],
   ["/soumission", <LeadPage mode="quote" />],

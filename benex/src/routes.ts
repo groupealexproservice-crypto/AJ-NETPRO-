@@ -1,4 +1,4 @@
-import { expertises, insights, sectors, solutions, type Lang } from "./content";
+import { expertises, insights, sectors, type Lang } from "./content";
 
 /**
  * Canonical paths are the French ones without a language prefix ("/expertises/slug").
@@ -9,9 +9,12 @@ const SEGMENTS: Array<[fr: string, en: string]> = [
   ["expertises", "expertise"],
   ["solutions", "solutions"],
   ["secteurs", "industries"],
+  ["tarifs", "pricing"],
+  ["etudes-de-cas", "case-studies"],
+  ["ressources", "resources"],
   ["methode", "method"],
-  ["realisations", "work"],
-  ["perspectives", "insights"],
+  ["simulateur", "simulator"],
+  ["intelligence-artificielle", "artificial-intelligence"],
   ["contact", "contact"],
   ["diagnostic", "diagnostic"],
   ["soumission", "quote"],
@@ -52,57 +55,24 @@ const pick = (value: L, lang: Lang) => value[lang];
 
 const staticMeta: Record<string, { title: L; description: L; noindex?: boolean }> = {
   "/": {
-    title: { fr: "Stratégie, innovation et croissance", en: "Strategy, innovation and growth" },
-    description: { fr: "BENEX Solutions accompagne les entreprises dans leur transformation stratégique, numérique, commerciale et opérationnelle au Québec et au Canada.", en: "BENEX Solutions supports strategic, digital, commercial and operational transformation for businesses in Quebec and Canada." },
+    title: { fr: "Stratégie, technologie, performance et croissance", en: "Strategy, technology, performance and growth" },
+    description: { fr: "Des stratégies intelligentes, des résultats mesurables, une croissance durable : BENEX Solutions accompagne les entreprises en marketing, stratégie, technologie, intelligence artificielle et opérations.", en: "Smart strategies, measurable results, sustainable growth: BENEX Solutions supports businesses in marketing, strategy, technology, artificial intelligence and operations." },
   },
-  "/a-propos": {
-    title: { fr: "À propos du cabinet", en: "About the firm" },
-    description: { fr: "Un cabinet de conseil multidisciplinaire qui coordonne stratégie, technologie, développement commercial, marketing et opérations.", en: "A multidisciplinary consulting firm coordinating strategy, technology, business development, marketing and operations." },
-  },
-  "/expertises": {
-    title: { fr: "Nos expertises", en: "Our expertise" },
-    description: { fr: "Huit expertises complémentaires, de l’identité de marque à l’intelligence artificielle, mobilisables seules ou en combinaison.", en: "Eight complementary areas of expertise, from brand identity to artificial intelligence, engaged individually or together." },
-  },
-  "/solutions": {
-    title: { fr: "Nos solutions", en: "Our solutions" },
-    description: { fr: "Six offres, de BENEX Launch à BENEX 360, avec mandats ponctuels ou accompagnement mensuel sur devis.", en: "Six offers, from BENEX Launch to BENEX 360, as one-off mandates or monthly support, quoted on request." },
-  },
-  "/secteurs": {
-    title: { fr: "Secteurs d’activité", en: "Industries" },
-    description: { fr: "Dix secteurs, leurs problématiques courantes et les approches que BENEX peut mobiliser.", en: "Ten industries, their common challenges and the approaches BENEX can bring." },
-  },
-  "/methode": {
-    title: { fr: "Notre méthode", en: "Our method" },
-    description: { fr: "Cinq étapes : diagnostic, analyse stratégique, conception, déploiement, mesure et optimisation.", en: "Five stages: diagnostic, strategic analysis, design, deployment, measurement and optimization." },
-  },
-  "/realisations": {
-    title: { fr: "Réalisations", en: "Our work" },
-    description: { fr: "Les études de cas sont publiées après validation des faits et autorisation des clients concernés.", en: "Case studies are published once the facts are verified and the clients concerned have given permission." },
-  },
-  "/perspectives": {
-    title: { fr: "Perspectives et analyses", en: "Insights and analysis" },
-    description: { fr: "Des analyses utiles sur la stratégie, la transformation numérique, la croissance et la performance.", en: "Practical analysis on strategy, digital transformation, growth and performance." },
-  },
-  "/contact": {
-    title: { fr: "Contact", en: "Contact" },
-    description: { fr: "Présentez votre projet à l’équipe BENEX Solutions. Nous répondons à chaque demande.", en: "Present your project to the BENEX Solutions team. We respond to every request." },
-  },
-  "/diagnostic": {
-    title: { fr: "Diagnostic en trois étapes", en: "Three-step diagnostic" },
-    description: { fr: "Décrivez votre organisation, vos priorités et vos difficultés pour recevoir une première lecture structurée.", en: "Describe your organization, priorities and challenges to receive a first structured assessment." },
-  },
-  "/soumission": {
-    title: { fr: "Demander une soumission", en: "Request a proposal" },
-    description: { fr: "Choisissez une solution et un mode d’accompagnement : mandat ponctuel ou accompagnement mensuel, sur devis.", en: "Choose a solution and an engagement type: one-off mandate or monthly support, quoted on request." },
-  },
-  "/consultation": {
-    title: { fr: "Planifier une consultation", en: "Schedule a consultation" },
-    description: { fr: "Indiquez vos préférences de date et de plage horaire. La demande est confirmée par l’équipe BENEX.", en: "Share your preferred date and time slot. The request is confirmed by the BENEX team." },
-  },
-  "/confidentialite": {
-    title: { fr: "Confidentialité", en: "Privacy" },
-    description: { fr: "Comment BENEX Solutions recueille, utilise et protège les renseignements personnels.", en: "How BENEX Solutions collects, uses and protects personal information." },
-  },
+  "/a-propos": { title: { fr: "À propos de BENEX Solutions", en: "About BENEX Solutions" }, description: { fr: "Notre vision, nos engagements et notre approche multidisciplinaire : marketing, stratégie, technologie et opérations réunis.", en: "Our vision, our commitments and our multidisciplinary approach: marketing, strategy, technology and operations together." } },
+  "/expertises": { title: { fr: "Nos expertises", en: "Our expertise" }, description: { fr: "Dix expertises du marketing à l’intelligence artificielle : prestations, bénéfices économiques et indicateurs de suivi.", en: "Ten areas of expertise from marketing to artificial intelligence: services, economic benefits and tracking indicators." } },
+  "/solutions": { title: { fr: "Solutions aux entreprises", en: "Business solutions" }, description: { fr: "Gagner des clients, augmenter le chiffre d’affaires, réduire les coûts, optimiser les opérations et améliorer la rentabilité.", en: "Win customers, increase revenue, reduce costs, optimize operations and improve profitability." } },
+  "/secteurs": { title: { fr: "Secteurs d’activité", en: "Industries" }, description: { fr: "Onze secteurs, leurs enjeux, les solutions BENEX adaptées et les bénéfices économiques potentiels.", en: "Eleven industries, their challenges, tailored BENEX solutions and potential economic benefits." } },
+  "/tarifs": { title: { fr: "Tarifs et offres", en: "Pricing and offers" }, description: { fr: "Quatre offres, de Lancer à Transformer, et quatre offres d’intelligence artificielle : services inclus, livrables et conditions.", en: "Four offers, from Launch to Transform, and four AI offers: included services, deliverables and terms." } },
+  "/etudes-de-cas": { title: { fr: "Études de cas", en: "Case studies" }, description: { fr: "Les études de cas sont publiées après validation des faits et autorisation des clients concernés.", en: "Case studies are published once the facts are verified and the clients concerned have given permission." } },
+  "/ressources": { title: { fr: "Ressources et analyses", en: "Resources and insights" }, description: { fr: "Analyses utiles sur la stratégie, le marketing, la technologie, l’intelligence artificielle et la performance.", en: "Practical insights on strategy, marketing, technology, artificial intelligence and performance." } },
+  "/methode": { title: { fr: "Notre méthodologie", en: "Our methodology" }, description: { fr: "Six étapes : diagnostic, analyse, stratégie, déploiement, mesure et optimisation.", en: "Six steps: diagnostic, analysis, strategy, deployment, measurement and optimization." } },
+  "/simulateur": { title: { fr: "Simulateur de rentabilité", en: "Profitability simulator" }, description: { fr: "Estimez, avec vos propres chiffres et des hypothèses modifiables, le potentiel de gains d’un accompagnement. Simulation, non garantie.", en: "Estimate, with your own figures and editable assumptions, the potential gains of an engagement. A simulation, not a guarantee." } },
+  "/intelligence-artificielle": { title: { fr: "BENEX AI & Automation", en: "BENEX AI & Automation" }, description: { fr: "Agents intelligents, automatisation commerciale, marketing, administrative et logistique, avec gouvernance et supervision humaine.", en: "Intelligent agents and sales, marketing, administrative and logistics automation, with governance and human oversight." } },
+  "/contact": { title: { fr: "Contact", en: "Contact" }, description: { fr: "Présentez votre projet à l’équipe BENEX Solutions.", en: "Present your project to the BENEX Solutions team." } },
+  "/diagnostic": { title: { fr: "Diagnostic d’entreprise", en: "Business diagnostic" }, description: { fr: "Décrivez votre organisation, vos priorités et vos difficultés en trois étapes pour recevoir une première lecture structurée.", en: "Describe your organization, priorities and challenges in three steps to receive a first structured assessment." } },
+  "/soumission": { title: { fr: "Demander une soumission", en: "Request a proposal" }, description: { fr: "Choisissez une offre et un mode d’accompagnement : prestation, abonnement mensuel ou sur mesure, sur devis.", en: "Choose an offer and an engagement type: service, monthly subscription or tailored, quoted on request." } },
+  "/consultation": { title: { fr: "Obtenir une consultation", en: "Request a consultation" }, description: { fr: "Indiquez vos préférences de date et de plage horaire. La demande est confirmée par l’équipe BENEX.", en: "Share your preferred date and time slot. The request is confirmed by the BENEX team." } },
+  "/confidentialite": { title: { fr: "Confidentialité", en: "Privacy" }, description: { fr: "Comment BENEX Solutions recueille, utilise et protège les renseignements personnels.", en: "How BENEX Solutions collects, uses and protects personal information." } },
   "/espace-client": { title: { fr: "Espace client", en: "Client portal" }, description: { fr: "Espace réservé aux clients de BENEX Solutions.", en: "Space reserved for BENEX Solutions clients." }, noindex: true },
   "/connexion": { title: { fr: "Connexion", en: "Sign in" }, description: { fr: "Connexion à l’espace client.", en: "Sign in to the client portal." }, noindex: true },
   "/desabonnement": { title: { fr: "Désabonnement", en: "Unsubscribe" }, description: { fr: "Se désabonner de l’infolettre.", en: "Unsubscribe from the newsletter." }, noindex: true },
@@ -117,15 +87,11 @@ export function metaFor(canonical: string, lang: Lang): Meta | null {
     const item = expertises.find((e) => e.slug === slug);
     return item ? { title: pick(item.title, lang), description: pick(item.intro, lang) } : null;
   }
-  if (section === "solutions") {
-    const item = solutions.find((e) => e.slug === slug);
-    return item ? { title: item.name, description: pick(item.summary, lang) } : null;
-  }
   if (section === "secteurs") {
     const item = sectors.find((e) => e.slug === slug);
     return item ? { title: pick(item.name, lang), description: pick(item.intro, lang) } : null;
   }
-  if (section === "perspectives") {
+  if (section === "ressources") {
     const item = insights.find((e) => e.slug === slug);
     return item ? { title: pick(item.title, lang), description: pick(item.excerpt, lang) } : null;
   }
@@ -135,7 +101,6 @@ export function metaFor(canonical: string, lang: Lang): Meta | null {
 export const indexablePaths = (): string[] => [
   ...Object.entries(staticMeta).filter(([, v]) => !v.noindex).map(([path]) => path),
   ...expertises.map((e) => `/expertises/${e.slug}`),
-  ...solutions.map((s) => `/solutions/${s.slug}`),
   ...sectors.map((s) => `/secteurs/${s.slug}`),
-  ...insights.map((i) => `/perspectives/${i.slug}`),
+  ...insights.map((i) => `/ressources/${i.slug}`),
 ];

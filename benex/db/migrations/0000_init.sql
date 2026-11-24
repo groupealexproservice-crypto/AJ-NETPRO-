@@ -1,3 +1,12 @@
+CREATE TABLE `analyticsEvents` (
+	`id` bigint unsigned AUTO_INCREMENT NOT NULL,
+	`name` varchar(40) NOT NULL,
+	`path` varchar(200) NOT NULL,
+	`lang` varchar(5) NOT NULL,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `analyticsEvents_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
 CREATE TABLE `campaigns` (
 	`id` bigint unsigned AUTO_INCREMENT NOT NULL,
 	`name` varchar(255) NOT NULL,
@@ -96,6 +105,15 @@ CREATE TABLE `notifications` (
 	CONSTRAINT `notifications_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
+CREATE TABLE `offerPricing` (
+	`slug` varchar(60) NOT NULL,
+	`priceText` varchar(200),
+	`timeline` varchar(200),
+	`published` boolean NOT NULL DEFAULT false,
+	`updatedAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `offerPricing_slug` PRIMARY KEY(`slug`)
+);
+--> statement-breakpoint
 CREATE TABLE `organizations` (
 	`id` bigint unsigned AUTO_INCREMENT NOT NULL,
 	`name` varchar(255) NOT NULL,
@@ -143,6 +161,22 @@ CREATE TABLE `solutionContent` (
 	CONSTRAINT `solutionContent_slug` PRIMARY KEY(`slug`)
 );
 --> statement-breakpoint
+CREATE TABLE `trustItems` (
+	`id` bigint unsigned AUTO_INCREMENT NOT NULL,
+	`kind` enum('testimonial','partner','certification','report','team') NOT NULL,
+	`titleFr` varchar(255) NOT NULL,
+	`titleEn` varchar(255) NOT NULL,
+	`bodyFr` text,
+	`bodyEn` text,
+	`name` varchar(255),
+	`role` varchar(255),
+	`url` varchar(500),
+	`verified` boolean NOT NULL DEFAULT false,
+	`published` boolean NOT NULL DEFAULT false,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `trustItems_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
 CREATE TABLE `users` (
 	`id` bigint unsigned AUTO_INCREMENT NOT NULL,
 	`email` varchar(320) NOT NULL,
@@ -157,6 +191,7 @@ CREATE TABLE `users` (
 	CONSTRAINT `users_email_unique` UNIQUE(`email`)
 );
 --> statement-breakpoint
+CREATE INDEX `events_name_idx` ON `analyticsEvents` (`name`,`createdAt`);--> statement-breakpoint
 CREATE INDEX `items_org_idx` ON `clientItems` (`organizationId`);--> statement-breakpoint
 CREATE INDEX `leads_mode_idx` ON `leads` (`mode`);--> statement-breakpoint
 CREATE INDEX `leads_email_idx` ON `leads` (`email`);--> statement-breakpoint

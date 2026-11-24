@@ -150,6 +150,40 @@ export const integrationEvents = mysqlTable("integrationEvents", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+/** Prices and timelines are entered by management; nothing is shown publicly until published. */
+export const offerPricing = mysqlTable("offerPricing", {
+  slug: varchar("slug", { length: 60 }).primaryKey(),
+  priceText: varchar("priceText", { length: 200 }),
+  timeline: varchar("timeline", { length: 200 }),
+  published: boolean("published").default(false).notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull().$onUpdate(() => new Date()),
+});
+
+/** Verified credibility content: testimonials, partners, certifications, reports, team. Public only when verified and published. */
+export const trustItems = mysqlTable("trustItems", {
+  id: pk(),
+  kind: mysqlEnum("kind", ["testimonial", "partner", "certification", "report", "team"]).notNull(),
+  titleFr: varchar("titleFr", { length: 255 }).notNull(),
+  titleEn: varchar("titleEn", { length: 255 }).notNull(),
+  bodyFr: text("bodyFr"),
+  bodyEn: text("bodyEn"),
+  name: varchar("name", { length: 255 }),
+  role: varchar("role", { length: 255 }),
+  url: varchar("url", { length: 500 }),
+  verified: boolean("verified").default(false).notNull(),
+  published: boolean("published").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+/** Anonymous, cookie-free product analytics: an event name, a path and a language. No IP, no identifier. */
+export const analyticsEvents = mysqlTable("analyticsEvents", {
+  id: pk(),
+  name: varchar("name", { length: 40 }).notNull(),
+  path: varchar("path", { length: 200 }).notNull(),
+  lang: varchar("lang", { length: 5 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+}, (t) => [index("events_name_idx").on(t.name, t.createdAt)]);
+
 export type User = typeof users.$inferSelect;
 export type Lead = typeof leads.$inferSelect;
 export type Project = typeof projects.$inferSelect;

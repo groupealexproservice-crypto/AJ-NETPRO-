@@ -21,7 +21,7 @@ seoRoutes.get("/sitemap.xml", async (c) => {
   const paths = indexablePaths();
   try {
     const rows = await getDb().select({ slug: posts.slug }).from(posts).where(eq(posts.status, "published"));
-    for (const row of rows) if (!paths.includes(`/perspectives/${row.slug}`)) paths.push(`/perspectives/${row.slug}`);
+    for (const row of rows) if (!paths.includes(`/ressources/${row.slug}`)) paths.push(`/ressources/${row.slug}`);
   } catch { /* the database is optional for the sitemap */ }
   const entry = (path: string, lang: "fr" | "en") => {
     const alternates = (["fr", "en"] as const)

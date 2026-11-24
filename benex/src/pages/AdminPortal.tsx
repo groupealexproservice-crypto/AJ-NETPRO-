@@ -3,7 +3,7 @@ import { Bell, CheckCheck, Download, LockKeyhole, Trash2 } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { trpc } from "../providers/trpc";
 import { PortalShell } from "../components/PortalShell";
-import { expertises, sectors, solutions } from "../content";
+import { aiTiers, expertises, sectors, tiers } from "../content";
 import { LEAD_STATUSES } from "@contracts/constants";
 import { useAdminOverview, type AdminData, type RefreshAdmin } from "./adminData";
 
@@ -11,7 +11,7 @@ import { useAdminOverview, type AdminData, type RefreshAdmin } from "./adminData
 
 const tabs = [
   ["overview", "Vue d’ensemble"], ["leads", "Demandes"], ["clients", "Clients"], ["projects", "Projets et livrables"],
-  ["content", "Contenus"], ["campaigns", "Campagnes"], ["integrations", "Intégrations"],
+  ["pricing", "Tarifs"], ["content", "Contenus"], ["trust", "Crédibilité"], ["campaigns", "Campagnes"], ["integrations", "Intégrations"],
 ] as const;
 type Tab = (typeof tabs)[number][0];
 
@@ -20,7 +20,7 @@ const statusLabel: Record<string, string> = { new: "Nouvelle", in_progress: "En 
 const timeSlotLabel: Record<string, string> = { morning: "Matin", afternoon: "Après-midi", evening: "Fin de journée" };
 const engagementLabel: Record<string, string> = { mandate: "Mandat ponctuel", monthly: "Accompagnement mensuel", undecided: "À déterminer" };
 const sectorName = (slug?: string | null) => sectors.find((s) => s.slug === slug)?.name.fr ?? slug ?? "—";
-const solutionName = (slug?: string | null) => solutions.find((s) => s.slug === slug)?.name ?? "—";
+const solutionName = (slug?: string | null) => [...tiers, ...aiTiers].find((s) => s.slug === slug)?.name ?? "—";
 const fmt = (value: string | Date) => new Intl.DateTimeFormat("fr-CA", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
@@ -46,6 +46,16 @@ function OverviewPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdm
         <div className="portal-section-heading" style={{ marginTop: 32 }}><h2>Demandes par secteur</h2></div>
         <div className="admin-bars">{(stats.data?.bySector ?? []).map((row) => <div key={row.sector}><span>{sectorName(row.sector)}</span><i style={{ width: `${(row.total / total(stats.data?.bySector)) * 100}%` }} /><b>{row.total}</b></div>)}</div>
         {!stats.data?.byMode.length && <p className="portal-empty">Aucune demande enregistrée pour le moment.</p>}
+        {stats.data && <>
+          <div className="portal-section-heading" style={{ marginTop: 32 }}><h2>Entonnoir de conversion (30 jours)</h2></div>
+          <div className="admin-bars">
+            {([["Visites (pages vues)", stats.data.funnel.visits], ["Simulateur utilisé", stats.data.funnel.simulator], ["Formulaire commencé", stats.data.funnel.formStarted], ["Demandes envoyées", stats.data.funnel.submitted]] as const).map(([label, value]) => <div key={label}><span>{label}</span><i style={{ width: `${(value / Math.max(stats.data!.funnel.visits, value, 1)) * 100}%` }} /><b>{value}</b></div>)}
+          </div>
+          <p className="legal-note">Mesures anonymes (sans témoin ni adresse IP). Taux visites → demandes : {stats.data.funnel.visits ? `${((stats.data.funnel.submitted / stats.data.funnel.visits) * 100).toFixed(1)} %` : "—"}.</p>
+          <div className="portal-section-heading" style={{ marginTop: 32 }}><h2>À relancer ({stats.data.overdue.length})</h2></div>
+          <div className="admin-record-list compact">{stats.data.overdue.map((l) => <article key={l.id}><div><span>{l.reference} · {modeLabel[l.mode]}</span><p>{l.company ?? l.name} — nouvelle depuis plus de 48 h</p></div></article>)}</div>
+          {!stats.data.overdue.length && <p className="portal-empty">Aucune demande en attente de suivi.</p>}
+        </>}
       </section>
       <section>
         <div className="portal-section-heading"><h2><Bell size={21} />Notifications internes</h2><button type="button" className="icon-button" onClick={() => markRead.mutate()} title="Tout marquer comme lu"><CheckCheck size={18} /></button></div>
@@ -191,12 +201,6 @@ function ContentPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdmi
   const deletePost = trpc.admin.deletePost.useMutation({ onSuccess: refresh });
   const upsertCase = trpc.admin.upsertCaseStudy.useMutation({ onSuccess: () => { setStudy(emptyCase); setError(""); refresh(); }, onError: (e) => setError(e.message) });
   const deleteCase = trpc.admin.deleteCaseStudy.useMutation({ onSuccess: refresh });
-  const updateSolution = trpc.admin.updateSolution.useMutation({ onSuccess: refresh });
-  const [solution, setSolution] = useState({ slug: "", nameFr: "", nameEn: "", summaryFr: "", summaryEn: "" });
-  const pick = (slug: string) => {
-    const base = solutions.find((s) => s.slug === slug); const saved = data.solutions.find((s) => s.slug === slug);
-    setSolution(base ? { slug, nameFr: saved?.nameFr ?? base.name, nameEn: saved?.nameEn ?? base.name, summaryFr: saved?.summaryFr ?? base.summary.fr, summaryEn: saved?.summaryEn ?? base.summary.en } : { slug: "", nameFr: "", nameEn: "", summaryFr: "", summaryEn: "" });
-  };
   const set = <T extends object>(setter: (v: T) => void, value: T) => (key: keyof T, v: unknown) => setter({ ...value, [key]: v });
   const sp = set(setPost, post), ss = set(setStudy, study);
   return <div className="admin-panel">
@@ -226,13 +230,62 @@ function ContentPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdmi
     <div className="admin-record-list">{data.posts.map((p) => <article key={p.id}><div><span>{p.status === "published" ? "Publié" : "Brouillon"}</span><h3>{p.titleFr}</h3><p>{p.titleEn}</p></div><div className="admin-row-actions"><button type="button" className="button-secondary" onClick={() => setPost({ id: p.id, slug: p.slug, titleFr: p.titleFr, titleEn: p.titleEn, excerptFr: p.excerptFr, excerptEn: p.excerptEn, bodyFr: p.bodyFr, bodyEn: p.bodyEn, status: p.status })}>Modifier</button><button type="button" className="icon-button" title="Supprimer" onClick={() => window.confirm("Supprimer cette publication ?") && deletePost.mutate({ id: p.id })}><Trash2 size={17} /></button></div></article>)}</div>
     <h3 className="admin-subheading">Réalisations</h3>
     <div className="admin-record-list">{data.caseStudies.map((c) => <article key={c.id}><div><span>{c.status === "published" ? "Publié" : "Brouillon"} · autorisation {c.clientPermission ? "consignée" : "manquante"}</span><h3>{c.titleFr}</h3></div><div className="admin-row-actions"><button type="button" className="button-secondary" onClick={() => setStudy({ id: c.id, slug: c.slug, titleFr: c.titleFr, titleEn: c.titleEn, summaryFr: c.summaryFr, summaryEn: c.summaryEn, clientPermission: c.clientPermission, status: c.status })}>Modifier</button><button type="button" className="icon-button" title="Supprimer" onClick={() => window.confirm("Supprimer cette réalisation ?") && deleteCase.mutate({ id: c.id })}><Trash2 size={17} /></button></div></article>)}</div>
-    <h3 className="admin-subheading">Textes des offres (surcharge bilingue)</h3>
-    <form className="admin-forms-single" onSubmit={(e: FormEvent) => { e.preventDefault(); updateSolution.mutate(solution); }}>
-      <Field label="Offre"><select value={solution.slug} onChange={(e) => pick(e.target.value)}><option value="">Sélectionner</option>{solutions.map((s) => <option key={s.slug} value={s.slug}>{s.name}</option>)}</select></Field>
-      {solution.slug && <><div className="form-grid two-columns"><Field label="Nom (FR)"><input value={solution.nameFr} onChange={(e) => setSolution({ ...solution, nameFr: e.target.value })} required /></Field><Field label="Name (EN)"><input value={solution.nameEn} onChange={(e) => setSolution({ ...solution, nameEn: e.target.value })} required /></Field></div>
-        <div className="form-grid two-columns"><Field label="Résumé (FR)"><textarea rows={3} value={solution.summaryFr} onChange={(e) => setSolution({ ...solution, summaryFr: e.target.value })} required minLength={10} /></Field><Field label="Summary (EN)"><textarea rows={3} value={solution.summaryEn} onChange={(e) => setSolution({ ...solution, summaryEn: e.target.value })} required minLength={10} /></Field></div>
-        <button className="button-primary" type="submit">Enregistrer</button></>}
-    </form>
+  </div>;
+}
+
+function PricingPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdmin }) {
+  const [message, setMessage] = useState("");
+  const save = trpc.admin.upsertPricing.useMutation({ onSuccess: () => { setMessage("Enregistré."); refresh(); }, onError: (e) => setMessage(e.message) });
+  const all = [...tiers, ...aiTiers];
+  return <div className="admin-panel">
+    <p className="legal-note">Tant qu’un tarif ou un délai n’est pas publié ici, le site affiche « Tarif sur devis » et « Délai précisé après le diagnostic ». Saisissez le texte exact à afficher (montant en $ CAD, taxes en sus, par mois, etc.). Seule la direction doit publier un tarif.</p>
+    {message && <p className="form-status" role="status">{message}</p>}
+    <div className="admin-record-list">{all.map((tier) => {
+      const row = data.pricing.find((p) => p.slug === tier.slug);
+      return <PricingRow key={tier.slug} slug={tier.slug} name={`${tier.name} — ${tier.verb.fr}`} priceText={row?.priceText ?? ""} timeline={row?.timeline ?? ""} published={row?.published ?? false} onSave={(v) => save.mutate({ slug: tier.slug, ...v })} />;
+    })}</div>
+  </div>;
+}
+
+function PricingRow({ slug, name, priceText, timeline, published, onSave }: { slug: string; name: string; priceText: string; timeline: string; published: boolean; onSave: (v: { priceText: string; timeline: string; published: boolean }) => void }) {
+  const [price, setPrice] = useState(priceText);
+  const [time, setTime] = useState(timeline);
+  const [pub, setPub] = useState(published);
+  return <article className="pricing-row" data-slug={slug}>
+    <div><h3>{name}</h3></div>
+    <Field label="Tarif affiché"><input value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Ex. : à partir de … $ CAD, taxes en sus" /></Field>
+    <Field label="Délai indicatif affiché"><input value={time} onChange={(e) => setTime(e.target.value)} placeholder="Ex. : 4 à 6 semaines après le diagnostic" /></Field>
+    <label className="consent-row"><input type="checkbox" checked={pub} onChange={(e) => setPub(e.target.checked)} /><span>Publié sur le site (validé par la direction)</span></label>
+    <button type="button" className="button-primary" onClick={() => onSave({ priceText: price, timeline: time, published: pub })}>Enregistrer</button>
+  </article>;
+}
+
+const trustKindLabel: Record<string, string> = { testimonial: "Témoignage vérifié", partner: "Partenaire", certification: "Certification", report: "Rapport de performance", team: "Membre de l’équipe" };
+
+function TrustPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdmin }) {
+  const empty = { kind: "testimonial" as "testimonial" | "partner" | "certification" | "report" | "team", titleFr: "", titleEn: "", bodyFr: "", bodyEn: "", name: "", role: "", url: "", verified: false, published: false };
+  const [form, setForm] = useState<typeof empty & { id?: number }>(empty);
+  const [error, setError] = useState("");
+  const save = trpc.admin.upsertTrustItem.useMutation({ onSuccess: () => { setForm(empty); setError(""); refresh(); }, onError: (e) => setError(e.message) });
+  const del = trpc.admin.deleteTrustItem.useMutation({ onSuccess: refresh });
+  const f = (key: keyof typeof empty, v: unknown) => setForm({ ...form, [key]: v });
+  return <div className="admin-panel">
+    <p className="legal-note">Un élément n’apparaît sur le site que s’il est <strong>vérifié</strong> et <strong>publié</strong>. Ne saisissez aucun client, témoignage, partenaire, certification ou résultat sans preuve et sans l’accord écrit de la personne ou de l’organisation concernée.</p>
+    {error && <p className="form-error" role="alert">{error}</p>}
+    <div className="admin-forms"><form onSubmit={(e: FormEvent) => { e.preventDefault(); save.mutate(form); }}>
+      <h3>{form.id ? "Modifier l’élément" : "Nouvel élément de crédibilité"}</h3>
+      <Field label="Type"><select value={form.kind} onChange={(e) => f("kind", e.target.value)}>{Object.entries(trustKindLabel).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></Field>
+      <div className="form-grid two-columns"><Field label="Titre (FR)"><input value={form.titleFr} onChange={(e) => f("titleFr", e.target.value)} required /></Field><Field label="Title (EN)"><input value={form.titleEn} onChange={(e) => f("titleEn", e.target.value)} required /></Field></div>
+      <div className="form-grid two-columns"><Field label="Texte (FR)"><textarea rows={3} value={form.bodyFr} onChange={(e) => f("bodyFr", e.target.value)} /></Field><Field label="Text (EN)"><textarea rows={3} value={form.bodyEn} onChange={(e) => f("bodyEn", e.target.value)} /></Field></div>
+      <div className="form-grid two-columns"><Field label="Nom"><input value={form.name} onChange={(e) => f("name", e.target.value)} /></Field><Field label="Fonction ou organisation"><input value={form.role} onChange={(e) => f("role", e.target.value)} /></Field></div>
+      <Field label="Lien (https://…)"><input value={form.url} onChange={(e) => f("url", e.target.value)} /></Field>
+      <label className="consent-row"><input type="checkbox" checked={form.verified} onChange={(e) => f("verified", e.target.checked)} /><span>Vérifié : preuve et autorisation écrite conservées.</span></label>
+      <label className="consent-row"><input type="checkbox" checked={form.published} onChange={(e) => f("published", e.target.checked)} /><span>Publié sur le site.</span></label>
+      <button className="button-primary" type="submit">Enregistrer</button>
+    </form></div>
+    <div className="admin-record-list">{data.trust.map((t) => <article key={t.id}><div><span>{trustKindLabel[t.kind]} · {t.verified ? "vérifié" : "non vérifié"} · {t.published ? "publié" : "non publié"}</span><h3>{t.titleFr}</h3></div>
+      <div className="admin-row-actions"><button type="button" className="button-secondary" onClick={() => setForm({ id: t.id, kind: t.kind, titleFr: t.titleFr, titleEn: t.titleEn, bodyFr: t.bodyFr ?? "", bodyEn: t.bodyEn ?? "", name: t.name ?? "", role: t.role ?? "", url: t.url ?? "", verified: t.verified, published: t.published })}>Modifier</button>
+      <button type="button" className="icon-button" title="Supprimer" onClick={() => window.confirm("Supprimer cet élément ?") && del.mutate({ id: t.id })}><Trash2 size={17} /></button></div></article>)}</div>
   </div>;
 }
 
@@ -285,7 +338,9 @@ export default function AdminPortal() {
       {tab === "leads" && <LeadsPanel data={data} refresh={refresh} />}
       {tab === "clients" && <ClientsPanel data={data} refresh={refresh} />}
       {tab === "projects" && <ProjectsPanel data={data} refresh={refresh} />}
+      {tab === "pricing" && <PricingPanel data={data} refresh={refresh} />}
       {tab === "content" && <ContentPanel data={data} refresh={refresh} />}
+      {tab === "trust" && <TrustPanel data={data} refresh={refresh} />}
       {tab === "campaigns" && <CampaignsPanel data={data} refresh={refresh} />}
       {tab === "integrations" && <IntegrationsPanel data={data} />}
     </>}
