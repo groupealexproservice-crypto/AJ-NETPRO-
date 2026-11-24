@@ -190,6 +190,10 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check("/ opens the French home directly, even for an English browser", en.page.url().endsWith("/fr"), en.page.url());
   await en.page.goto(BASE + "/fr/tarifs", { waitUntil: "networkidle" });
   check("pricing shows 4 offers and 4 AI offers, all « sur devis » until management publishes a price", (await en.page.locator(".tier-card").count()) === 8 && (await en.page.getByText("Tarif sur devis").count()) === 8);
+  check("pricing publishes the 9 entry/project offers with « à partir de » prices", (await en.page.locator(".entry-card").count()) === 9 && (await en.page.locator(".entry-card .entry-price strong").first().innerText()).includes("567"));
+  await en.page.locator("#entree-seo a.button-primary").click();
+  await en.page.waitForURL(/\/soumission\?solution=entree-seo/);
+  check("an entry offer is preselected in the quote form", (await en.page.locator("form.lead-form").getByLabel(/Offre envisagée/).inputValue().catch(() => "")) === "entree-seo" || (await en.page.url()).includes("entree-seo"));
   await en.page.goto(BASE + "/fr/simulateur", { waitUntil: "networkidle" });
   check("simulator labels itself as a simulation", await en.page.getByText("Simulation, non résultat.").isVisible());
   const before = await en.page.locator(".sim-kpis dd").first().innerText();

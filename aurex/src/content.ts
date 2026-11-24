@@ -176,6 +176,7 @@ export * from "./data/offers";
 export * from "./data/ai";
 export * from "./data/why";
 export * from "./data/innovations";
+export * from "./data/entryOffers";
 /** The thirteen industries served. */
 export const sectors: Sector[] = buildSectors(legacySectors);
 

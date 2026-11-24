@@ -33,8 +33,8 @@ const cases: Case[] = [
   C("sector", "Avez-vous des solutions pour le commerce électronique ?", /commerce|boutique|conversion/i),
   C("sector", "Je suis une startup technologique, par où commencer ?", /startup|technolog|marché|pipeline/i),
   C("sector", "Et les grandes organisations ?", /grande|organisation|gouvernance|feuille/i),
-  C("price", "Combien coûte un site web chez vous ?", /devis|diagnostic|précis|selon/i),
-  C("price", "Quels sont vos tarifs horaires ?", /devis|diagnostic|précis|selon/i),
+  C("price", "Combien coûte un site web chez vous ?", /\$|devis|diagnostic|à partir/i),
+  C("price", "Quels sont vos tarifs horaires ?", /\$|devis|diagnostic|précis|selon|forfait/i),
   C("price", "Quel est le prix de l’offre Performance ?", /devis|diagnostic|précis|selon/i),
   C("price", "Pouvez-vous me garantir un retour sur investissement de 300 % ?", /garant|simulation|estimation|résultat|ne peut/i),
   C("price", "Combien d’argent vais-je économiser avec l’automatisation ?", /simulation|estimation|calcul|dépend|diagnostic/i),
@@ -67,7 +67,7 @@ const cases: Case[] = [
 // Patterns that must never appear in an answer (invented facts, promises).
 const forbidden: Array<[string, RegExp]> = [
   ["garantie de résultat", /\b(nous )?garantissons\b|résultat(s)? garanti/i],
-  ["prix chiffré non publié", /\b\d[\d  ]*\s?(\$|CAD|dollars)\b(?!.*(exemple|hypoth|simulation|illustr))/i],
+  ["prix non publié", /\b(?!(?:239|365|449|469|495|567|990|1[  ]?190|1[  ]?490|1[  ]?990|4[  ]?900)\b)\d[\d  ]*\s?(\$|CAD|dollars)(?!.*(exemple|hypoth|simulation|illustr))/i],
   ["client nommé", /\b(client|clients)\s+(comme|tels que|dont)\s+[A-Z]/],
   ["certification inventée", /certifi(é|ée|és)\s+(iso|soc|pci)/i],
 ];

@@ -55,3 +55,22 @@ describe("operational savings", () => {
     expect(r.processSavings).toBe(defaultSavingsInputs.monthlyVolume * defaultSavingsInputs.costPerUnit);
   });
 });
+
+import { entryOffers, aiTiers, tiers } from "../../src/content";
+describe("published entry offers", () => {
+  it("have unique slugs, positive prices and a defined scope", () => {
+    const slugs = entryOffers.map((o) => o.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    expect(slugs.some((s) => [...tiers, ...aiTiers].some((t) => t.slug === s))).toBe(false);
+    for (const o of entryOffers) {
+      expect(o.price).toBeGreaterThan(0);
+      expect(o.scope.fr.length).toBeGreaterThan(0);
+      expect(o.scope.fr.length).toBe(o.scope.en.length);
+      if (o.upgrade) expect(o.upgrade.price).toBeGreaterThan(o.price);
+    }
+  });
+  it("includes the management-approved entry prices", () => {
+    const price = (slug: string) => entryOffers.find((o) => o.slug === slug)?.price;
+    expect([price("entree-seo"), price("entree-reseaux"), price("entree-ads"), price("entree-site"), price("entree-automatisation"), price("entree-assistant"), price("entree-diagnostic")]).toEqual([239, 365, 449, 469, 990, 1190, 567]);
+  });
+});

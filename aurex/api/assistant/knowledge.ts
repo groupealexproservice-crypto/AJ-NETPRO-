@@ -1,4 +1,4 @@
-import { agents, aiCosts, automationCatalog, availabilityLabel, businessSolutions, innovationIdeas, aiPole, aiTiers, automations, expertises, formats, governance, integrations, kpis, methodSteps, outcomes, poles, sectorExpertises, sectors, tiers, tx, txList, whyAurex, type Lang } from "../../src/content";
+import { entryOffers, agents, aiCosts, automationCatalog, availabilityLabel, businessSolutions, innovationIdeas, aiPole, aiTiers, automations, expertises, formats, governance, integrations, kpis, methodSteps, outcomes, poles, sectorExpertises, sectors, tiers, tx, txList, whyAurex, type Lang } from "../../src/content";
 import { localizePath } from "../../src/routes";
 
 /**
@@ -112,6 +112,12 @@ export function buildDocs(lang: Lang): Doc[] {
   docs.push({
     id: "outcomes", kind: "general", title: fr ? "Solutions aux entreprises" : "Business solutions", path: url("/solutions"), keywords: "objectif solution gagner clients chiffre affaires réduire coûts rentabilité croissance goal win customers revenue costs profitability growth",
     text: bullets(outcomes.map((o) => `${tx(o.title, lang)} — ${tx(o.text, lang)} (${o.expertises.map((slug) => tx(expertises.find((e) => e.slug === slug)!.title, lang)).join(", ")})`)),
+  });
+  const money = (n: number) => new Intl.NumberFormat(fr ? "fr-CA" : "en-CA", { style: "currency", currency: "CAD", maximumFractionDigits: 0 }).format(n);
+  docs.push({
+    id: "entry-offers", kind: "offer", title: fr ? "Offres d’entrée et prix publics" : "Entry offers and public pricing", path: url("/tarifs"), keywords: "prix tarif coût combien coûte à partir de offre d’entrée départ seo réseaux sociaux google ads site vitrine automatisation assistant ia diagnostic plan d’affaires site corporatif price pricing cost how much from entry offer social media website automation assistant diagnostic business plan corporate website",
+    text: (fr ? "Prix publics en dollars canadiens, taxes en sus. Chaque offre d’entrée a une portée limitée ; une version complète est proposée pour aller plus loin. Le tarif confirmé figure dans la soumission.\n" : "Public prices in Canadian dollars, taxes extra. Each entry offer has a limited scope; a full version is available to go further. The confirmed rate appears in the quote.\n") +
+      bullets(entryOffers.map((o) => `${tx(o.title, lang)} — ${fr ? "à partir de" : "from"} ${money(o.price)}${o.unit === "month" ? (fr ? " par mois" : " per month") : ""} : ${txList(o.scope, lang).join(", ")}${o.upgrade ? ` (${fr ? "version complète" : "full version"} : ${tx(o.upgrade.label, lang)}, ${money(o.upgrade.price)}${o.upgrade.unit === "month" ? (fr ? " par mois" : " per month") : ""})` : ""}`)),
   });
   docs.push({
     id: "business-solutions", kind: "general", title: fr ? "Sept solutions d’affaires intégrées" : "Seven integrated business solutions", path: url("/solutions"), keywords: "solution intégrée launch growth digital transformation ai automation operational excellence supply chain performance enterprise transformation lancement croissance transformation numérique excellence opérationnelle chaîne d’approvisionnement",

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Check } from "lucide-react";
 import { Link } from "../components/LocaleLink";
-import { agents, aiAcrossExpertise, aiCosts, aiTiers, automations, expertises, formats, governance, integrations, tiers, tx, txList, valueFramework, kpis, type Tier } from "../content";
+import { agents, aiAcrossExpertise, entryOffers, type EntryOffer, aiCosts, aiTiers, automations, expertises, formats, governance, integrations, tiers, tx, txList, valueFramework, kpis, type Tier } from "../content";
 import { defaultInputs, defaultScenarios, inputWarnings, simulate, type Scenario, type SimInputs } from "../simulator";
 import { useLanguage } from "../i18n";
 import { trpc } from "../providers/trpc";
@@ -41,6 +41,23 @@ function TierCard({ tier, pricing }: { tier: Tier; pricing?: Pricing }) {
   );
 }
 
+
+function EntryCard({ offer }: { offer: EntryOffer }) {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+  const unit = (u: EntryOffer["unit"]) => (u === "month" ? (fr ? " / mois" : " / month") : fr ? " (forfait)" : " (one-time)");
+  return (
+    <article className="entry-card" id={offer.slug}>
+      <p className="entry-from">{fr ? "À partir de" : "From"}</p>
+      <p className="entry-price"><strong>{fmtMoney(offer.price, lang)}</strong><span>{unit(offer.unit)}</span></p>
+      <h3>{tx(offer.title, lang)}</h3>
+      <ul>{txList(offer.scope, lang).map((x) => <li key={x}><Check size={15} aria-hidden="true" />{x}</li>)}</ul>
+      {offer.upgrade && <p className="entry-upgrade">{fr ? "Version complète : " : "Full version: "}{tx(offer.upgrade.label, lang)} — <strong>{fmtMoney(offer.upgrade.price, lang)}</strong>{unit(offer.upgrade.unit)}</p>}
+      <Link className="button-primary" to={`/soumission?solution=${offer.slug}`} onClick={() => track("cta_quote")}>{fr ? "Demander cette offre" : "Request this offer"}</Link>
+    </article>
+  );
+}
+
 export function PricingPage() {
   const { lang } = useLanguage();
   const fr = lang === "fr";
@@ -56,6 +73,15 @@ export function PricingPage() {
       <p className="eyebrow">{fr ? "Trois façons de travailler ensemble" : "Three ways to work together"}</p>
       <h2 id="formats-title" className="sr-only">{fr ? "Formats d’intervention" : "Engagement formats"}</h2>
       <div className="format-grid">{formats.map((f) => <div key={f.key}><h3>{tx(f.title, lang)}</h3><p>{tx(f.text, lang)}</p></div>)}</div>
+    </section>
+
+    <section className="shell section" aria-labelledby="entry-title">
+      <p className="eyebrow">{fr ? "Offres d’entrée · prix publics" : "Entry offers · public pricing"}</p>
+      <h2 id="entry-title" className="pricing-h2">{fr ? "Commencez simplement, à prix clair." : "Start simply, at a clear price."}</h2>
+      <p className="muted-note">{fr ? "Prix en dollars canadiens, taxes en sus. Chaque offre d’entrée a une portée précise, indiquée ci-dessous ; la version complète est proposée pour aller plus loin. Les prix peuvent être ajustés : le tarif confirmé figure toujours dans votre soumission." : "Prices in Canadian dollars, taxes extra. Each entry offer has a defined scope, listed below; the full version is available to go further. Prices may be adjusted: the confirmed rate always appears in your quote."}</p>
+      <div className="entry-grid">{entryOffers.filter((o) => o.group === "entry").map((o) => <EntryCard key={o.slug} offer={o} />)}</div>
+      <h3 className="entry-sub">{fr ? "Projets" : "Projects"}</h3>
+      <div className="entry-grid">{entryOffers.filter((o) => o.group === "project").map((o) => <EntryCard key={o.slug} offer={o} />)}</div>
     </section>
 
     <section className="shell section">

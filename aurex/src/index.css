@@ -1323,3 +1323,15 @@ a:hover .rollover > span, button:hover .rollover > span { transform: translateY(
 .solution-grid ul { margin: 12px 0; padding-left: 18px; } .solution-grid small { color: var(--text-muted); display: block; margin-top: 8px; }
 section.shell .auto-grid article { border-color: var(--line); }
 section.shell .auto-grid p { color: var(--text-muted); }
+.entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; margin-top: 28px; border-top: 1px solid var(--text); }
+.entry-card { display: flex; flex-direction: column; gap: 10px; padding: 28px 28px 28px 0; border-bottom: 1px solid var(--line); }
+.entry-card h3 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: 22px; }
+.entry-from { margin: 0; font: 500 11px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+.entry-price { margin: 0; display: flex; align-items: baseline; gap: 6px; }
+.entry-price strong { font-family: var(--font-display); font-size: clamp(30px, 3vw, 40px); font-weight: 300; font-variant-numeric: tabular-nums; }
+.entry-price span { color: var(--text-muted); font-size: 14px; }
+.entry-card ul { list-style: none; margin: 4px 0; padding: 0; display: grid; gap: 6px; font-size: 14.5px; }
+.entry-card li { display: flex; gap: 8px; align-items: flex-start; } .entry-card li svg { margin-top: 3px; flex: none; color: var(--accent); }
+.entry-upgrade { font-size: 13.5px; color: var(--text-muted); margin: 0; }
+.entry-card .button-primary { margin-top: auto; align-self: flex-start; }
+.entry-sub { margin: 40px 0 0; font-family: var(--font-display); font-weight: 300; }
