@@ -184,3 +184,26 @@ Les prix ci-dessous **remplacent le niveau « Accessible »** de la section 3 po
 - **Seuil de rentabilité** : avec 4 000 $ de frais fixes et une marge moyenne d’environ 35 %, il faut ≈ **11 400 $ de revenus par mois** (contre 8 900 $ à 45 %).
 - **Ne publiez pas « le moins cher du marché »** sans preuve : une telle affirmation doit pouvoir être démontrée (à faire valider par un juriste). Préférez « prix publics, clairs et sans surprise ».
 - **Stratégie recommandée** : prix d’appel très bas sur 3 offres d’entrée (diagnostic express, SEO, automatisation simple) pour attirer, puis abonnements mensuels (réseaux sociaux, SEO, publicité, suivi d’automatisation) qui portent la marge. Les niveaux Professionnel et Premium de la section 3 restent inchangés.
+
+## 10. Grille « la moins chère à Montréal » (décision de la direction)
+
+Objectif retenu : **afficher, pour chaque offre d’entrée, un prix inférieur au plancher le plus bas trouvé à Montréal et au Québec** (environ 5 % sous ce plancher). Pour que ces prix ne fassent pas perdre d’argent, l’offre d’entrée est **un produit à portée limitée** ; la version complète garde le prix de la section 9. Marges calculées avec 55 $/h (hypothèse).
+
+| Offre d’entrée | Plancher trouvé | **Prix AUREX** | Portée de l’offre | Heures | Marge |
+|---|---|---|---|---|---|
+| Réseaux sociaux — Départ | 385 $/mois | **365 $/mois** | 1 profil, 8 publications assistées par IA | 4 | 40 % |
+| SEO local — Départ | 250 $/mois | **239 $/mois** | audit, fiche Google, 1 page optimisée | 3 | 31 % |
+| Gestion Google Ads | 477 $/mois | **449 $/mois** (ou 12 % du budget) | gestion complète, rapport mensuel | 5 | 39 % |
+| Site vitrine — Gabarit | 499 $ | **469 $** | gabarit 3 pages, bilingue, contenu fourni par le client | 6 | 30 % |
+| Automatisation simple | 1 200 $ | **990 $** | 1 processus, documenté | 12 | 33 % |
+| Assistant IA — FAQ | 1 250 $ | **1 190 $** | assistant sur le contenu fourni, 1 canal | 12 | 45 % |
+| Diagnostic stratégique express | 597 $ (page de 2021) | **567 $** | 3 h + rapport écrit | 6 | 42 % |
+
+Pour deux services, **aucun plancher montréalais comparable n’a été trouvé** (site corporatif bilingue, plan d’affaires) : les prix de la section 9 restent (4 900 $ et 1 990 $).
+
+**Risques à accepter en connaissance de cause**
+- Sans la portée limitée, trois de ces prix **perdent de l’argent** (SEO −15 %, site −111 %, chatbot 17 % de marge à portée complète). Elle doit figurer clairement dans l’offre.
+- Les concurrents peuvent baisser leurs prix : le plancher est mesuré **à la date du 24 novembre 2026**.
+- Une image « très bas prix » peut attirer des clients sensibles au prix et dévaluer l’expertise. Prévoir un **parcours de montée en gamme** (Départ, puis Complet, puis Premium) et des abonnements pour porter la marge.
+- Ne pas afficher « le moins cher à Montréal » : n’écrire que ce qui est démontrable (« à partir de 239 $/mois, prix publics »), à faire valider par un juriste.
+- Seuil de rentabilité à ces marges (≈ 35 %) : ≈ **11 400 $ de revenus par mois** pour 4 000 $ de frais fixes.
