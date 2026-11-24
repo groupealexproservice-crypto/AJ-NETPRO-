@@ -86,7 +86,7 @@ export function ExpertiseDetail() {
     <section className="kpi-section shell section">
       <p className="eyebrow">{fr ? "6. Comment mesurer les résultats" : "6. How results are measured"}</p>
       <h2>{fr ? "Des indicateurs convenus dès le départ." : "Indicators agreed from the start."}</h2>
-      <dl className="kpi-grid">{expertise.kpis.map((key) => <div key={key}><dt>{tx(kpis[key].label, lang)}</dt><dd>{tx(kpis[key].definition, lang)}</dd><code>{tx(kpis[key].formula, lang)}</code></div>)}</dl>
+      <dl className="kpi-grid">{expertise.kpis.map((key) => <div key={key}><dt>{tx(kpis[key].label, lang)}</dt><dd>{tx(kpis[key].definition, lang)}<code>{tx(kpis[key].formula, lang)}</code></dd></div>)}</dl>
       <ArrowLink to="/simulateur">{fr ? "Estimer le potentiel avec le simulateur" : "Estimate the potential with the simulator"}</ArrowLink>
     </section>
 
@@ -99,7 +99,7 @@ export function ExpertiseDetail() {
       <div><p className="eyebrow">{fr ? "7. Combien coûte notre intervention" : "7. What our work costs"}</p><h2>{fr ? "Transparent, avant de commencer." : "Transparent, before we begin."}</h2></div>
       <div>
         <p className="detail-lead">{tx(expertise.pricing, lang)}</p>
-        {expertise.note && <aside className="ad-note"><strong>{fr ? "Budget publicitaire et honoraires" : "Ad budget and fees"}</strong><p>{tx(expertise.note, lang)}</p></aside>}
+        {expertise.note && <div className="ad-note" role="note"><strong>{fr ? "Budget publicitaire et honoraires" : "Ad budget and fees"}</strong><p>{tx(expertise.note, lang)}</p></div>}
         <ArrowLink to="/tarifs">{fr ? "Voir les offres et les conditions" : "See offers and terms"}</ArrowLink>
       </div>
     </section>

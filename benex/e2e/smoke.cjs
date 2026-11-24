@@ -39,9 +39,11 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   while (queue.length && seen.size < 140) {
     const path = queue.shift(); if (seen.has(path)) continue; seen.add(path);
     const res = await page.goto(BASE + path, { waitUntil: "domcontentloaded" });
-    await page.waitForTimeout(150);
+    await page.waitForSelector("h1", { timeout: 6000 }).catch(() => undefined);
     if (!res || res.status() >= 400) { broken.push(`${path} → ${res && res.status()}`); continue; }
     if ((await page.locator("h1").count()) === 0) broken.push(`${path} → no h1`);
+    const text = await page.locator("body").innerText();
+    if (/lorem ipsum|\bTODO\b|undefined|\bNaN\b|\[object|à compléter/i.test(text)) broken.push(`${path} → unfinished or broken text`);
     const hrefs = await page.locator("a[href^='/']").evaluateAll((as) => as.map((a) => a.getAttribute("href")));
     for (const h of hrefs) { const clean = h.split("#")[0].split("?")[0]; if (/^\/(fr|en)(\/|$)/.test(clean) && !seen.has(clean)) queue.push(clean); }
   }
@@ -217,6 +219,27 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await cp3.keyboard.press("Escape");
   check("Escape closes the advisor and returns focus to its button", (await cp3.locator(".assistant-panel").count()) === 0 && (await cp3.evaluate(() => document.activeElement?.className)) === "assistant-launcher");
   await cp3.locator("#assistant-input").count();
+
+  // 8f. Montréal identity, structured data, security headers, compression, caching
+  const plain = await newPage(); const hp = plain.page;
+  await hp.goto(BASE + "/fr", { waitUntil: "networkidle" });
+  check("footer anchors the firm in Montréal and invents no contact detail", /montréal/i.test(await hp.locator(".footer-city").innerText()) && (await hp.locator(".footer-contact a, .footer-contact span").count()) === 0);
+  await hp.goto(BASE + "/fr/contact", { waitUntil: "networkidle" });
+  check("contact page states Montréal and shows no placeholder coordinates", (await hp.locator(".contact-details").innerText()).includes("Montréal, Québec, Canada") && (await hp.locator(".contact-details a").count()) === 0);
+  const res = await plain.ctx.request.get(BASE + "/fr/expertises/publicite-numerique-ppc", { headers: { "accept-encoding": "gzip, br", accept: "text/html" } });
+  const h = res.headers(); const html = await res.text();
+  check("security headers: CSP, frame, referrer, permissions, nosniff", /default-src 'self'/.test(h["content-security-policy"] || "") && h["x-frame-options"] === "DENY" && !!h["permissions-policy"] && h["x-content-type-options"] === "nosniff" && !!h["referrer-policy"]);
+  check("pages are compressed", /gzip|br|deflate/.test(h["content-encoding"] || ""), h["content-encoding"]);
+  const ld = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
+  const graph = ld ? JSON.parse(ld[1])["@graph"] : [];
+  const org = graph.find((n) => n["@type"] === "ProfessionalService");
+  check("structured data names Montréal, Quebec, Canada and both languages", org?.address?.addressLocality === "Montréal" && org?.address?.addressRegion === "QC" && org?.availableLanguage?.includes("en-CA") && !org?.telephone && !org?.email);
+  check("expertise page carries Service structured data", graph.some((n) => n["@type"] === "Service"));
+  const asset = (html.match(/\/assets\/[^"']+\.js/) || [])[0];
+  const ar = asset ? await plain.ctx.request.get(BASE + asset) : null;
+  check("hashed assets are cached for a year", /max-age=31536000/.test(ar?.headers()["cache-control"] || ""));
+  const home = await plain.ctx.request.get(BASE + "/", { maxRedirects: 0 });
+  check("/ redirects to /fr (no language screen)", home.status() === 302 && home.headers().location === "/fr");
 
   // 9. Reduced motion
   const rm = await newPage({ reducedMotion: "reduce" }); await rm.page.goto(BASE + "/fr", { waitUntil: "networkidle" });

@@ -51,3 +51,9 @@ Les cinq engagements (écouter avant de proposer, sérieux et discrétion, parle
 - **Aucune conservation** du contenu des conversations ; seul un compteur anonyme est enregistré.
 - **Exactitude** : l'avis affiché rappelle que les réponses sont automatiques et à valider avec l'équipe. Les règles du conseiller (src : `api/assistant/engine.ts`) interdisent d'inventer prix, clients, résultats, partenariats ; BENEX doit relire ces règles et tester le conseiller avec sa clé avant publication.
 - **Non testé ici** : l'appel réel au modèle (aucune clé dans cet environnement). Le flux est testé avec un modèle simulé ; le mode « connaissances » est testé de bout en bout.
+
+## Langue et affichage au Québec
+
+- **Charte de la langue française (loi 96)** : le site s'ouvre en français et l'anglais est une version équivalente ; les montants sont en dollars canadiens. À faire valider par un conseiller pour les mentions obligatoires de votre secteur.
+- **Mentions légales de l'entreprise** : raison sociale, NEQ, adresse et courriel se renseignent par variables (`COMPANY_LEGAL_NAME`, `COMPANY_NEQ`, …) et s'affichent alors dans le pied de page et la page Contact. Rien n'est affiché tant que ces valeurs sont vides.
+- **Responsable de la protection des renseignements personnels** : `PRIVACY_OFFICER_NAME` / `PRIVACY_OFFICER_EMAIL` alimentent la page Confidentialité. Cette désignation et la publication de ses coordonnées sont obligatoires : à faire avant la mise en ligne.

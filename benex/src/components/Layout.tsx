@@ -7,6 +7,7 @@ import { useLanguage } from "../i18n";
 import { parseLocalized } from "../routes";
 import { track } from "../lib/track";
 import { AssistantChat } from "./AssistantChat";
+import { Skyline } from "./Skyline";
 import { expertises, outcomes, sectors, tx } from "../content";
 import { trpc } from "../providers/trpc";
 
@@ -163,6 +164,8 @@ export function Layout({ children }: { children: ReactNode }) {
 
 function Footer() {
   const { lang, t } = useLanguage();
+  const companyQuery = trpc.content.company.useQuery(undefined, { staleTime: 10 * 60_000 });
+  const company = companyQuery.data ?? { legalName: undefined, neq: undefined, email: undefined, phone: undefined, street: undefined, postalCode: undefined, linkedin: undefined };
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [message, setMessage] = useState("");
@@ -228,6 +231,11 @@ function Footer() {
           </label>
           {message && <p className="form-status" role="status">{message}</p>}
         </form>
+      </div>
+      <div className="footer-city shell">
+        <Skyline />
+        <p>{lang === "fr" ? "Montréal · Québec · Canada" : "Montréal · Québec · Canada"}</p>
+        <p className="footer-contact">{company.legalName && <span>{company.legalName}{company.neq ? ` · NEQ ${company.neq}` : ""}</span>}{company.email && <a href={`mailto:${company.email}`}>{company.email}</a>}{company.phone && <a href={`tel:${company.phone.replace(/[^+\d]/g, "")}`}>{company.phone}</a>}{[company.street, company.postalCode].filter(Boolean).join(", ") && <span>{[company.street, company.postalCode].filter(Boolean).join(", ")}</span>}{company.linkedin && <a href={company.linkedin} target="_blank" rel="noreferrer noopener">LinkedIn</a>}</p>
       </div>
       <div className="footer-wordmark" aria-hidden="true">BENEX</div>
       <div className="footer-legal shell">

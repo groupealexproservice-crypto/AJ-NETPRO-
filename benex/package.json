@@ -17,7 +17,8 @@
     "db:push": "drizzle-kit push",
     "db:seed:demo": "tsx db/seed-demo.ts",
     "e2e": "node e2e/smoke.cjs",
-    "assets": "tsx scripts/build-assets.ts"
+    "assets": "tsx scripts/build-assets.ts",
+    "a11y": "node e2e/a11y.cjs"
   },
   "dependencies": {
     "@google/model-viewer": "^4.4.0",
@@ -92,6 +93,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.23",
+    "axe-core": "^4.10.2",
     "drizzle-kit": "^0.31.8",
     "esbuild": "^0.27.2",
     "eslint": "^9.39.1",

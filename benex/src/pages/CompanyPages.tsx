@@ -8,6 +8,7 @@ import { ArrowLink, PageMeta } from "../components/Layout";
 import { CtaBand, PageHero, SectionHeading } from "../components/Sections";
 import { Commitments, VisionBand, WhyBenex } from "../components/Vision";
 import { TrustSection } from "../components/TrustSection";
+import { Skyline } from "../components/Skyline";
 import { LeadForm, type LeadMode } from "../components/LeadForm";
 import { OrientationAssistant } from "../components/OrientationAssistant";
 import { trpc } from "../providers/trpc";
@@ -27,6 +28,12 @@ export function AboutPage() {
     <WhyBenex />
     <VisionBand />
     <Commitments />
+    <section className="about-city shell section" aria-labelledby="about-city-title">
+      <p className="eyebrow">{lang === "fr" ? "Ancrés à Montréal" : "Rooted in Montréal"}</p>
+      <h2 id="about-city-title">{lang === "fr" ? "Une entreprise d’ici, avec l’ambition de servir au-delà." : "A local firm with the ambition to serve beyond."}</h2>
+      <p>{lang === "fr" ? "BENEX Solutions est basée à Montréal. Le français est notre langue principale ; l’anglais est disponible sur l’ensemble du site. Nous travaillons dans le respect des exigences du Québec et du Canada en matière de protection des renseignements personnels." : "BENEX Solutions is based in Montréal. French is our primary language; English is available across the whole site. We work in line with Quebec and Canadian requirements on the protection of personal information."}</p>
+      <Skyline />
+    </section>
     <TrustSection />
     <CtaBand />
   </>;
@@ -114,9 +121,35 @@ export function LeadPage({ mode }: { mode: LeadMode }) {
   return <>
     <PageMeta title={copy.eyebrow.replace("BENEX / ", "")} description={copy.text} />
     <section className="lead-page section"><div className="shell lead-page-grid"><div className="lead-page-copy"><p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p>{copy.text}</p><div className="lead-assurance"><LockKeyhole size={22} strokeWidth={1.3} /><p>{lang === "fr" ? "Vos renseignements sont transmis à un espace de suivi protégé et ne sont pas revendus." : "Your information is sent to a protected follow-up space and is never sold."}</p></div></div><LeadForm key={`${mode}${search}`} mode={mode} /></div></section>
+    {mode === "contact" && <ContactDetails />}
     {mode === "appointment" && <section className="integration-note shell"><CalendarDays size={26} strokeWidth={1.2} /><div><h2>{lang === "fr" ? "Confirmation du rendez-vous" : "Appointment confirmation"}</h2><p>{lang === "fr" ? "Votre demande est enregistrée comme une demande à confirmer : la date et la plage horaire choisies expriment votre préférence. L’équipe BENEX vous écrira pour confirmer le rendez-vous. Aucune disponibilité en temps réel n’est affichée tant qu’un calendrier n’est pas raccordé." : "Your request is recorded as a request to confirm: the date and time slot you choose express a preference. The BENEX team will write to you to confirm the appointment. No real-time availability is shown until a calendar is connected."}</p></div></section>}
     {mode === "diagnostic" && <OrientationAssistant />}
   </>;
+}
+
+function ContactDetails() {
+  const { lang } = useLanguage();
+  const fr = lang === "fr";
+  const { data: c } = trpc.content.company.useQuery();
+  const address = [c?.street, c?.postalCode].filter(Boolean).join(", ");
+  return (
+    <section className="contact-details shell section" aria-labelledby="contact-city">
+      <div>
+        <p className="eyebrow">{fr ? "Depuis Montréal" : "From Montréal"}</p>
+        <h2 id="contact-city">{fr ? "Basés à Montréal, au service d’entreprises ambitieuses." : "Based in Montréal, serving ambitious businesses."}</h2>
+        <p>{fr ? "BENEX Solutions accompagne les entrepreneurs, les PME et les organisations du Québec et du Canada, en français et en anglais. Nous répondons à chaque demande envoyée par le formulaire." : "BENEX Solutions supports entrepreneurs, SMEs and organizations in Quebec and Canada, in French and in English. We respond to every request sent through the form."}</p>
+      </div>
+      <dl>
+        <div><dt>{fr ? "Ville" : "City"}</dt><dd>Montréal, Québec, Canada</dd></div>
+        {c?.legalName && <div><dt>{fr ? "Entreprise" : "Company"}</dt><dd>{c.legalName}{c.neq ? ` · NEQ ${c.neq}` : ""}</dd></div>}
+        {address && <div><dt>{fr ? "Adresse" : "Address"}</dt><dd>{address}, Montréal (QC)</dd></div>}
+        {c?.email && <div><dt>{fr ? "Courriel" : "E-mail"}</dt><dd><a href={`mailto:${c.email}`}>{c.email}</a></dd></div>}
+        {c?.phone && <div><dt>{fr ? "Téléphone" : "Phone"}</dt><dd><a href={`tel:${c.phone.replace(/[^+\d]/g, "")}`}>{c.phone}</a></dd></div>}
+        <div><dt>{fr ? "Langues" : "Languages"}</dt><dd>{fr ? "Français · English" : "English · Français"}</dd></div>
+      </dl>
+      <Skyline className="contact-skyline" />
+    </section>
+  );
 }
 
 export function ContactPage() {
@@ -125,7 +158,7 @@ export function ContactPage() {
 
 export function PrivacyPage() {
   const { lang, t } = useLanguage();
-  const sections = lang === "fr" ? [
+  const sections: string[][] = lang === "fr" ? [
     ["Renseignements recueillis", "Nous recueillons les renseignements que vous transmettez volontairement dans les formulaires : coordonnées, entreprise, secteur, objectifs, budget indicatif, préférences de rendez-vous et consentements. L’espace client conserve également les projets, documents et échanges associés à votre compte."],
     ["Utilisation", "Ces renseignements servent à répondre aux demandes, préparer des propositions, gérer le suivi commercial, fournir les services du portail et respecter les préférences de communication. Ils ne sont pas vendus."],
     ["Consentement et infolettre", "L’inscription à l’infolettre exige un consentement explicite. Chaque inscription comporte un consentement distinct, consigné avec sa date. Vous pouvez vous désabonner en tout temps depuis la page de désabonnement ou en nous écrivant par la page Contact."],
@@ -142,6 +175,13 @@ export function PrivacyPage() {
     ["Cookies and external services", "The site stores your language preference in the browser and, when you sign in to the client portal, a session cookie required for it to work. It activates no external advertising or analytics tools. Any future integration requiring non-essential cookies must include a prior consent mechanism."],
     ["Applicable framework", "BENEX Solutions aims to adapt its practices to applicable Quebec personal information protection requirements, including Law 25, and Canadian electronic outreach rules. This policy does not constitute legal advice."],
   ];
+  const { data: company } = trpc.content.company.useQuery();
+  const { data: assistant } = trpc.assistant.status.useQuery();
+  const fr = lang === "fr";
+  if (company?.privacyOfficerName || company?.privacyOfficerEmail) sections.push([fr ? "Responsable de la protection des renseignements personnels" : "Person in charge of personal information protection", `${[company.privacyOfficerName, company.privacyOfficerEmail].filter(Boolean).join(" · ")}. ${fr ? "Adressez-lui toute demande d’accès, de rectification ou de retrait de consentement." : "Send any request for access, correction or withdrawal of consent to this person."}`]);
+  sections.push([fr ? "Conseiller IA et mesures anonymes" : "AI advisor and anonymous measurements", fr
+    ? `Le conseiller IA ne conserve pas le contenu des conversations ; les courriels et numéros de téléphone sont masqués avant tout traitement. ${assistant?.mode === "ai" ? "Pour produire ses réponses, le texte de vos questions est transmis à un fournisseur de modèle de langage (Anthropic), qui peut traiter ces données hors du Québec. Ne saisissez aucun renseignement personnel." : "Dans sa configuration actuelle, il répond à partir du contenu publié par BENEX, sans transmettre vos questions à un tiers."} Nous mesurons aussi la fréquentation de façon anonyme (page, langue, type d’action), sans témoin ni adresse IP.`
+    : `The AI advisor does not store conversation content; e-mail addresses and phone numbers are masked before any processing. ${assistant?.mode === "ai" ? "To produce answers, the text of your questions is sent to a language-model provider (Anthropic), which may process it outside Quebec. Do not enter personal information." : "In its current configuration it answers from content published by BENEX, without sending your questions to a third party."} We also measure traffic anonymously (page, language, type of action), without cookies or IP addresses.`]);
   return <><PageMeta title={t("privacy")} description={lang === "fr" ? "Politique de confidentialité de BENEX Solutions." : "BENEX Solutions privacy policy."} /><PageHero eyebrow="BENEX / CONFIDENTIALITÉ" title={lang === "fr" ? "Vos renseignements méritent une gestion claire." : "Your information deserves clear management."} text={lang === "fr" ? "Version du 24 novembre 2026. Cette page explique les pratiques de la plateforme BENEX Solutions." : "Version dated November 24, 2026. This page explains the practices of the BENEX Solutions platform."} /><section className="privacy-sections shell section">{sections.map(([title, text], index) => <section key={title}><span>0{index + 1}</span><h2>{title}</h2><p>{text}</p></section>)}</section></>;
 }
 

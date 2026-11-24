@@ -1,9 +1,9 @@
-import type { CSSProperties } from "react";
+import { lazy, Suspense, type CSSProperties } from "react";
 import { Link } from "../components/LocaleLink";
 import { ArrowRight } from "lucide-react";
 import { aiPole, automations, expertises, insights, kpis, methodSteps, outcomes, poles, sectors, tiers, tx } from "../content";
 import { useLanguage } from "../i18n";
-import { GrowthMorph } from "../components/GrowthMorph";
+const GrowthMorph = lazy(() => import("../components/GrowthMorph").then((m) => ({ default: m.GrowthMorph })));
 import { ArrowLink, PageMeta, Rollover } from "../components/Layout";
 import { CtaBand, SectionHeading } from "../components/Sections";
 import { OrientationAssistant } from "../components/OrientationAssistant";
@@ -60,8 +60,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="hero-morph"><GrowthMorph /></div>
-        <div className="hero-coordinate" aria-hidden="true">QUÉBEC / CANADA<br />45.5019° N · 73.5674° W</div>
+        <div className="hero-morph"><Suspense fallback={null}><GrowthMorph /></Suspense></div>
+        <div className="hero-coordinate" aria-hidden="true">MONTRÉAL / QUÉBEC / CANADA<br />45.5019° N · 73.5674° W</div>
       </section>
 
       {/* 2. What the visitor can achieve */}

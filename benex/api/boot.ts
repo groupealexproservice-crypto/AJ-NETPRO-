@@ -10,8 +10,16 @@ import { REQUEST_ID_HEADER, runWithRequestId } from "./lib/requestcontext";
 import { seoRoutes } from "./routes/seo";
 import { fileRoutes } from "./routes/files";
 import { ensureAdmin } from "./bootstrap";
+import { compress } from "hono/compress";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
+
+// Everything the site loads comes from itself, plus Google Fonts. Inline styles are needed by React; no inline script is ever allowed.
+const CSP = [
+  "default-src 'self'", "script-src 'self' 'wasm-unsafe-eval'", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com data:",
+  "img-src 'self' data: blob:", "connect-src 'self'", "worker-src 'self' blob:", "media-src 'self' blob:", "object-src 'none'", "base-uri 'self'", "form-action 'self'", "frame-ancestors 'none'",
+].join("; ");
+
 
 // Request id + one access line per API call.
 app.use("*", async (c, next) => {
@@ -23,6 +31,10 @@ app.use("*", async (c, next) => {
     c.res.headers.set("X-Content-Type-Options", "nosniff");
     c.res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
     c.res.headers.set("X-Frame-Options", "DENY");
+    c.res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=()");
+    c.res.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+    if (env.isProduction && !c.req.path.startsWith("/api/")) c.res.headers.set("Content-Security-Policy", CSP);
+    if (env.isProduction && env.publicUrl.startsWith("https://")) c.res.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     if (c.req.path.startsWith("/api/")) {
       log.info("request", { method: c.req.method, path: c.req.path, status: c.res.status, durationMs: Date.now() - start });
     }
@@ -43,6 +55,9 @@ app.use("/api/*", async (c, next) => {
   }
   await next();
 });
+
+// Compression sits inside the header middleware so the headers set above are applied to the compressed response.
+if (env.isProduction) app.use("*", compress());
 
 app.use("/api/trpc/*", bodyLimit({ maxSize: 1024 * 1024 }));
 app.use("/api/trpc/*", async (c) =>

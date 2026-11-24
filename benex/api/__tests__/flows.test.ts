@@ -202,4 +202,10 @@ describe("authorization", () => {
     const stats = await caller(adminUser).admin.stats();
     expect(stats.funnel.visits).toBe(1);
   });
+
+  it("exposes only the fixed Montréal identity until management sets other company details", async () => {
+    const company = await caller().content.company();
+    expect(company).toMatchObject({ city: "Montréal", region: "QC", country: "CA" });
+    for (const key of ["email", "phone", "street", "postalCode", "privacyOfficerEmail", "legalName"] as const) expect(company[key]).toBeUndefined();
+  });
 });

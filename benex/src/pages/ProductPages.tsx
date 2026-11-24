@@ -192,7 +192,7 @@ export function SimulatorPage() {
         </div>
       </div>
       <details className="kpi-defs"><summary>{fr ? "Définitions des indicateurs" : "Indicator definitions"}</summary>
-        <dl className="kpi-grid">{Object.values(kpis).map((k) => <div key={k.label.en}><dt>{tx(k.label, lang)}</dt><dd>{tx(k.definition, lang)}</dd><code>{tx(k.formula, lang)}</code></div>)}</dl>
+        <dl className="kpi-grid">{Object.values(kpis).map((k) => <div key={k.label.en}><dt>{tx(k.label, lang)}</dt><dd>{tx(k.definition, lang)}<code>{tx(k.formula, lang)}</code></dd></div>)}</dl>
       </details>
     </section>
     <section className="shell section"><DashboardPreview /></section>

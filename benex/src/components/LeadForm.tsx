@@ -153,13 +153,13 @@ export function LeadForm({ mode }: { mode: LeadMode }) {
 
       {isDiagnostic ? (
         <>
-          {step === 0 && <div className="form-step"><h3>{stepTitles[0]}</h3>{contactFields}</div>}
-          {step === 1 && <div className="form-step"><h3>{stepTitles[1]}</h3>
+          {step === 0 && <div className="form-step"><h2>{stepTitles[0]}</h2>{contactFields}</div>}
+          {step === 1 && <div className="form-step"><h2>{stepTitles[1]}</h2>
             {textArea("currentSituation", fr ? "Situation actuelle" : "Current situation", fr ? "Où en est l’organisation aujourd’hui ?" : "Where does the organization stand today?")}
             {textArea("objectives", fr ? "Objectifs" : "Objectives", fr ? "Que souhaitez-vous accomplir et à quel horizon ?" : "What do you want to achieve, and by when?")}
             {textArea("challenges", fr ? "Difficultés rencontrées" : "Challenges", fr ? "Qu’est-ce qui freine la progression ?" : "What is holding progress back?")}
             {servicesFieldset}{budgetField}</div>}
-          {step === 2 && <div className="form-step"><h3>{stepTitles[2]}</h3>
+          {step === 2 && <div className="form-step"><h2>{stepTitles[2]}</h2>
             <p>{fr ? "Vérifiez le résumé, puis confirmez votre consentement pour transmettre le diagnostic." : "Check the summary, then confirm your consent to submit the diagnostic."}</p>
             <div className="diagnostic-review">
               <p><strong>{form.name}</strong> · {form.email}</p>

@@ -28,8 +28,9 @@ Données de démonstration (**jamais en production**) : `npm run db:seed:demo` c
 |---|---|
 | `npm run check` | Compilation TypeScript (client et serveur) |
 | `npm run lint` | ESLint |
-| `npm test` | 35 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
-| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 56 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
+| `npm test` | 36 tests Vitest sur une vraie base MySQL/MariaDB (`TEST_DATABASE_URL`, défaut `benex_test`) : validation serveur, références, isolation par organisation, téléchargements, rôles, CSRF |
+| `npm run e2e` | Parcours Playwright dans un navigateur (serveur démarré + `db:seed:demo`) : 63 contrôles — langues, 84 pages explorées, diagnostic jusqu'à l'administration, consultation, infolettre, refus d'accès entre clients, clavier, mobile, mouvement réduit |
+| `npm run a11y` | Audit d'accessibilité axe-core (WCAG 2.1 A/AA) sur 19 pages FR/EN + le panneau du conseiller, et contrôle des violations de CSP (modèle 3D compris) : 0 violation |
 | `npm run assets` | Régénère brochures PDF FR/EN et images de partage depuis `src/content.ts` (Playwright requis) |
 
 ## Production
@@ -68,6 +69,15 @@ Variables : voir `.env.example` (toutes documentées). En production, le serveur
   - *Guide de connaissances* sans clé (ou si le modèle est indisponible) : réponses composées par le serveur à partir du même contenu, sans IA générative.
   Garde-fous : courriels et numéros masqués avant tout envoi, conversation **non conservée** (seul un compteur anonyme), 20 questions / 10 min par visiteur, questions limitées à 800 caractères. Le sélecteur à deux questions (secteur, besoin) reste disponible sur la page Diagnostic.
 - **Thème « Aurora »** : surfaces nuit profonde, papier froid, bleu cobalt BENEX avec lumière électrique ; Sora, IBM Plex Sans et IBM Plex Mono ; réseau de nœuds animé (désactivé en mouvement réduit).
+
+## Montréal, coordonnées publiques et qualité de livraison
+
+- **Ancrage** : la ville, la province et le pays (Montréal, QC, Canada) sont fixes dans le site (pied de page, contact, À propos, données structurées). **Aucune adresse, aucun téléphone ni courriel n'est inventé** : ils s'affichent seulement quand ils sont renseignés par variables d'environnement (`COMPANY_*`, `PRIVACY_OFFICER_*`, voir `.env.example`). La page Confidentialité affiche alors le responsable de la protection des renseignements personnels.
+- **Langue** : le français est la langue principale (`/` → `/fr`), l'anglais est dans le menu ; montants en CAD.
+- **SEO** : balises par page, canonique, hreflang (fr-CA, en-CA, x-default), plan de site, images de partage, données structurées `ProfessionalService` (Montréal) et `Service` pour chaque expertise, générées côté serveur.
+- **Sécurité** : CSP stricte (aucun script en ligne), HSTS en HTTPS, `X-Frame-Options`, `Permissions-Policy`, `nosniff`, cookies de session `HttpOnly`/`Secure`.
+- **Performance** : compression, cache d'un an pour les fichiers hachés, découpage du code par page (le moteur 3D et l'animation d'en-tête ne se chargent qu'au besoin).
+- **Accessibilité** : voir `npm run a11y`.
 
 ## Sculpture 3D
 

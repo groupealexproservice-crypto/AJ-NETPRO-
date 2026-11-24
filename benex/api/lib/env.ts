@@ -19,6 +19,18 @@ export const env = {
   uploadDir: process.env.UPLOAD_DIR ?? "./storage/uploads",
   adminEmail: (process.env.ADMIN_EMAIL ?? "").trim().toLowerCase(),
   adminPassword: process.env.ADMIN_PASSWORD ?? "",
+  /** Public company details. Shown only when set: nothing is invented. */
+  company: {
+    email: (process.env.COMPANY_EMAIL ?? "").trim(),
+    phone: (process.env.COMPANY_PHONE ?? "").trim(),
+    street: (process.env.COMPANY_STREET ?? "").trim(),
+    postalCode: (process.env.COMPANY_POSTAL_CODE ?? "").trim(),
+    linkedin: (process.env.COMPANY_LINKEDIN_URL ?? "").trim(),
+    privacyOfficerName: (process.env.PRIVACY_OFFICER_NAME ?? "").trim(),
+    privacyOfficerEmail: (process.env.PRIVACY_OFFICER_EMAIL ?? "").trim(),
+    legalName: (process.env.COMPANY_LEGAL_NAME ?? "").trim(),
+    neq: (process.env.COMPANY_NEQ ?? "").trim(),
+  },
   anthropicKey: process.env.ANTHROPIC_API_KEY ?? "",
   assistantModel: process.env.ASSISTANT_MODEL ?? "claude-sonnet-5-5",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB ?? 15),
