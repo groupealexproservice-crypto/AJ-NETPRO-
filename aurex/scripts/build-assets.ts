@@ -19,7 +19,7 @@ const copy = {
   fr: {
     lang: "fr-CA", slogan: "Stratégie | Technologie | Intelligence artificielle | Performance | Croissance", title: "Des stratégies intelligentes. Des résultats mesurables. Une croissance durable.",
     intro: "AUREX Solutions est un cabinet multidisciplinaire de conseil, de marketing, de développement commercial, d’intelligence artificielle et de performance opérationnelle. Il accompagne les entrepreneurs, les PME et les organisations dans la construction, le développement et la transformation de leurs activités.",
-    expertise: "Dix expertises", solutions: "Quatre offres, quatre offres IA", method: "Une méthodologie en six étapes", sectors: "Onze secteurs d’activité",
+    expertise: "Dix expertises", solutions: "Quatre offres, quatre offres IA", method: "Une méthodologie en six étapes", sectors: "Treize secteurs d’activité",
     quote: "Prestations individuelles, abonnements mensuels et interventions sur mesure, en dollars canadiens, établis sur devis. Les tarifs publiés sont ceux validés par la direction.",
     next: "Prochaine étape", cta: "Planifiez une consultation ou demandez un diagnostic sur le site d’AUREX Solutions.",
     legal: "Document d’information. Aucune tarification, aucun résultat ni aucune référence client n’y figurent.",
@@ -27,7 +27,7 @@ const copy = {
   en: {
     lang: "en-CA", slogan: "Strategy | Technology | Artificial intelligence | Performance | Growth", title: "Smart strategies. Measurable results. Sustainable growth.",
     intro: "AUREX Solutions is a multidisciplinary firm in consulting, marketing, business development, artificial intelligence and operational performance. It supports entrepreneurs, SMEs and organizations in building, growing and transforming their businesses.",
-    expertise: "Ten areas of expertise", solutions: "Four offers, four AI offers", method: "A six-step methodology", sectors: "Eleven industries",
+    expertise: "Ten areas of expertise", solutions: "Four offers, four AI offers", method: "A six-step methodology", sectors: "Thirteen industries",
     quote: "Individual services, monthly subscriptions and tailored engagements, in Canadian dollars, quoted on request. Published rates are those validated by management.",
     next: "Next step", cta: "Schedule a consultation or request a diagnostic on the AUREX Solutions website.",
     legal: "Information document. It contains no pricing, results or client references.",
@@ -54,7 +54,7 @@ img.logo{position:static;width:260px;height:auto;filter:none;opacity:1;object-fi
 <section class="page cover"><img src="${photo}" alt=""><div class="in"><img class="logo" src="${logo}" alt="AUREX Solutions">
 <div><div class="sig">${c.slogan}</div><div class="bar"></div><h1>${c.title}</h1><p>${c.slogan}</p></div><p>${c.intro}</p></div></section>
 <section class="page"><h2>${c.expertise}</h2><div class="grid">${expertises.map((e) => `<div class="rule"><b>${e.letter}. ${e.title[lang]}</b><span>${e.short[lang]}</span></div>`).join("")}</div>
-<h2 style="margin-top:30px">${lang === "fr" ? "Six départements et une intelligence transversale" : "Six departments and one cross-cutting intelligence"}</h2><div class="grid">${[...poles.map((p) => ({ name: p.name, text: p.tagline[lang] })), { name: aiPole.name, text: aiPole.tagline[lang] }].map((p) => `<div class="rule"><b>${p.name}</b><span>${p.text}</span></div>`).join("")}</div>
+<h2 style="margin-top:30px">${lang === "fr" ? "Neuf départements, l’IA intégrée à chacun" : "Nine departments, AI built into each"}</h2><div class="grid">${[...poles.map((p) => ({ name: p.name, text: p.tagline[lang] })), { name: aiPole.name, text: aiPole.tagline[lang] }].map((p) => `<div class="rule"><b>${p.name}</b><span>${p.text}</span></div>`).join("")}</div>
 <p class="sub" style="margin-top:14px">${c.quote}</p><div class="foot"><span>AUREX Solutions</span><span>${c.legal}</span></div></section>
 <section class="page"><h2>${c.method}</h2><div class="steps">${methodSteps.map((m) => `<div class="rule"><div><b>${m.title[lang]}</b><span>${m.text[lang]}</span></div></div>`).join("")}</div>
 <h2 style="margin-top:30px">${c.sectors}</h2><div class="grid">${sectors.map((s) => `<div class="rule"><b>${s.name[lang]}</b><span>${s.intro[lang]}</span></div>`).join("")}</div>

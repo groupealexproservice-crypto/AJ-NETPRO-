@@ -50,8 +50,8 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check(`crawled ${seen.size} public pages, all internal links resolve`, broken.length === 0, broken.slice(0, 5).join("; "));
   const expectedPages = 2 * (1 + 12 + 8 + 6 + 10 + 2 + 2); // home+static, expertises, solutions, sectors, insights (2 articles), …
   check("10 expertise pages exist", [...seen].filter((p) => /^\/fr\/expertises\/.+/.test(p)).length === 10);
-  check("11 sector pages exist", [...seen].filter((p) => /^\/fr\/secteurs\/.+/.test(p)).length === 11);
-  for (const path of ["/fr/tarifs", "/fr/simulateur", "/fr/intelligence-artificielle", "/fr/solutions", "/fr/etudes-de-cas", "/fr/ressources", "/fr/methode"]) check(`page exists: ${path}`, seen.has(path));
+  check("13 sector pages exist", [...seen].filter((p) => /^\/fr\/secteurs\/.+/.test(p)).length === 13);
+  for (const path of ["/fr/tarifs", "/fr/simulateur", "/fr/intelligence-artificielle", "/fr/solutions", "/fr/etudes-de-cas", "/fr/ressources", "/fr/methode", "/fr/calculateurs", "/fr/automatisation", "/fr/innovations"]) check(`page exists: ${path}`, seen.has(path));
 
   // 3. Diagnostic in three steps
   await page.goto(BASE + "/fr/diagnostic", { waitUntil: "networkidle" });
@@ -198,6 +198,25 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   check("simulator recalculates when an input changes", before !== after, `${before} → ${after}`);
   await en.page.locator("#a-conv").fill("40");
   check("simulator assumptions are editable and used", (await en.page.locator(".sim-kpis dd").first().innerText()) !== after);
+
+  // 8d. Calculators: three tabs, each recalculates and labels itself an estimate
+  await en.page.goto(BASE + "/fr/calculateurs", { waitUntil: "networkidle" });
+  check("calculators label themselves as estimates", await en.page.getByText("Estimation, non résultat.").isVisible());
+  const adBefore = await en.page.locator(".sim-kpis dd").nth(5).innerText();
+  await en.page.locator("#ad-spend").fill("6000");
+  check("advertising calculator recalculates", adBefore !== (await en.page.locator(".sim-kpis dd").nth(5).innerText()));
+  await en.page.getByRole("tab", { name: "Gains d’automatisation" }).click();
+  const auBefore = await en.page.locator(".sim-kpis dd").nth(1).innerText();
+  await en.page.locator("#au-people").fill("10");
+  check("automation calculator recalculates", auBefore !== (await en.page.locator(".sim-kpis dd").nth(1).innerText()));
+  await en.page.getByRole("tab", { name: "Économies opérationnelles" }).click();
+  const svBefore = await en.page.locator(".sim-kpis dd").nth(3).innerText();
+  await en.page.locator("#sv-volume").fill("1000");
+  check("savings calculator recalculates", svBefore !== (await en.page.locator(".sim-kpis dd").nth(3).innerText()));
+  await en.page.goto(BASE + "/fr/innovations", { waitUntil: "networkidle" });
+  check("innovations separate available, in development and ambition", (await en.page.locator(".status-chip").filter({ hasText: "Disponible" }).count()) > 0 && (await en.page.locator(".status-chip").filter({ hasText: "Ambition" }).count()) > 0);
+  await en.page.goto(BASE + "/fr/solutions", { waitUntil: "networkidle" });
+  check("solutions page lists the 7 integrated business solutions", (await en.page.locator(".solution-grid article").count()) === 7);
 
   // 8e. AI advisor: answers from the firm's content, with sources, cost-awareness and keyboard handling
   const chat = await newPage(); const cp3 = chat.page;

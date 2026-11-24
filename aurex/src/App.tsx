@@ -15,6 +15,8 @@ const AboutPage = named(company, "AboutPage"), ContactPage = named(company, "Con
 const LeadPage = named(company, "LeadPage"), MethodPage = named(company, "MethodPage"), NotFound = named(company, "NotFound"), PrivacyPage = named(company, "PrivacyPage");
 const UnsubscribePage = named(company, "UnsubscribePage"), WorkPage = named(company, "WorkPage");
 const ExpertiseDetail = named(directory, "ExpertiseDetail"), ExpertiseIndex = named(directory, "ExpertiseIndex"), SectorDetail = named(directory, "SectorDetail"), SectorsPage = named(directory, "SectorsPage"), SolutionsPage = named(directory, "SolutionsPage");
+const tools = () => import("./pages/ToolsPages");
+const CalculatorsPage = named(tools, "CalculatorsPage"), AutomationPage = named(tools, "AutomationPage"), InnovationsPage = named(tools, "InnovationsPage");
 const AIPage = named(product, "AIPage"), PricingPage = named(product, "PricingPage"), SimulatorPage = named(product, "SimulatorPage");
 import { localizePath } from "./routes";
 import type { Lang } from "./content";
@@ -41,6 +43,9 @@ const pages: Array<[canonical: string, element: React.ReactElement]> = [
   ["/ressources/:slug", <InsightDetail />],
   ["/methode", <MethodPage />],
   ["/simulateur", <SimulatorPage />],
+  ["/calculateurs", <CalculatorsPage />],
+  ["/automatisation", <AutomationPage />],
+  ["/innovations", <InnovationsPage />],
   ["/intelligence-artificielle", <AIPage />],
   ["/contact", <ContactPage />],
   ["/diagnostic", <LeadPage mode="diagnostic" />],

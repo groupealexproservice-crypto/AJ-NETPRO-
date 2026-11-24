@@ -37,9 +37,12 @@ const nav = [
   { key: "home", to: "/" },
   { key: "expertise", to: "/expertises" },
   { key: "solutions", to: "/solutions" },
+  { key: "ai", to: "/intelligence-artificielle" },
+  { key: "automation", to: "/automatisation" },
   { key: "sectors", to: "/secteurs" },
   { key: "pricing", to: "/tarifs" },
   { key: "cases", to: "/etudes-de-cas" },
+  { key: "innovations", to: "/innovations" },
   { key: "insights", to: "/ressources" },
   { key: "about", to: "/a-propos" },
   { key: "contact", to: "/contact" },
@@ -47,7 +50,7 @@ const nav = [
 
 const secondaryNav = [
   { key: "simulator", to: "/simulateur" },
-  { key: "ai", to: "/intelligence-artificielle" },
+  { key: "calculators", to: "/calculateurs" },
   { key: "method", to: "/methode" },
   { key: "diagnostic", to: "/diagnostic" },
   { key: "quote", to: "/soumission" },
@@ -110,7 +113,7 @@ export function Layout({ children }: { children: ReactNode }) {
               );
               const panel = item.key === "expertise" ? { items: expertises.map((e) => ({ to: `/expertises/${e.slug}`, title: tx(e.title, lang), text: tx(e.short, lang) })), lead: lang === "fr" ? "Dix expertises, mobilisables seules ou en combinaison." : "Ten areas of expertise, engaged individually or together." }
                 : item.key === "solutions" ? { items: outcomes.map((o) => ({ to: `/solutions`, title: tx(o.title, lang), text: tx(o.text, lang) })), lead: lang === "fr" ? "Partez de votre objectif : nous mobilisons les expertises qui y mènent." : "Start from your objective: we bring in the expertise that gets you there." }
-                : item.key === "sectors" ? { items: sectors.map((x) => ({ to: `/secteurs/${x.slug}`, title: tx(x.name, lang), text: "" })), lead: lang === "fr" ? "Onze secteurs, leurs problématiques et nos pistes de solutions." : "Eleven industries, their challenges and our possible approaches." }
+                : item.key === "sectors" ? { items: sectors.map((x) => ({ to: `/secteurs/${x.slug}`, title: tx(x.name, lang), text: "" })), lead: lang === "fr" ? "Treize secteurs, leurs problématiques et nos pistes de solutions." : "Thirteen industries, their challenges and our possible approaches." }
                 : null;
               if (!panel) return <span key={item.to} className="nav-item">{link}</span>;
               return (
@@ -192,7 +195,7 @@ function Footer() {
       <div className="footer-top shell">
         <div>
           <p className="footer-signature">AUREX Solutions</p>
-          <h2>{lang === "fr" ? "Stratégie. Technologie. Performance. Croissance." : "Human expertise. Artificial intelligence. Business performance."}</h2>
+          <h2>{lang === "fr" ? "Intelligence. Innovation. Excellence." : "Intelligence. Innovation. Excellence."}</h2>
         </div>
         <ArrowLink to="/consultation" light>{t("consult")}</ArrowLink>
       </div>

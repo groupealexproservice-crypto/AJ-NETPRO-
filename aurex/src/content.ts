@@ -175,6 +175,7 @@ import { buildSectors } from "./data/sectors";
 export * from "./data/offers";
 export * from "./data/ai";
 export * from "./data/why";
-/** The eleven industries served. */
+export * from "./data/innovations";
+/** The thirteen industries served. */
 export const sectors: Sector[] = buildSectors(legacySectors);
 

@@ -84,14 +84,13 @@ export default function Home() {
       <section className="architecture-section section" aria-labelledby="arch-title">
         <div className="shell">
           <p className="eyebrow">{fr ? "Notre organisation" : "How we are organized"}</p>
-          <h2 id="arch-title">{fr ? "Six départements. Une intelligence transversale." : "Six departments. One cross-cutting intelligence."}</h2>
+          <h2 id="arch-title">{fr ? "Neuf départements. Une intelligence intégrée." : "Nine departments. Intelligence built in."}</h2>
           <div className="arch">
             <div className="arch-root"><strong>AUREX SOLUTIONS</strong><span>{fr ? "Conseil · Technologie · Performance" : "Consulting · Technology · Performance"}</span></div>
             <div className="arch-link" aria-hidden="true" />
             <div className="arch-poles">
               {poles.map((pole) => {
-                const first = expertises.find((e) => e.pole === pole.key)!;
-                return <Link key={pole.key} to={`/expertises/${first.slug}`} className="arch-pole"><Glyph name={pole.key} size={34} /><strong>{pole.name}</strong><span>{tx(pole.tagline, lang)}</span></Link>;
+                return <Link key={pole.key} to={`/expertises/${pole.expertise}`} className="arch-pole"><Glyph name={pole.key} size={34} /><strong>{pole.name}</strong><span>{tx(pole.tagline, lang)}</span></Link>;
               })}
             </div>
             <div className="arch-link arch-link-bottom" aria-hidden="true" />

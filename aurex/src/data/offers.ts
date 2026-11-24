@@ -141,5 +141,7 @@ export const sectorExpertises: Record<string, string[]> = {
   "services-professionnels": ["marketing-strategique-numerique", "creation-developpement-croissance", "intelligence-artificielle-automatisation"],
   "entretien-maintenance": ["marketing-strategique-numerique", "solutions-operationnelles", "creation-developpement-croissance"],
   "sport-bien-etre": ["customer-marketing-experience-client", "marketing-strategique-numerique", "sites-web-solutions-numeriques"],
+  "sante": ["sites-web-solutions-numeriques", "solutions-operationnelles", "intelligence-artificielle-automatisation"],
+  "grandes-organisations": ["conseil-strategique-analyse-affaires", "solutions-operationnelles", "intelligence-artificielle-automatisation"],
   "technologies-innovation": ["analyse-marche-intelligence-economique", "creation-developpement-croissance", "conseil-strategique-analyse-affaires"],
 };

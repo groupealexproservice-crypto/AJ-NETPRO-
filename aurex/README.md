@@ -57,7 +57,7 @@ Variables : voir `.env.example` (toutes documentées). En production, le serveur
 
 ## Positionnement, contenus et fonctions commerciales (v2)
 
-- **Architecture** : six départements (Strategy, Marketing, Digital, Operations, Logistics, Growth) et une unité transversale **AUREX AI & Automation**. Dix expertises (A à J), chacune avec une page répondant aux huit questions : problème, solution, intervention, livrables, bénéfices, mesure (indicateurs), coût, pourquoi AUREX. Onze secteurs, méthodologie en six étapes. Données dans `src/data/` et `src/content.ts`, textes bilingues.
+- **Architecture** : neuf départements (Strategy, Marketing, Media & Advertising, Digital, Intelligence, Automation, Operations, Supply Chain, Growth) et une couche transversale **AUREX AI & Automation**. Dix expertises (A à J), chacune avec une page répondant aux huit questions : problème, solution, intervention, livrables, bénéfices, mesure (indicateurs), coût, pourquoi AUREX. Onze secteurs, méthodologie en six étapes. Données dans `src/data/` et `src/content.ts`, textes bilingues.
 - **Accueil** : `/` ouvre directement la page française (`/fr`), sans écran de choix de langue ; l'anglais est dans le menu.
 - **Tarifs et offres** (`/tarifs`) : quatre offres (ESSENTIEL, PERFORMANCE, BUSINESS, ENTERPRISE) et quatre offres IA (AI START, BUSINESS, PERFORMANCE, ENTERPRISE). **Aucun tarif ni délai n'est inventé** : tant que la direction ne les saisit pas et ne les publie pas (Administration → Tarifs), le site affiche « Tarif sur devis ».
 - **Simulateur de rentabilité** (`/simulateur`) : calcul transparent (formules affichées), hypothèses modifiables, trois scénarios, clairement étiqueté « simulation ». Logique testée dans `src/simulator.ts`.
@@ -118,3 +118,8 @@ Format : `POST` JSON `{ event, ref, sentAt, data }`, en-têtes `X-Aurex-Event` e
 **À valider par AUREX / un conseiller juridique** (voir `docs/CONFORMITE.md`) : textes de consentement, politique de confidentialité, responsable de la protection des renseignements personnels, identification de l'expéditeur pour la LCAP, durées de conservation.
 
 **Contenus** : aucun client, témoignage, partenaire, chiffre ou résultat n'est présenté. Les réalisations ne se publient que si l'autorisation du client est consignée. Coordonnées publiques (courriel, téléphone, adresse) : à fournir, aucune n'est inventée. Photographie : Pexels, « Modern Architecture Black and White Facade », <https://www.pexels.com/photo/modern-architecture-black-and-white-facade-35534777/>.
+
+## Étude de marché et plan commercial
+- `docs/ETUDE-DE-MARCHE.md` : benchmark de 17 firmes, prix, demande, SWOT, opportunités, positionnement, SEO, conformité (sources et dates de consultation).
+- `docs/PLAN-ET-TARIFS.md` : catalogue, grille tarifaire recommandée **à valider avant publication**, marges, plan à 30/90/180/365 jours, modifications et limites.
+- Nouvelles pages : `/fr/calculateurs`, `/fr/automatisation`, `/fr/innovations`.

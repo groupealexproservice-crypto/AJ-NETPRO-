@@ -1312,3 +1312,15 @@ a:hover .rollover > span, button:hover .rollover > span { transform: translateY(
   .hero-kicker { font-size: 10px; letter-spacing: .12em; line-height: 1.9; }
 }
 .hero-word { display: inline-block; white-space: nowrap; }
+.status-chip { display: inline-block; margin-bottom: 10px; padding: 3px 10px; border: 1px solid currentColor; font: 500 11px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+.status-available { color: oklch(0.42 0.1 150); }
+.status-developing { color: oklch(0.46 0.1 78); }
+.status-ambition { color: var(--text-muted); }
+.services-dark .status-available { color: oklch(0.82 0.12 150); } .services-dark .status-developing { color: oklch(0.86 0.11 85); }
+.sim-note { font-size: 13px; color: var(--text-muted); max-width: 62ch; }
+.solution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; border-top: 1px solid var(--text); }
+.solution-grid article { padding: 28px 28px 28px 0; border-bottom: 1px solid var(--line); }
+.solution-grid h3 { font-family: var(--font-display); font-weight: 300; letter-spacing: .06em; margin: 0 0 8px; }
+.solution-grid ul { margin: 12px 0; padding-left: 18px; } .solution-grid small { color: var(--text-muted); display: block; margin-top: 8px; }
+section.shell .auto-grid article { border-color: var(--line); }
+section.shell .auto-grid p { color: var(--text-muted); }

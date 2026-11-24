@@ -62,7 +62,7 @@ export const expertises: Expertise[] = [
     pricing: pricingStandard,
   },
   {
-    slug: "publicite-numerique-ppc", letter: "C", pole: "marketing",
+    slug: "publicite-numerique-ppc", letter: "C", pole: "media",
     title: L("Publicité numérique et campagnes PPC", "Digital advertising and PPC campaigns"),
     short: L("Des campagnes payantes pilotées par le rendement, pas par la dépense.", "Paid campaigns steered by return, not by spend."),
     intro: L("Nous planifions, lançons et optimisons vos campagnes publicitaires avec une règle simple : chaque dollar investi doit pouvoir être expliqué.", "We plan, launch and optimize your ad campaigns with a simple rule: every dollar invested must be explainable."),

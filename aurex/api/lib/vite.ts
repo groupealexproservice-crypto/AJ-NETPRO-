@@ -22,7 +22,7 @@ export function jsonLd(origin: string, canonical: string, lang: "fr" | "en"): st
     description: lang === "fr" ? "Cabinet multidisciplinaire de conseil, de marketing, de développement commercial, d’intelligence artificielle et de performance opérationnelle, basé à Montréal." : "Multidisciplinary firm in consulting, marketing, business development, artificial intelligence and operational performance, based in Montréal.",
     address: { "@type": "PostalAddress", addressLocality: "Montréal", addressRegion: "QC", addressCountry: "CA", ...(c.street ? { streetAddress: c.street } : {}), ...(c.postalCode ? { postalCode: c.postalCode } : {}) },
     areaServed: [{ "@type": "City", name: "Montréal" }, { "@type": "AdministrativeArea", name: "Québec" }, { "@type": "Country", name: "Canada" }],
-    availableLanguage: ["fr-CA", "en-CA"], slogan: lang === "fr" ? "Stratégie. Technologie. Performance. Croissance." : "Human Expertise. Artificial Intelligence. Business Performance.",
+    availableLanguage: ["fr-CA", "en-CA"], slogan: lang === "fr" ? "Intelligence. Innovation. Excellence." : "Intelligence. Innovation. Excellence.",
     ...(c.email ? { email: c.email } : {}), ...(c.phone ? { telephone: c.phone } : {}), ...(c.linkedin ? { sameAs: [c.linkedin] } : {}),
   };
   const graph: unknown[] = [org, { "@type": "WebSite", "@id": `${origin}/#website`, url: `${origin}/${lang}`, name: "AUREX Solutions", inLanguage: lang === "fr" ? "fr-CA" : "en-CA", publisher: { "@id": `${origin}/#organization` } }];

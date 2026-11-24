@@ -10,6 +10,7 @@ import { CtaBand, PageHero } from "../components/Sections";
 import { Glyph } from "../components/Glyphs";
 import { DashboardPreview } from "../components/DashboardPreview";
 import { track } from "../lib/track";
+import { fmtMoney, fmtNum } from "../lib/format";
 import { AskAurex } from "../components/AssistantChat";
 
 type Pricing = { slug: string; priceText: string | null; timeline: string | null };
@@ -88,10 +89,7 @@ export function PricingPage() {
 
 /* ───────────────────────────── Simulator ───────────────────────────── */
 
-const fmtMoney = (value: number, lang: string) => new Intl.NumberFormat(lang === "fr" ? "fr-CA" : "en-CA", { style: "currency", currency: "CAD", maximumFractionDigits: 0 }).format(value);
-const fmtNum = (value: number, lang: string, digits = 0) => new Intl.NumberFormat(lang === "fr" ? "fr-CA" : "en-CA", { maximumFractionDigits: digits }).format(value);
-
-function NumberField({ id, label, value, onChange, suffix, step = 1, help }: { id: string; label: string; value: number; onChange: (n: number) => void; suffix?: string; step?: number; help?: string }) {
+export function NumberField({ id, label, value, onChange, suffix, step = 1, help }: { id: string; label: string; value: number; onChange: (n: number) => void; suffix?: string; step?: number; help?: string }) {
   return (
     <label className="field sim-field" htmlFor={id}>
       <span>{label}</span>

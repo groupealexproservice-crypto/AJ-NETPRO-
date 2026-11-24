@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { Link } from "../components/LocaleLink";
 import { ArrowRight, Check } from "lucide-react";
-import { aiPole, expertises, kpis, outcomes, poles, sectorExpertises, sectors, tx, txList, whyAurex } from "../content";
+import { aiPole, businessSolutions, expertises, kpis, outcomes, poles, sectorExpertises, sectors, tx, txList, whyAurex } from "../content";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta } from "../components/Layout";
 import { CtaBand, PageHero } from "../components/Sections";
@@ -135,6 +135,22 @@ export function SolutionsPage() {
         </article>
       ))}
     </section>
+    <section className="shell section" aria-labelledby="integrated-solutions">
+      <p className="eyebrow">{fr ? "Solutions d’affaires intégrées" : "Integrated business solutions"}</p>
+      <h2 id="integrated-solutions" className="pricing-h2">{fr ? "Sept solutions, un objectif chacune." : "Seven solutions, one objective each."}</h2>
+      <div className="solution-grid">
+        {businessSolutions.map((sol) => (
+          <article key={sol.slug} id={sol.slug}>
+            <h3>{sol.name}</h3>
+            <p>{tx(sol.objective, lang)}</p>
+            <p><strong>{fr ? "Client idéal : " : "Ideal client: "}</strong>{tx(sol.client, lang)}</p>
+            <ul>{txList(sol.includes, lang).map((x) => <li key={x}>{x}</li>)}</ul>
+            <small>{fr ? "Indicateurs : " : "Indicators: "}{txList(sol.kpis, lang).join(" · ")}</small>
+            <small>{fr ? "Tarification : sur devis, selon le périmètre." : "Pricing: quoted on request, based on scope."}</small>
+          </article>
+        ))}
+      </div>
+    </section>
     <section className="shell section solutions-next">
       <p className="eyebrow">{fr ? "Et ensuite" : "Next"}</p>
       <h2>{fr ? "Choisir un cadre de travail." : "Choose a way of working."}</h2>
@@ -152,7 +168,7 @@ export function SectorsPage() {
   const { lang, t } = useLanguage();
   const fr = lang === "fr";
   return <>
-    <PageMeta title={t("allSectors")} description={fr ? "Onze secteurs, leurs enjeux, les solutions AUREX adaptées et les bénéfices économiques potentiels." : "Eleven industries, their challenges, tailored AUREX solutions and potential economic benefits."} />
+    <PageMeta title={t("allSectors")} description={fr ? "Treize secteurs, leurs enjeux, les solutions AUREX adaptées et les bénéfices économiques potentiels." : "Thirteen industries, their challenges, tailored AUREX solutions and potential economic benefits."} />
     <PageHero eyebrow="AUREX / SECTEURS" title={fr ? "Des enjeux propres à chaque secteur." : "Challenges specific to each industry."} text={fr ? "Chaque secteur a ses contraintes et ses leviers. Voici les problématiques courantes et les approches que nous pouvons mobiliser. Ce sont des pistes, non des missions réalisées." : "Every industry has its own constraints and levers. These are the common challenges and the approaches we can bring. They are starting points, not completed missions."} />
     <section className="sector-directory shell section">{sectors.map((sector, index) => <Link to={`/secteurs/${sector.slug}`} key={sector.slug} className="sector-row"><span>{String(index + 1).padStart(2, "0")}</span><h2>{tx(sector.name, lang)}</h2><p>{tx(sector.intro, lang)}</p><ArrowRight size={24} strokeWidth={1.2} /></Link>)}</section>
     <CtaBand />

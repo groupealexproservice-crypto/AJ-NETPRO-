@@ -38,7 +38,7 @@ const alias: Record<string, string> = {
   "solutions-operationnelles": "performance-operationnelle-logistique",
   "logistique-chaine-approvisionnement": "logistique-boite",
   "creation-developpement-croissance": "growth",
-  strategy: "strategie-intelligence-economique", marketing: "marketing-digital-publicite", digital: "digital",
+  strategy: "strategie-intelligence-economique", marketing: "marketing-digital-publicite", media: "marketing-digital-publicite", digital: "digital", intelligence: "intelligence-artificielle-automatisation", automation: "intelligence-artificielle-automatisation",
   operations: "performance-operationnelle-logistique", logistics: "logistique-boite", growth: "growth", ai: "intelligence-artificielle-automatisation",
   essentiel: "launch", performance: "growth", business: "performance", enterprise: "360",
   "ai-start": "intelligence", "ai-business": "digital", "ai-performance": "performance", "ai-enterprise": "360",
