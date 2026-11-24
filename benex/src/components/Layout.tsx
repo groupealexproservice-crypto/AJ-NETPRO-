@@ -5,7 +5,7 @@ import { ArrowRight, Menu, X, UserRound } from "lucide-react";
 import Lenis from "lenis";
 import { useLanguage } from "../i18n";
 import { parseLocalized } from "../routes";
-import { expertises, tx } from "../content";
+import { expertises, sectors, solutions, tx } from "../content";
 import { trpc } from "../providers/trpc";
 
 export function Brand({ inverted = false }: { inverted?: boolean }) {
@@ -93,11 +93,28 @@ export function Layout({ children }: { children: ReactNode }) {
         <div className="header-inner">
           <Link to="/" className="logo-link" aria-label={t("home")}><Brand inverted={dark} /></Link>
           <nav className="desktop-nav" aria-label={t("menu")}>
-            {nav.map((item) => (
-              <NavLink key={item.to} to={item.to} end={item.to === "/"} className={({ isActive }) => isActive ? "nav-active" : ""}>
-                <Rollover>{t(item.key)}</Rollover>
-              </NavLink>
-            ))}
+            {nav.map((item) => {
+              const link = (
+                <NavLink to={item.to} end={item.to === "/"} className={({ isActive }) => isActive ? "nav-active" : ""}>
+                  <Rollover>{t(item.key)}</Rollover>
+                </NavLink>
+              );
+              const panel = item.key === "expertise" ? { items: expertises.map((e) => ({ to: `/expertises/${e.slug}`, title: tx(e.title, lang), text: tx(e.short, lang) })), lead: lang === "fr" ? "Huit expertises, mobilisables seules ou en combinaison." : "Eight areas of expertise, engaged individually or together." }
+                : item.key === "solutions" ? { items: solutions.map((s) => ({ to: `/solutions/${s.slug}`, title: s.name, text: tx(s.summary, lang) })), lead: lang === "fr" ? "Six offres, sur devis, en mandat ponctuel ou en accompagnement mensuel." : "Six offers, quoted on request, as one-off mandates or monthly support." }
+                : item.key === "sectors" ? { items: sectors.map((x) => ({ to: `/secteurs/${x.slug}`, title: tx(x.name, lang), text: "" })), lead: lang === "fr" ? "Dix secteurs, leurs problématiques et nos pistes de solutions." : "Ten industries, their challenges and our possible approaches." }
+                : null;
+              if (!panel) return <span key={item.to} className="nav-item">{link}</span>;
+              return (
+                <span key={item.to} className="nav-item has-panel">
+                  {link}
+                  <div className={`mega-panel ${item.key === "sectors" ? "mega-compact" : ""}`}>
+                    <p className="mega-lead">{panel.lead}</p>
+                    <ul>{panel.items.map((entry) => <li key={entry.to}><Link to={entry.to}><strong>{entry.title}</strong>{entry.text && <span>{entry.text}</span>}</Link></li>)}</ul>
+                    <ArrowLink to={item.to}>{t("viewAll")}</ArrowLink>
+                  </div>
+                </span>
+              );
+            })}
           </nav>
           <div className="header-actions">
             <div className="language-switch" aria-label="Language / Langue">

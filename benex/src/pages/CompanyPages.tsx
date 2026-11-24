@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useState } from "react";
 import { Link } from "../components/LocaleLink";
 import { ArrowRight, CalendarDays, FileText, LockKeyhole } from "lucide-react";
@@ -107,10 +107,11 @@ const leadCopy: Record<LeadMode, { fr: { title: string; text: string; eyebrow: s
 
 export function LeadPage({ mode }: { mode: LeadMode }) {
   const { lang } = useLanguage();
+  const { search } = useLocation();
   const copy = leadCopy[mode][lang];
   return <>
     <PageMeta title={copy.eyebrow.replace("BENEX / ", "")} description={copy.text} />
-    <section className="lead-page section"><div className="shell lead-page-grid"><div className="lead-page-copy"><p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p>{copy.text}</p><div className="lead-assurance"><LockKeyhole size={22} strokeWidth={1.3} /><p>{lang === "fr" ? "Vos renseignements sont transmis à un espace de suivi protégé et ne sont pas revendus." : "Your information is sent to a protected follow-up space and is never sold."}</p></div></div><LeadForm mode={mode} /></div></section>
+    <section className="lead-page section"><div className="shell lead-page-grid"><div className="lead-page-copy"><p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p>{copy.text}</p><div className="lead-assurance"><LockKeyhole size={22} strokeWidth={1.3} /><p>{lang === "fr" ? "Vos renseignements sont transmis à un espace de suivi protégé et ne sont pas revendus." : "Your information is sent to a protected follow-up space and is never sold."}</p></div></div><LeadForm key={`${mode}${search}`} mode={mode} /></div></section>
     {mode === "appointment" && <section className="integration-note shell"><CalendarDays size={26} strokeWidth={1.2} /><div><h2>{lang === "fr" ? "Confirmation du rendez-vous" : "Appointment confirmation"}</h2><p>{lang === "fr" ? "Votre demande est enregistrée comme une demande à confirmer : la date et la plage horaire choisies expriment votre préférence. L’équipe BENEX vous écrira pour confirmer le rendez-vous. Aucune disponibilité en temps réel n’est affichée tant qu’un calendrier n’est pas raccordé." : "Your request is recorded as a request to confirm: the date and time slot you choose express a preference. The BENEX team will write to you to confirm the appointment. No real-time availability is shown until a calendar is connected."}</p></div></section>}
     {mode === "diagnostic" && <OrientationAssistant />}
   </>;

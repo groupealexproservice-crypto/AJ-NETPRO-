@@ -169,6 +169,18 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await rmv.page.waitForFunction(() => document.querySelector("model-viewer")?.loaded === true, null, { timeout: 25000 }).catch(() => {});
   check("3D sculpture does not auto-rotate under reduced motion", (await rmv.page.evaluate(() => document.querySelector("model-viewer")?.autoRotate)) === false);
 
+  // 8c. Two-question assistant carries its choices into the quote form; mega menu opens on hover
+  const ast = await newPage({ viewport: { width: 1680, height: 950 } }); const ap2 = ast.page;
+  await ap2.goto(BASE + "/fr/diagnostic", { waitUntil: "networkidle" });
+  await ap2.locator(".assistant-options button", { hasText: "Construction" }).click();
+  await ap2.locator(".assistant-options button", { hasText: "Trouver de nouveaux clients" }).click();
+  check("assistant recommends BENEX Growth for construction + new customers", (await ap2.locator(".assistant-answer h3").innerText()) === "BENEX Growth");
+  await ap2.getByRole("link", { name: /Demander une soumission/ }).last().click();
+  await ap2.waitForURL("**/soumission**"); await ap2.waitForFunction(() => document.querySelector("form.lead-form select") !== null); await ap2.waitForTimeout(400);
+  check("assistant choices are preselected in the quote form", (await ap2.getByLabel(/Secteur d’activité/).inputValue()) === "construction" && (await ap2.getByLabel(/Solution envisagée/).inputValue()) === "growth");
+  await ap2.hover('.desktop-nav a[href="/fr/expertises"]'); await ap2.waitForTimeout(400);
+  check("mega menu lists the eight expertises on hover", (await ap2.locator(".mega-panel:visible li").count()) === 8);
+
   // 9. Reduced motion
   const rm = await newPage({ reducedMotion: "reduce" }); await rm.page.goto(BASE + "/fr", { waitUntil: "networkidle" });
   const anim = await rm.page.evaluate(() => getComputedStyle(document.querySelector(".hero-character")).animationName);

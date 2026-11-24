@@ -26,7 +26,8 @@ export function LeadForm({ mode }: { mode: LeadMode }) {
   const { lang, t } = useLanguage();
   const [params] = useSearchParams();
   const presetSolution = solutions.some((s) => s.slug === params.get("solution")) ? params.get("solution")! : "";
-  const [form, setForm] = useState<FormState>({ ...initialState, solution: presetSolution });
+  const presetSector = sectors.some((s) => s.slug === params.get("sector")) ? params.get("sector")! : "";
+  const [form, setForm] = useState<FormState>({ ...initialState, solution: presetSolution, sector: presetSector });
   const [step, setStep] = useState(0);
   const [error, setError] = useState("");
   const [done, setDone] = useState<{ reference: string; status: "received" | "to_confirm" } | null>(null);
