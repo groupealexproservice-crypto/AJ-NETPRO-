@@ -47,7 +47,7 @@ for (const [publicPath, file] of [...pagePaths, ["/fr", "index.html"] as [string
   const html = await page.evaluate(({ known, up, lang, other, otherPath, cssFile, banner }) => {
     const map = new Map(known);
     document.querySelectorAll("script, link[rel=modulepreload], link[rel=manifest], link[rel=preconnect]").forEach((n) => n.remove());
-    document.querySelectorAll<HTMLLinkElement>("link[rel=stylesheet]").forEach((l) => { l.href = `${up}assets/${cssFile}`; });
+    document.querySelectorAll<HTMLLinkElement>("link[rel=stylesheet]").forEach((l) => { l.removeAttribute("crossorigin"); l.href = `${up}assets/${cssFile}`; });
     document.querySelectorAll("link[rel=icon], link[rel=apple-touch-icon]").forEach((l) => { const h = l.getAttribute("href")!; l.setAttribute("href", up + h.replace(/^\//, "")); });
     document.querySelectorAll("img").forEach((img) => { const s = img.getAttribute("src"); if (s?.startsWith("/")) img.setAttribute("src", up + s.slice(1)); });
     document.querySelectorAll<HTMLElement>("[style*='url(']").forEach((el) => { el.setAttribute("style", el.getAttribute("style")!.replace(/url\(["']?\//g, `url(${up}`)); });
@@ -81,9 +81,15 @@ for (const [publicPath, file] of [...pagePaths, ["/fr", "index.html"] as [string
 document.addEventListener("submit",function(e){e.preventDefault();var n=document.querySelector(".preview-note");if(n){n.textContent="${banner[lang]}";}});
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-full-site]");if(a)e.preventDefault();});})();
 </script></body>`);
+  // The root page carries its stylesheet inline, so it renders even where linked files are served with other rules.
+  let output = injected;
+  if (file === "index.html") {
+    const inline = stylesheet.replaceAll("url(./", "url(assets/").replaceAll("url(../images/", "url(images/");
+    output = injected.replace(/<link[^>]*rel="stylesheet"[^>]*>/, () => `<style>${inline}</style>`);
+  }
   const target = path.join(OUT, file);
   mkdirSync(path.dirname(target), { recursive: true });
-  writeFileSync(target, injected);
+  writeFileSync(target, output);
   count += 1;
 }
 await browser.close();
