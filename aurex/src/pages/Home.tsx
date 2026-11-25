@@ -1,8 +1,9 @@
 import { Fragment, type CSSProperties } from "react";
 import { DomainsAndWays } from "../components/Offer";
+import { fmtMoney } from "../lib/format";
 import { Link } from "../components/LocaleLink";
 import { ArrowRight } from "lucide-react";
-import { positioning, aiPole, automations, expertises, insights, kpis, methodSteps, outcomes, poles, sectors, tiers, tx } from "../content";
+import { positioning, aiPole, automations, expertises, insights, kpis, methodSteps, outcomes, poles, sectors, plans, tx } from "../content";
 import { useLanguage } from "../i18n";
 import { ArrowLink, PageMeta, Rollover } from "../components/Layout";
 import { CtaBand, SectionHeading } from "../components/Sections";
@@ -199,15 +200,14 @@ export default function Home() {
 
       {/* 10. Offers */}
       <section className="offers-preview section shell" aria-labelledby="offers-title">
-        <SectionHeading eyebrow={t("pricing")} title={fr ? "Quatre façons de progresser. Un tarif clair." : "Four ways to move forward. A clear price."} text={fr ? "Du lancement à la transformation, avec des prestations individuelles, des abonnements mensuels ou des interventions sur mesure, en dollars canadiens." : "From launch to transformation, with individual services, monthly subscriptions or tailored engagements, in Canadian dollars."} action={<ArrowLink to="/tarifs">{t("viewAll")}</ArrowLink>} />
+        <SectionHeading eyebrow={t("pricing")} title={fr ? "Quatre forfaits mensuels. Un prix clair." : "Four monthly plans. A clear price."} text={fr ? "De 100 $ à 1 500 $ par mois, ou des services à l’unité : chaque offre indique ce qu’elle inclut et ce qu’elle n’inclut pas." : "From $100 to $1,500 per month, or one-off services: each offer states what it includes and what it does not."} action={<ArrowLink to="/tarifs">{t("viewAll")}</ArrowLink>} />
         <h2 id="offers-title" className="sr-only">{t("pricing")}</h2>
         <div className="tier-teasers">
-          {tiers.map((tier) => (
-            <Link key={tier.slug} to={`/tarifs#${tier.slug}`} className="tier-teaser">
-              <Glyph name={tier.slug} size={40} />
-              <p className="eyebrow">{tx(tier.verb, lang)}</p>
-              <h3>{tier.name}</h3>
-              <p>{tx(tier.audience, lang)}</p>
+          {plans.map((plan) => (
+            <Link key={plan.slug} to={`/tarifs#${plan.slug}`} className="tier-teaser">
+              <p className="eyebrow">{fr ? "À partir de" : "From"} {fmtMoney(plan.monthly, lang)}{fr ? " / mois" : " / month"}</p>
+              <h3>{plan.name}</h3>
+              <p>{tx(plan.tagline, lang)}</p>
               <ArrowRight size={20} strokeWidth={1.3} />
             </Link>
           ))}

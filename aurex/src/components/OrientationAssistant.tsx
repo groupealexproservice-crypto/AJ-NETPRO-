@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
-import { aiTiers, expertises, sectors, tiers, tx, type Localized } from "../content";
+import { entryOffers, expertises, packs, plans, sectors, tx, type Localized } from "../content";
 import { useLanguage } from "../i18n";
 import { track } from "../lib/track";
 import { useEffect } from "react";
@@ -16,14 +16,14 @@ import { Glyph } from "./Glyphs";
 type Need = { key: string; label: Localized; solution: string; expertises: string[] };
 
 const needs: Need[] = [
-  { key: "launch", label: { fr: "Lancer ou repositionner mon entreprise", en: "Launch or reposition my business" }, solution: "essentiel", expertises: ["creation-developpement-croissance", "conseil-strategique-analyse-affaires"] },
-  { key: "brand", label: { fr: "Renforcer mon image et ma visibilité", en: "Strengthen my image and visibility" }, solution: "essentiel", expertises: ["marketing-strategique-numerique", "sites-web-solutions-numeriques"] },
-  { key: "digital", label: { fr: "Moderniser mon site et mes outils", en: "Modernize my website and tools" }, solution: "performance", expertises: ["sites-web-solutions-numeriques", "customer-marketing-experience-client"] },
-  { key: "growth", label: { fr: "Trouver de nouveaux clients", en: "Find new customers" }, solution: "performance", expertises: ["publicite-numerique-ppc", "marketing-strategique-numerique"] },
-  { key: "operations", label: { fr: "Optimiser mes opérations et ma logistique", en: "Optimize my operations and logistics" }, solution: "business", expertises: ["solutions-operationnelles", "logistique-chaine-approvisionnement"] },
-  { key: "ai", label: { fr: "Automatiser avec l’intelligence artificielle", en: "Automate with artificial intelligence" }, solution: "ai-business", expertises: ["intelligence-artificielle-automatisation", "solutions-operationnelles"] },
-  { key: "decision", label: { fr: "Éclairer une décision stratégique", en: "Inform a strategic decision" }, solution: "business", expertises: ["conseil-strategique-analyse-affaires", "analyse-marche-intelligence-economique"] },
-  { key: "global", label: { fr: "Coordonner plusieurs enjeux à la fois", en: "Coordinate several challenges at once" }, solution: "enterprise", expertises: ["conseil-strategique-analyse-affaires", "intelligence-artificielle-automatisation"] },
+  { key: "launch", label: { fr: "Lancer ou repositionner mon entreprise", en: "Launch or reposition my business" }, solution: "pack-lancement", expertises: ["creation-developpement-croissance", "conseil-strategique-analyse-affaires"] },
+  { key: "brand", label: { fr: "Renforcer mon image et ma visibilité", en: "Strengthen my image and visibility" }, solution: "plan-developpement", expertises: ["marketing-strategique-numerique", "sites-web-solutions-numeriques"] },
+  { key: "digital", label: { fr: "Moderniser mon site et mes outils", en: "Modernize my website and tools" }, solution: "entree-site", expertises: ["sites-web-solutions-numeriques", "customer-marketing-experience-client"] },
+  { key: "growth", label: { fr: "Trouver de nouveaux clients", en: "Find new customers" }, solution: "pack-acquisition", expertises: ["publicite-numerique-ppc", "marketing-strategique-numerique"] },
+  { key: "operations", label: { fr: "Optimiser mes opérations et ma logistique", en: "Optimize my operations and logistics" }, solution: "pack-operations", expertises: ["solutions-operationnelles", "logistique-chaine-approvisionnement"] },
+  { key: "ai", label: { fr: "Automatiser avec l’intelligence artificielle", en: "Automate with artificial intelligence" }, solution: "pack-automatisation", expertises: ["intelligence-artificielle-automatisation", "solutions-operationnelles"] },
+  { key: "decision", label: { fr: "Éclairer une décision stratégique", en: "Inform a strategic decision" }, solution: "pack-croissance", expertises: ["conseil-strategique-analyse-affaires", "analyse-marche-intelligence-economique"] },
+  { key: "global", label: { fr: "Coordonner plusieurs enjeux à la fois", en: "Coordinate several challenges at once" }, solution: "pack-partenaire", expertises: ["conseil-strategique-analyse-affaires", "intelligence-artificielle-automatisation"] },
 ];
 
 export function OrientationAssistant() {
@@ -32,7 +32,16 @@ export function OrientationAssistant() {
   const [sector, setSector] = useState<string | null>(null);
   const [needKey, setNeedKey] = useState<string | null>(null);
   const need = needs.find((n) => n.key === needKey);
-  const solution = [...tiers, ...aiTiers].find((s) => s.slug === need?.solution);
+  const solution = (() => {
+    const slug = need?.solution;
+    const pack = packs.find((x) => x.slug === slug);
+    if (pack) return { slug: pack.slug, name: pack.name, verb: pack.need, audience: pack.from };
+    const plan = plans.find((x) => x.slug === slug);
+    if (plan) return { slug: plan.slug, name: `AUREX ${plan.name}`, verb: plan.tagline, audience: plan.forWho };
+    const offer = entryOffers.find((x) => x.slug === slug);
+    if (offer) return { slug: offer.slug, name: tx(offer.title, lang), verb: { fr: "Service ponctuel", en: "One-off service" } as Localized, audience: { fr: `À partir de ${offer.price} $`, en: `From $${offer.price}` } as Localized };
+    return undefined;
+  })();
   useEffect(() => { if (need) track("assistant_completed"); }, [need]);
   const sectorItem = sectors.find((s) => s.slug === sector);
   const step = !sector ? 1 : !need ? 2 : 3;
@@ -79,7 +88,7 @@ export function OrientationAssistant() {
         {step === 3 && need && solution && sectorItem && (
           <div className="assistant-answer">
             <p className="eyebrow">{t("recommended")}</p>
-            <div className="assistant-answer-title"><Glyph name={solution.slug} size={48} /><div><p className="assistant-verb">{tx(solution.verb, lang)}</p><h3>{solution.name}</h3></div></div>
+            <div className="assistant-answer-title"><Glyph name="growth" size={48} /><div><p className="assistant-verb">{tx(solution.verb, lang)}</p><h3>{solution.name}</h3></div></div>
             <p>{tx(solution.audience, lang)}</p>
             <p className="assistant-context">{fr ? "Pour : " : "For: "}{tx(sectorItem.name, lang)} · {tx(need.label, lang)}</p>
             <ul className="assistant-links">

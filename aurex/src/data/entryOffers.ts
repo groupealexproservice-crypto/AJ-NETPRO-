@@ -17,6 +17,8 @@ export type EntryOffer = {
   group: "entry" | "project" | "monthly";
   scope: LocalizedList;
   upgrade?: { label: Localized; price: number; unit: "month" | "once" };
+  /** Related offers shown on the same card (for example the monthly upkeep of a one-off installation). */
+  extras?: Array<{ label: Localized; price: number; unit: "month" | "once" }>;
 };
 
 export const entryOffers: EntryOffer[] = [
@@ -32,12 +34,15 @@ export const entryOffers: EntryOffer[] = [
     scope: LL(["Ou 12 % du budget publicitaire (le plus élevé des deux)", "Création et optimisation des campagnes", "Rapport mensuel, compte à votre nom", "Budget publicitaire payé directement à Google"], ["Or 12% of ad spend (whichever is higher)", "Campaign setup and optimization", "Monthly report, account in your name", "Ad budget paid directly to Google"]) },
   { slug: "entree-site", title: L("Site vitrine — Gabarit", "Showcase website — Template"), price: 469, unit: "once", group: "entry",
     scope: LL(["Gabarit de 3 pages, français et anglais", "Contenu fourni par vous", "Adapté aux mobiles"], ["3-page template, French and English", "Content provided by you", "Mobile-ready"]),
-    upgrade: { label: L("Site vitrine complet de 5 pages, rédaction incluse", "Full 5-page showcase site, copywriting included"), price: 1490, unit: "once" } },
+    upgrade: { label: L("Site vitrine complet de 5 pages, rédaction incluse", "Full 5-page showcase site, copywriting included"), price: 1490, unit: "once" } ,
+    extras: [{ label: L("Site corporatif bilingue : structure, rédaction, français et anglais", "Bilingual corporate website: structure, copywriting, French and English"), price: 4900, unit: "once" }] },
   { slug: "entree-automatisation", title: L("Automatisation simple", "Simple automation"), price: 990, unit: "once", group: "entry",
-    scope: LL(["Un processus automatisé", "Documentation remise", "Prise en main de votre équipe"], ["One automated process", "Documentation provided", "Hand-over to your team"]) },
+    scope: LL(["Un processus automatisé", "Documentation remise", "Prise en main de votre équipe"], ["One automated process", "Documentation provided", "Hand-over to your team"]) ,
+    extras: [{ label: L("Suivi mensuel de l’automatisation", "Monthly automation upkeep"), price: 290, unit: "month" }] },
   { slug: "entree-assistant", title: L("Assistant IA — FAQ", "AI assistant — FAQ"), price: 1190, unit: "once", group: "entry",
     scope: LL(["Assistant conversationnel sur le contenu que vous fournissez", "Un canal (site web)", "Règles de prudence et renvoi vers une personne"], ["Conversational assistant on content you provide", "One channel (website)", "Safety rules and hand-off to a person"]),
-    upgrade: { label: L("Assistant IA complet, plusieurs sources", "Full AI assistant, several sources"), price: 1490, unit: "once" } },
+    upgrade: { label: L("Assistant IA complet, plusieurs sources", "Full AI assistant, several sources"), price: 1490, unit: "once" } ,
+    extras: [{ label: L("Suivi mensuel de l’assistant", "Monthly assistant upkeep"), price: 349, unit: "month" }] },
   { slug: "entree-identite", title: L("Identité visuelle essentielle", "Essential visual identity"), price: 690, unit: "once", group: "entry",
     scope: LL(["Logo, palette de couleurs et typographies", "2 propositions et 2 rondes de révisions", "Fichiers finaux et mini-guide d’utilisation"], ["Logo, colour palette and typefaces", "2 proposals and 2 rounds of revisions", "Final files and short usage guide"]) },
   { slug: "entree-campagne", title: L("Campagne publicitaire à durée déterminée — mise en place", "Fixed-term ad campaign — setup"), price: 450, unit: "once", group: "entry",
@@ -48,14 +53,8 @@ export const entryOffers: EntryOffer[] = [
     scope: LL(["Configuration pour appels entrants, avec transfert à une personne", "Script basé sur vos renseignements approuvés, tests avec scénarios réels", "Ensuite dès 299 $ par mois (300 minutes) ; frais de téléphonie et de plateforme selon le fournisseur"], ["Setup for inbound calls, with transfer to a person", "Script based on your approved information, tests with real scenarios", "Then from $299 per month (300 minutes); telephony and platform fees per provider"]) },
   { slug: "projet-plan-affaires", title: L("Plan d’affaires / étude de marché", "Business plan / market study"), price: 1990, unit: "once", group: "project",
     scope: LL(["Analyse du marché et de la concurrence", "Modèle d’affaires et projections", "Document remis et présenté"], ["Market and competition analysis", "Business model and projections", "Document delivered and presented"]) },
-  { slug: "projet-site-corporatif", title: L("Site corporatif bilingue", "Bilingual corporate website"), price: 4900, unit: "once", group: "project",
-    scope: LL(["Structure et rédaction des pages", "Français et anglais", "Référencement de base et formulaires"], ["Page structure and copywriting", "French and English", "Basic SEO and forms"]) },
   { slug: "mensuel-maintenance", title: L("Maintenance et hébergement du site", "Website maintenance and hosting"), price: 90, unit: "month", group: "monthly",
     scope: LL(["Hébergement et certificat de sécurité", "Sauvegardes et mises à jour", "Petites modifications du contenu"], ["Hosting and security certificate", "Backups and updates", "Small content changes"]) },
-  { slug: "mensuel-assistant", title: L("Assistant IA — suivi mensuel", "AI assistant — monthly upkeep"), price: 349, unit: "month", group: "monthly",
-    scope: LL(["Mise à jour du contenu de l’assistant", "Vérification des réponses et correctifs", "Rapport des questions fréquentes"], ["Assistant content updates", "Answer checks and fixes", "Report on frequent questions"]) },
-  { slug: "mensuel-automatisation", title: L("Automatisation — suivi mensuel", "Automation — monthly upkeep"), price: 290, unit: "month", group: "monthly",
-    scope: LL(["Surveillance de vos automatisations", "Corrections et petits ajustements", "Rapport mensuel d’activité"], ["Monitoring of your automations", "Fixes and small adjustments", "Monthly activity report"]) },
   { slug: "mensuel-courriel", title: L("Infolettre mensuelle", "Monthly newsletter"), price: 249, unit: "month", group: "monthly",
     scope: LL(["Une infolettre rédigée et envoyée par mois", "Liste avec consentement et désabonnement", "Statistiques d’ouverture et de clics"], ["One newsletter written and sent per month", "Consent-based list with unsubscribe", "Open and click statistics"]) },
   { slug: "mensuel-veille", title: L("Veille concurrentielle", "Competitive monitoring"), price: 199, unit: "month", group: "monthly",

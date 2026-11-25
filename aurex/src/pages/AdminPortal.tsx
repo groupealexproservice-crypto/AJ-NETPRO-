@@ -3,7 +3,7 @@ import { Bell, CheckCheck, Download, LockKeyhole, Trash2 } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { trpc } from "../providers/trpc";
 import { PortalShell } from "../components/PortalShell";
-import { aiTiers, expertises, sectors, tiers } from "../content";
+import { aiTiers, entryOffers, expertises, plans, sectors, tiers } from "../content";
 import { LEAD_STATUSES } from "@contracts/constants";
 import { useAdminOverview, type AdminData, type RefreshAdmin } from "./adminData";
 
@@ -233,32 +233,18 @@ function ContentPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdmi
   </div>;
 }
 
-function PricingPanel({ data, refresh }: { data: AdminData; refresh: RefreshAdmin }) {
-  const [message, setMessage] = useState("");
-  const save = trpc.admin.upsertPricing.useMutation({ onSuccess: () => { setMessage("Enregistré."); refresh(); }, onError: (e) => setMessage(e.message) });
-  const all = [...tiers, ...aiTiers];
+function PricingPanel({ data }: { data: AdminData; refresh: RefreshAdmin }) {
+  void data;
+  const money = (n: number) => new Intl.NumberFormat("fr-CA", { style: "currency", currency: "CAD", maximumFractionDigits: 0 }).format(n);
   return <div className="admin-panel">
-    <p className="legal-note">Tant qu’un tarif ou un délai n’est pas publié ici, le site affiche « Tarif sur devis » et « Délai précisé après le diagnostic ». Saisissez le texte exact à afficher (montant en $ CAD, taxes en sus, par mois, etc.). Seule la direction doit publier un tarif.</p>
-    {message && <p className="form-status" role="status">{message}</p>}
-    <div className="admin-record-list">{all.map((tier) => {
-      const row = data.pricing.find((p) => p.slug === tier.slug);
-      return <PricingRow key={tier.slug} slug={tier.slug} name={`${tier.name} — ${tier.verb.fr}`} priceText={row?.priceText ?? ""} timeline={row?.timeline ?? ""} published={row?.published ?? false} onSave={(v) => save.mutate({ slug: tier.slug, ...v })} />;
-    })}</div>
+    <p className="legal-note">Les tarifs publics (forfaits, services mensuels et ponctuels) sont fixés dans le code, fichiers <code>src/data/plans.ts</code> et <code>src/data/entryOffers.ts</code>, et validés par la direction avant chaque mise en ligne. Cette liste est en lecture seule : pour modifier un prix, demandez la modification puis redéployez.</p>
+    <div className="admin-record-list">
+      {plans.map((p) => <article key={p.slug} className="pricing-row" data-slug={p.slug}><div><h3>Forfait {p.name}</h3></div><p>{money(p.monthly)} / mois · {money(p.yearly)} avec engagement de 12 mois</p></article>)}
+      {entryOffers.map((o) => <article key={o.slug} className="pricing-row" data-slug={o.slug}><div><h3>{o.title.fr}</h3></div><p>à partir de {money(o.price)}{o.unit === "month" ? " / mois" : ""}</p></article>)}
+    </div>
   </div>;
 }
 
-function PricingRow({ slug, name, priceText, timeline, published, onSave }: { slug: string; name: string; priceText: string; timeline: string; published: boolean; onSave: (v: { priceText: string; timeline: string; published: boolean }) => void }) {
-  const [price, setPrice] = useState(priceText);
-  const [time, setTime] = useState(timeline);
-  const [pub, setPub] = useState(published);
-  return <article className="pricing-row" data-slug={slug}>
-    <div><h3>{name}</h3></div>
-    <Field label="Tarif affiché"><input value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Ex. : à partir de … $ CAD, taxes en sus" /></Field>
-    <Field label="Délai indicatif affiché"><input value={time} onChange={(e) => setTime(e.target.value)} placeholder="Ex. : 4 à 6 semaines après le diagnostic" /></Field>
-    <label className="consent-row"><input type="checkbox" checked={pub} onChange={(e) => setPub(e.target.checked)} /><span>Publié sur le site (validé par la direction)</span></label>
-    <button type="button" className="button-primary" onClick={() => onSave({ priceText: price, timeline: time, published: pub })}>Enregistrer</button>
-  </article>;
-}
 
 const trustKindLabel: Record<string, string> = { testimonial: "Témoignage vérifié", partner: "Partenaire", certification: "Certification", report: "Rapport de performance", team: "Membre de l’équipe" };
 

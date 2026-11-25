@@ -177,10 +177,10 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await ap2.goto(BASE + "/fr/diagnostic", { waitUntil: "networkidle" });
   await ap2.locator(".assistant-options button", { hasText: "Construction et immobilier" }).click();
   await ap2.locator(".assistant-options button", { hasText: "Trouver de nouveaux clients" }).click();
-  check("assistant recommends PERFORMANCE for construction + new customers", (await ap2.locator(".assistant-answer h3").innerText()) === "PERFORMANCE");
+  check("assistant recommends the Acquisition pack for construction + new customers", (await ap2.locator(".assistant-answer h3").innerText()) === "Pack Acquisition");
   await ap2.getByRole("link", { name: /Demander une soumission/ }).last().click();
   await ap2.waitForURL("**/soumission**"); await ap2.waitForFunction(() => document.querySelector("form.lead-form select") !== null); await ap2.waitForTimeout(400);
-  check("assistant choices are preselected in the quote form", (await ap2.getByLabel(/Secteur d’activité/).inputValue()) === "construction-immobilier" && (await ap2.getByLabel(/Offre envisagée/).inputValue()) === "performance");
+  check("assistant choices are preselected in the quote form", (await ap2.getByLabel(/Secteur d’activité/).inputValue()) === "construction-immobilier" && (await ap2.getByLabel(/Offre envisagée/).inputValue()) === "pack-acquisition");
   await ap2.hover('.desktop-nav a[href="/fr/expertises"]'); await ap2.waitForTimeout(400);
   check("mega menu lists the ten expertises on hover", (await ap2.locator(".mega-panel:visible li").count()) === 10);
 
@@ -189,10 +189,10 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await en.page.goto(BASE + "/", { waitUntil: "networkidle" });
   check("/ opens the French home directly, even for an English browser", en.page.url().endsWith("/fr"), en.page.url());
   await en.page.goto(BASE + "/fr/tarifs", { waitUntil: "networkidle" });
-  check("pricing shows 4 offers and 4 AI offers, all « sur devis » until management publishes a price", (await en.page.locator(".tier-card").count()) === 8 && (await en.page.getByText("Tarif sur devis").count()) === 8);
+  check("pricing no longer shows the old quote-only offers", (await en.page.locator(".tier-card").count()) === 0 && (await en.page.getByText("Tarif sur devis").count()) === 0);
   check("pricing shows the 4 permanent plans (100/300/500/1500), with no working hours shown", !/heures? (de travail )?incluses/i.test(await en.page.locator("#forfaits").innerText()) && (await en.page.locator("#forfaits .plan-card").count()) === 4 && (await en.page.locator("#forfaits .plan-card").nth(3).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1500"), (await en.page.locator(".plan-card").count()) === 4 && (await en.page.locator(".plan-card").nth(3).innerText()).replace(/\s|\u202f|\u00a0/g, "").includes("1500"));
   check("pricing presents 6 integrated packs", (await en.page.locator("#packs .pack-card").count()) === 6);
-  check("pricing publishes 10 one-off and 9 monthly services with « à partir de » prices", (await en.page.locator(".entry-card").count()) === 19 && (await en.page.locator("#unite .entry-price strong").first().innerText()).includes("567"));
+  check("pricing publishes 9 one-off and 7 monthly services with « à partir de » prices", (await en.page.locator(".entry-card").count()) === 16 && (await en.page.locator("#unite .entry-price strong").first().innerText()).includes("567"));
   await en.page.locator("#entree-seo a.button-primary").click();
   await en.page.waitForURL(/\/soumission\?solution=entree-seo/);
   check("an entry offer is preselected in the quote form", (await en.page.locator("form.lead-form").getByLabel(/Offre envisagée/).inputValue().catch(() => "")) === "entree-seo" || (await en.page.url()).includes("entree-seo"));
@@ -244,7 +244,7 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   await cp3.waitForFunction(() => document.querySelectorAll(".assistant-bubble-bot").length >= 3, null, { timeout: 15000 });
   await cp3.waitForTimeout(2000);
   const priceText = await cp3.locator(".assistant-bubble-bot").last().innerText();
-  check("advisor answers a price question with « sur devis » and invents no amount", /devis/i.test(priceText) && !/\d\s?\$/.test(priceText));
+  check("advisor answers a price question from the published prices or a quote", /devis|à partir de|forfait/i.test(priceText));
   await cp3.keyboard.press("Escape");
   check("Escape closes the advisor and returns focus to its button", (await cp3.locator(".assistant-panel").count()) === 0 && (await cp3.evaluate(() => document.activeElement?.className)) === "assistant-launcher");
   await cp3.locator("#assistant-input").count();

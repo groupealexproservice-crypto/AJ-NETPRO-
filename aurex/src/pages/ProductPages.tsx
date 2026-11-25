@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Check } from "lucide-react";
 import { Link } from "../components/LocaleLink";
-import { agents, aiAcrossExpertise, entryOffers, plans, planTerms, siteOffer, type EntryOffer, aiCosts, aiTiers, automations, expertises, formats, governance, integrations, tiers, tx, txList, valueFramework, kpis, type Tier } from "../content";
+import { agents, aiAcrossExpertise, entryOffers, plans, planTerms, siteOffer, type EntryOffer, aiCosts, automations, governance, integrations, tx, txList, valueFramework, kpis } from "../content";
 import { defaultInputs, defaultScenarios, inputWarnings, simulate, type Scenario, type SimInputs } from "../simulator";
 import { useLanguage } from "../i18n";
-import { trpc } from "../providers/trpc";
 import { ArrowLink, PageMeta } from "../components/Layout";
 import { CtaBand, PageHero } from "../components/Sections";
 import { Glyph } from "../components/Glyphs";
@@ -14,33 +13,7 @@ import { PacksSection } from "../components/Offer";
 import { fmtMoney, fmtNum } from "../lib/format";
 import { AskAurex } from "../components/AssistantChat";
 
-type Pricing = { slug: string; priceText: string | null; timeline: string | null };
 
-function TierCard({ tier, pricing }: { tier: Tier; pricing?: Pricing }) {
-  const { lang, t } = useLanguage();
-  const fr = lang === "fr";
-  return (
-    <article className="tier-card" id={tier.slug}>
-      <header>
-        <Glyph name={tier.slug} size={44} />
-        <p className="eyebrow">{tx(tier.verb, lang)}</p>
-        <h3>{tier.name}</h3>
-        <p className="tier-audience">{tx(tier.audience, lang)}</p>
-      </header>
-      <div className="tier-price" aria-label={fr ? "Tarif" : "Price"}>
-        {pricing?.priceText ? <strong>{pricing.priceText}</strong> : <strong>{fr ? "Tarif sur devis" : "Quoted on request"}</strong>}
-        <span>{pricing?.timeline ? `${fr ? "Délai indicatif : " : "Indicative timeline: "}${pricing.timeline}` : fr ? "Délai précisé après le diagnostic" : "Timeline set after the diagnostic"}</span>
-      </div>
-      <div className="tier-block"><h4>{fr ? "Services inclus" : "Included services"}</h4><ul>{txList(tier.includes, lang).map((x) => <li key={x}><Check size={15} strokeWidth={1.6} />{x}</li>)}</ul></div>
-      <div className="tier-block"><h4>{fr ? "Livrables" : "Deliverables"}</h4><ul>{txList(tier.deliverables, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
-      <div className="tier-block"><h4>{fr ? "Modalités d’accompagnement" : "How we support you"}</h4><ul>{txList(tier.support, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
-      <div className="tier-block"><h4>{fr ? "Avantages économiques visés" : "Targeted economic benefits"}</h4><ul>{txList(tier.economics, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
-      <div className="tier-block tier-conditions"><h4>{fr ? "Conditions" : "Terms"}</h4><ul>{txList(tier.conditions, lang).map((x) => <li key={x}>{x}</li>)}</ul></div>
-      <div className="tier-links">{tier.expertises.map((slug) => <Link key={slug} to={`/expertises/${slug}`}>{tx(expertises.find((e) => e.slug === slug)!.title, lang)}</Link>)}</div>
-      <Link className="button-primary" to={`/consultation?solution=${tier.slug}`} onClick={() => track("cta_consultation")}>{t("consult")}</Link>
-    </article>
-  );
-}
 
 
 function PlanCard({ plan }: { plan: (typeof plans)[number] }) {
@@ -80,6 +53,7 @@ function EntryCard({ offer }: { offer: EntryOffer }) {
       <p className="entry-price"><strong>{fmtMoney(offer.price, lang)}</strong><span>{unit(offer.unit)}</span></p>
       <h3>{tx(offer.title, lang)}</h3>
       <ul>{txList(offer.scope, lang).map((x) => <li key={x}><Check size={15} aria-hidden="true" />{x}</li>)}</ul>
+      {offer.extras?.map((x) => <p key={x.label.fr} className="entry-upgrade"><strong>{fr ? "Aussi : " : "Also: "}</strong>{tx(x.label, lang)} — <strong>{fmtMoney(x.price, lang)}</strong>{unit(x.unit)}</p>)}
       {offer.upgrade && <p className="entry-upgrade">{fr ? "Version complète : " : "Full version: "}{tx(offer.upgrade.label, lang)} — <strong>{fmtMoney(offer.upgrade.price, lang)}</strong>{unit(offer.upgrade.unit)}</p>}
       <Link className="button-primary" to={`/soumission?solution=${offer.slug}`} onClick={() => track("cta_quote")}>{fr ? "Demander cette offre" : "Request this offer"}</Link>
     </article>
@@ -89,22 +63,14 @@ function EntryCard({ offer }: { offer: EntryOffer }) {
 export function PricingPage() {
   const { lang } = useLanguage();
   const fr = lang === "fr";
-  const { data = [] } = trpc.content.pricing.useQuery();
-  const priceOf = (slug: string) => data.find((p) => p.slug === slug);
   return <>
-    <PageMeta title={fr ? "Tarifs et offres" : "Pricing and offers"} description={fr ? "Quatre offres, de Lancer à Transformer, et quatre offres d’intelligence artificielle : services inclus, livrables et conditions." : "Four offers, from Launch to Transform, and four AI offers: included services, deliverables and terms."} />
-    <PageHero eyebrow="AUREX / TARIFS" title={fr ? "Une expertise de haut niveau, des tarifs clairs." : "High-level expertise, clear pricing."} text={fr ? "Des solutions accessibles aux entrepreneurs et aux PME, sans imposer systématiquement les coûts d’un grand cabinet international. Les montants sont en dollars canadiens (CAD) et précisés au devis." : "Solutions within reach of entrepreneurs and SMEs, without systematically imposing the costs of a large international firm. Amounts are in Canadian dollars (CAD) and specified in the proposal."}>
+    <PageMeta title={fr ? "Tarifs et offres" : "Pricing and offers"} description={fr ? "Quatre forfaits mensuels de 100 $ à 1 500 $, des services à l’unité, un site Web de base offert avec 12 mois et six packs intégrés : prix de départ publics." : "Four offers, from Launch to Transform, and four AI offers: included services, deliverables and terms."} />
+    <PageHero eyebrow="AUREX / TARIFS" title={fr ? "Une expertise de haut niveau, des tarifs clairs." : "High-level expertise, clear pricing."} text={fr ? "Des solutions accessibles aux entrepreneurs et aux PME, sans les coûts d’un grand cabinet. Prix de départ publics en dollars canadiens (CAD), taxes en sus : le prix ferme figure toujours dans votre soumission." : "Solutions within reach of entrepreneurs and SMEs, without the costs of a large firm. Public starting prices in Canadian dollars (CAD), taxes extra: the firm price always appears in your quote."}>
       <ArrowLink to="/consultation">{fr ? "Obtenir une consultation" : "Request a consultation"}</ArrowLink>
     </PageHero>
 
-    <section className="shell section pricing-intro" aria-labelledby="formats-title">
-      <p className="eyebrow">{fr ? "Trois façons de travailler ensemble" : "Three ways to work together"}</p>
-      <h2 id="formats-title" className="sr-only">{fr ? "Formats d’intervention" : "Engagement formats"}</h2>
-      <div className="format-grid">{formats.map((f) => <div key={f.key}><h3>{tx(f.title, lang)}</h3><p>{tx(f.text, lang)}</p></div>)}</div>
-    </section>
-
     <section className="shell section pricing-paths" aria-labelledby="paths-title">
-      <p className="eyebrow">{fr ? "Deux façons d’acheter" : "Two ways to buy"}</p>
+      <p className="eyebrow">{fr ? "Trois façons d’acheter" : "Three ways to buy"}</p>
       <h2 id="paths-title" className="pricing-h2">{fr ? "Un service ponctuel, un accompagnement mensuel, ou un pack intégré." : "A one-off service, monthly support, or an integrated pack."}</h2>
       <div className="format-grid">
         <div><h3>{fr ? "1. Services ponctuels" : "1. One-off services"}</h3><p>{fr ? "Vous demandez un service, nous le livrons, et c’est tout. Prix fixe, sans engagement." : "You ask for a service, we deliver it, and that’s it. Fixed price, no commitment."}</p><a href="#unite">{fr ? "Voir les services à l’unité" : "See one-off services"}</a></div>
@@ -152,15 +118,9 @@ export function PricingPage() {
     </section>
 
     <section className="shell section">
-      <p className="eyebrow">{fr ? "Offres d’accompagnement" : "Engagement offers"}</p>
-      <h2 className="pricing-h2">{fr ? "Lancer. Développer. Optimiser. Transformer." : "Launch. Grow. Optimize. Transform."}</h2>
-      <div className="tier-grid">{tiers.map((tier) => <TierCard key={tier.slug} tier={tier} pricing={priceOf(tier.slug)} />)}</div>
-    </section>
-
-    <section className="shell section">
       <p className="eyebrow">{fr ? "Intelligence artificielle et automatisation" : "Artificial intelligence and automation"}</p>
-      <h2 className="pricing-h2">{fr ? "Des offres IA évolutives." : "Scalable AI offers."}</h2>
-      <div className="tier-grid">{aiTiers.map((tier) => <TierCard key={tier.slug} tier={tier} pricing={priceOf(tier.slug)} />)}</div>
+      <h2 className="pricing-h2">{fr ? "Agents IA et automatisations : de quoi se compose le prix." : "AI agents and automations: what the price is made of."}</h2>
+      <p className="muted-note">{fr ? "Prix de départ : automatisation simple dès 990 $, assistant FAQ dès 1 190 $, agent téléphonique dès 990 $ d’installation puis dès 299 $ par mois. Détails sur la page Automatisation." : "Starting prices: simple automation from $990, FAQ assistant from $1,190, phone agent from $990 setup then from $299 per month. Details on the Automation page."} <Link to="/automatisation">{fr ? "Voir la page Automatisation" : "See the Automation page"}</Link></p>
       <div className="ai-costs">
         <h3>{fr ? "Ce que comprennent les coûts d’une solution IA" : "What an AI solution’s costs include"}</h3>
         <div className="format-grid four">{aiCosts.map((c) => <div key={c.title.en}><h4>{tx(c.title, lang)}</h4><p>{tx(c.text, lang)}</p></div>)}</div>
@@ -344,8 +304,9 @@ export function AIPage() {
       <div className="format-grid">{governance.map((g) => <div key={g.title.en}><h3>{tx(g.title, lang)}</h3><p>{tx(g.text, lang)}</p></div>)}</div>
     </Block>
 
-    <Block eyebrow={fr ? "Offres IA" : "AI offers"} title={fr ? "AI Start, Business, Performance, Enterprise." : "AI Start, Business, Performance, Enterprise."}>
-      <div className="tier-mini">{aiTiers.map((tier) => <Link key={tier.slug} to={`/tarifs#${tier.slug}`}><Glyph name={tier.slug} size={32} /><strong>{tier.name}</strong><span>{tx(tier.audience, lang)}</span></Link>)}</div>
+    <Block eyebrow={fr ? "Offres et prix" : "Offers and pricing"} title={fr ? "Agents IA et automatisations : budgets de 100 à 1 500 $ par mois." : "AI agents and automations: budgets from $100 to $1,500 per month."}>
+      <p className="muted-note">{fr ? "Prix de départ, portée définie, aucun résultat garanti. Le détail des budgets, des agents possibles et des précautions est sur la page Automatisation." : "Starting prices, defined scope, no guaranteed result. Budget details, possible agents and precautions are on the Automation page."}</p>
+      <div className="engagement-actions"><ArrowLink to="/automatisation">{fr ? "Voir la page Automatisation" : "See the Automation page"}</ArrowLink><ArrowLink to="/tarifs#unite">{fr ? "Voir les prix de départ" : "See starting prices"}</ArrowLink></div>
     </Block>
     <CtaBand />
   </>;

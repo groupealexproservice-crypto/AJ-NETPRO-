@@ -1356,3 +1356,113 @@ section.shell .auto-grid p { color: var(--text-muted); }
 .domain-card h3 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 300; font-size: 21px; } .domain-card p { margin: 0 0 10px; color: var(--text-muted); font-size: 14.5px; }
 .domain-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; } .domain-card a { display: inline-flex; gap: 6px; align-items: center; }
 .ways a { display: inline-block; margin-top: 8px; } .pack-card ul li { display: list-item; list-style: disc; margin-left: 18px; }
+
+/* ═════════════ AUREX Nocturne — futuristic, elegant, international ═════════════
+   One dark theme for the whole site: deep black, graphite glass, fine gold lines, a faint grid and soft light.
+   Tokens first, then the few components that relied on a light page. */
+:root {
+  --primitive-graphite: oklch(0.14 0.008 270);
+  --surface: oklch(0.135 0.009 270);
+  --background: var(--surface);
+  --surface-dark: oklch(0.1 0.008 270);
+  --surface-muted: oklch(0.185 0.011 270);
+  --text: oklch(0.955 0.004 90);
+  --text-muted: oklch(0.79 0.01 85);
+  --accent: oklch(0.83 0.12 86);
+  --accent-hover: oklch(0.91 0.1 90);
+  --on-accent: oklch(0.17 0.02 80);
+  --line: oklch(0.86 0.06 85 / 0.2);
+  --line-dark: oklch(0.86 0.06 85 / 0.22);
+  --success: oklch(0.8 0.14 155);
+  --danger: oklch(0.74 0.16 28);
+  --glass: oklch(0.2 0.012 270 / 0.55);
+  --glass-line: oklch(0.88 0.07 86 / 0.24);
+  color-scheme: dark;
+}
+html { background: var(--surface); }
+body {
+  background:
+    radial-gradient(60% 45% at 85% -5%, oklch(0.72 0.12 80 / 0.16), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, oklch(0.62 0.04 250 / 0.12), transparent 70%),
+    var(--surface);
+  background-attachment: fixed;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(oklch(0.9 0.04 85 / .035) 1px, transparent 1px), linear-gradient(90deg, oklch(0.9 0.04 85 / .035) 1px, transparent 1px);
+  background-size: 72px 72px; mask-image: radial-gradient(80% 70% at 50% 30%, #000, transparent 85%); }
+
+/* Typography: finer, wider, metallic headings */
+h1, h2 { font-weight: 200; letter-spacing: -0.03em; }
+.page-hero h1, .pricing-h2, .section h2 { background: linear-gradient(180deg, oklch(0.99 0.004 90), oklch(0.8 0.03 85)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--text); }
+.eyebrow { color: var(--accent); letter-spacing: .22em; }
+.eyebrow::before, .eyebrow > span:first-child { background: linear-gradient(90deg, transparent, var(--accent)); }
+.muted-note, .plan-tagline, .entry-from { color: var(--text-muted); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Gold hairlines between sections */
+.section { position: relative; }
+.section + .section::before { content: ""; position: absolute; top: 0; left: 50%; width: min(1180px, 88vw); height: 1px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, oklch(0.86 0.08 86 / .45), transparent); }
+
+/* Glass panels */
+.plan-card, .domain-card, .pack-card, .tier-teaser, .assistant-panel, .sim-form, .sim-results, .lead-form, .admin-panel, .portal-card, .pricing-row, .format-grid > div, .insight-card, .contact-card {
+  background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: 0 30px 70px -48px oklch(0 0 0 / .9), inset 0 1px 0 oklch(1 0 0 / .05);
+}
+.plan-card, .domain-card, .tier-teaser { transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+.plan-card:hover, .domain-card:hover, .tier-teaser:hover { transform: translateY(-3px); border-color: oklch(0.88 0.1 86 / .55); box-shadow: 0 40px 90px -46px oklch(0.75 0.13 82 / .5), inset 0 1px 0 oklch(1 0 0 / .08); }
+.domain-card { padding: 26px; border-bottom: 1px solid var(--glass-line); } .domain-grid { gap: 16px; border-top: 0; margin-top: 32px; }
+.entry-grid, .solution-grid { border-top-color: var(--glass-line); gap: 0; }
+.entry-card, .solution-grid article { border-bottom-color: var(--line); }
+.plan-card-featured { border-color: oklch(0.88 0.1 86 / .7); box-shadow: 0 0 0 1px oklch(0.88 0.1 86 / .35), 0 40px 100px -40px oklch(0.78 0.13 82 / .55); }
+.plan-site { background: oklch(0.83 0.12 86 / .1); border-left-color: var(--accent); color: var(--text); }
+.plan-badge { color: var(--accent); }
+.plan-card li svg, .entry-card li svg { color: var(--accent); }
+
+/* Buttons: gold metal and quiet outlines */
+.button-primary { color: var(--on-accent); }
+.button-light { background: oklch(1 0 0 / .06); color: var(--text); border: 1px solid var(--glass-line); backdrop-filter: blur(10px); }
+.button-light:hover { color: var(--on-accent); }
+.button-ghost { border-color: var(--glass-line); color: var(--text); }
+.text-button { color: var(--accent); }
+
+/* Elements that used "text colour as background" or accent + ivory text */
+.method-grid span, .method-detail-row > span, .sim-tabs button[aria-selected="true"], .portal-tabs button[aria-selected="true"], .admin-tabs button[aria-selected="true"], .status-pill.status-qualified, .status-pill.status-scheduled, .status-pill.status-won {
+  background: linear-gradient(135deg, oklch(0.86 0.115 86), oklch(0.72 0.125 76)); border-color: transparent; color: var(--on-accent); }
+.skip-link, .lead-status.status-new, .admin-tabs button > span, .method-commitment { color: var(--on-accent); }
+.sim-tabs button { background: transparent; color: var(--text); border-color: var(--glass-line); }
+.header-light .header-cta { background: linear-gradient(135deg, oklch(0.86 0.115 86), oklch(0.72 0.125 76)); color: var(--on-accent); border: 0; }
+
+/* Forms */
+.field input, .field select, .field textarea, .sim-input input, .newsletter-input input { background: oklch(1 0 0 / .05); color: var(--text); border-color: var(--glass-line); }
+.field input::placeholder, .field textarea::placeholder { color: oklch(0.78 0.01 85 / .75); }
+.field select option { background: oklch(0.16 0.01 270); color: var(--text); }
+.sim-input i { color: var(--text-muted); }
+.sim-disclaimer, .legal-note { background: oklch(0.83 0.12 86 / .08); border-left-color: var(--accent); color: var(--text); }
+.sim-badge { color: var(--accent); border-color: var(--accent); }
+.sim-warning { color: oklch(0.86 0.12 70); }
+.sim-kpis { border-top-color: var(--glass-line); } .sim-kpis > div { border-bottom-color: var(--line); }
+
+/* Status and chips */
+.status-chip { border-color: currentColor; }
+.status-available { color: oklch(0.82 0.14 155); } .status-developing { color: oklch(0.86 0.12 85); } .status-ambition { color: var(--text-muted); }
+.chip-list li, .ask-aurex { border-color: var(--glass-line); background: oklch(1 0 0 / .04); }
+
+/* Page heroes: line drawings in gold */
+.page-hero-art, .page-hero svg { opacity: .8; }
+.page-hero { border-bottom: 1px solid var(--line); }
+
+/* Header and footer keep the dark glass; footer gets the gold hairline */
+.site-header { border-bottom-color: var(--glass-line); }
+.site-footer { border-top: 1px solid var(--glass-line); }
+
+/* Tables and admin lists on dark */
+table { color: var(--text); } th, td { border-color: var(--line); }
+.admin-bars i { background: var(--accent); }
+.preview-note { background: oklch(0.1 0.008 270); }
+
+@media (prefers-reduced-motion: reduce) { .plan-card, .domain-card, .tier-teaser { transition: none; } .plan-card:hover, .domain-card:hover, .tier-teaser:hover { transform: none; } }
+@media print { body, html { background: #fff; color: #000; } body::before { display: none; } * { -webkit-text-fill-color: initial !important; } }
+/* Page heroes: the decorative drawing stays behind the text and never competes with it */
+.page-hero .page-hero-grid .ornament, .page-hero-grid svg.ornament { opacity: .16; }
+.page-hero-intro { position: relative; z-index: 1; padding: 20px 22px; background: oklch(0.1 0.008 270 / .62); border: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+@media (max-width: 900px) { .page-hero-intro { background: transparent; border: 0; backdrop-filter: none; padding: 0; } }

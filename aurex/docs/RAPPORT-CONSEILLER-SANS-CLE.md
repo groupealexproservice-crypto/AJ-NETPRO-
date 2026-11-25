@@ -1,6 +1,6 @@
 # Rapport d’évaluation du conseiller IA
 
-Date : 2026-11-24 · Mode : base de connaissances seulement (aucune clé) · Questions : 52
+Date : 2026-11-25 · Mode : base de connaissances seulement (aucune clé) · Questions : 52
 
 **Contrôles automatiques : 49 réussis, 3 à examiner.** Ces contrôles sont des heuristiques (mots attendus, formules interdites) : lisez les réponses ci-dessous.
 

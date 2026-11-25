@@ -19,18 +19,18 @@ const copy = {
   fr: {
     lang: "fr-CA", slogan: "Stratégie | Technologie | Intelligence artificielle | Performance | Croissance", title: "Des stratégies intelligentes. Des résultats mesurables. Une croissance durable.",
     intro: "AUREX Solutions est un cabinet multidisciplinaire de conseil, de marketing, de développement commercial, d’intelligence artificielle et de performance opérationnelle. Il accompagne les entrepreneurs, les PME et les organisations dans la construction, le développement et la transformation de leurs activités.",
-    expertise: "Dix expertises", solutions: "Quatre offres, quatre offres IA", method: "Une méthodologie en six étapes", sectors: "Treize secteurs d’activité",
-    quote: "Prestations individuelles, abonnements mensuels et interventions sur mesure, en dollars canadiens, établis sur devis. Les tarifs publiés sont ceux validés par la direction.",
+    expertise: "Dix expertises", solutions: "Quatre forfaits mensuels, services à l’unité et packs", method: "Une méthodologie en six étapes", sectors: "Treize secteurs d’activité",
+    quote: "Forfaits mensuels de 100 $ à 1 500 $, services à l’unité et packs intégrés, en dollars canadiens, taxes en sus. Prix de départ publics sur le site ; le prix ferme figure dans votre soumission.",
     next: "Prochaine étape", cta: "Planifiez une consultation ou demandez un diagnostic sur le site d’AUREX Solutions.",
-    legal: "Document d’information. Aucune tarification, aucun résultat ni aucune référence client n’y figurent.",
+    legal: "Document d’information. Aucun résultat ni aucune référence client n’y figurent.",
   },
   en: {
     lang: "en-CA", slogan: "Strategy | Technology | Artificial intelligence | Performance | Growth", title: "Smart strategies. Measurable results. Sustainable growth.",
     intro: "AUREX Solutions is a multidisciplinary firm in consulting, marketing, business development, artificial intelligence and operational performance. It supports entrepreneurs, SMEs and organizations in building, growing and transforming their businesses.",
-    expertise: "Ten areas of expertise", solutions: "Four offers, four AI offers", method: "A six-step methodology", sectors: "Thirteen industries",
-    quote: "Individual services, monthly subscriptions and tailored engagements, in Canadian dollars, quoted on request. Published rates are those validated by management.",
+    expertise: "Ten areas of expertise", solutions: "Four monthly plans, one-off services and packs", method: "A six-step methodology", sectors: "Thirteen industries",
+    quote: "Monthly plans from $100 to $1,500, one-off services and integrated packs, in Canadian dollars, taxes extra. Starting prices are public on the website; the firm price appears in your quote.",
     next: "Next step", cta: "Schedule a consultation or request a diagnostic on the AUREX Solutions website.",
-    legal: "Information document. It contains no pricing, results or client references.",
+    legal: "Information document. It contains no results or client references.",
   },
 } as const;
 
