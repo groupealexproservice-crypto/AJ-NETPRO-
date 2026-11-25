@@ -31,6 +31,11 @@ const stylesheet = readFileSync(`dist/public/assets/${css}`, "utf8").replaceAll(
 writeFileSync(path.join(OUT, "assets", css), stylesheet);
 for (const dir of ["images", "icons", "brochures", "brand"]) cpSync(`public/${dir}`, path.join(OUT, dir), { recursive: true });
 
+const toastText = {
+  fr: "Cette fonction (formulaire, connexion, soumission, espace client) n’est active que sur le site complet. Cet aperçu est en lecture seule : naviguez librement, rien ne sera enregistré.",
+  en: "This feature (form, sign-in, quote, client portal) is only active on the full site. This preview is read-only: browse freely, nothing will be saved.",
+};
+
 const banner = {
   fr: "Aperçu figé pour révision. Formulaires, connexion, espace client et administration fonctionnent sur le site complet.",
   en: "Frozen preview for review. Forms, sign-in, client portal and administration work on the full site.",
@@ -80,11 +85,13 @@ for (const [publicPath, file] of [...pagePaths, ["/fr", "index.html"] as [string
 .static-lang{opacity:.55;font-weight:600;font-size:11px;padding:14px 6px;min-width:28px;text-align:center}.static-lang:hover{opacity:1}
 #static-drawer{position:fixed;inset:0;z-index:150;overflow:auto;padding:96px 24px 80px;background:#16181c;display:flex;flex-direction:column}
 #static-drawer[hidden]{display:none}#static-drawer a{color:#f5f5f2;font:26px/1.2 Marcellus,Georgia,serif;padding:16px 0;border-bottom:1px solid #30343b}
-.mobile-menu,.skip-link,.assistant-launcher,.ask-aurex{display:none}.hero-character{animation:none!important;opacity:1!important}
+.preview-toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:300;max-width:min(560px,92vw);padding:14px 18px;background:#14161b;color:#f5f5f2;border:1px solid #c9a24a;border-radius:6px;font:14px/1.5 system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.6)}.preview-toast[hidden]{display:none}\n.mobile-menu,.skip-link,.assistant-launcher,.ask-aurex{display:none}.hero-character{animation:none!important;opacity:1!important}
 </style></head>`).replace("</body>", `<script>
 (function(){var d=document.getElementById("static-drawer"),b=document.querySelector("[data-static-menu]");if(b&&d){b.addEventListener("click",function(){d.hidden=!d.hidden;b.setAttribute("aria-expanded",String(!d.hidden));});d.addEventListener("click",function(e){if(e.target.tagName==="A")d.hidden=true;});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.hidden=true;});}
-document.addEventListener("submit",function(e){e.preventDefault();var n=document.querySelector(".preview-note");if(n){n.textContent="${banner[lang]}";}});
-document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-full-site]");if(a)e.preventDefault();});})();
+var t=document.createElement("div");t.className="preview-toast";t.setAttribute("role","status");t.hidden=true;t.textContent="${toastText[lang]}";document.body.appendChild(t);var timer;function say(){t.hidden=false;clearTimeout(timer);timer=setTimeout(function(){t.hidden=true;},6000);}
+document.addEventListener("submit",function(e){e.preventDefault();say();});
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-full-site]");if(a){e.preventDefault();say();}});
+})();
 </script></body>`);
   // The root page carries its stylesheet inline, so it renders even where linked files are served with other rules.
   let output = injected;

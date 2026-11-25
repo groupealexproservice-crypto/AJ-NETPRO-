@@ -44,3 +44,8 @@ Voir `docs/PLAN-ET-TARIFS.md` (section 8) et `scripts/lighthouse.sh`. Accessibil
 
 ## Documents
 `README.md` (démarrage, architecture, sécurité) · `docs/OFFRE-COMMERCIALE.md` · `docs/OFFRE-AUTOMATISATION-IA.md` · `docs/ANALYSE-STRATEGIQUE.md` · `docs/ETUDE-DE-MARCHE.md` · `docs/PLAN-ET-TARIFS.md` · `docs/CONFORMITE.md` · `docs/VERIFICATION.md` · `docs/PROMPT-AMELIORATION.md` · `docs/RAPPORT-CONSEILLER-SANS-CLE.md`.
+
+## Mise en ligne : état au 25 novembre 2026
+- Le compte Hostinger connecté ne contient qu'un site : `benaxservices.ca` (autre entreprise). **Aucun domaine n'existe pour AUREX** ; rien n'a été déployé et le site existant n'a pas été touché.
+- Pour publier le **site complet** (formulaires, soumissions, espace client, administration, conseiller IA), il faut : (1) un nom de domaine AUREX, (2) un hébergement Node.js avec base MySQL, (3) l'accord explicite de la direction, (4) les variables d'environnement (voir plus haut).
+- L'aperçu figé n'enregistre rien : ses formulaires et ses liens vers le site complet affichent un message d'explication.
