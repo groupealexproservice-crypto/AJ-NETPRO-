@@ -1,6 +1,7 @@
 import { Fragment, Suspense, lazy } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
+import { RouteBoundary, RouteLoading } from "./components/RouteBoundary";
 import Home from "./pages/Home";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyComponent = React.ComponentType<any>;
@@ -24,7 +25,7 @@ import { localizePath } from "./routes";
 import type { Lang } from "./content";
 
 function PublicSite() {
-  return <Layout><Suspense fallback={<div className="route-loading" role="status" aria-label="Chargement" />}><Outlet /></Suspense></Layout>;
+  return <Layout><RouteBoundary><Suspense fallback={<RouteLoading />}><Outlet /></Suspense></RouteBoundary></Layout>;
 }
 
 function RedirectToLanguage() {
@@ -65,7 +66,7 @@ const pages: Array<[canonical: string, element: React.ReactElement]> = [
 
 export default function App() {
   return (
-    <Suspense fallback={<div className="route-loading" role="status" aria-label="Chargement" />}>
+    <RouteBoundary><Suspense fallback={<RouteLoading />}>
     <Routes>
       <Route path="/" element={<RedirectToLanguage />} />
       <Route element={<PublicSite />}>
@@ -80,6 +81,6 @@ export default function App() {
       <Route path="/en/client-portal" element={<ClientPortal />} />
       <Route path="/admin" element={<AdminPortal />} />
     </Routes>
-    </Suspense>
+    </Suspense></RouteBoundary>
   );
 }

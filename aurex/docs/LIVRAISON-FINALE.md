@@ -52,3 +52,10 @@ Voir `docs/PLAN-ET-TARIFS.md` (section 8) et `scripts/lighthouse.sh`. Accessibil
 
 ## Pages ajoutées lors de la finalisation
 FAQ, conditions de service, mentions légales, accessibilité, plan du site (français et anglais), liées depuis le pied de page. Les textes juridiques (conditions, mentions légales) sont des **modèles à faire valider par un juriste** avant la mise en ligne.
+
+## Correctif « pages blanches » et tests de navigation (v3.1.1)
+
+- **Cause identifiée** : aucune page du site complet ne se vide dans le navigateur réel (22/22 contrôles), mais deux risques réels existaient : (1) une page chargée à la demande qui échoue (réseau coupé, nouvelle version déployée pendant qu’un onglet est ouvert) laissait un écran sombre vide, sans message ; (2) l’aperçu statique partagé dans la visionneuse ne contient pas les fonctions du site complet (formulaires, portail), d’où des liens « sans effet ».
+- **Correction** : `RouteBoundary` (message FR/EN + « Recharger » + « Retour à l’accueil », rechargement automatique unique en cas de fichier introuvable), indicateur de chargement visible, page 404 avec lien d’accueil.
+- **Tests** : `npm run e2e:nav` (clics FR/EN, URL directe, rafraîchissement, Précédent/Suivant, 404, bascule de langue, menu mobile, panne d’une page), `npm run e2e:forms` (saisie invalide, échec d’envoi), `npm run e2e` (82 contrôles dont envoi → administration et isolation client), `npm run a11y`, `npm test` (52).
+- **Publication** : nécessite un hébergement Node.js + MySQL/MariaDB et un nom de domaine AUREX (voir état de l’hébergement ci-dessus).
