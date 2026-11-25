@@ -239,6 +239,11 @@ function Footer() {
       <div className="footer-legal shell">
         <span>© {new Date().getFullYear()} AUREX Solutions</span>
         <Link to="/confidentialite">{t("privacy")}</Link>
+        <Link to="/conditions">{t("terms")}</Link>
+        <Link to="/mentions-legales">{t("legalNotice")}</Link>
+        <Link to="/accessibilite">{t("accessibility")}</Link>
+        <Link to="/faq">{t("faq")}</Link>
+        <Link to="/plan-du-site">{t("sitemap")}</Link>
         <a href={`/brochures/aurex-solutions-${lang}.pdf`} download>{t("brochure")}</a>
         <Link to="/desabonnement">{t("unsubscribe")}</Link>
         <Link to="/espace-client">{t("client")}</Link>

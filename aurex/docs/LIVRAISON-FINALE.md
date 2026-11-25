@@ -16,7 +16,7 @@ Date : 25 novembre 2026. Branche : `claude/benex-solutions-website-0y0gfy`, doss
 
 **Automatisation et agents IA** : page détaillée (sept familles d'agents, méthode en 8 étapes, budgets 100 à 1 500 $, confidentialité, FAQ).
 
-**Qualité** : 52 tests unitaires, 77 contrôles de parcours, audit d'accessibilité sans défaut, en-têtes de sécurité et CSP stricte, polices auto-hébergées, SEO serveur bilingue (balises, hreflang, JSON-LD, sitemap).
+**Qualité** : 52 tests unitaires, 82 contrôles de parcours, audit d'accessibilité sans défaut, en-têtes de sécurité et CSP stricte, polices auto-hébergées, SEO serveur bilingue (balises, hreflang, JSON-LD, sitemap).
 
 ## Mesures finales
 Voir `docs/PLAN-ET-TARIFS.md` (section 8) et `scripts/lighthouse.sh`. Accessibilité 100, SEO 100, performance ordinateur ≥ 95 ; **performance mobile limitée (≈ 60–70)** : pré-rendu serveur de la première vue non fait.
@@ -49,3 +49,6 @@ Voir `docs/PLAN-ET-TARIFS.md` (section 8) et `scripts/lighthouse.sh`. Accessibil
 - Le compte Hostinger connecté ne contient qu'un site : `benaxservices.ca` (autre entreprise). **Aucun domaine n'existe pour AUREX** ; rien n'a été déployé et le site existant n'a pas été touché.
 - Pour publier le **site complet** (formulaires, soumissions, espace client, administration, conseiller IA), il faut : (1) un nom de domaine AUREX, (2) un hébergement Node.js avec base MySQL, (3) l'accord explicite de la direction, (4) les variables d'environnement (voir plus haut).
 - L'aperçu figé n'enregistre rien : ses formulaires et ses liens vers le site complet affichent un message d'explication.
+
+## Pages ajoutées lors de la finalisation
+FAQ, conditions de service, mentions légales, accessibilité, plan du site (français et anglais), liées depuis le pied de page. Les textes juridiques (conditions, mentions légales) sont des **modèles à faire valider par un juriste** avant la mise en ligne.

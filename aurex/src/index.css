@@ -1466,3 +1466,12 @@ table { color: var(--text); } th, td { border-color: var(--line); }
 .page-hero .page-hero-grid .ornament, .page-hero-grid svg.ornament { opacity: .16; }
 .page-hero-intro { position: relative; z-index: 1; padding: 20px 22px; background: oklch(0.1 0.008 270 / .62); border: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 @media (max-width: 900px) { .page-hero-intro { background: transparent; border: 0; backdrop-filter: none; padding: 0; } }
+
+.legal-sections { display: grid; gap: 34px; max-width: 860px; }
+.legal-block h2 { font-size: clamp(22px, 2.2vw, 30px); margin-bottom: 10px; }
+.legal-block p { color: var(--text-muted); max-width: 70ch; margin-bottom: 10px; }
+.sitemap-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 36px; }
+.sitemap-groups h2 { font-size: 22px; margin-bottom: 12px; }
+.sitemap-groups ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sitemap-groups a { color: var(--text-muted); } .sitemap-groups a:hover { color: var(--accent); }
+.footer-legal { flex-wrap: wrap; gap: 8px 22px; }

@@ -26,8 +26,11 @@ mkdirSync(path.join(OUT, "assets"), { recursive: true });
 // Scripts are not exported. The stylesheet and the self-hosted fonts are, with absolute URLs made relative
 // so the preview works from any folder (hosted previews do not serve the site root).
 for (const file of readdirSync("dist/public/assets").filter((f) => /\.(woff2?|ttf)$/.test(f))) cpSync(`dist/public/assets/${file}`, path.join(OUT, "assets", file));
-const photoUri = dataUri("images/architecture.webp");
-const stylesheet = readFileSync(`dist/public/assets/${css}`, "utf8").replaceAll("url(/images/architecture.webp)", `url(${photoUri})`).replaceAll("url(/assets/", "url(./").replaceAll("url(/images/", "url(../images/").replaceAll('url("/images/', 'url("../images/').replaceAll("url('/images/", "url('../images/");
+// The hero photo is embedded once, as a custom property, instead of three times in the stylesheet.
+const photoVars = `:root{--aurex-photo:url(${dataUri("images/architecture.webp")})}`;
+const stylesheet = photoVars + readFileSync(`dist/public/assets/${css}`, "utf8")
+  .replaceAll("url(/images/architecture.webp)", "var(--aurex-photo)").replaceAll("url(/assets/", "url(./").replaceAll("url(/images/", "url(../images/");
+const GOOGLE_FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">';
 writeFileSync(path.join(OUT, "assets", css), stylesheet);
 for (const dir of ["images", "icons", "brochures", "brand"]) cpSync(`public/${dir}`, path.join(OUT, dir), { recursive: true });
 
@@ -93,13 +96,11 @@ document.addEventListener("submit",function(e){e.preventDefault();say();});
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-full-site]");if(a){e.preventDefault();say();}});
 })();
 </script></body>`);
-  // The root page carries its stylesheet inline, so it renders even where linked files are served with other rules.
-  let output = injected;
-  if (file === "index.html") {
-    const inline = stylesheet.replaceAll("url(./", "url(assets/").replaceAll("url(../images/", "url(images/");
-    output = injected.replace(/<link[^>]*rel="stylesheet"[^>]*>/, () => `<style>${inline}</style>`)
-      .replace(/src="((?:images|brand)\/[^"]+)"/g, (_m, file: string) => `src="${dataUri(file)}"`);
-  }
+  // Every page carries its own stylesheet and images, so it renders even where linked files are blocked or resolved differently.
+  const inline = stylesheet.replaceAll("url(./", `url(${up}assets/`).replaceAll("url(../images/", `url(${up}images/`);
+  const output = injected
+    .replace(/<link[^>]*rel="stylesheet"[^>]*>/, () => `${GOOGLE_FONTS}<style>${inline}</style>`)
+    .replace(/src="(?:\.\.\/)*((?:images|brand)\/[^"]+)"/g, (_m, file: string) => `src="${dataUri(file)}"`);
   const target = path.join(OUT, file);
   mkdirSync(path.dirname(target), { recursive: true });
   writeFileSync(target, output.replaceAll(' loading="lazy"', ""));

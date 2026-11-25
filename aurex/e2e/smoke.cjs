@@ -51,7 +51,7 @@ const check = (name, ok, detail = "") => { results.push({ name, ok }); console.l
   const expectedPages = 2 * (1 + 12 + 8 + 6 + 10 + 2 + 2); // home+static, expertises, solutions, sectors, insights (2 articles), …
   check("10 expertise pages exist", [...seen].filter((p) => /^\/fr\/expertises\/.+/.test(p)).length === 10);
   check("13 sector pages exist", [...seen].filter((p) => /^\/fr\/secteurs\/.+/.test(p)).length === 13);
-  for (const path of ["/fr/tarifs", "/fr/simulateur", "/fr/intelligence-artificielle", "/fr/solutions", "/fr/etudes-de-cas", "/fr/ressources", "/fr/methode", "/fr/calculateurs", "/fr/automatisation", "/fr/innovations"]) check(`page exists: ${path}`, seen.has(path));
+  for (const path of ["/fr/tarifs", "/fr/simulateur", "/fr/intelligence-artificielle", "/fr/solutions", "/fr/etudes-de-cas", "/fr/ressources", "/fr/methode", "/fr/calculateurs", "/fr/automatisation", "/fr/innovations", "/fr/faq", "/fr/conditions", "/fr/mentions-legales", "/fr/accessibilite", "/fr/plan-du-site"]) check(`page exists: ${path}`, seen.has(path));
 
   // 3. Diagnostic in three steps
   await page.goto(BASE + "/fr/diagnostic", { waitUntil: "networkidle" });

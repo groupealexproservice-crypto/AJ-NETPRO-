@@ -3,7 +3,7 @@
 const { chromium } = require("playwright");
 const path = require("node:path");
 const BASE = process.env.BASE_URL || "http://127.0.0.1:3000";
-const pages = ["/fr", "/en", "/fr/expertises", "/fr/expertises/publicite-numerique-ppc", "/en/expertise/artificial-intelligence-automation".replace("artificial-intelligence-automation", "intelligence-artificielle-automatisation"), "/fr/solutions", "/fr/secteurs/sport-bien-etre", "/fr/tarifs", "/fr/simulateur", "/fr/calculateurs", "/fr/automatisation", "/fr/innovations", "/fr/intelligence-artificielle", "/fr/a-propos", "/fr/methode", "/fr/diagnostic", "/fr/consultation", "/fr/contact", "/fr/confidentialite", "/fr/connexion", "/en/pricing", "/en/simulator"];
+const pages = ["/fr", "/en", "/fr/expertises", "/fr/expertises/publicite-numerique-ppc", "/en/expertise/artificial-intelligence-automation".replace("artificial-intelligence-automation", "intelligence-artificielle-automatisation"), "/fr/solutions", "/fr/secteurs/sport-bien-etre", "/fr/tarifs", "/fr/simulateur", "/fr/calculateurs", "/fr/faq", "/fr/conditions", "/fr/mentions-legales", "/fr/accessibilite", "/fr/plan-du-site", "/fr/automatisation", "/fr/innovations", "/fr/intelligence-artificielle", "/fr/a-propos", "/fr/methode", "/fr/diagnostic", "/fr/consultation", "/fr/contact", "/fr/confidentialite", "/fr/connexion", "/en/pricing", "/en/simulator"];
 (async () => {
   const browser = await chromium.launch({ args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] });
   // axe is injected as a script, so the audit context bypasses the CSP; the CSP itself is checked in a second pass below.

@@ -17,6 +17,8 @@ const UnsubscribePage = named(company, "UnsubscribePage"), WorkPage = named(comp
 const ExpertiseDetail = named(directory, "ExpertiseDetail"), ExpertiseIndex = named(directory, "ExpertiseIndex"), SectorDetail = named(directory, "SectorDetail"), SectorsPage = named(directory, "SectorsPage"), SolutionsPage = named(directory, "SolutionsPage");
 const tools = () => import("./pages/ToolsPages");
 const CalculatorsPage = named(tools, "CalculatorsPage"), AutomationPage = named(tools, "AutomationPage"), InnovationsPage = named(tools, "InnovationsPage");
+const info = () => import("./pages/InfoPages");
+const FaqPage = named(info, "FaqPage"), TermsPage = named(info, "TermsPage"), LegalNoticePage = named(info, "LegalNoticePage"), AccessibilityPage = named(info, "AccessibilityPage"), SitemapPage = named(info, "SitemapPage");
 const AIPage = named(product, "AIPage"), PricingPage = named(product, "PricingPage"), SimulatorPage = named(product, "SimulatorPage");
 import { localizePath } from "./routes";
 import type { Lang } from "./content";
@@ -52,6 +54,11 @@ const pages: Array<[canonical: string, element: React.ReactElement]> = [
   ["/soumission", <LeadPage mode="quote" />],
   ["/consultation", <LeadPage mode="appointment" />],
   ["/confidentialite", <PrivacyPage />],
+  ["/faq", <FaqPage />],
+  ["/conditions", <TermsPage />],
+  ["/mentions-legales", <LegalNoticePage />],
+  ["/accessibilite", <AccessibilityPage />],
+  ["/plan-du-site", <SitemapPage />],
   ["/desabonnement", <UnsubscribePage />],
   ["/connexion", <Login />],
 ];
