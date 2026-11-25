@@ -6,6 +6,10 @@
 import { createRequire } from "node:module";
 import { cpSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+
+const MIME: Record<string, string> = { ".webp": "image/webp", ".png": "image/png", ".svg": "image/svg+xml", ".jpg": "image/jpeg" };
+/** Embeds a public file as a data URI, so the image shows wherever the page is hosted, whatever the base URL. */
+const dataUri = (publicFile: string) => `data:${MIME[path.extname(publicFile)] ?? "application/octet-stream"};base64,${readFileSync(path.join("public", publicFile)).toString("base64")}`;
 import { indexablePaths, localizePath } from "../src/routes";
 
 const { chromium } = createRequire(import.meta.url)("playwright") as typeof import("playwright");
@@ -22,7 +26,8 @@ mkdirSync(path.join(OUT, "assets"), { recursive: true });
 // Scripts are not exported. The stylesheet and the self-hosted fonts are, with absolute URLs made relative
 // so the preview works from any folder (hosted previews do not serve the site root).
 for (const file of readdirSync("dist/public/assets").filter((f) => /\.(woff2?|ttf)$/.test(f))) cpSync(`dist/public/assets/${file}`, path.join(OUT, "assets", file));
-const stylesheet = readFileSync(`dist/public/assets/${css}`, "utf8").replaceAll("url(/assets/", "url(./").replaceAll("url(/images/", "url(../images/").replaceAll('url("/images/', 'url("../images/').replaceAll("url('/images/", "url('../images/");
+const photoUri = dataUri("images/architecture.webp");
+const stylesheet = readFileSync(`dist/public/assets/${css}`, "utf8").replaceAll("url(/images/architecture.webp)", `url(${photoUri})`).replaceAll("url(/assets/", "url(./").replaceAll("url(/images/", "url(../images/").replaceAll('url("/images/', 'url("../images/').replaceAll("url('/images/", "url('../images/");
 writeFileSync(path.join(OUT, "assets", css), stylesheet);
 for (const dir of ["images", "icons", "brochures", "brand"]) cpSync(`public/${dir}`, path.join(OUT, dir), { recursive: true });
 
@@ -85,11 +90,12 @@ document.addEventListener("click",function(e){var a=e.target.closest&&e.target.c
   let output = injected;
   if (file === "index.html") {
     const inline = stylesheet.replaceAll("url(./", "url(assets/").replaceAll("url(../images/", "url(images/");
-    output = injected.replace(/<link[^>]*rel="stylesheet"[^>]*>/, () => `<style>${inline}</style>`);
+    output = injected.replace(/<link[^>]*rel="stylesheet"[^>]*>/, () => `<style>${inline}</style>`)
+      .replace(/src="((?:images|brand)\/[^"]+)"/g, (_m, file: string) => `src="${dataUri(file)}"`);
   }
   const target = path.join(OUT, file);
   mkdirSync(path.dirname(target), { recursive: true });
-  writeFileSync(target, output);
+  writeFileSync(target, output.replaceAll(' loading="lazy"', ""));
   count += 1;
 }
 await browser.close();
